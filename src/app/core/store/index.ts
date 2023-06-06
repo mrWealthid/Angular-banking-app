@@ -1,15 +1,18 @@
 import {localStorageSync} from "ngrx-store-localstorage";
 import {AuthReducer} from "./Auth/reducers";
 import {ActionReducerMap, MetaReducer} from "@ngrx/store";
-import {AuthState} from "../../shared/interface/userAuth";
+import {AuthState, IProfileState} from "../../shared/interface/userAuth";
 import {AuthEffect} from "./Auth/effects";
+import {ProfileReducer} from "./Profile/reducers";
+import {ProfileEffect} from "./Profile/effects";
 
 export function localStorageSyncReducer(reducer: any) {
-  return localStorageSync({ keys: ['Auth'], rehydrate: true })(reducer);
+  return localStorageSync({ keys: ['Auth', 'Profile'], rehydrate: true })(reducer);
 }
 
 export interface IAppState {
-  Auth:AuthState
+  Auth:AuthState,
+  Profile:IProfileState
 }
 
 export const metaReducers: Array<MetaReducer<any, any>> = [];
@@ -25,10 +28,12 @@ if (typeof window !== 'undefined') {
 // Define the global store shape by combining our application's
 // reducers together into a given structure.
 export const reducers: ActionReducerMap<IAppState> = {
-  Auth: AuthReducer
+  Auth: AuthReducer,
+  Profile:ProfileReducer
 
 };
 
 export const effects = [
-  AuthEffect
+  AuthEffect,
+  ProfileEffect
 ];
