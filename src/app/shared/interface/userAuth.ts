@@ -13,7 +13,7 @@ export interface IRegister {
 }
 
 
-export interface IProfile extends IUserDetails{
+export interface IProfile extends IUser{
 transactions: ITransactions[]
 
 }
@@ -44,6 +44,7 @@ type User = Pick<IUser, "token" >
 export interface IUser {
   status: String,
   token: String,
+
 }
 
 export interface IUserDetails {

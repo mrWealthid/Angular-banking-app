@@ -32,4 +32,11 @@ export const AuthReducer = createReducer(initialState,
   on(AuthActions.logout, (state, action) => ({
     ...state, isLoading: false, error: null, currentUser: null
   })),
+
+  on(AuthActions.profileLookupSuccess, (state, action) => ({
+    ...state, isLoading: false, currentUser: {...state.currentUser, ...action.newUser}, error: null
+  })),
+
+
+
 );
