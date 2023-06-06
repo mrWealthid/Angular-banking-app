@@ -1,0 +1,20 @@
+
+<section class="w-[90%]  mt-16 mx-auto">
+
+
+  <ngx-datatable
+    class="material"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [scrollbarV]="false"
+    [scrollbarH]="false"
+
+    (page)="onPageChange($event)"
+  >
+  </ngx-datatable>
+
+</section>

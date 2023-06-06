@@ -8,22 +8,18 @@ import {WebStorageService} from "../shared/services/web-storage.service";
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-    data: DatabaseInterface;
-    userName: string = "John Doe";
-    accountNumber: number = 11111;
-    dropDownList: number;
 
-    constructor(private webStorage: WebStorageService) {
+  links = [
+    {path: '/dashboard', text: 'Overview'},
+    {path: 'profile', text: 'User'},
+    {path: 'transactions', text: 'Transactions'}
+  ]
+    constructor() {
     }
 
-    // checktransferType(amount: Number): string {
-    //     if (amount > 0) {
-    //         return "Credit";
-    //     }
-    //     return "Debit";
-    // }
+
 
     ngOnInit(): void {
-        this.data = this.webStorage.retrieveFromStorage("currentUser");
+
     }
 }
