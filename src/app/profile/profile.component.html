@@ -1,22 +1,29 @@
-<section class="flex md:flex-row flex-col container items-center gap-6 min-h-screen h-screen">
-    <section class=" text-center skin  border md:w-2/6  h-4/6 rounded-xl">
+<section class="flex md:flex-row w-full container-text flex-col items-center gap-6 min-h-screen h-screen">
+    <section *ngIf="currentUser$|async as currentUser" class="text-center  border w-1/3   h-4/6 rounded-xl">
         <div class="py-3 ">
-            <img alt="" class="bg-white border rounded-full mx-auto w-32 h-32" src="./assets/images/Vector1580.svg">
+            <img alt="" class="bg-white border rounded-full mx-auto  h-32" src="./assets/images/Vector1580.svg">
         </div>
         <section class="flex flex-col gap-4 ">
             <p class="text-2xl">Personal Details</p>
             <span>
-          {{data.fullName}}
+          {{currentUser.name}}
         </span>
             <span>
-            {{data.email}}
+            {{currentUser.email}}
         </span>
             <span>
             +234-803-333-444
         </span>
-            <span>
-           {{data.accountNumber}}
+          <hr>
+
+          <span class="flex items-center justify-center gap-3">
+            <span>Account Number:</span>
+
+            <span class="font-bold">
+           {{currentUser.accountNumber}}
         </span>
+          </span>
+
             <div>
                 <button (click)="toggleModal()"
                         class="rounded-3xl bg-green-500 text-white border p-3 w-1/2">Edit Profile
@@ -24,69 +31,69 @@
             </div>
         </section>
     </section>
-    <section class="flex flex-col gap-7 md:w-3/6 h-5/6 ">
+    <section class="flex flex-col gap-7 flex-1   h-5/6 ">
         <section class="bg-white  h-1/2 w-full rounded-xl ">
         </section>
         <section class="bg-white  h-1/2 w-full rounded-xl ">
         </section>
     </section>
-    <!--    <app-modals [size]="'w-1/2'">-->
-    <!--        <form [formGroup]="profileForm" class="flex flex-col gap-3">-->
-    <!--            <section class="">-->
-    <!--                <label for="fullName">Full Name </label>-->
-    <!--                <div-->
-    <!--                        class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--                >-->
-    <!--                    <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--                    <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                           formControlName="fullName"-->
-    <!--                           id="fullName"-->
-    <!--                           placeholder="{{data.fullName}}" type="text"/>-->
-    <!--                </div>-->
-    <!--            </section>-->
-    <!--            <section class="">-->
-    <!--                <label for="email"> Email</label>-->
-    <!--                <div-->
-    <!--                        class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--                >-->
-    <!--                    <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--                    <input [disabled]="true"-->
-    <!--                           class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                           formControlName="email"-->
-    <!--                           id="email"-->
-    <!--                           placeholder=""-->
-    <!--                           type="text"/>-->
-    <!--                </div>-->
-    <!--            </section>-->
-    <!--            <section class="">-->
-    <!--                <label for="gender">Gender</label>-->
-    <!--                <div-->
-    <!--                        class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--                >-->
-    <!--                    <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--                    <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                           formControlName="gender"-->
-    <!--                           id="gender"-->
-    <!--                           placeholder=""-->
-    <!--                           type="text"/>-->
-    <!--                </div>-->
-    <!--            </section>-->
-    <!--            <section class="">-->
-    <!--                <label for="Phone">Telephone No </label>-->
-    <!--                <div-->
-    <!--                        class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--                >-->
-    <!--                    <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--                    <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                           formControlName="phone"-->
-    <!--                           id="Phone"-->
-    <!--                           placeholder=""-->
-    <!--                           type="number"/>-->
-    <!--                </div>-->
-    <!--            </section>-->
-    <!--            <div class="mt-2">-->
-    <!--                <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
-    <!--            </div>-->
-    <!--        </form>-->
-    <!--    </app-modals>-->
+        <app-modals [size]="'w-1/2'">
+            <form [formGroup]="profileForm" class="flex flex-col gap-3">
+                <section class="">
+                    <label for="fullName">Full Name </label>
+                    <div
+                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+                    >
+                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
+                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
+                               formControlName="fullName"
+                               id="fullName"
+                               placeholder="{{data?.name}}" type="text"/>
+                    </div>
+                </section>
+                <section class="">
+                    <label for="email"> Email</label>
+                    <div
+                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+                    >
+                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
+                        <input [disabled]="true"
+                               class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
+                               formControlName="email"
+                               id="email"
+                               placeholder=""
+                               type="text"/>
+                    </div>
+                </section>
+<!--                <section class="">-->
+<!--                    <label for="gender">Gender</label>-->
+<!--                    <div-->
+<!--                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+<!--                    >-->
+<!--                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
+<!--                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
+<!--                               formControlName="gender"-->
+<!--                               id="gender"-->
+<!--                               placeholder=""-->
+<!--                               type="text"/>-->
+<!--                    </div>-->
+<!--                </section>-->
+<!--                <section class="">-->
+<!--                    <label for="Phone">Telephone No </label>-->
+<!--                    <div-->
+<!--                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+<!--                    >-->
+<!--                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
+<!--                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
+<!--                               formControlName="phone"-->
+<!--                               id="Phone"-->
+<!--                               placeholder=""-->
+<!--                               type="number"/>-->
+<!--                    </div>-->
+<!--                </section>-->
+                <div class="mt-2">
+                    <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>
+                </div>
+            </form>
+        </app-modals>
 </section>
