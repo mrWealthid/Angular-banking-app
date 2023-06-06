@@ -13,7 +13,7 @@ export interface IRegister {
 }
 
 
-export interface IProfile extends IUser{
+export interface IProfile extends IUserDetails{
 transactions: ITransactions[]
 
 }
@@ -24,19 +24,26 @@ export interface ITransactions {
   amount:Number
   transactionType: 'debit | credit'
   user?: String,
-  depositiorAccountNumber:Number,
+  depositorAccountNumber:Number,
   createdAt:Date
 }
 
 
 export interface AuthState {
   isLoading: Boolean
-  currentUser: User | null
+  isAuthenticated:boolean,
+  token:String|null
+  error: String | null
+}
+export interface IProfileState {
+  isLoading: Boolean
+  currentUser:IProfile|null,
   error: String | null
 }
 
 export interface AppStateInterface {
   Auth: AuthState;
+  Profile:IProfileState
 }
 
 type User = Pick<IUser, "token" >

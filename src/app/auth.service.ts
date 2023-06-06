@@ -7,7 +7,7 @@ import {NotificationService} from "./shared/services/notification.service";
 import {DatabaseService} from "./shared/services/database.service";
 import {DatabaseInterface} from "./shared/interface/database-interface";
 import {WebStorageService} from "./shared/services/web-storage.service";
-import {Observable} from "rxjs";
+import {map, Observable, tap} from "rxjs";
 import {HttpClient, HttpContext} from "@angular/common/http";
 import {BEARER_TOKEN} from "./headers.interceptor";
 
@@ -59,7 +59,13 @@ export class AuthService {
 
 
   fetchProfile():Observable<IProfile> {
-    return this.Http.get<IProfile>('http://localhost:3000/api/v1/users/me')
+    return this.Http.get<any>('http://localhost:3000/api/v1/users/me').pipe(map((result)=> {
+      console.log(result);
+      return {
+        ...result.data
+      }
+    })
+    )
   }
 
   // register(credentials: any) {
