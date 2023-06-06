@@ -1,0 +1,17 @@
+<header class="flex skin  justify-between container-text">
+    <section class="section-left"></section>
+    <section class="flex items-center gap-5">
+        <a [routerLinkActiveOptions]="{exact:true}" [routerLink]='[""]'
+           routerLinkActive="text-gray-800 border rounded-full px-3 py-2 ">Home</a>
+        <a [routerLink]='["profile"] ' routerLinkActive="text-gray-800  rounded-full border px-3 py-2 ">Profile</a>
+        <a *ngIf="authService.isLoggedIn" [routerLink]='["dashboard"]'
+           routerLinkActive="text-gray-800">Dashboard</a>
+        <a *ngIf="!authService.isLoggedIn" [routerLink]='["login"]' routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Login</a>
+        <a *ngIf="!authService.isLoggedIn" [routerLink]='["signup"]' routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Signup</a>
+        <a (click)="logout()"  class="cursor-pointer"
+           routerLinkActive="text-gray-800 rounded-full">Logout</a>
+<!--        <span *ngIf="authService.isLoggedIn && db.currentUser"-->
+<!--              class="rounded-full border w-10 object-contain px-3 flex items-center justify-center py-2 border-green-600 bg-white"> {{db.currentUser}-->
+<!--        </span>-->
+    </section>
+</header>
