@@ -1,0 +1,8 @@
+.disabled {
+  cursor: not-allowed;
+}
+
+.signup {
+  height: calc(100vh - var(--header-height));
+  //min-height: calc(100vh - var(--header-height));
+}

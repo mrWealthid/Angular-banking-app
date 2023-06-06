@@ -1,0 +1,7 @@
+.disabled {
+  cursor: not-allowed;
+}
+
+.login {
+  height: calc(100vh - var(--header-height));
+}
