@@ -7,6 +7,8 @@
 
 :root {
   --header-height: 10vh;
+
+  --primary-color: rgba(17, 24,39, 1);;
   /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
 }
 
@@ -19,8 +21,9 @@
 }
 
 .btn-primary {
-  @apply bg-gray-800 py-3 my-1 rounded-lg w-full text-white
+  @apply bg-primary py-3 my-1  w-full text-white
 }
+
 
 .btn-primary:disabled {
   @apply bg-gray-300 cursor-not-allowed
@@ -29,6 +32,10 @@
 .error-input {
   @apply border-red-800 focus-within:border-red-800
 
+}
+
+.input-style {
+  @apply border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full
 }
 
 /*removes the background color form upon autofill*/

@@ -1,4 +1,4 @@
-import {inject, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
@@ -13,9 +13,6 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
-
-import {AuthGuardService} from "./shared/services/auth-guard.service";
 import {ButtonComponent} from './shared/button/button.component';
 import {ToastrModule} from "ngx-toastr";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
@@ -25,16 +22,17 @@ import {ModalsComponent} from './shared/modals/modals.component';
 import {TableComponent} from './shared/table/table.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
-import {AuthEffect} from "./core/store/Auth/effects";
 import {EffectsModule} from "@ngrx/effects";
-import {AuthReducer} from "./core/store/Auth/reducers";
-import {select, Store, StoreModule} from "@ngrx/store";
+
+import {StoreModule} from "@ngrx/store";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {effects, localStorageSyncReducer, reducers} from "./core/store";
 import {HeadersInterceptor} from "./headers.interceptor";
 
 import {authGuard} from "./services/auth-guard2.guard";
+import {ImageUploadComponent} from './image-upload/image-upload.component';
+import {StepperComponent} from './shared/stepper/stepper.component';
 
 
 @NgModule({
@@ -51,7 +49,9 @@ import {authGuard} from "./services/auth-guard2.guard";
     ModalComponent,
     AdminComponent,
     ModalsComponent,
-    TableComponent
+    TableComponent,
+    ImageUploadComponent,
+    StepperComponent
   ],
   imports: [
     FontAwesomeModule,
