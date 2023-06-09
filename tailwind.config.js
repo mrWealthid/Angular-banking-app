@@ -2,6 +2,13 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
   ],
+
+  variants: {
+    // The 'active' variant will be generated in addition to the defaults
+    extend: {
+      backgroundColor: ['disabled']
+    }
+  },
   theme: {
 
     extend: {

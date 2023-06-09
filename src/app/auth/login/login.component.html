@@ -8,183 +8,56 @@
       <p *ngIf="routes === 'updatePasswordForm'" class=" text-center font-bold text-2xl">Update Password</p>
 
     </ng-container>
-    <form (ngSubmit)="handleLogin(LoginForm.value)" *ngIf="(formRoute$|async) ==='loginForm'" [formGroup]="LoginForm"
-          action=""
-          class="w-full flex flex-col justify-center gap-2 items-center ">
-      <section class="w-5/6">
-        <label for="">Enter Email: </label>
-        <div
-          [ngClass]="{'error-input':this.validateEmail(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateEmail()}"
-          class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-        >
-          <span *ngIf="!this.validateEmail()"><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
-          <span *ngIf="this.validateEmail()"><fa-icon [icon]="faCircleExclamation"
-                                                      class="text-red-300"></fa-icon></span>
-          <input
-            autocomplete="true"
-            class="input-style"
-            formControlName="email"
-            placeholder="johndoe@gmail.com"
-            type="email"/>
-        </div>
-        <span *ngIf="this.validateEmail()" class="text-red-800 text-xs">Enter a valid email address</span>
-      </section>
-      <section class="w-5/6">
-        <label for="">Enter Password </label>
-        <div
-          [ngClass]="{'error-input':this.validatePassword(), 'border-blue-100 focus-within:border-gray-200 ': !this.validatePassword()}"
-          class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-          <fa-icon [icon]="faLock" class="text-gray-300"></fa-icon>
-          <input [attr.type]='!isShown ? "password":"text"'
-                 class="input-style"
-                 formControlName="password" id="" name=""
-                 placeholder="password"
-          />
-          <span (click)="togglePassword()" *ngIf="!isShown">
-                        <fa-icon [icon]="faEye" class="text-gray-300 cursor-pointer"></fa-icon></span>
-          <span (click)="togglePassword()" *ngIf="isShown">
-                        <fa-icon [icon]="faEyeSlash" class="text-gray-300 cursor-pointer"></fa-icon></span>
-        </div>
-        <span *ngIf="this.validatePassword()" class="text-red-800 text-xs">Password must exceed 6 digits</span>
-      </section>
-      <section class="w-5/6 mt-4">
+    <section class="w-full">
 
-        <app-button [btnText]="authservice.isLoading? 'Processing...':'Login'" [disabled]="LoginForm.invalid"
-                    [styles]="'btn-primary'"></app-button>
-      </section>
-      <p class="flex  gap-3 text-sm tex-gray-800">
-        Forgot Password ?
-        <small (click)="updateRoute('resetPassword')" class="text-blue-600 text-sm">
-          Reset
-        </small>
-      </p>
-      <p class="flex  gap-3 text-sm tex-gray-800">
-        Need An Account
-        <a [routerLink]="['/signup']" class="text-blue-600 text-sm">
-          Sign up
-        </a>
-      </p>
+      <form (ngSubmit)="handleLogin(LoginForm.value)" *ngIf="(formRoute$|async) ==='loginForm'" [formGroup]="LoginForm"
+            action=""
+            class="w-full flex flex-col justify-center gap-2 items-center ">
 
-    </form>
+        <email-input
+          [formControl]="email"
+          [label]="'Enter Email'"
+          [type]="'email'"
+          class="w-5/6"
+        ></email-input>
+
+        <password-input
+          [formControl]="password"
+          [label]="'Confirm Password'"
+          [type]="'password'"
+          class="w-5/6"
+        ></password-input>
+
+        <section class="w-5/6 mt-4">
+
+          <app-button [btnText]="authservice.isLoading? 'Processing...':'Login'" [disabled]="LoginForm.invalid"
+                      [styles]="'btn-primary'"></app-button>
+        </section>
+        <p class="flex  gap-3 text-sm tex-gray-800">
+          Forgot Password ?
+          <small (click)="updateRoute('resetPassword')" class="text-blue-600 text-sm">
+            Reset
+          </small>
+        </p>
+        <p class="flex  gap-3 text-sm tex-gray-800">
+          Need An Account
+          <a [routerLink]="['/signup']" class="text-blue-600 text-sm">
+            Sign up
+          </a>
+        </p>
+
+      </form>
+
+      <ng-container *ngIf="(formRoute$|async) ==='resetPassword'">
+        <app-reset-password></app-reset-password>
+      </ng-container>
+
+      <ng-container *ngIf="(formRoute$|async) ==='updatePasswordForm'">
+        <app-update-password></app-update-password>
+      </ng-container>
 
 
-    <form (ngSubmit)="handleForgotPassword(resetPasswordForm.value)" *ngIf="(formRoute$|async) ==='resetPassword'"
-          [formGroup]="resetPasswordForm"
-          action=""
-          class="w-full flex flex-col justify-center gap-2 items-center ">
-      <section class="w-5/6">
-        <label for="">Enter Email: </label>
-        <div
-          [ngClass]="{'error-input':this.validateEmail(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateEmail()}"
-          class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-        >
-          <span *ngIf="!this.validateEmail()"><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
-          <span *ngIf="this.validateEmail()"><fa-icon [icon]="faCircleExclamation"
-                                                      class="text-red-300"></fa-icon></span>
-          <input
-            autocomplete="true"
-            class="input-style"
-            formControlName="email"
-            placeholder="johndoe@gmail.com"
-            type="email"/>
-        </div>
-        <span *ngIf="this.validateEmail()" class="text-red-800 text-xs">Enter a valid email address</span>
-      </section>
-
-      <section class="w-5/6 mt-4">
-        <app-button [btnText]="authservice.isLoading? 'Processing...':'Reset Password'"
-                    [styles]="'btn-primary'"></app-button>
-      </section>
-      <p class="flex  gap-3 text-sm tex-gray-800">
-        Already Have An Account
-        <a (click)="updateRoute('loginForm')" class="text-blue-600 text-sm">
-          Login
-        </a>
-      </p>
-      <!--      <p class="flex  gap-3 text-sm tex-gray-800">-->
-      <!--        Forgot Password ?-->
-      <!--        <a [routerLink]="['/signup']" class="text-blue-600 text-sm">-->
-      <!--          Reset-->
-      <!--        </a>-->
-      <!--      </p>-->
-
-    </form>
-
-
-    <form (ngSubmit)="handleUpdatePassword(updatePasswordForm.value)" *ngIf="(formRoute$|async) ==='updatePasswordForm'"
-          [formGroup]="updatePasswordForm"
-          class="w-full flex flex-col justify-center gap-2 items-center ">
-
-      <section class="w-5/6">
-        <label for="">Current Password </label>
-        <div
-          [ngClass]="{'error-input':this.validatePassword(), 'border-blue-100 focus-within:border-gray-200 ': !this.validatePassword()}"
-          class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-          <fa-icon [icon]="faLock" class="text-gray-300"></fa-icon>
-          <input [attr.type]='!isShown ? "password":"text"'
-                 class="input-style"
-                 formControlName="currentPassword" name=""
-                 placeholder="password"
-          />
-          <span (click)="togglePassword()" *ngIf="!isShown">
-                        <fa-icon [icon]="faEye" class="text-gray-300 cursor-pointer"></fa-icon></span>
-          <span (click)="togglePassword()" *ngIf="isShown">
-                        <fa-icon [icon]="faEyeSlash" class="text-gray-300 cursor-pointer"></fa-icon></span>
-        </div>
-        <!--                <span *ngIf="this.validatePassword()" class="text-red-800 text-xs">Password must exceed 6 digits</span>-->
-      </section>
-      <section class="w-5/6">
-        <label for="">Enter Password </label>
-        <div
-          [ngClass]="{'error-input':this.validatePassword(), 'border-blue-100 focus-within:border-gray-200 ': !this.validatePassword()}"
-          class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-          <fa-icon [icon]="faLock" class="text-gray-300"></fa-icon>
-          <input [attr.type]='!isShown ? "password":"text"'
-                 class="input-style"
-                 formControlName="password" name=""
-                 placeholder="password"
-          />
-          <span (click)="togglePassword()" *ngIf="!isShown">
-                        <fa-icon [icon]="faEye" class="text-gray-300 cursor-pointer"></fa-icon></span>
-          <span (click)="togglePassword()" *ngIf="isShown">
-                        <fa-icon [icon]="faEyeSlash" class="text-gray-300 cursor-pointer"></fa-icon></span>
-        </div>
-        <span *ngIf="this.validatePassword()" class="text-red-800 text-xs">Password must exceed 6 digits</span>
-      </section>
-
-      <section class="w-5/6">
-        <label for="">Confirm Password </label>
-        <div
-          [ngClass]="{'error-input':this.validatePassword(), 'border-blue-100 focus-within:border-gray-200 ': !this.validatePassword()}"
-          class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-          <fa-icon [icon]="faLock" class="text-gray-300"></fa-icon>
-          <input [attr.type]='!isShown ? "password":"text"'
-                 class="input-style"
-                 formControlName="confirmPassword" name=""
-                 placeholder="password"
-          />
-          <span (click)="togglePassword()" *ngIf="!isShown">
-                        <fa-icon [icon]="faEye" class="text-gray-300 cursor-pointer"></fa-icon></span>
-          <span (click)="togglePassword()" *ngIf="isShown">
-                        <fa-icon [icon]="faEyeSlash" class="text-gray-300 cursor-pointer"></fa-icon></span>
-        </div>
-        <!--        <span *ngIf="this.validatePassword()" class="text-red-800 text-xs">Password must exceed 6 digits</span>-->
-      </section>
-      <section class="w-5/6 mt-4">
-
-        <app-button [btnText]="authservice.isLoading? 'Processing...':'Update'" [disabled]="LoginForm.invalid"
-                    [styles]="'btn-primary'"></app-button>
-      </section>
-      <p class="flex  gap-3 text-sm tex-gray-800">
-        Need An Account
-        <a [routerLink]="['/signup']" class="text-blue-600 text-sm">
-          Sign up
-        </a>
-      </p>
-
-
-      <app-inputs formControlName="password"></app-inputs>
-    </form>
+    </section>
   </section>
 </section>
 

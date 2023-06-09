@@ -33,6 +33,12 @@ import {HeadersInterceptor} from "./headers.interceptor";
 import {authGuard} from "./services/auth-guard2.guard";
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {StepperComponent} from './shared/stepper/stepper.component';
+import {InputsComponent} from './shared/inputs/inputs.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { UpdatePasswordComponent } from './auth/update-password/update-password.component';
+import { PasswordInputComponent } from './shared/inputs/password-input/password-input.component';
+import { EmailInputComponent } from './shared/inputs/email-input/email-input.component';
+import { TextInputComponent } from './shared/inputs/text-input/text-input.component';
 
 
 @NgModule({
@@ -51,7 +57,13 @@ import {StepperComponent} from './shared/stepper/stepper.component';
     ModalsComponent,
     TableComponent,
     ImageUploadComponent,
-    StepperComponent
+    StepperComponent,
+    InputsComponent,
+    ResetPasswordComponent,
+    UpdatePasswordComponent,
+    PasswordInputComponent,
+    EmailInputComponent,
+    TextInputComponent
   ],
   imports: [
     FontAwesomeModule,

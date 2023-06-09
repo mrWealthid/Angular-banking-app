@@ -8,7 +8,7 @@
 :root {
   --header-height: 10vh;
 
-  --primary-color: rgba(17, 24,39, 1);;
+  --primary-color: rgba(17, 24, 39, 1);;
   /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
 }
 
@@ -35,7 +35,7 @@
 }
 
 .input-style {
-  @apply border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full
+  @apply border-none text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full
 }
 
 /*removes the background color form upon autofill*/
@@ -51,6 +51,7 @@ input:-webkit-autofill {
     background-size: 60%;
   }
 }
+
 @layer components {
   .main_color {
     background-color: #eceef1;
@@ -62,8 +63,6 @@ input:-webkit-autofill {
 * {
   font-family: 'Raleway', sans-serif;
 }
-
-
 
 
 /*Table Styling*/
@@ -80,6 +79,7 @@ input:-webkit-autofill {
 .datatable-body-row {
   @apply h-12 px-4  border-b flex items-center
 }
+
 .page-count {
 
   @apply px-4
