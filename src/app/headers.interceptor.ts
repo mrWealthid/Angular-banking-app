@@ -1,11 +1,6 @@
 import {Injectable} from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor, HttpContextToken, HttpErrorResponse
-} from '@angular/common/http';
-import {BehaviorSubject, Observable, of, Subscription, throwError} from 'rxjs';
+import {HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
 import {select, Store} from "@ngrx/store";
 import {token} from "./core/store/Auth/selectors";
 import {AppStateInterface} from "./shared/interface/userAuth";
@@ -13,6 +8,7 @@ import {catchError} from "rxjs/operators";
 
 
 export const BEARER_TOKEN = new HttpContextToken(() => true);
+export const CONTENT_TYPE = new HttpContextToken(() => 'application/json');
 
 @Injectable()
 export class HeadersInterceptor implements HttpInterceptor {
@@ -33,14 +29,14 @@ export class HeadersInterceptor implements HttpInterceptor {
     let jsonRequest: HttpRequest<any> = request.clone({
       // setHeaders: {'Content-Type': request.context.get(CONTENT_TYPE)}
       setHeaders: {
-        'Content-Type': "Wealth",
+
         "Authorization": `Bearer ${token}`
       }
     });
 
     return next.handle(jsonRequest).pipe(catchError(err => {
       console.log('Handling error locally and rethrowing it...', err);
-      if(err.status ===401) {
+      if (err.status === 401) {
         console.log('refresh token')
       }
       return throwError(err);
@@ -52,7 +48,7 @@ export class HeadersInterceptor implements HttpInterceptor {
 
 
   appendToken(req: HttpRequest<any>) {
- this.token$.subscribe(token => {
+    this.token$.subscribe(token => {
       console.log(token)
       return req.clone({
         // setHeaders: {'Content-Type': request.context.get(CONTENT_TYPE)}

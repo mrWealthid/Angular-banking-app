@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {faAt, faCircleExclamation, faEye, faEyeSlash, faLock} from '@fortawesome/free-solid-svg-icons';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth.service";
 import {AppStateInterface, ILogin} from "../../shared/interface/userAuth";
 import {Store} from "@ngrx/store";
 import * as AuthActions from "../../core/store/Auth/actions";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-login',
@@ -23,6 +24,17 @@ export class LoginComponent implements OnInit {
   password: UntypedFormControl;
   showModal: boolean = false;
   showMe: boolean = true;
+ 
+  formRoute$ = new BehaviorSubject('updatePasswordForm')
+
+
+  resetPasswordForm: UntypedFormGroup;
+  reset_email: FormControl;
+  updatePasswordForm: UntypedFormGroup;
+  current_password_update: FormControl
+  password_update: UntypedFormControl
+  passwordConfirm_update: FormControl
+
 
   constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
   }
@@ -34,6 +46,10 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password
     });
+
+
+    this.createUpdatePasswordForm()
+    this.createResetPasswordForm()
   }
 
   togglePassword() {
@@ -60,8 +76,41 @@ export class LoginComponent implements OnInit {
     this.showModal = $event;
   }
 
+
+  updateRoute(route: string) {
+    this.formRoute$.next(route)
+
+  }
+
+  createResetPasswordForm() {
+    this.reset_email = new UntypedFormControl('', [Validators.required, Validators.email]);
+    this.resetPasswordForm = new UntypedFormGroup({
+      email: this.reset_email,
+    });
+  }
+
+  createUpdatePasswordForm() {
+    this.password_update = new UntypedFormControl('', [Validators.required, Validators.email]);
+    this.current_password_update = new UntypedFormControl('', [Validators.required, Validators.email]);
+    this.passwordConfirm_update = new UntypedFormControl('', [Validators.required, Validators.email]);
+    this.updatePasswordForm = new UntypedFormGroup({
+      currentPassword: this.current_password_update,
+      password: this.password_update,
+      confirmPassword: this.passwordConfirm_update,
+    });
+  }
+
   toggleModal() {
-        this.showModal = !this.showModal;
-        this.showMe = true;
-    }
+    this.showModal = !this.showModal;
+    this.showMe = true;
+  }
+
+  handleUpdatePassword(value: any) {
+
+    console.log(value)
+  }
+
+  handleForgotPassword(value: any) {
+    console.log(value)
+  }
 }
