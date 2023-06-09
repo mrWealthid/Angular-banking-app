@@ -1,0 +1,22 @@
+<section>
+  <label>{{label}}</label>
+  <div
+    [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
+    class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+  >
+    <span *ngIf="!this.validateControl()"><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
+    <span *ngIf="this.validateControl()"><fa-icon [icon]="faCircleExclamation"
+                                                  class="text-red-300"></fa-icon></span>
+    <input
+      [formControl]="formControl"
+      [placeholder]="placeholder"
+
+
+      autocomplete="true"
+      class="input-style"
+      type="email"/>
+  </div>
+  <span *ngIf="this.validateControl()" class="text-red-800 text-xs">Enter a valid email address</span>
+</section>
+
+
