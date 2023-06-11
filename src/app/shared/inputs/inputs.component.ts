@@ -1,74 +1,62 @@
-import {Component, Input, OnInit, Optional, Self} from '@angular/core';
-import {ControlValueAccessor, NgControl} from '@angular/forms';
+// input.component.ts
+
+import {Component, forwardRef, Input} from '@angular/core';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {faEye, faEyeSlash, faLock} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-  selector: 'app-inputs',
+  selector: 'app-input',
   templateUrl: './inputs.component.html',
-  styleUrls: ['./inputs.component.css']
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => InputsComponent),
+      multi: true,
+    },
+  ],
+  styleUrls: ['./inputs.component.scss']
 })
-export class InputsComponent implements ControlValueAccessor, OnInit {
-  @Input() formControlName: string;
+export class InputsComponent implements ControlValueAccessor {
+  @Input() label: string;
+  @Input() type: string;
+  @Input() formControl: FormControl;
 
-  control: any;
-  hasError: boolean;
-  errorMessage: any;
+  isShown: boolean = false;
+  protected readonly faLock = faLock;
+  protected readonly faEye = faEye;
+  protected readonly faEyeSlash = faEyeSlash;
 
-  constructor(@Optional() @Self() private ngControl: NgControl) {
-  }
+  onChange: (value: any) => void = () => {
+  };
 
-  get showError() {
-    return this.control && this.control.touched && this.control.invalid;
-  }
-
-  ngOnInit() {
-    if (this.ngControl) {
-      this.control = this.ngControl.control;
-      this.control?.statusChanges.subscribe(() => {
-        this.hasError = this.showError;
-        this.errorMessage = this.getErrorMessage();
-      });
-    }
-  }
+  onTouched: () => void = () => {
+  };
 
   writeValue(value: any): void {
-    if (this.control) {
-      this.control.setValue(value);
-    }
+    this.onChange(value);
   }
 
-  registerOnChange(fn: any): void {
-    if (this.control) {
-      this.control.valueChanges.subscribe(fn);
-    }
+  registerOnChange(fn: (value: any) => void): void {
+    this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
+    this.onTouched = fn;
+  }
+
+  togglePassword() {
+    this.isShown = !this.isShown;
+  }
+
+  validatePassword() {
+    return !this.formControl.pristine && /INVALID/i.test(this.formControl.status);
   }
 
   setDisabledState(isDisabled: boolean): void {
-    if (this.control) {
-      isDisabled ? this.control.disable() : this.control.enable();
-    }
-  }
-
-  getErrorMessage() {
-    if (this.showError && this.control.errors) {
-      for (const errorName in this.control.errors) {
-        if (this.control.errors.hasOwnProperty(errorName)) {
-          return this.getErrorMessageForValidator(errorName);
-        }
-      }
-    }
-    return null;
-  }
-
-  getErrorMessageForValidator(validatorName: string) {
-    switch (validatorName) {
-      case 'required':
-        return 'This field is required.';
-      // Add additional cases for other validators
-      default:
-        return null;
+    if (isDisabled) {
+      this.formControl.disable();
+    } else {
+      this.formControl.enable();
     }
   }
 }

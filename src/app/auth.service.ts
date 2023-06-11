@@ -7,7 +7,7 @@ import {NotificationService} from "./shared/services/notification.service";
 import {DatabaseService} from "./shared/services/database.service";
 import {DatabaseInterface} from "./shared/interface/database-interface";
 import {WebStorageService} from "./shared/services/web-storage.service";
-import {map, Observable, tap} from "rxjs";
+import {map, Observable} from "rxjs";
 import {HttpClient, HttpContext} from "@angular/common/http";
 import {BEARER_TOKEN} from "./headers.interceptor";
 
@@ -19,7 +19,7 @@ export class AuthService {
   isLoading: boolean = false;
   currentUser: DatabaseInterface | undefined;
 
-  constructor(private router: Router, private notifyService: NotificationService,  private db: DatabaseService, private webStorage: WebStorageService, private Http: HttpClient) {
+  constructor(private router: Router, private notifyService: NotificationService, private db: DatabaseService, private webStorage: WebStorageService, private Http: HttpClient) {
 
   }
 
@@ -47,7 +47,7 @@ export class AuthService {
 
   login2(credentials: ILogin): Observable<IUser> {
     return this.Http.post<IUser>('http://localhost:3000/api/v1/users/login', credentials, {
-    context: new HttpContext().set(BEARER_TOKEN, false)
+      context: new HttpContext().set(BEARER_TOKEN, false)
     })
 
   }
@@ -58,14 +58,23 @@ export class AuthService {
   }
 
 
-  fetchProfile():Observable<IProfile> {
-    return this.Http.get<any>('http://localhost:3000/api/v1/users/me').pipe(map((result)=> {
-      console.log(result);
-      return {
-        ...result.data
-      }
-    })
+  fetchProfile(): Observable<IProfile> {
+    return this.Http.get<any>('http://localhost:3000/api/v1/users/me').pipe(map((result) => {
+        console.log(result);
+        return {
+          ...result.data
+        }
+      })
     )
+  }
+
+
+  updateUser(payload: any): Observable<any> {
+    return this.Http.patch<any>('http://localhost:3000/api/v1/users/updateMe', payload)
+  }
+
+  updatePassword(payload: any): Observable<any> {
+    return this.Http.patch<any>('http://localhost:3000/api/v1/users/updatePassword', payload)
   }
 
   // register(credentials: any) {
