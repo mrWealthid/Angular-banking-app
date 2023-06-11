@@ -25,7 +25,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              {
+                "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
+              }
             ],
             "scripts": []
           },
