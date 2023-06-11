@@ -66,46 +66,82 @@
                    type="file"
             />
           </div>
-          <section class="">
-            <label class="text-sm" for="fullName">Full Name </label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faUser" class="text-gray-300"></fa-icon></span>
-              <input class="input-style"
-                     formControlName="name"
-                     id="fullName"
-                     placeholder="{{data?.name}}" type="text"/>
-            </div>
-          </section>
-          <section class="">
-            <label class="text-sm" for="email"> Email</label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
-              <input
-                class="input-style"
-                formControlName="email"
-                id="email"
-                placeholder=""
-                type="text"/>
-            </div>
-          </section>
-          <section class="">
-            <label class="text-sm" for="email"> Role</label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>
-              <input
-                class="input-style"
-                formControlName="email"
 
-                placeholder=""
-                type="text"/>
-            </div>
-          </section>
+          <text-input [formControl]="name"
+                      [label]="'Full Name'"
+                      [placeholder]="data?.name">
+
+          </text-input>
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" for="fullName">Full Name </label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faUser" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input class="input-style"-->
+          <!--                     formControlName="name"-->
+          <!--                     id="fullName"-->
+          <!--                     placeholder="{{data?.name}}" type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" for="email"> Email</label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input-->
+          <!--                class="input-style"-->
+          <!--                formControlName="email"-->
+          <!--                id="email"-->
+          <!--                placeholder=""-->
+          <!--                type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
+
+
+          <email-input
+            [formControl]="email"
+            [label]="'Email'"
+            [type]="'email'"
+          >
+
+          </email-input>
+
+          <select-input (selectionChange)="onSelectionChange($event)"
+                        [bindLabel]="'name'"
+                        [bindValue]="'id'"
+                        [items]="options"
+                        [label]="'Role'"
+                        [multiple]="true"
+                        [placeholder]="'Select options'">
+
+          </select-input>
+          <text-input [formControl]="role"
+                      [label]="'Enter Role'"
+                      [placeholder]="'Role'">
+
+          </text-input>
+          <!--          <email-input-->
+          <!--            [formControl]="email"-->
+          <!--            [label]="'Email'"-->
+          <!--            [type]="'email'"-->
+
+          <!--          ></email-input>-->
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" for="email"> Role</label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input-->
+          <!--                class="input-style"-->
+          <!--                formControlName="email"-->
+
+          <!--                placeholder=""-->
+          <!--                type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
 
           <div class="mt-2 flex justify-end   ">
             <app-button [btnText]="'Next'" [styles]="'btn-primary  rounded-3xl'"
@@ -123,44 +159,65 @@
 
         <form (ngSubmit)="handlePasswordUpdate(passwordForm.value)" [formGroup]="passwordForm"
               class="flex flex-col gap-3">
-          <section class="">
-            <label class="text-sm" for="email"> Current Password</label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>
-              <input
-                class="input-style" formControlName="passwordCurrent"
-                placeholder=""
-                type="text"/>
-            </div>
-          </section>
-          <section class="">
-            <label class="text-sm" for="email"> New Password</label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>
-              <input
-                class="input-style" formControlName="password"
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" > Current Password</label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input-->
+          <!--                class="input-style" formControlName="passwordCurrent"-->
+          <!--                placeholder=""-->
+          <!--                type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
 
-                placeholder=""
-                type="text"/>
-            </div>
-          </section>
-          <section class="">
-            <label class="text-sm" for="email"> Confirm Password</label>
-            <div
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-            >
-              <span><fa-icon [icon]="faLockOpen" class="text-gray-300"></fa-icon></span>
-              <input
-                class="input-style" formControlName="passwordConfirm"
+          <password-input
+            [formControl]="currentPassword"
+            [label]="'Current Password'"
+            [type]="'password'"
+          ></password-input>
 
-                placeholder=""
-                type="text"/>
-            </div>
-          </section>
+
+          <password-input
+            [formControl]="newPassword"
+            [label]="'New Password'"
+            [type]="'password'"
+          ></password-input>
+
+          <password-input
+            [formControl]="confirmPassword"
+            [label]="'Confirm Password'"
+            [type]="'password'"
+          ></password-input>
+
+
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" > New Password</label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input-->
+          <!--                class="input-style" formControlName="password"-->
+
+          <!--                placeholder=""-->
+          <!--                type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
+          <!--          <section class="">-->
+          <!--            <label class="text-sm" > Confirm Password</label>-->
+          <!--            <div-->
+          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
+          <!--            >-->
+          <!--              <span><fa-icon [icon]="faLockOpen" class="text-gray-300"></fa-icon></span>-->
+          <!--              <input-->
+          <!--                class="input-style" formControlName="passwordConfirm"-->
+
+          <!--                placeholder=""-->
+          <!--                type="text"/>-->
+          <!--            </div>-->
+          <!--          </section>-->
 
           <div class="mt-2 flex justify-end   ">
             <app-button [btnText]="'Update'" [styles]="'btn-primary  rounded-3xl'"

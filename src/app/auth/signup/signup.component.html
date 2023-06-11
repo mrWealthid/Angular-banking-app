@@ -1,120 +1,69 @@
 <!--Reactive forms-->
 <section class="flex main_color   items-center justify-center">
-    <section class="bg-white md:w-1/2 lg:w-1/2 py-10 px-6 flex gap-6  flex-col items-center justify-center">
-        <p class="text-lg text-center font-bold text-2xl">Register</p>
-        <form (ngSubmit)="handleRegister(SignupForm.value)" [formGroup]="SignupForm" action="" autocomplete="off"
-              class="w-full flex flex-col gap-2 items-center">
-            <div class="w-full flex gap-4">
-                <section class="w-full">
-                    <label for="">First Name </label>
-                    <div class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-                        <fa-icon [icon]="faUser" class="text-gray-300"></fa-icon>
-                        <input
-                                class="border-none text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
-                                formControlName="firstname"
-                                placeholder="Enter First Name..."
-                                type="text"/>
-                    </div>
-                </section>
-                <section class="w-full">
-                    <label for="">Last Name </label>
-                    <div class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2   focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-                        <fa-icon [icon]="faUser" class="text-gray-300"></fa-icon>
-                        <input
-                                class="border-none text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
-                                formControlName="lastname"
-                                placeholder="Enter Last Name..."
-                                type="text"/>
-                    </div>
-                </section>
-            </div>
-            <div class="w-full flex gap-4">
-                <section class="w-full">
-                    <label for="">Enter Email </label>
-                    <div [ngClass]="{'error-input':this.validateEmail()}"
-                         class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-                        <span *ngIf="!this.validateEmail()"><fa-icon [icon]="faAt"
-                                                                     class="text-gray-300"></fa-icon></span>
-                        <span *ngIf="this.validateEmail()"><fa-icon [icon]="faCircleExclamation"
-                                                                    class="text-red-300"></fa-icon></span>
-                        <input
-                                class="border-none text-xs md:text-sm  focus-within:border-none focus-within:ring-0 w-full"
-                                formControlName="email"
-                                placeholder="Enter Email..."
-                                type="text"/>
-                    </div>
-                    <span *ngIf="this.validateEmail()" class="text-red-800 text-xs">Enter a valid email address</span>
-                </section>
-                <!--                <section class="w-full ">-->
-                <!--                    <label for="">Phone No </label>-->
-                <!--                    <div class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">-->
-                <!--                        <fa-icon [icon]="faPhone" class="text-gray-300"></fa-icon>-->
-                <!--                        <input-->
-                <!--                                class="border-none text-xs md:text-sm  focus-within:border-none focus-within:ring-0 w-full"-->
-                <!--                                formControlName="Phone"-->
-                <!--                                placeholder="Enter Phone Number..."-->
-                <!--                                type="number"/>-->
-                <!--                    </div>-->
-                <!--                </section>-->
-                <section class="w-full">
-                    <label for="">Enter Password </label>
-                    <div [ngClass]="{'error-input':this.validatePassword()}"
-                         class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2  focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-                        <fa-icon [icon]="faLock" class="text-gray-300"></fa-icon>
-                        <input [attr.type]='!isShown ? "password":"text"'
-                               class="border-none text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
-                               formControlName="password" name=""
-                               placeholder="Password"
-                        />
-                        <span (click)="togglePassword()" *ngIf="!isShown">
-                        <fa-icon [icon]="faEye" class="text-gray-300 cursor-pointer"></fa-icon></span>
-                        <span (click)="togglePassword()" *ngIf="isShown">
-                        <fa-icon [icon]="faEyeSlash" class="text-gray-300 cursor-pointer"></fa-icon></span>
-                    </div>
-                    <span *ngIf="this.validatePassword()"
-                          class="text-red-800 text-xs">Password must exceed 6 digits</span>
-                </section>
-            </div>
-            <div class="w-full flex gap-4">
-                <section class="w-full">
-                    <label for="">Choose Title</label>
-                    <select class="my-1 text-xs md:text-sm  px-2 py-4 border-blue-100 border text-gray-500 focus-within:border-gray-200 focus-within:ring-0 rounded-lg w-full"
-                            formControlName="title"
-                            id="" name="">
-                        <option value="">Select Title...</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Miss">Miss</option>
-                        <option value="Mrs">Mrs</option>
-                    </select>
-                </section>
-                <section class="w-full">
-                    <label for="">Enter Tel </label>
-                    <div class="border-blue-100 border flex justify-between items-center form-input my-1 px-2 py-2   focus-within:border-gray-200 focus-within:ring-0 rounded-lg  w-full">
-                        <fa-icon [icon]="faPhone" class="text-gray-300"></fa-icon>
-                        <input
-                                class="border-none text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"
-                                formControlName="Phone"
-                                placeholder="Enter Tel"
-                                type="text"/>
-                    </div>
-                </section>
-            </div>
-            <section class="w-full mt-4">
-                <!--                <button-->
-                <!--                        [disabled]="SignupForm.invalid"-->
-                <!--                        class="btn-primary">-->
-                <!--                    Register-->
-                <!--                </button>-->
-                <app-button [btnText]="authservice.isLoading? 'Processing...':'Register'"
-                            [disabled]="SignupForm.invalid"
-                            [styles]="'btn-primary'"></app-button>
-            </section>
-            <p class="text-sm  flex gap-2">
-                Already Have An Account
-                <a [routerLink]="['/login']" class="text-blue-700  text-sm">Login</a>
-            </p>
-        </form>
-    </section>
+  <section class="bg-white md:w-1/2 lg:w-1/2 py-10 px-6 flex gap-6  flex-col items-center justify-center">
+    <p class="text-center font-bold text-2xl">Register</p>
+    <form (ngSubmit)="handleRegister(SignupForm.value)" [formGroup]="SignupForm" action="" autocomplete="off"
+          class="w-full flex flex-col gap-2 items-center">
+      <div class="w-full flex gap-4">
+        <text-input [formControl]="firstname"
+                    [label]="'First Name'"
+                    [placeholder]="'Enter First Name'" class="w-5/6">
+
+        </text-input>
+
+        <text-input [formControl]="lastname"
+                    [label]="'Last Name'"
+                    [placeholder]="'Enter Last Name'" class="w-5/6">
+
+        </text-input>
+
+      </div>
+      <div class="w-full flex gap-4">
+
+
+        <email-input
+          [formControl]="email"
+          [label]="'Email'"
+          class="w-5/6"
+        ></email-input>
+        <text-input [formControl]="DOB"
+                    [label]="'Date Of Birth'"
+
+                    [placeholder]="'Select Date'" class="w-5/6">
+
+        </text-input>
+
+      </div>
+      <div class="w-full flex gap-4">
+        <password-input
+          [formControl]="password"
+          [label]="'Password'"
+          [type]="'password'"
+          class="w-5/6"
+        ></password-input>
+
+        <password-input
+          [formControl]="passwordConfirm"
+          [label]="'Password'"
+          [placeholder]="'Confirm Password'"
+          [type]="'password'"
+          class="w-5/6"
+        ></password-input>
+
+
+      </div>
+      <section class="w-full mt-4">
+
+        <app-button [btnText]="authservice.isLoading? 'Processing...':'Register'"
+
+                    [styles]="'btn-primary'"></app-button>
+      </section>
+      <p class="text-sm  flex gap-2">
+        Already Have An Account
+        <a [routerLink]="['/login']" class="text-blue-700  text-sm">Login</a>
+      </p>
+    </form>
+  </section>
 </section>
 <!--<button (click)="toggleModal()">Test Subject</button>-->
 <!--<app-modals>-->
@@ -131,8 +80,8 @@
 
 
 <ngx-loading
-        [config]="{ backdropBorderRadius: '3px' }"
-        [show]="authservice.isLoading"
+  [config]="{ backdropBorderRadius: '3px' }"
+  [show]="authservice.isLoading"
 
 ></ngx-loading>
 

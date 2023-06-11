@@ -1,14 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  faAt,
-  faCalendarAlt,
-  faCircleExclamation,
-  faEye,
-  faEyeSlash,
-  faLock,
-  faPhone,
-  faUser
-} from '@fortawesome/free-solid-svg-icons';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth.service";
 import {AppStateInterface, IRegister} from "../../shared/interface/userAuth";
@@ -23,44 +13,39 @@ import {Store} from "@ngrx/store";
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  faCircleExclamation = faCircleExclamation;
-  faUser = faUser;
-  faCalendar = faCalendarAlt;
-  faPhone = faPhone;
-  faAt = faAt;
-  faEye = faEye;
-  faEyeSlash = faEyeSlash;
-  faLock = faLock;
+
   SignupForm: UntypedFormGroup;
   firstname: UntypedFormControl;
   lastname: UntypedFormControl;
-  // DOB: FormControl;
+  DOB: UntypedFormControl;
   email: UntypedFormControl;
-  title: UntypedFormControl;
-  phone: UntypedFormControl;
   password: UntypedFormControl;
-  isShown: boolean = false;
+  passwordConfirm: UntypedFormControl;
+
 
   constructor(public authservice: AuthService, public modalService: ModalService, private store: Store<AppStateInterface>
   ) {
   }
 
   ngOnInit(): void {
+    this.createForm()
+  }
+
+
+  createForm() {
     this.firstname = new UntypedFormControl('', Validators.required);
     this.lastname = new UntypedFormControl('', Validators.required);
-    // this.DOB = new FormControl('', Validators.required);
     this.email = new UntypedFormControl('', [Validators.required, Validators.email]);
-    this.title = new UntypedFormControl('', Validators.required);
-    this.phone = new UntypedFormControl('', Validators.required);
+    this.DOB = new UntypedFormControl('', [Validators.required],);
     this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(6)]);
+    this.passwordConfirm = new UntypedFormControl('', [Validators.required, Validators.minLength(6)]);
     this.SignupForm = new UntypedFormGroup({
       firstname: this.firstname,
       lastname: this.lastname,
-      // DOB: this.DOB,
+      dob: this.DOB,
       email: this.email,
-      title: this.title,
-      Phone: this.phone,
-      password: this.password
+      password: this.password,
+      passwordConfirm: this.passwordConfirm
     });
 
   }
@@ -82,17 +67,6 @@ export class SignupComponent implements OnInit {
     this.store.dispatch(AuthActions.register(payload))
   }
 
-  togglePassword() {
-    this.isShown = !this.isShown;
-  }
-
-  validateEmail() {
-    return !this.email.pristine && /INVALID/i.test(this.email.status);
-  }
-
-  validatePassword() {
-    return !this.password.pristine && /INVALID/i.test(this.password.status);
-  }
 
   toggleModal() {
     this.modalService.HandleShowModal();

@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
   faAt = faAt;
   profileForm: FormGroup;
   email: FormControl;
-  // password: FormControl;
+  role: FormControl;
   name: FormControl;
   // phone: FormControl;
   photo: FormControl<File | string | null>;
@@ -32,6 +32,11 @@ export class ProfileComponent implements OnInit {
 
   step = new BehaviorSubject(0)
   previewUrl: string | ArrayBuffer | null;
+  options = [
+    {id: 1, name: 'Option 1'},
+    {id: 2, name: 'Option 2'},
+    {id: 3, name: 'Option 3'}
+  ];
   protected readonly faUser = faUser;
   protected readonly faLock = faLock;
   protected readonly faLockOpen = faLockOpen;
@@ -45,18 +50,23 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updatePasswordForm()
     this.currentUser$.subscribe(x => this.data = x)
+    this.detailsForm()
+    this.updatePasswordForm()
+
+  }
+
+  detailsForm() {
     this.name = new FormControl({value: this.data?.name, disabled: true}, Validators.required);
     // this.email = new FormControl('', Validators.required);
     // this.DOB = new FormControl('', Validators.required);
     this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
     this.photo = new FormControl('');
-    // this.phone = new FormControl(this.data.phone, Validators.required);
+    this.role = new FormControl(this.data?.role, Validators.required);
     // this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
     this.profileForm = new FormGroup({
       name: this.name,
-      // DOB: this.DOB,
+      role: this.role,
       email: this.email,
       photo: this.photo,
       // phone: this.phone,
@@ -75,6 +85,11 @@ export class ProfileComponent implements OnInit {
       passwordConfirm: this.confirmPassword
     })
 
+  }
+
+  onSelectionChange(selectedItems: any[]): void {
+    console.log(selectedItems);
+    // Handle selected items
   }
 
   toggleModal() {
