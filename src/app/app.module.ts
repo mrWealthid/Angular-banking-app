@@ -10,7 +10,7 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 
 import {LoginComponent} from './auth/login/login.component';
 import {SignupComponent} from './auth/signup/signup.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HeaderComponent} from './header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonComponent} from './shared/button/button.component';
@@ -34,11 +34,13 @@ import {authGuard} from "./services/auth-guard2.guard";
 import {ImageUploadComponent} from './image-upload/image-upload.component';
 import {StepperComponent} from './shared/stepper/stepper.component';
 import {InputsComponent} from './shared/inputs/inputs.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
-import { UpdatePasswordComponent } from './auth/update-password/update-password.component';
-import { PasswordInputComponent } from './shared/inputs/password-input/password-input.component';
-import { EmailInputComponent } from './shared/inputs/email-input/email-input.component';
-import { TextInputComponent } from './shared/inputs/text-input/text-input.component';
+import {ResetPasswordComponent} from './auth/reset-password/reset-password.component';
+import {UpdatePasswordComponent} from './auth/update-password/update-password.component';
+import {PasswordInputComponent} from './shared/inputs/password-input/password-input.component';
+import {EmailInputComponent} from './shared/inputs/email-input/email-input.component';
+import {TextInputComponent} from './shared/inputs/text-input/text-input.component';
+import {SelectInputComponent} from './shared/inputs/select-input/select-input.component';
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
@@ -63,7 +65,8 @@ import { TextInputComponent } from './shared/inputs/text-input/text-input.compon
     UpdatePasswordComponent,
     PasswordInputComponent,
     EmailInputComponent,
-    TextInputComponent
+    TextInputComponent,
+    SelectInputComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -122,6 +125,8 @@ import { TextInputComponent } from './shared/inputs/text-input/text-input.compon
       tertiaryColour: "blue",
     }),
     NgxDatatableModule,
+    FormsModule,
+    NgSelectModule
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}],

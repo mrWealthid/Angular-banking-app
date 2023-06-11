@@ -86,4 +86,21 @@ input:-webkit-autofill {
 }
 
 
+.ng-select.custom {
+
+  min-height: 0px;
+  border-radius: 0;
+
+}
+
+.ng-select.custom .ng-select-container {
+  min-height: 0px;
+  border-radius: 0;
+  border: none;
+}
+
+ng-select.custom .ng-select-container:hover {
+  box-shadow: unset;
+}
+
 

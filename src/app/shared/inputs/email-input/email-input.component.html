@@ -10,11 +10,9 @@
     <input
       [formControl]="formControl"
       [placeholder]="placeholder"
-
-
-      autocomplete="true"
+      [type]="'email'"
       class="input-style"
-      type="email"/>
+      name="email"/>
   </div>
   <span *ngIf="this.validateControl()" class="text-red-800 text-xs">Enter a valid email address</span>
 </section>
