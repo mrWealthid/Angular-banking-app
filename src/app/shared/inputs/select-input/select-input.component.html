@@ -4,15 +4,14 @@
     class="border border-blue-100 flex justify-between items-center focus-within:border-gray-200 form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
   >
 
-    <ng-select
-      (ngModelChange)="onSelectionChange()"
-      [(ngModel)]="selectedItems"
-      [bindLabel]="bindLabel"
-      [bindValue]="bindValue"
-      [items]="items"
-      [multiple]="multiple"
-      [placeholder]="placeholder"
-      class="w-full custom border border-blue-100"
+    <ng-select (ngModelChange)="onChange($event)"
+               [bindLabel]="bindLabel"
+               [bindValue]="bindValue"
+               [disabled]="formControl.disabled"
+               [items]="items"
+               [ngModel]="value"
+               [placeholder]="placeholder"
+               class="custom w-full"
     >
     </ng-select>
 
