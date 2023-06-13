@@ -7,17 +7,16 @@
 
 :root {
   --header-height: 10vh;
-
   --primary-color: rgba(17, 24, 39, 1);;
   /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
 }
 
 .container {
-  @apply w-5/6 mx-auto !important;
+  @apply w-5/6 mx-auto;
 }
 
 .container-text {
-  @apply px-10 !important;
+  @apply px-10;
 }
 
 .btn-primary {
@@ -86,21 +85,55 @@ input:-webkit-autofill {
 }
 
 
-.ng-select.custom {
+.ng-select.custom > * {
 
-  min-height: 0px;
-  border-radius: 0;
-
-}
-
-.ng-select.custom .ng-select-container {
-  min-height: 0px;
-  border-radius: 0;
-  border: none;
-}
-
-ng-select.custom .ng-select-container:hover {
+  --tw-ring-offset-shadow: unset;
+  --tw-ring-shadow: unset;
   box-shadow: unset;
+  @apply border-none ring-0
+}
+
+.ng-has-value, .ng-value-container {
+  @apply border-none ring-0
 }
 
 
+ng-select.ng-invalid.ng-touched .ng-select-container {
+  border: none !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+}
+
+.ng-select.custom {
+  min-height: 0px;
+  border-radius: 0;
+  border: unset;
+}
+
+
+.ng-select-container {
+  border: none !important;
+  @apply border-none  ring-transparent ring-offset-0
+}
+
+.ng-select.custom .ng-select-container, .ng-select-container:s {
+  background: red;
+  outline: none;
+  --tw-ring-color: red;
+  border: 3px solid yellow !important;
+  @apply ring-0
+}
+
+.ng-select.custom .ng-select-container:hover, .ng-select.custom .ng-select-container {
+  @apply shadow-none
+}
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option.ng-option-marked {
+  @apply bg-gray-300  text-white ;
+  border: none
+}
+
+.ng-select.custom.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  @apply bg-gray-300;
+  border: none;
+
+}
