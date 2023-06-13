@@ -72,32 +72,6 @@
                       [placeholder]="data?.name">
 
           </text-input>
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" for="fullName">Full Name </label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faUser" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input class="input-style"-->
-          <!--                     formControlName="name"-->
-          <!--                     id="fullName"-->
-          <!--                     placeholder="{{data?.name}}" type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" for="email"> Email</label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input-->
-          <!--                class="input-style"-->
-          <!--                formControlName="email"-->
-          <!--                id="email"-->
-          <!--                placeholder=""-->
-          <!--                type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
 
 
           <email-input
@@ -108,47 +82,24 @@
 
           </email-input>
 
-          <select-input (selectionChange)="onSelectionChange($event)"
-                        [bindLabel]="'name'"
-                        [bindValue]="'id'"
-                        [items]="options"
-                        [label]="'Role'"
-                        [multiple]="true"
-                        [placeholder]="'Select options'">
+          <select-input
+            [bindLabel]="'name'"
+            [bindValue]="'id'"
+            [formControl]="role"
+            [items]="options"
+            [label]="'Role'"
+            [multiple]="true"
+            [placeholder]="'Select options'"
+            class="ring-0" disabled>
 
           </select-input>
-          <text-input [formControl]="role"
-                      [label]="'Enter Role'"
-                      [placeholder]="'Role'">
 
-          </text-input>
-          <!--          <email-input-->
-          <!--            [formControl]="email"-->
-          <!--            [label]="'Email'"-->
-          <!--            [type]="'email'"-->
-
-          <!--          ></email-input>-->
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" for="email"> Role</label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input-->
-          <!--                class="input-style"-->
-          <!--                formControlName="email"-->
-
-          <!--                placeholder=""-->
-          <!--                type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
 
           <div class="mt-2 flex justify-end   ">
             <app-button [btnText]="'Next'" [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">
             </app-button>
 
-            <!--            <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
           </div>
         </form>
       </section>
@@ -159,18 +110,7 @@
 
         <form (ngSubmit)="handlePasswordUpdate(passwordForm.value)" [formGroup]="passwordForm"
               class="flex flex-col gap-3">
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" > Current Password</label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input-->
-          <!--                class="input-style" formControlName="passwordCurrent"-->
-          <!--                placeholder=""-->
-          <!--                type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
+
 
           <password-input
             [formControl]="currentPassword"
@@ -192,39 +132,14 @@
           ></password-input>
 
 
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" > New Password</label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faLock" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input-->
-          <!--                class="input-style" formControlName="password"-->
-
-          <!--                placeholder=""-->
-          <!--                type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
-          <!--          <section class="">-->
-          <!--            <label class="text-sm" > Confirm Password</label>-->
-          <!--            <div-->
-          <!--              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-          <!--            >-->
-          <!--              <span><fa-icon [icon]="faLockOpen" class="text-gray-300"></fa-icon></span>-->
-          <!--              <input-->
-          <!--                class="input-style" formControlName="passwordConfirm"-->
-
-          <!--                placeholder=""-->
-          <!--                type="text"/>-->
-          <!--            </div>-->
-          <!--          </section>-->
-
-          <div class="mt-2 flex justify-end   ">
-            <app-button [btnText]="'Update'" [styles]="'btn-primary  rounded-3xl'"
+          <div class="mt-2 flex gap-5 justify-end   ">
+            <app-button (click)="handleBack()" [btnText]="'Back'" [styles]="'btn-primary  rounded-3xl'"
+                        class="w-1/2  md:w-1/3 ">
+            </app-button>
+            <app-button [btnText]="'Update'" [disabled]="passwordForm.invalid" [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">
             </app-button>
 
-            <!--            <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
           </div>
         </form>
 
@@ -242,104 +157,18 @@
                 fill-rule="evenodd"></path>
         </svg>
         <div class="mt-2 flex justify-end   ">
-          <app-button [btnText]="'Finish'" [styles]="'btn-primary  rounded-3xl'"
+          <app-button (click)="handleBack()" [btnText]="'Finish'" [styles]="'btn-primary  rounded-3xl'"
                       class="w-1/2  md:w-1/3 ">
           </app-button>
 
-          <!--            <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
+
         </div>
       </section>
-
-      <!--                <section class="">-->
-      <!--                    <label for="gender">Gender</label>-->
-      <!--                    <div-->
-      <!--                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-      <!--                    >-->
-      <!--                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-      <!--                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-      <!--                               formControlName="gender"-->
-      <!--                               id="gender"-->
-      <!--                               placeholder=""-->
-      <!--                               type="text"/>-->
-      <!--                    </div>-->
-      <!--                </section>-->
-      <!--                <section class="">-->
-      <!--                    <label for="Phone">Telephone No </label>-->
-      <!--                    <div-->
-      <!--                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-      <!--                    >-->
-      <!--                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-      <!--                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-      <!--                               formControlName="phone"-->
-      <!--                               id="Phone"-->
-      <!--                               placeholder=""-->
-      <!--                               type="number"/>-->
-      <!--                    </div>-->
-      <!--                </section>-->
-      <!--      <div class="mt-2">-->
-      <!--        <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
-      <!--      </div>-->
 
 
     </section>
   </section>
   <app-modals [size]="'w-1/2'">
-    <!--    <form [formGroup]="profileForm" class="flex flex-col gap-3">-->
-    <!--      <section class="">-->
-    <!--        <label for="fullName">Full Name </label>-->
-    <!--        <div-->
-    <!--          class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--        >-->
-    <!--          <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--          <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                 formControlName="fullName"-->
-    <!--                 id="fullName"-->
-    <!--                 placeholder="{{data?.name}}" type="text"/>-->
-    <!--        </div>-->
-    <!--      </section>-->
-    <!--      <section class="">-->
-    <!--        <label for="email"> Email</label>-->
-    <!--        <div-->
-    <!--          class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"-->
-    <!--        >-->
-    <!--          <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>-->
-    <!--          <input [disabled]="true"-->
-    <!--                 class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"-->
-    <!--                 formControlName="email"-->
-    <!--                 id="email"-->
-    <!--                 placeholder=""-->
-    <!--                 type="text"/>-->
-    <!--        </div>-->
-    <!--      </section>-->
-    <!--      &lt;!&ndash;                <section class="">&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    <label for="gender">Gender</label>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    <div&ndash;&gt;-->
-    <!--      &lt;!&ndash;                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    >&ndash;&gt;-->
-    <!--      &lt;!&ndash;                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               formControlName="gender"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               id="gender"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               placeholder=""&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               type="text"/>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    </div>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                </section>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                <section class="">&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    <label for="Phone">Telephone No </label>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    <div&ndash;&gt;-->
-    <!--      &lt;!&ndash;                            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    >&ndash;&gt;-->
-    <!--      &lt;!&ndash;                        <span><fa-icon [icon]="faAt" class="text-gray-300"></fa-icon></span>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                        <input class="border-none  text-xs md:text-sm focus-within:border-none focus-within:ring-0 w-full"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               formControlName="phone"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               id="Phone"&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               placeholder=""&ndash;&gt;-->
-    <!--      &lt;!&ndash;                               type="number"/>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                    </div>&ndash;&gt;-->
-    <!--      &lt;!&ndash;                </section>&ndash;&gt;-->
-    <!--      <div class="mt-2">-->
-    <!--        <button class="p-4 w-full rounded-2xl bg-green-500 text-white">Update</button>-->
-    <!--      </div>-->
-    <!--    </form>-->
+
   </app-modals>
 </section>

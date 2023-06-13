@@ -33,9 +33,8 @@ export class ProfileComponent implements OnInit {
   step = new BehaviorSubject(0)
   previewUrl: string | ArrayBuffer | null;
   options = [
-    {id: 1, name: 'Option 1'},
-    {id: 2, name: 'Option 2'},
-    {id: 3, name: 'Option 3'}
+    {id: "user", name: 'User'},
+    {id: "admin", name: 'Admin'},
   ];
   protected readonly faUser = faUser;
   protected readonly faLock = faLock;
@@ -58,25 +57,22 @@ export class ProfileComponent implements OnInit {
 
   detailsForm() {
     this.name = new FormControl({value: this.data?.name, disabled: true}, Validators.required);
-    // this.email = new FormControl('', Validators.required);
-    // this.DOB = new FormControl('', Validators.required);
+
     this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
     this.photo = new FormControl('');
-    this.role = new FormControl(this.data?.role, Validators.required);
-    // this.password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    this.role = new FormControl({value: this.data?.role, disabled: true}, Validators.required);
     this.profileForm = new FormGroup({
       name: this.name,
       role: this.role,
       email: this.email,
       photo: this.photo,
-      // phone: this.phone,
+
     });
   }
 
   updatePasswordForm() {
     this.currentPassword = new FormControl('', [Validators.required, Validators.minLength(8)]);
-    // this.email = new FormControl('', Validators.required);
-    // this.DOB = new FormControl('', Validators.required);
+
     this.newPassword = new FormControl('', [Validators.required, Validators.minLength(8)]);
     this.confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8)]);
     this.passwordForm = new FormGroup({
@@ -158,4 +154,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
+  handleBack() {
+    this.updateSteps(0)
+  }
 }
