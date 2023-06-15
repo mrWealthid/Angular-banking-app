@@ -41,6 +41,7 @@ import {EmailInputComponent} from './shared/inputs/email-input/email-input.compo
 import {TextInputComponent} from './shared/inputs/text-input/text-input.component';
 import {SelectInputComponent} from './shared/inputs/select-input/select-input.component';
 import {NgSelectModule} from "@ng-select/ng-select";
+import {OverviewComponent} from './dashboard/overview/overview.component';
 
 
 @NgModule({
@@ -66,9 +67,11 @@ import {NgSelectModule} from "@ng-select/ng-select";
     PasswordInputComponent,
     EmailInputComponent,
     TextInputComponent,
-    SelectInputComponent
+    SelectInputComponent,
+    OverviewComponent
   ],
   imports: [
+
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserModule,
@@ -96,10 +99,16 @@ import {NgSelectModule} from "@ng-select/ng-select";
       {
         path: 'dashboard', component: DashboardComponent,
 
-        children: [{path: 'profile', component: ProfileComponent, pathMatch: 'full'}, {
-          path: 'transactions',
-          component: TransactionsComponent
-        }]
+        children: [
+
+          {path: '', component: OverviewComponent, pathMatch: 'full'}, {
+            path: 'profile',
+            component: ProfileComponent,
+            pathMatch: 'full'
+          }, {
+            path: 'transactions',
+            component: TransactionsComponent
+          }]
       },
       // {path: 'profile', component: ProfileComponent,canActivate:[()=> {
       //  const store= inject(Store<AppStateInterface>);
@@ -115,6 +124,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
 
 
     BrowserAnimationsModule,
+ 
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.rotatingPlane,

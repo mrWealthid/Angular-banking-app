@@ -132,17 +132,20 @@
     <ng-container *ngFor="let link of links">
       <a [routerLinkActiveOptions]="{exact:true}" [routerLink]="[link.path]"
          class="p-2 transition duration-500 hover:translate-x-0.5"
-         routerLinkActive="bg-[#f16521] rounded-lg ">{{link.text}}</a>
+         routerLinkActive="bg-[#f48220] rounded-lg ">{{link.text}}</a>
     </ng-container>
   </div>
   <div class="flex flex-col w-4/5">
-<!--    <div class="bg-white first-letter:text-[#f16521] first-letter:text-3xl py-4 px-2">-->
-<!--      <app-header></app-header>-->
-<!--    </div>-->
-    <router-outlet></router-outlet>
+    <!--    <div class="bg-white first-letter:text-[#f16521] first-letter:text-3xl py-4 px-2">-->
+    <!--      <app-header></app-header>-->
+    <!--    </div>-->
+
+    <section class="mt-20 container-text">
+      <router-outlet></router-outlet>
+
+    </section>
   </div>
 </section>
-
 
 
 ////////////Table
@@ -1335,13 +1338,6 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
-
-
-
-
-
-
 
 
 <!--<div class="sm:px-6 w-full">-->
