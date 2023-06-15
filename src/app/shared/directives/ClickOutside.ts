@@ -44,7 +44,7 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
     console.log(elementToCheck === this.element.nativeElement)
     console.log(this.element.nativeElement.contains(elementToCheck))
     console.log(event.key === 'Escape')
-    let val: boolean = false
+    let val: boolean;
     console.log(event.type)
     if (event.type === 'keyup') {
       val = this.onKeyDown(event)
