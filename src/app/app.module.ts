@@ -42,6 +42,9 @@ import {TextInputComponent} from './shared/inputs/text-input/text-input.componen
 import {SelectInputComponent} from './shared/inputs/select-input/select-input.component';
 import {NgSelectModule} from "@ng-select/ng-select";
 import {OverviewComponent} from './dashboard/overview/overview.component';
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {DropdownComponent} from './shared/dropdown/dropdown.component';
+import {ClickOutsideDirective} from "./shared/directives/ClickOutside";
 
 
 @NgModule({
@@ -68,7 +71,8 @@ import {OverviewComponent} from './dashboard/overview/overview.component';
     EmailInputComponent,
     TextInputComponent,
     SelectInputComponent,
-    OverviewComponent
+    OverviewComponent,
+    DropdownComponent, ClickOutsideDirective
   ],
   imports: [
 
@@ -124,7 +128,7 @@ import {OverviewComponent} from './dashboard/overview/overview.component';
 
 
     BrowserAnimationsModule,
- 
+
     ToastrModule.forRoot(),
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.rotatingPlane,
@@ -136,7 +140,8 @@ import {OverviewComponent} from './dashboard/overview/overview.component';
     }),
     NgxDatatableModule,
     FormsModule,
-    NgSelectModule
+    NgSelectModule,
+    BsDropdownModule.forRoot()
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}],
