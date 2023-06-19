@@ -1,20 +1,81 @@
+<section class="w-full">
 
-<section class="w-[90%]  mt-16 mx-auto">
+  <app-table-header [tableSettings]="settings">
+    <ng-container [ngTemplateOutlet]="headerActions">
+    </ng-container>
+  </app-table-header>
 
 
   <ngx-datatable
-    class="material"
-    [rows]="rows"
-    [columns]="columns"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="50"
-    [rowHeight]="'auto'"
-    [scrollbarV]="false"
-    [scrollbarH]="false"
-
     (page)="onPageChange($event)"
+    [columnMode]="'force'"
+    [columns]="updatedColumn"
+    [footerHeight]="50"
+    [headerHeight]="50"
+    [rowHeight]="'auto'"
+    [rows]="rows"
+    [scrollbarH]="false"
+    [scrollbarV]="false"
+    class="material"
   >
+
+
+    <ngx-datatable-column *ngIf='checkable' name="S/N" prop="S/N">
+
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <input (click)="toggleRowSelection($event)" id="header-check" type="checkbox"/>
+        <!--        <span>{{column.name}}</span>-->
+      </ng-template>
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <input (click)="handleSelection(row, $event)" class="my-rows" type="checkbox"/>
+      </ng-template>
+    </ngx-datatable-column>
+    <ng-container *ngFor='let column of columns'>
+
+      <ngx-datatable-column *ngIf='column.name === "Actions"' name="Actions" prop="actions">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          <app-dropdown>
+            <ng-container header>
+              <fa-icon [icon]="faEllipsis" class="text-gray-300"></fa-icon>
+            </ng-container>
+            <ng-container *ngTemplateOutlet="rowActions; context:{row: row.id} ">
+            </ng-container>
+          </app-dropdown>
+        </ng-template>
+
+      </ngx-datatable-column>
+
+      <!--      <ngx-datatable-column *ngIf='(column.name === "S/N" && column.name ==="Actions")' name="S/N" prop="S/N">-->
+      <!--        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
+      <!--          <input type="checkbox"/>-->
+      <!--        </ng-template>-->
+      <!--      </ngx-datatable-column>-->
+
+
+      <!--      <ngx-datatable-column *ngIf='column.name === "customTemplate"' name="Actions" prop="actions">-->
+      <!--        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
+      <!--          <app-dropdown>-->
+      <!--            <ng-container header>-->
+      <!--              <fa-icon [icon]="faEllipsis" class="text-gray-300"></fa-icon>-->
+      <!--            </ng-container>-->
+      <!--            <ng-container *ngTemplateOutlet="rowActions; context:{row: row.id} ">-->
+      <!--            </ng-container>-->
+      <!--          </app-dropdown>-->
+      <!--        </ng-template>-->
+
+      <!--      </ngx-datatable-column>-->
+
+      <ngx-datatable-column *ngIf='column.name !== "Actions"' name="{{column.name}}" prop="{{column.prop}}">
+        <!--        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
+        <!--          <span>{{row.id}}</span>-->
+        <!--        </ng-template>-->
+        <!--        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>-->
+        <!--          <span>{{row.createdAt}}</span>-->
+        <!--        </ng-template>-->
+
+      </ngx-datatable-column>
+    </ng-container>
+
   </ngx-datatable>
 
 </section>
