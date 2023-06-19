@@ -28,6 +28,12 @@
               {
                 "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
               },
+              {
+                "input": "src/assets/table-styles/tables-styles.scss"
+              },
+              {
+                "input": "node_modules/@swimlane/ngx-datatable/assets/icons.css"
+              },
               "src/styles.scss"
             ],
             "scripts": []
