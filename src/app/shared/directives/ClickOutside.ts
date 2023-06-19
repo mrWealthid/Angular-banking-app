@@ -18,8 +18,6 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
     private element: ElementRef,
     @Inject(DOCUMENT) private document: Document
   ) {
-    console.log(document);
-    console.log(element)
   }
 
   ngAfterViewInit(): void {
@@ -41,9 +39,7 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
   }
 
   isInsideAndEscapeKey(elementToCheck: HTMLElement, event: KeyboardEvent): boolean {
-    console.log(elementToCheck === this.element.nativeElement)
-    console.log(this.element.nativeElement.contains(elementToCheck))
-    console.log(event.key === 'Escape')
+
     let val: boolean;
     console.log(event.type)
     if (event.type === 'keyup') {
