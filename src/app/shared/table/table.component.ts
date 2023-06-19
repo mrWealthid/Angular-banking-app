@@ -9,6 +9,7 @@ import {faEllipsis, faLock} from "@fortawesome/free-solid-svg-icons";
 export class TableComponent implements OnInit {
   @ContentChild('headerActions') headerActions!: TemplateRef<any>;
   @ContentChild('rowActions') rowActions!: TemplateRef<any>;
+  @ContentChild('customRows') customRows!: TemplateRef<any>;
   @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
   rows: any[]
   additionalSettings: any
@@ -18,7 +19,7 @@ export class TableComponent implements OnInit {
   @Input() pageSize: number;
   totalRecords: number;
   @Input() settings: {
-    actionable: true,
+    actionable: false,
     downloadable: false,
     pageSize: 10
   }
@@ -35,6 +36,7 @@ export class TableComponent implements OnInit {
   defaultSettings = {}
   updatedColumn: any[]
   checkable: boolean = true;
+  singleAction: Boolean = true
   protected readonly faEllipsis = faEllipsis;
   protected readonly faLock = faLock;
 
@@ -50,8 +52,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.columns.push({name: "Actions"});
-    // this.columns.unshift({name: "S/N"})
+    // this.columns.push({name: "Actions"});
     this.updatedColumn = this.columns
     this.additionalSettings = {
       ...this.settings

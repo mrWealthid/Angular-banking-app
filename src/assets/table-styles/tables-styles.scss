@@ -273,7 +273,8 @@ $datatable-summary-row-background-hover: #ddd !default;
         border-top: 0;
         color: $datatable-body-cell-color;
         transition: width 0.3s ease;
-        font-size: 14px;
+
+        font-size: 12px;
         font-weight: 400;
 
         // cell active class
