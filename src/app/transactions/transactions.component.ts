@@ -27,10 +27,10 @@ export class TransactionsComponent implements OnInit {
   tableColumns = [
     {prop: 'id', name: 'Id'},
     {prop: 'depositorName', name: 'Payer'},
-    {prop: 'amount', name: 'Amount'},
-    {prop: 'transactionType', name: 'Transaction'},
-    {prop: 'depositorAccountNumber', name: 'Payer Account'},
-    {prop: 'createdAt', name: 'Time'}
+    {prop: 'amount', name: 'Amount', pipe: "Currency"},
+    {prop: 'transactionType', name: 'Transaction', custom: true},
+    {prop: 'depositorAccountNumber', name: 'Payer Account', custom: true},
+    {prop: 'createdAt', name: 'Time', pipe: "Date"}
   ];
   currentPage = 0;
   itemsPerPage = 5;

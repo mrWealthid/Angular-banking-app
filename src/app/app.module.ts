@@ -45,6 +45,9 @@ import {OverviewComponent} from './dashboard/overview/overview.component';
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {DropdownComponent} from './shared/dropdown/dropdown.component';
 import {ClickOutsideDirective} from "./shared/directives/ClickOutside";
+import {ProjectionsComponent, ProjectionsDirective} from './projections/projections.component';
+import {TableHeaderComponent, TableHeaderRowDirective} from './shared/table/table-header/table-header.component';
+import {TableRowComponent, TableRowDirective} from './shared/table/table-row/table-row.component';
 
 
 @NgModule({
@@ -72,10 +75,12 @@ import {ClickOutsideDirective} from "./shared/directives/ClickOutside";
     TextInputComponent,
     SelectInputComponent,
     OverviewComponent,
-    DropdownComponent, ClickOutsideDirective
+    ProjectionsDirective,
+    TableHeaderRowDirective,
+    TableRowDirective,
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent
   ],
   imports: [
-
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserModule,

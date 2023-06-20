@@ -1,5 +1,7 @@
 import {Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {faEllipsis, faLock} from "@fortawesome/free-solid-svg-icons";
+import {Page} from "./Model";
+
 
 @Component({
   selector: 'app-table',
@@ -13,6 +15,8 @@ export class TableComponent implements OnInit {
   @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
   rows: any[]
   additionalSettings: any
+  page = new Page();
+
   // @Input() rows: any[]
   @Input() columns: any[];
   // pageIndex: number = 0;
@@ -21,7 +25,6 @@ export class TableComponent implements OnInit {
   @Input() settings: {
     actionable: false,
     downloadable: false,
-    pageSize: 10
   }
 
   allSelected: any[] = []
@@ -41,7 +44,8 @@ export class TableComponent implements OnInit {
   protected readonly faLock = faLock;
 
   constructor() {
-
+    this.page.pageNumber = 1;
+    this.page.limit = 3;
   }
 
 
@@ -49,25 +53,29 @@ export class TableComponent implements OnInit {
     this.onSelectAll.emit(this.allSelected);
   }
 
+  setPage(pageInfo: any) {
+    this.page.pageNumber = pageInfo.offset;
+    this.page.limit = pageInfo.limit
 
-  ngOnInit(): void {
-
-    // this.columns.push({name: "Actions"});
-    this.updatedColumn = this.columns
-    this.additionalSettings = {
-      ...this.settings
-    }
-
-    this.tableService.getListData().subscribe((data: any) => {
-      this.totalRecords = data.totalRecords
+    this.page.search = {}
+    this.tableService.getListData(this.page).subscribe((data: any) => {
+      this.page.totalElements = data.totalRecords
       this.rows = data.data
     })
 
+
+    //when page changes I want to unselect all selected rows
+    this.emitSelected([])
+    const headerCheckbox: HTMLElement | any | null = document.getElementById("header-check")
+    if (headerCheckbox?.checked) headerCheckbox?.click()
   }
 
-  onPageChange($event: any) {
-    console.log($event)
+  ngOnInit(): void {
+    this.setPage({offset: 0, limit: 3});
+    // this.columns.push({name: "Actions"});
+    this.updatedColumn = this.columns
   }
+
 
   onSelectRed(row: any) {
     console.log(row)
@@ -107,7 +115,6 @@ export class TableComponent implements OnInit {
   }
 
   handleHeaderUnselect() {
-
     const headerCheckbox: HTMLElement | any = document.getElementById("header-check")
     //This method checks for all selections to update toogle all checkbox when no selection is made
     const selectAllRows = document.querySelectorAll('.my-rows')
@@ -115,7 +122,6 @@ export class TableComponent implements OnInit {
     const checkSelectionSome = Array.from(selectAllRows).some((val: any) => val.checked === true)
 
     if (checkSelection) headerCheckbox.checked = false;
-
     if (checkSelectionSome) headerCheckbox.checked = true
 
   }

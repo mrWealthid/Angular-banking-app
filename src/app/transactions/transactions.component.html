@@ -193,15 +193,25 @@
   </ng-template>
 
 
+  <!--  <ng-template #rowActions let-row="row">-->
+  <!--    <button class='btn btn-icon icon-left'>-->
+  <!--      Continue-->
+
+  <!--    </button>-->
+  <!--    <button class='btn btn-icon icon-left'>-->
+  <!--      Remove-->
+
+  <!--    </button>-->
+
+  <!--  </ng-template>-->
+
   <ng-template #rowActions let-row="row">
-    <button class='btn btn-icon icon-left'>
-      Continue
-
+    <button class='btn'>
+      View
     </button>
-    <button class='btn btn-icon icon-left'>
-      Remove
-
-    </button>
-
+  </ng-template>
+  <ng-template #customRows let-row="row">
+    <span [ngClass]="(row ==='credit')? 'bg-green-100': 'bg-red-100'"
+          class=" py-1 px-4 inline-block rounded">{{row}}</span>
   </ng-template>
 </app-table>

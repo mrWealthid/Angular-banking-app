@@ -7,34 +7,44 @@
 
 
   <ngx-datatable
-    (page)="onPageChange($event)"
+    (page)="setPage($event)"
     [columnMode]="'force'"
     [columns]="updatedColumn"
+    [count]="page.totalElements"
+    [externalPaging]="true"
     [footerHeight]="50"
     [headerHeight]="50"
+    [limit]="page.limit"
+    [offset]="page.pageNumber"
     [rowHeight]="'auto'"
     [rows]="rows"
     [scrollbarH]="false"
     [scrollbarV]="false"
 
+
     class="material"
   >
 
 
+    <!--    This piece control the general toggle on the left-end of the header column-->
     <ngx-datatable-column *ngIf='checkable' name="S/N" prop="S/N">
+
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>#</span>
-        <input (click)="toggleRowSelection($event)" class="ml-1" id="header-check" type="checkbox"/>
+        <input (click)="toggleRowSelection($event)" class="ml-1 text-gray-700   rounded datatable-checkbox"
+               id="header-check" type="checkbox"/>
       </ng-template>
       <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
         <span>{{rowIndex + 1}}.</span>
-        <input (click)="handleSelection(row, $event)" class="my-rows ml-1" type="checkbox"/>
+        <input (click)="handleSelection(row, $event)" class="my-rows text-gray-400 rounded ml-1 " type="checkbox"/>
 
       </ng-template>
     </ngx-datatable-column>
+
+    <!--   This loops through all the defined columns-->
     <ng-container *ngFor='let column of columns'>
 
-
+      <!--      This checks the table settings to know of the user needs the table row to be actionable-->
       <ngx-datatable-column *ngIf='column.name === "Actions"' name="Actions" prop="actions">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
           <app-dropdown *ngIf="!singleAction">
@@ -53,10 +63,16 @@
         </ng-template>
 
       </ngx-datatable-column>
-      <ngx-datatable-column *ngIf='column.name !== "Actions"' name="{{column.name}}" prop="{{column.prop}}">
+
+      <!--     This is displayed when the table is set to be without action column and buttons-->
+      <ngx-datatable-column *ngIf='column.name !== "Actions"'
+                            name="{{column.name}}"
+                            prop="{{column.prop}}">
 
 
+        <!--        This piece of code is used to select dynamically custom row (rows that need extra styling, data transformed, or icons added to them-->
         <ng-template let-row="row" ngx-datatable-cell-template>
+
 
           <span *ngIf="column.custom">
           <ng-container *ngTemplateOutlet="customRows; context:{row: row[column.prop]} ">
@@ -68,6 +84,8 @@
 
           <span *ngIf="!column.pipe && !column.custom">{{row[column.prop]}}</span>
         </ng-template>
+
+
       </ngx-datatable-column>
 
 
