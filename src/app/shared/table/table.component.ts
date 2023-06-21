@@ -1,6 +1,17 @@
-import {Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import {faEllipsis, faLock} from "@fortawesome/free-solid-svg-icons";
 import {Page} from "./Model";
+import {ModalService} from "../services/modal.service";
 
 
 @Component({
@@ -8,11 +19,13 @@ import {Page} from "./Model";
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, AfterViewInit {
   @ContentChild('headerActions') headerActions!: TemplateRef<any>;
   @ContentChild('rowActions') rowActions!: TemplateRef<any>;
   @ContentChild('customRows') customRows!: TemplateRef<any>;
   @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
+
+  @ViewChild('myTable') table: any;
   rows: any[]
   additionalSettings: any
   page = new Page();
@@ -22,9 +35,10 @@ export class TableComponent implements OnInit {
   // pageIndex: number = 0;
   @Input() pageSize: number;
   totalRecords: number;
-  @Input() settings: {
-    actionable: false,
+  @Input() settings = {
+    actionable: true,
     downloadable: false,
+    summary: true
   }
 
   allSelected: any[] = []
@@ -40,17 +54,35 @@ export class TableComponent implements OnInit {
   updatedColumn: any[]
   checkable: boolean = true;
   singleAction: Boolean = true
+  showModal: boolean = false;
+  showMe: boolean = true;
   protected readonly faEllipsis = faEllipsis;
   protected readonly faLock = faLock;
 
-  constructor() {
+  constructor(public modalService: ModalService,) {
     this.page.pageNumber = 1;
     this.page.limit = 3;
   }
 
-
   handleSelections() {
     this.onSelectAll.emit(this.allSelected);
+  }
+
+
+  ngAfterViewInit() {
+    this.table.bodyComponent.updatePage = function (direction: string): void {
+      let offset = this.indexes.first / this.pageSize;
+
+      if (direction === 'up') {
+        offset = Math.ceil(offset);
+      } else if (direction === 'down') {
+        offset = Math.floor(offset);
+      }
+
+      if (direction !== undefined && !isNaN(offset)) {
+        this.page.emit({offset});
+      }
+    }
   }
 
   setPage(pageInfo: any) {
@@ -72,10 +104,9 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     this.setPage({offset: 0, limit: 3});
-    // this.columns.push({name: "Actions"});
+    this.columns.push({name: "Actions"});
     this.updatedColumn = this.columns
   }
-
 
   onSelectRed(row: any) {
     console.log(row)
@@ -129,5 +160,22 @@ export class TableComponent implements OnInit {
   emitSelected(rowVal: any) {
 
     this.onSelectAll.emit(rowVal);
+  }
+
+  // handleModal() {
+  //
+  //
+  //   this.modalService.HandleShowModal()
+  //
+  // }
+
+  handleModal($event: any) {
+    console.log("I Bubbled", $event);
+    this.showModal = $event;
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
+    this.showMe = true;
   }
 }
