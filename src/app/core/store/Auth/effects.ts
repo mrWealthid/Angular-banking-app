@@ -1,12 +1,13 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from "./actions";
-import {of, switchMap} from "rxjs";
+import {of, switchMap, tap} from "rxjs";
 import {AuthService} from "../../../auth.service";
 import {catchError} from "rxjs/operators";
 import {ILogin, IRegister} from "../../../shared/interface/userAuth";
 import {profileLookup} from "../Profile/actions";
 import {Router} from "@angular/router";
+import {NotificationService} from "../../../shared/services/notification.service";
 
 @Injectable()
 export class AuthEffect {
@@ -19,6 +20,8 @@ export class AuthEffect {
           ]
         }), catchError(error => of(AuthActions.registerFailure({
           error: error.message
+        })).pipe(tap(() => {
+          this.Notify.showError(error.statusText, "Auth Error")
         }))));
 
 
@@ -33,7 +36,9 @@ export class AuthEffect {
             ]
           }), catchError(error => of(AuthActions.loginFailure({
             error: error.message
-          }))));
+          })).pipe(tap(() => {
+            this.Notify.showError(error.statusText, "Auth Error")
+          }))))
       }))
     ))
   ;
@@ -47,7 +52,7 @@ export class AuthEffect {
   //      }))
   //  );
 
-  constructor(private actions$: Actions, private AuthService: AuthService, private router: Router) {
+  constructor(private actions$: Actions, private AuthService: AuthService, private router: Router, private Notify: NotificationService) {
   }
 }
 
