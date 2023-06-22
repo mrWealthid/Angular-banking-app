@@ -48,6 +48,7 @@ import {ClickOutsideDirective} from "./shared/directives/ClickOutside";
 import {ProjectionsComponent, ProjectionsDirective} from './projections/projections.component';
 import {TableHeaderComponent, TableHeaderRowDirective} from './shared/table/table-header/table-header.component';
 import {TableRowComponent, TableRowDirective} from './shared/table/table-row/table-row.component';
+import {ClipboardComponent} from './shared/clipboard/clipboard.component';
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import {TableRowComponent, TableRowDirective} from './shared/table/table-row/tab
     ProjectionsDirective,
     TableHeaderRowDirective,
     TableRowDirective,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent
+    ClipboardComponent,
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent
   ],
   imports: [
     FontAwesomeModule,
