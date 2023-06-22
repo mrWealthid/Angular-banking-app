@@ -180,11 +180,7 @@
 
 
   <ng-template #headerActions class="border p-2 w-1/4">
-    <button
-      class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
-      onclick="popuphandler(true)">
-      <p class="text-sm font-medium leading-none text-white">Filter</p>
-    </button>
+
     <button
       class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
       onclick="popuphandler(true)">
@@ -210,8 +206,21 @@
       View
     </button>
   </ng-template>
-  <ng-template #customRows let-row="row">
-    <span [ngClass]="(row ==='credit')? 'bg-green-100': 'bg-red-100'"
-          class=" py-1 px-4 inline-block rounded">{{row}}</span>
+  <ng-template #customRows let-colProp='colProp' let-row="rowVal">
+    <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
+    <ng-container>
+    <span *ngIf="row==='credit'"
+          class=" py-1 px-4 bg-green-100 inline-block rounded">{{row}}</span>
+      <span *ngIf="row==='debit'"
+            class=" py-1 px-4 bg-red-100 inline-block rounded">{{row}}</span>
+      <span *ngIf="colProp==='depositorAccountNumber'"
+            class=" flex gap-2">{{row}}
+        <!--        <fa-icon [icon]="faClipboard"-->
+        <!--                 class="cursor-pointer text-gray-300"></fa-icon> -->
+      <app-clipboard [buttonText]="'Copy Text'" [textToCopy]="row"></app-clipboard>
+
+
+      </span>
+    </ng-container>
   </ng-template>
 </app-table>
