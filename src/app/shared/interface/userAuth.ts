@@ -13,40 +13,48 @@ export interface IRegister {
 }
 
 
-export interface IProfile extends IUserDetails{
-transactions: ITransactions[]
+export interface IProfile extends IUserDetails {
+  transactions: ITransactions[]
 
 }
 
 
 export interface ITransactions {
   depositorName: String
-  amount:Number
+  amount: Number
   transactionType: 'debit | credit'
   user?: String,
-  depositorAccountNumber:Number,
-  createdAt:Date
+  depositorAccountNumber: Number,
+  createdAt: Date
 }
 
 
 export interface AuthState {
   isLoading: Boolean
-  isAuthenticated:boolean,
-  token:String|null
+  isAuthenticated: boolean,
+  token: IToken | null
+
   error: String | null
 }
+
+export interface IToken {
+  key: String,
+  exp: String,
+  iat: String
+}
+
 export interface IProfileState {
   isLoading: Boolean
-  currentUser:IProfile|null,
+  currentUser: IProfile | null,
   error: String | null
 }
 
 export interface AppStateInterface {
   Auth: AuthState;
-  Profile:IProfileState
+  Profile: IProfileState
 }
 
-type User = Pick<IUser, "token" >
+type User = Pick<IUser, "token">
 
 export interface IUser {
   status: String,

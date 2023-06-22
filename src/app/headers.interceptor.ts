@@ -20,12 +20,12 @@ export class HeadersInterceptor implements HttpInterceptor {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let token;
+    let token
     if (!request.context.get(BEARER_TOKEN)) {
       return next.handle(request);
     }
 
-    this.token$.subscribe(x => token = x)
+    this.token$.subscribe(x => token = x?.key)
     let jsonRequest: HttpRequest<any> = request.clone({
       // setHeaders: {'Content-Type': request.context.get(CONTENT_TYPE)}
       setHeaders: {
