@@ -1,5 +1,5 @@
 <section>
-  <label>{{label}}</label>
+  <app-label [label]="label" [required]="hasRequiredValidator()"></app-label>
   <div
     [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
     class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
@@ -13,7 +13,8 @@
       name="test"
       type="text"/>
   </div>
-  <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
+  <span *ngIf="this.validateControl()"
+        class="text-red-800 text-xs">This Field is Required </span>
 </section>
 
 

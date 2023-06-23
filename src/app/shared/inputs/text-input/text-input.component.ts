@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {faUser} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -22,10 +22,14 @@ export class TextInputComponent implements ControlValueAccessor {
 
 
   protected readonly faUser = faUser;
-
+  protected readonly Validators = Validators;
 
   onChange: (value: any) => void = () => {
   };
+
+  hasRequiredValidator() {
+    return this.formControl.hasValidator(Validators.required)
+  }
 
   onTouched: () => void = () => {
   };
@@ -41,7 +45,6 @@ export class TextInputComponent implements ControlValueAccessor {
   registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
-
 
   validateControl() {
     return !this.formControl.pristine && /INVALID/i.test(this.formControl.status);
