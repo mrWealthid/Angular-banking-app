@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input} from '@angular/core';
-import {FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
 
 @Component({
@@ -29,6 +29,10 @@ export class SelectInputComponent {
   onTouched: any = () => {
   };
 
+  hasRequiredValidator() {
+    return this.formControl.hasValidator(Validators.required)
+  }
+
   writeValue(value: any): void {
     this.value = value;
   }
@@ -41,5 +45,5 @@ export class SelectInputComponent {
     this.onTouched = fn;
   }
 
-  
+
 }

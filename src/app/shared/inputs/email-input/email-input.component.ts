@@ -1,7 +1,7 @@
 // input.component.ts
 
 import {Component, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {faAt, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -26,6 +26,9 @@ export class EmailInputComponent implements ControlValueAccessor {
   faAt = faAt;
   faCircleExclamation = faCircleExclamation;
 
+  hasRequiredValidator() {
+    return this.formControl.hasValidator(Validators.required)
+  }
 
   onChange: (value: any) => void = () => {
   };

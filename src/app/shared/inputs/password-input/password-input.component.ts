@@ -1,7 +1,7 @@
 // input.component.ts
 
 import {Component, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {faEye, faEyeSlash, faLock} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -29,6 +29,11 @@ export class PasswordInputComponent implements ControlValueAccessor {
 
   onChange: (value: any) => void = () => {
   };
+
+
+  hasRequiredValidator() {
+    return this.formControl.hasValidator(Validators.required)
+  }
 
   onTouched: () => void = () => {
   };

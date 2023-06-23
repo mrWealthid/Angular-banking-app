@@ -1,8 +1,9 @@
 // input.component.ts
 
 import {Component, forwardRef, Input} from '@angular/core';
-import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {faEye, faEyeSlash, faLock} from "@fortawesome/free-solid-svg-icons";
+import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
+import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-input',
@@ -20,20 +21,30 @@ export class InputsComponent implements ControlValueAccessor {
   @Input() label: string;
   @Input() type: string;
   @Input() formControl: FormControl;
+  @Input() placeholder: string;
+  @Input() icon: string = 'fa-solid fa-user'
 
-  isShown: boolean = false;
-  protected readonly faLock = faLock;
-  protected readonly faEye = faEye;
-  protected readonly faEyeSlash = faEyeSlash;
+  protected readonly faUser = faUser;
+  protected readonly Validators = Validators;
+
+  constructor(private currencyPipe: CurrencyPipe) {
+
+  }
 
   onChange: (value: any) => void = () => {
+
   };
 
   onTouched: () => void = () => {
   };
 
   writeValue(value: any): void {
+
     this.onChange(value);
+  }
+
+  hasRequiredValidator() {
+    return this.formControl.hasValidator(Validators.required)
   }
 
   registerOnChange(fn: (value: any) => void): void {
@@ -44,11 +55,7 @@ export class InputsComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  togglePassword() {
-    this.isShown = !this.isShown;
-  }
-
-  validatePassword() {
+  validateControl() {
     return !this.formControl.pristine && /INVALID/i.test(this.formControl.status);
   }
 
