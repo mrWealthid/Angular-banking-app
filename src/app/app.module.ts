@@ -49,6 +49,10 @@ import {ProjectionsComponent, ProjectionsDirective} from './projections/projecti
 import {TableHeaderComponent, TableHeaderRowDirective} from './shared/table/table-header/table-header.component';
 import {TableRowComponent, TableRowDirective} from './shared/table/table-row/table-row.component';
 import {ClipboardComponent} from './shared/clipboard/clipboard.component';
+import {PaymentsComponent} from './payments/payments.component';
+import {AccountLookupComponent} from './shared/account-lookup/account-lookup.component';
+import {LabelComponent} from './shared/inputs/label/label.component';
+import {CurrencyPipe} from "@angular/common";
 
 
 @NgModule({
@@ -80,7 +84,7 @@ import {ClipboardComponent} from './shared/clipboard/clipboard.component';
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, PaymentsComponent, AccountLookupComponent, LabelComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -119,7 +123,12 @@ import {ClipboardComponent} from './shared/clipboard/clipboard.component';
           }, {
             path: 'transactions',
             component: TransactionsComponent
-          }]
+          },
+          {
+            path: 'payments',
+            component: PaymentsComponent
+          }
+        ]
       },
       // {path: 'profile', component: ProfileComponent,canActivate:[()=> {
       //  const store= inject(Store<AppStateInterface>);
@@ -151,7 +160,7 @@ import {ClipboardComponent} from './shared/clipboard/clipboard.component';
     BsDropdownModule.forRoot()
 
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 
