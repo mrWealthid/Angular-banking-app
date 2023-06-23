@@ -11,7 +11,7 @@ import {BehaviorSubject} from "rxjs";
      <ng-container *ngIf="(valueState| async)"> <i class="fa font-thin cursor-pointer fa-check text-green-400 "></i>
       </ng-container>
 
-    <ng-container *ngIf="!(valueState| async)"> <i class="fa text-green-400 fa-clipboard"></i>
+    <ng-container *ngIf="!(valueState| async)"> <i class="fa cursor-pointer text-green-400 fa-clipboard"></i>
 
       </ng-container>
     </span>
