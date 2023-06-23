@@ -5,6 +5,8 @@ import {select, Store} from "@ngrx/store";
 import {token} from "./core/store/Auth/selectors";
 import {AppStateInterface} from "./shared/interface/userAuth";
 import {catchError} from "rxjs/operators";
+import {Router} from "@angular/router";
+import * as AuthActions from "./core/store/Auth/actions";
 
 
 export const BEARER_TOKEN = new HttpContextToken(() => true);
@@ -15,7 +17,7 @@ export class HeadersInterceptor implements HttpInterceptor {
 
   token$: Observable<any>
 
-  constructor(public store: Store<AppStateInterface>) {
+  constructor(public store: Store<AppStateInterface>, private router: Router) {
     this.token$ = this.store.pipe(select(token));
   }
 
@@ -38,12 +40,19 @@ export class HeadersInterceptor implements HttpInterceptor {
       console.log('Handling error locally and rethrowing it...', err);
       if (err.status === 401) {
         console.log('refresh token')
+        this.logout()
       }
-      return throwError(err);
-
-
+      return throwError(err)
     }))
+  }
 
+
+  logout() {
+
+    this.store.dispatch(AuthActions.logout())
+    this.router.navigate(["login"])
+
+    // this.authService.logout();
   }
 
 
