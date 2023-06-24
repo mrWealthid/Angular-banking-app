@@ -174,7 +174,7 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.showModal = $event;
   }
 
-  toggleModal() {
+  toggleModal(e: any) {
     this.showModal = !this.showModal;
     this.showMe = true;
   }

@@ -5,7 +5,7 @@
     </ng-container>
 
     <button
-      (click)="handleModal($event)"
+      (click)="toggleModal($event)"
       class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
       <p class="text-sm font-medium leading-none text-white">Filter</p>
     </button>
@@ -81,7 +81,7 @@
 
 
           <span *ngIf="column.custom">
-          <ng-container *ngTemplateOutlet="customRows; context:{row: row[column.prop]} ">
+          <ng-container *ngTemplateOutlet="customRows; context:{rowVal: row[column.prop], colProp: column['prop']} ">
           </ng-container>
             </span>
 
@@ -109,7 +109,7 @@
         ngx-datatable-footer-template
       >
         <div style="padding: 5px 10px">
-          <div><strong>Summary</strong>: Gender: Female</div>
+          <div><strong>Summary</strong>: Credit: Debit</div>
           <hr style="width:100%"/>
           <div>Rows: {{ rowCount }} | Size: {{ pageSize }} | Current: {{ curPage }} | Offset: {{ offset }}</div>
         </div>
@@ -138,6 +138,29 @@
 
 </section>
 
+
+<!--<app-modals [size]="'w-1/2'">-->
+<!--  <div class="p-6 text-center">-->
+<!--    <svg aria-hidden="true" class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none"-->
+<!--         stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">-->
+<!--      <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round"-->
+<!--            stroke-linejoin="round"-->
+<!--            stroke-width="2"></path>-->
+<!--    </svg>-->
+<!--    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this-->
+<!--      productsss?</h3>-->
+<!--    <button-->
+<!--      class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"-->
+<!--      data-modal-toggle="popup-modal" type="button">-->
+<!--      Yes, I'm sure-->
+<!--    </button>-->
+<!--    <button-->
+<!--      class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"-->
+<!--      data-modal-toggle="popup-modal"-->
+<!--      type="button">No, cancel-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</app-modals>-->
 
 <ng-container *ngIf="showMe">
   <app-modal (modalState)="handleModal($event)" [modalStates]="showModal">
