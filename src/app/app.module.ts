@@ -52,7 +52,7 @@ import {ClipboardComponent} from './shared/clipboard/clipboard.component';
 import {PaymentsComponent} from './payments/payments.component';
 import {AccountLookupComponent} from './shared/account-lookup/account-lookup.component';
 import {LabelComponent} from './shared/inputs/label/label.component';
-import {CurrencyPipe} from "@angular/common";
+import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
 
 
 @NgModule({
@@ -157,7 +157,8 @@ import {CurrencyPipe} from "@angular/common";
     NgxDatatableModule,
     FormsModule,
     NgSelectModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    NgOptimizedImage
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}, CurrencyPipe],
