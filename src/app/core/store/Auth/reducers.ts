@@ -24,7 +24,11 @@ export const AuthReducer = createReducer(initialState,
   on(AuthActions.registerSuccess, (state, action) => ({
     ...state,
     isLoading: false,
-    token: {key: action.newUser.token, exp: decodeToken(action.newUser.token), iat: decodeToken(action.newUser.token)}
+    token: {
+      key: action.newUser.token,
+      exp: decodeToken(action.newUser.token).exp,
+      iat: decodeToken(action.newUser.token).iat
+    }
   })),
   on(AuthActions.registerFailure, (state, action) => ({
     ...state, isLoading: false, error: action.error
