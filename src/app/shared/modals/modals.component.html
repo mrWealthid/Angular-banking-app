@@ -1,23 +1,24 @@
 <div
-        (click)="toggleModalBg($event)"
-        [ngClass]="{'visible scale-100 opacity-100':showModal, 'invisible scale-50  opacity-0':!showModal }"
-        aria-modal="true"
-        class="overflow-y-auto overlay overflow-x-hidden fixed top-0 right-0 bg-black bg-opacity-75 left-0  z-50 md:inset-0 h-modal h-full justify-center items-center flex transition transition-all ease-in-out duration-1500"
-        id="popup-modal" role="dialog" tabindex="-1">
-    <div class="relative  {{size}}  h-auto">
-        <div class="relative bg-white rounded-lg p-10 shadow ">
-            <button class="absolute top-3 right-2.5 text-gray-400 bg-transparent  hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
-                    data-modal-toggle="popup-modal"
-                    type="button">
-                <svg (click)="toggleModal()" aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path clip-rule="evenodd"
-                          d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                          fill-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-            <ng-content></ng-content>
-        </div>
+  (click)="toggleModalBg($event)"
+  [ngClass]="{'visible scale-100 opacity-100':showModal, 'invisible scale-50  opacity-0':!showModal }"
+  aria-modal="true"
+  class="overflow-y-auto overlay overflow-x-hidden fixed top-0 right-0 bg-black bg-opacity-75 left-0  z-50 md:inset-0 h-modal h-full justify-center items-center flex transition transition-all ease-in-out duration-1500"
+  id="popup-modal" role="dialog" tabindex="-1">
+  <div class="relative  {{size}}  h-auto">
+    <div class="relative bg-white rounded-lg p-10 shadow ">
+      <button
+        class="absolute top-3 right-2.5 text-gray-400 bg-transparent  hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+        data-modal-toggle="popup-modal"
+        type="button">
+        <svg (click)="toggleModal($event)" aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+             xmlns="http://www.w3.org/2000/svg">
+          <path clip-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                fill-rule="evenodd"></path>
+        </svg>
+        <span class="sr-only">Close modal</span>
+      </button>
+      <ng-content></ng-content>
     </div>
+  </div>
 </div>

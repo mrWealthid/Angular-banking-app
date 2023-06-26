@@ -8,6 +8,7 @@ export interface IRegister {
   email: String
   role?: String
   photo?: String
+
   password: String
   passwordConfirm: String
 }
@@ -68,6 +69,7 @@ export interface IUserDetails {
   role: String
   photo?: String
   accountNumber: String
+  imgUrl?: String
 }
 
 

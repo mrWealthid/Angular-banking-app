@@ -21,15 +21,17 @@ export class ModalsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
-  toggleModal() {
+  toggleModal(e: any) {
+    e.stopPropagation()
     this.modalService.HandleShowModal();
   }
 
   toggleModalBg(e: any) {
-    if(e.target.classList.contains('overlay')){
+    e.stopPropagation()
+    if (e.target.classList.contains('overlay')) {
       this.modalService.HandleShowModal()
     }
 

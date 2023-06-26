@@ -3,7 +3,6 @@
 import {Component, forwardRef, Input} from '@angular/core';
 import {ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
 import {faUser} from "@fortawesome/free-solid-svg-icons";
-import {CurrencyPipe} from "@angular/common";
 
 @Component({
   selector: 'app-input',
@@ -27,8 +26,7 @@ export class InputsComponent implements ControlValueAccessor {
   protected readonly faUser = faUser;
   protected readonly Validators = Validators;
 
-  constructor(private currencyPipe: CurrencyPipe) {
-
+  constructor() {
   }
 
   onChange: (value: any) => void = () => {
