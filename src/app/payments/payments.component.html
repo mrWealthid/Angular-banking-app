@@ -166,52 +166,62 @@
   </div>
 
 
-  <section class="w-full py-10 px-5 sm:w-1/2 glass rounded-lg border">
+  <section class="flex gap-3">
+    <section class="w-full py-10  px-5 sm:w-1/2 glass rounded-lg border">
 
-    <!--    <h3>Payment</h3>-->
+      <!--    <h3>Payment</h3>-->
 
-    <form action="" class="w-full flex flex-col gap-2">
+      <form (ngSubmit)="handleSettlement(paymentForm.value)" [formGroup]="paymentForm"
+            class="w-full flex flex-col gap-2">
 
-      <acc-lookup [data]="asyncValue"
-                  [formControl]="accountNumber"
-                  [label]="'Account Number'" [placeholder]="'Enter Account Number'">
+        <acc-lookup [data]="asyncValue"
+                    [formControl]="accountNumber"
+                    [label]="'Account Number'" [placeholder]="'Enter Account Number'">
 
-      </acc-lookup>
+        </acc-lookup>
 
-      <!--      <app-input [formControl]="amount" [icon]="'fa-regular fa-address-card'" [label]="'Enter Amount'"-->
-      <!--                 [placeholder]="'Amount($)'">-->
-
-
-      <!--      </app-input>-->
-
-      <section>
-        <label class=" flex gap-1 text-xs">
-          <span>Amount</span>
-          <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
-             style="font-size: xx-small"></i>
-        </label>
-        <div
-          [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
-          class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-        >
-          <span><i class="fa-regular fa-address-card"></i></span>
-          <input
-            [formControl]="amount"
-            autocapitalize="words"
-            class="input-style"
-            name="test"
-            placeholder="Enter Amount"
-            type="text"/>
-        </div>
-        <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
-      </section>
+        <!--      <app-input [formControl]="amount" [icon]="'fa-regular fa-address-card'" [label]="'Enter Amount'"-->
+        <!--                 [placeholder]="'Amount($)'">-->
 
 
-      <app-button [btnText]="'Pay'" [disabled]="paymentForm.invalid" [styles]="'btn-primary'"></app-button>
+        <!--      </app-input>-->
+
+        <section>
+          <label class=" flex gap-1 text-xs">
+            <span>Amount</span>
+            <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
+               style="font-size: xx-small"></i>
+          </label>
+          <div
+            [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
+            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+          >
+            <span><i class="fa-regular fa-address-card"></i></span>
+            <input
+              [formControl]="amount"
+              autocapitalize="words"
+              class="input-style"
+              name="test"
+              placeholder="Enter Amount"
+              type="text"/>
+          </div>
+          <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
+        </section>
 
 
-    </form>
+        <app-button [btnText]="'Pay'" [disabled]="paymentForm.invalid" [styles]="'btn-primary'"></app-button>
 
 
+      </form>
+
+
+    </section>
+
+    <section class="w-1/2 rounded bg-white p-3">
+      <p>Beneficiaries</p>
+
+    </section>
   </section>
+
+
 </section>

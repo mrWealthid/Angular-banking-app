@@ -1,9 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {debounceTime, map, Observable, of} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {CurrencyPipe} from "@angular/common";
+import {select, Store} from "@ngrx/store";
+import {currentUserSelector} from "../core/store/Profile/selectors";
+import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
+import {PaymentService} from "./payment.service";
+import {IPayment} from "./model/payment-model";
 
 @Component({
   selector: 'app-payments',
@@ -17,8 +21,13 @@ export class PaymentsComponent implements OnInit {
   name: FormControl;
 
   asyncValue: any;
+  private userDetails: IProfile;
 
-  constructor(private _http: HttpClient, private currencyPipe: CurrencyPipe) {
+  constructor(private paymentService: PaymentService, private currencyPipe: CurrencyPipe, private store: Store<AppStateInterface>) {
+    this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
+      if (userDetails) this.userDetails = userDetails
+    })
+
   }
 
   ngOnInit() {
@@ -50,11 +59,29 @@ export class PaymentsComponent implements OnInit {
   }
 
 
+  handleSettlement(values: any) {
+
+    const payload: IPayment = {
+      user: this.asyncValue.id,
+      initiatorName: this.userDetails.name,
+      initiatorAccountNumber: this.userDetails.accountNumber,
+      beneficiaryAccountNumber: +values.accountNumber,
+      amount: Number(values.amount.replace(/[$,]/g, '')),
+      transactionType: 'credit'
+    }
+    console.log(payload)
+
+    this.paymentService.initiateTransaction(payload).subscribe()
+  }
+
+
   validateAccount(control: AbstractControl): Promise<any> | Observable<any> {
-    if (!(String(control.value).length > 6)) return of(null)
-    return this._http.get(`http://localhost:3000/api/v1/users/lookup?accountNumber=${control.value}`).pipe(debounceTime(1000)).pipe(map((val: any) => {
+    if (!(String(control.value).length > 6)) return of({'InvalidAccountNumber': true})
+    return this.paymentService.accountLookup(control.value).pipe(map((val: any) => {
       const {accountNumber} = val.data[0]
-      if (Number(control.value) === accountNumber) {
+      if (Number(control.value) === this.userDetails.accountNumber) {
+        return {'userAccountNumber': true}
+      } else if (Number(control.value) === accountNumber) {
         this.asyncValue = val.data[0]
         return null;
       } else {
