@@ -27,8 +27,6 @@
                  [rows]="rows"
                  [scrollbarH]="false"
                  [scrollbarV]="false"
-
-
                  class="material"
   >
 
@@ -115,18 +113,18 @@
           <div>Rows: {{ rowCount }} | Size: {{ pageSize }} | Current: {{ curPage }} | Offset: {{ offset }}</div>
         </div>
 
-        <datatable-pager
-          (change)="table.onFooterPage($event)"
-          [count]="rowCount"
-          [hidden]="!((rowCount / pageSize) > 1)"
-          [page]="curPage"
-          [pagerLeftArrowIcon]="'datatable-icon-left'"
+        <datatable-pager (change)="table.onFooterPage($event)"
+                         *ngIf="rows?.length > 0"
+                         [count]="rowCount"
+                         [hidden]="!((rowCount / pageSize) > 1)"
+                         [page]="curPage"
+                         [pagerLeftArrowIcon]="'datatable-icon-left'"
 
 
-          [pagerNextIcon]="'datatable-icon-skip'"
-          [pagerPreviousIcon]="'datatable-icon-prev'"
-          [pagerRightArrowIcon]="'datatable-icon-right'"
-          [size]="pageSize"
+                         [pagerNextIcon]="'datatable-icon-skip'"
+                         [pagerPreviousIcon]="'datatable-icon-prev'"
+                         [pagerRightArrowIcon]="'datatable-icon-right'"
+                         [size]="pageSize"
 
 
         >

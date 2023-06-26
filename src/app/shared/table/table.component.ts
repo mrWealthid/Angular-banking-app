@@ -103,7 +103,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.setPage({offset: 0, limit: 3});
+    this.setPage({offset: 0, limit: 10});
     this.columns.push({name: "Actions"});
     this.updatedColumn = this.columns
   }
