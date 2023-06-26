@@ -14,7 +14,7 @@ export class AuthEffect {
 
   register$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.register), switchMap((credentials: IRegister) => {
-      return this.AuthService.register2(credentials)
+      return this.AuthService.register(credentials)
         .pipe(switchMap((newUser) => {
           return [AuthActions.registerSuccess({newUser}), profileLookup()
           ]
@@ -28,7 +28,7 @@ export class AuthEffect {
   login$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.login),
       switchMap(((credentials: ILogin) => {
-        return this.AuthService.login2(credentials).pipe(
+        return this.AuthService.login(credentials).pipe(
           switchMap((currentUser) => {
             return [AuthActions.loginSuccess({currentUser}), profileLookup()
             ]
