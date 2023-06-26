@@ -13,11 +13,11 @@ export class TransactionsComponent implements OnInit {
   // faCopy = faCopy;
   faClipboard = faClipboard;
   tableColumns = [
-    {prop: 'id', name: 'Id'},
-    {prop: 'depositorName', name: 'Payer'},
+    // {prop: 'id', name: 'Id'},
+    {prop: 'initiatorName', name: 'Payer'},
     {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true},
     {prop: 'transactionType', name: 'Transaction', custom: true},
-    {prop: 'depositorAccountNumber', name: 'Payer Account', custom: true},
+    {prop: 'initiatorAccountNumber', name: 'Payer Account', custom: true},
     {prop: 'createdAt', name: 'Time', pipe: "Date"}
   ];
 
