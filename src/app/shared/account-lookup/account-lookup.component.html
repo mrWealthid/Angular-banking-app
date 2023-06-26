@@ -43,7 +43,10 @@
 
 
   <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
-  <span *ngIf="this.validateAccount()" class="text-red-800 text-xs">Account Not Found</span>
+  <span *ngIf="this.validateAccount('InvalidAccountNumber')" class="text-red-800 flex gap-1 items-center text-xs"> <i
+    class="fa-solid fa-triangle-exclamation"></i> Account Not Found</span>
+  <span *ngIf="this.validateAccount('userAccountNumber')" class="text-red-800 flex gap-1 items-center text-xs"><i
+    class="fa-solid fa-triangle-exclamation"></i> You can't transfer to self</span>
 
   <!--  <span>{{data|json}}</span>-->
 </section>

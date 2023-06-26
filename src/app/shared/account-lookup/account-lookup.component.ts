@@ -54,8 +54,8 @@ export class AccountLookupComponent implements ControlValueAccessor {
     return !this.formControl.pristine && this.formControl.errors?.hasOwnProperty('required');
   }
 
-  validateAccount() {
-    return !this.formControl.pristine && this.formControl.errors?.hasOwnProperty('InvalidAccountNumber');
+  validateAccount(type: string) {
+    return !this.formControl.pristine && this.formControl.errors?.hasOwnProperty(type);
   }
 
   setDisabledState(isDisabled: boolean): void {
