@@ -1,28 +1,50 @@
-import {inject, Injectable} from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from "./actions";
-import {concatMap, map, mergeMap, of, switchMap, tap} from "rxjs";
+import {map, mergeMap, of, switchMap, tap} from "rxjs";
 import {AuthService} from "../../../auth.service";
 import {catchError} from "rxjs/operators";
-import {ILogin, IProfile, IRegister, IUser} from "../../../shared/interface/userAuth";
-import {profileLookup} from "./actions";
+import {IProfile} from "../../../shared/interface/userAuth";
 import {Router} from "@angular/router";
+import {ProfileService} from "../../../profile/profile.service";
 
 @Injectable()
 export class ProfileEffect {
 
 
-
- profile$ = createEffect(() =>
+  profile$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.profileLookup),
       mergeMap(() => {
-        return this.AuthService.fetchProfile().pipe(map((newUser: IProfile) => AuthActions.profileLookupSuccess({newUser})), tap(()=> this.router.navigate(['dashboard'])), catchError(error => of(AuthActions.profileLookupFailure({
+        return this.profileService.fetchProfile().pipe(map((newUser: IProfile) => AuthActions.profileLookupSuccess({newUser})), tap(() => this.router.navigate(['dashboard'])), catchError(error => of(AuthActions.profileLookupFailure({
           error: error.message
         }))));
       }))
   );
 
-  constructor(private actions$: Actions, private AuthService: AuthService, private router: Router) {
+
+  profileUpdate$ = createEffect(() =>
+    this.actions$.pipe(ofType(AuthActions.profileUpdate),
+      switchMap((payload) => {
+        const formData = new FormData()
+        formData.append('name', payload.name)
+        formData.append('photo', payload.photo)
+        return this.profileService.updateUser(formData).pipe(map((updateUser: IProfile) => AuthActions.profileUpdateSuccess({updateUser})), tap(() => this.profileService.updateSteps(1)), catchError(error => of(AuthActions.profileUpdateFailure({
+          error: error.message
+        }))));
+      }))
+  );
+
+  profilePasswordUpdate$ = createEffect(() =>
+    this.actions$.pipe(ofType(AuthActions.profilePasswordUpdate),
+      switchMap((payload) => {
+        return this.profileService.updatePassword(payload).pipe(map((updateCredentials) => AuthActions.profilePasswordUpdateSuccess({updateCredentials})), tap(() => this.profileService.updateSteps(2)), catchError(error => of(AuthActions.profilePasswordUpdateFailure({
+          error: error.message
+        }))));
+      }))
+  );
+
+
+  constructor(private actions$: Actions, private authService: AuthService, private profileService: ProfileService, private router: Router) {
   }
 }
 

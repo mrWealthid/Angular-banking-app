@@ -1,12 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {faAt, faLock, faLockOpen, faUser, faUserEdit} from '@fortawesome/free-solid-svg-icons';
+import {faUserEdit} from '@fortawesome/free-solid-svg-icons';
 import {ModalService} from "../shared/services/modal.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {currentUserSelector} from "../core/store/Profile/selectors";
-import {BehaviorSubject, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
+import * as profileActions from "../core/store/Profile/actions"
+import {ProfileService} from "./profile.service";
 
 @Component({
   selector: 'app-profile',
@@ -15,34 +17,25 @@ import {AuthService} from "../auth.service";
 })
 export class ProfileComponent implements OnInit {
   data: IProfile | null;
-  faAt = faAt;
   profileForm: FormGroup;
   email: FormControl;
   role: FormControl;
   name: FormControl;
-  // phone: FormControl;
-  photo: FormControl<File | string | null>;
+  photo: FormControl;
   currentUser$: Observable<IProfile | null>;
-
   currentPassword: FormControl
   newPassword: FormControl
   confirmPassword: FormControl
-
   passwordForm: FormGroup
-
-  step = new BehaviorSubject(0)
   previewUrl: string | ArrayBuffer | null;
   options = [
     {id: "user", name: 'User'},
     {id: "admin", name: 'Admin'},
   ];
-  protected readonly faUser = faUser;
-  protected readonly faLock = faLock;
-  protected readonly faLockOpen = faLockOpen;
   protected readonly faUserEdit = faUserEdit;
   private image: any;
 
-  constructor(private store: Store<AppStateInterface>, private modalService: ModalService, private authService: AuthService) {
+  constructor(private store: Store<AppStateInterface>, private modalService: ModalService, protected profileService: ProfileService, private authService: AuthService) {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
 
@@ -53,14 +46,14 @@ export class ProfileComponent implements OnInit {
     this.detailsForm()
     this.updatePasswordForm()
 
+
   }
 
   detailsForm() {
-    this.name = new FormControl({value: this.data?.name, disabled: true}, Validators.required);
-
+    this.name = new FormControl({value: this.data?.name, disabled: false}, Validators.required);
     this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
-    this.photo = new FormControl('');
-    this.role = new FormControl({value: this.data?.role, disabled: true}, Validators.required);
+    this.photo = new FormControl("");
+    this.role = new FormControl({value: this.data?.role, disabled: false}, Validators.required);
     this.profileForm = new FormGroup({
       name: this.name,
       role: this.role,
@@ -95,9 +88,6 @@ export class ProfileComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    // this.photo.setValue(file.name)
-    // console.log(file)
-
     this.image = file
     if (file) {
       const reader = new FileReader();
@@ -110,51 +100,33 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  updateSteps(val: number): void {
-    return this.step.next(val)
-  }
 
   handlePasswordUpdate(val: any) {
-    const self = this
-    console.log(val)
-    this.authService.updatePassword(val).subscribe({
-      next(x) {
-        self.updateSteps(2)
-      },
-      error(err) {
-        console.error('something wrong occurred: ' + err);
-      },
-      complete() {
-        console.log('done')
-      },
-    });
+    this.store.dispatch(profileActions.profilePasswordUpdate(val))
+    // const self = this
+    // console.log(val)
+    // this.profileService.updatePassword(val).subscribe({
+    //   next(x) {
+    //     self.profileService.updateSteps(2)
+    //   },
+    //   error(err) {
+    //     console.error('something wrong occurred: ' + err);
+    //   },
+    //   complete() {
+    //     console.log('done')
+    //   },
+    // });
   }
 
 
-  handleFormUpdate(val: any) {
-    const formData = new FormData()
-    formData.append('name', this.name.value)
-    formData.append('email', this.email.value)
-    formData.append('photo', this.image)
-
-
-    const self = this
-
-    this.authService.updateUser(formData).subscribe({
-      next(x) {
-        self.updateSteps(1)
-      },
-      error(err) {
-        console.error('something wrong occurred: ' + err);
-      },
-      complete() {
-        console.log('done')
-      },
-    });
+  handlePersonalFormUpdate(val: any) {
+    const payload: IProfile = {...val, photo: this.image}
+    this.store.dispatch(profileActions.profileUpdate(payload))
   }
 
 
   handleBack() {
-    this.updateSteps(0)
+    this.profileService.updateSteps(0)
+    this.photo.patchValue('')
   }
 }
