@@ -103,8 +103,8 @@
           </select-input>
 
 
-          <div class="mt-2 flex justify-end   ">
-            <app-button [btnText]="'Next'" [styles]="'btn-primary  rounded-3xl'"
+          <div class="mt-2 flex justify-end ">
+            <app-button [btnText]="'Next'" [loading]="loading" [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">
             </app-button>
 
@@ -144,7 +144,8 @@
             <app-button (click)="handleBack()" [btnText]="'Back'" [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">
             </app-button>
-            <app-button [btnText]="'Update'" [disabled]="passwordForm.invalid" [styles]="'btn-primary  rounded-3xl'"
+            <app-button [btnText]="'Update'" [disabled]="passwordForm.invalid" [loading]="loading"
+                        [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">
             </app-button>
 

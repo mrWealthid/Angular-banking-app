@@ -31,7 +31,7 @@
 
         <section class="w-5/6 mt-4">
 
-          <app-button [btnText]="authservice.isLoading? 'Processing...':'Login'" [disabled]="LoginForm.invalid"
+          <app-button [btnText]="'Login'" [disabled]="LoginForm.invalid" [loading]="loading"
                       [styles]="'btn-primary'"></app-button>
         </section>
         <p class="flex  gap-3 text-sm tex-gray-800">
@@ -64,5 +64,5 @@
 
 <ngx-loading
   [config]="{ backdropBorderRadius: '3px' }"
-  [show]="authservice.isLoading"
+  [show]="loading"
 ></ngx-loading>

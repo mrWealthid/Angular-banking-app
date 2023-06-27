@@ -53,8 +53,8 @@
       </div>
       <section class="w-full mt-4">
 
-        <app-button [btnText]="authservice.isLoading? 'Processing...':'Register'"
-
+        <app-button [btnText]="'Register'" [disabled]="SignupForm.invalid"
+                    [loading]="loading"
                     [styles]="'btn-primary'"></app-button>
       </section>
       <p class="text-sm  flex gap-2">
@@ -78,10 +78,10 @@
 <!--</app-modals >-->
 
 
-<!--<ngx-loading-->
-<!--  [config]="{ backdropBorderRadius: '3px' }"-->
-<!--  [show]="authservice.isLoading"-->
+<ngx-loading
+  [config]="{ backdropBorderRadius: '3px' }"
+  [show]="loading"
 
-<!--&gt;</ngx-loading>-->
+></ngx-loading>
 
 

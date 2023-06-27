@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../auth.service";
+import {select, Store} from "@ngrx/store";
+import {AppStateInterface} from "../../shared/interface/userAuth";
+import {isLoadingSelector} from "../../core/store/Auth/selectors";
 
 @Component({
   selector: 'app-reset-password',
@@ -10,7 +14,13 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm: UntypedFormGroup;
   email: FormControl;
-  authservice: any;
+  loading: Boolean;
+
+
+  constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
+    this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
+
+  }
 
   ngOnInit() {
     this.createResetPasswordForm()

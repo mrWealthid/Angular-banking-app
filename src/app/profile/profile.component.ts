@@ -4,7 +4,7 @@ import {ModalService} from "../shared/services/modal.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
-import {currentUserSelector} from "../core/store/Profile/selectors";
+import {currentUserSelector, isLoading} from "../core/store/Profile/selectors";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
 import * as profileActions from "../core/store/Profile/actions"
@@ -32,11 +32,14 @@ export class ProfileComponent implements OnInit {
     {id: "user", name: 'User'},
     {id: "admin", name: 'Admin'},
   ];
+  loading: Boolean;
   protected readonly faUserEdit = faUserEdit;
+  protected readonly isLoading = isLoading;
   private image: any;
 
   constructor(private store: Store<AppStateInterface>, private modalService: ModalService, protected profileService: ProfileService, private authService: AuthService) {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
+    this.store.pipe(select(isLoading)).subscribe(x => this.loading = x)
 
 
   }
@@ -85,7 +88,6 @@ export class ProfileComponent implements OnInit {
     this.modalService.HandleShowModal();
   }
 
-
   onFileSelected(event: any) {
     const file = event.target.files[0];
     this.image = file
@@ -99,7 +101,6 @@ export class ProfileComponent implements OnInit {
 
 
   }
-
 
   handlePasswordUpdate(val: any) {
     this.store.dispatch(profileActions.profilePasswordUpdate(val))
@@ -118,12 +119,10 @@ export class ProfileComponent implements OnInit {
     // });
   }
 
-
   handlePersonalFormUpdate(val: any) {
     const payload: IProfile = {...val, photo: this.image}
     this.store.dispatch(profileActions.profileUpdate(payload))
   }
-
 
   handleBack() {
     this.profileService.updateSteps(0)

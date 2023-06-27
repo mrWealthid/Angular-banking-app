@@ -5,7 +5,8 @@ import {AppStateInterface, IRegister} from "../../shared/interface/userAuth";
 import {ModalService} from "../../shared/services/modal.service";
 import * as AuthActions from "../../core/store/Auth/actions";
 
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
+import {isLoadingSelector} from "../../core/store/Auth/selectors";
 
 @Component({
   selector: 'app-signup',
@@ -21,10 +22,14 @@ export class SignupComponent implements OnInit {
   email: UntypedFormControl;
   password: UntypedFormControl;
   passwordConfirm: UntypedFormControl;
+  loading: Boolean;
 
 
   constructor(public authservice: AuthService, public modalService: ModalService, private store: Store<AppStateInterface>
   ) {
+
+    this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
+
   }
 
   ngOnInit(): void {

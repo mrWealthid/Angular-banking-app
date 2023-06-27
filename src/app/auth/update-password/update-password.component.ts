@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../auth.service";
+import {select, Store} from "@ngrx/store";
+import {AppStateInterface} from "../../shared/interface/userAuth";
+import {isLoadingSelector} from "../../core/store/Auth/selectors";
 
 @Component({
   selector: 'app-update-password',
@@ -12,10 +16,14 @@ export class UpdatePasswordComponent implements OnInit {
   currentPassword: UntypedFormControl
   password: UntypedFormControl
   passwordConfirm: UntypedFormControl
-  authservice: any
-  // protected readonly faLock = faLock;
-  // protected readonly faEye = faEye;
-  // protected readonly faEyeSlash = faEyeSlash;
+  loading: Boolean;
+
+
+  constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
+    this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
+
+  }
+
   createUpdatePasswordForm() {
     this.password = new UntypedFormControl('', [Validators.required, Validators.email]);
     this.currentPassword = new UntypedFormControl('', [Validators.required, Validators.email]);

@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth.service";
 import {AppStateInterface, ILogin} from "../../shared/interface/userAuth";
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import * as AuthActions from "../../core/store/Auth/actions";
 import {BehaviorSubject} from "rxjs";
+import {isLoadingSelector} from "../../core/store/Auth/selectors";
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,12 @@ export class LoginComponent implements OnInit {
 
 
   formRoute$ = new BehaviorSubject('loginForm')
+  loading: Boolean;
 
 
   constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
+    this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
+
   }
 
   ngOnInit(): void {
