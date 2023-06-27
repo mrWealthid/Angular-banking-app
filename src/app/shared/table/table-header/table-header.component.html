@@ -36,15 +36,16 @@
 
 
     <button *ngIf="!tableSettings?.isDownloadable"
-            class=" text-primary flex gap-1 border px-6  py-1 bg-white hover:bg-gray-100 focus:outline-none rounded">
+            class=" text-primary text-sm flex gap-2 items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
 
-      <i></i>
+      <i class="fa-solid fa-download"></i>
       Download
     </button>
 
 
-    <button class=" text-primary border px-6  py-1 bg-white hover:bg-gray-100 focus:outline-none rounded">
-
+    <button
+      class=" text-primary flex gap-2 text-sm items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
+      <i class="fa-solid fa-rotate-right"></i>
       Reload
     </button>
 
