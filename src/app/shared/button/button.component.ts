@@ -8,7 +8,6 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ButtonComponent implements OnInit {
 
 
-
   @Input()
   btnText: string
 
@@ -19,7 +18,15 @@ export class ButtonComponent implements OnInit {
   @Input()
   disabled: boolean
 
-  constructor() { }
+  @Input()
+  loading: Boolean = false
+
+  @Input()
+  type: string = 'submit'
+
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
