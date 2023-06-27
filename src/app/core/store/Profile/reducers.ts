@@ -1,5 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
-import * as AuthActions from './actions';
+import * as ProfileActions from './actions';
+import * as AuthActions from '../Auth/actions';
 import {IProfileState} from "../../../shared/interface/userAuth";
 
 
@@ -11,11 +12,24 @@ export const initialState: IProfileState = {
 export const ProfileReducer = createReducer(initialState,
 
 
-  on(AuthActions.profileLookupSuccess, (state, action) => ({
+  on(ProfileActions.profileLookup, (state, action) => ({
+    ...state, isLoading: true, currentUser: null, error: null
+  })),
+  on(ProfileActions.profileLookupSuccess, (state, action) => ({
     ...state, isLoading: false, currentUser: action.newUser, error: null
+  })), on(ProfileActions.profileLookupFailure, (state, action) => ({
+    ...state, isLoading: false, currentUser: null, error: action.error
   })),
 
-  on(AuthActions.profileUpdateSuccess, (state, action) => ({
+  on(ProfileActions.profileUpdate, (state, action) => ({
+    ...state, isLoading: true, error: null
+  })), on(ProfileActions.profileUpdateSuccess, (state, action) => ({
     ...state, isLoading: false, currentUser: action.updateUser, error: null
+  })), on(ProfileActions.profileUpdateFailure, (state, action) => ({
+    ...state, isLoading: false, error: action.error
+  })),
+
+  on(AuthActions.logout, (state, action) => ({
+    ...state, isLoading: false, currentUser: null, error: null
   })),
 );
