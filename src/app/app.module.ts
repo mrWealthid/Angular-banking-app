@@ -150,7 +150,7 @@ import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
       animationType: ngxLoadingAnimationTypes.rotatingPlane,
       backdropBackgroundColour: "rgba(0,0,0,0.1)",
       backdropBorderRadius: "4px",
-      primaryColour: "green",
+      primaryColour: "#111827FF",
       secondaryColour: "red",
       tertiaryColour: "blue",
     }),
