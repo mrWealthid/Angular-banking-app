@@ -12,6 +12,7 @@ export class DashboardComponent implements OnInit {
     {path: 'profile', text: 'Profile'},
     {path: 'transactions', text: 'Transactions'}, {path: 'payments', text: 'Payments'}
   ]
+  isOpen: Boolean = false;
 
   constructor() {
   }
@@ -19,5 +20,15 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  handleToggle() {
+
+    this.isOpen = !this.isOpen
+
+  }
+
+  clickedOutside() {
+    this.isOpen = false
   }
 }
