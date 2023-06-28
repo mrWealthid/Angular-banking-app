@@ -14,7 +14,7 @@ export class PaymentService {
 
 
   accountLookup(value: any): Observable<any> {
-    return this.Http.get(`http://localhost:3000/api/v1/users/lookup?accountNumber=${value}`)
+    return this.Http.get(`/api/v1/users/lookup?accountNumber=${value}`)
   }
 
 

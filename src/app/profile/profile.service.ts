@@ -19,7 +19,7 @@ export class ProfileService {
 
 
   fetchProfile(): Observable<IProfile> {
-    return this.Http.get<any>('http://localhost:3000/api/v1/users/me').pipe(map((result) => {
+    return this.Http.get<any>('/api/v1/users/me').pipe(map((result) => {
         return {
           ...result.data
         }
@@ -29,7 +29,7 @@ export class ProfileService {
 
 
   updateUser(payload: any): Observable<any> {
-    return this.Http.patch<any>('http://localhost:3000/api/v1/users/updateMe', payload).pipe(map((result) => {
+    return this.Http.patch<any>('/api/v1/users/updateMe', payload).pipe(map((result) => {
         return {
           ...result.data.user
         }
@@ -38,7 +38,7 @@ export class ProfileService {
   }
 
   updatePassword(payload: any): Observable<any> {
-    return this.Http.patch<any>('http://localhost:3000/api/v1/users/updatePassword', payload)
+    return this.Http.patch<any>('/api/v1/users/updatePassword', payload)
   }
 
 

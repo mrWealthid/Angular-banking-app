@@ -46,7 +46,7 @@ export class AuthService {
   // }
 
   login(credentials: ILogin): Observable<IUser> {
-    return this.Http.post<IUser>('http://localhost:3000/api/v1/users/login', credentials, {
+    return this.Http.post<IUser>('/api/v1/users/login', credentials, {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
 
@@ -54,7 +54,7 @@ export class AuthService {
 
 
   register(credentials: IRegister): Observable<IUser> {
-    return this.Http.post<IUser>('http://localhost:3000/api/v1/users/signup', credentials)
+    return this.Http.post<IUser>('/api/v1/users/signup', credentials)
   }
 
 
