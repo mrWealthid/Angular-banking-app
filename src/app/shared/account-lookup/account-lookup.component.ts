@@ -17,11 +17,11 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./account-lookup.component.css']
 })
 export class AccountLookupComponent implements ControlValueAccessor {
-  @Input() label: string;
+  @Input({required: true}) label: string;
   @Input() type: string;
   @Input() placeholder: string;
-  @Input() formControl: FormControl;
-  @Input() data: any;
+  @Input({required: true}) formControl: FormControl;
+  @Input({required: true}) data: any;
 
 
   protected readonly faUser = faUser;
