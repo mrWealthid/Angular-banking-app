@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AppStateInterface, IToken} from "../app/shared/interface/userAuth"
+import {AppStateInterface, IToken} from "./shared/interface/userAuth"
 import {select, Store} from "@ngrx/store";
 import {token} from "./core/store/Auth/selectors";
 import * as AuthActions from "../app/core/store/Auth/actions";
@@ -12,7 +12,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Wallet';
+
 
   // appState$: Observable<AuthState>;
   // private token: Observable<String | null>;
@@ -29,6 +29,8 @@ export class AppComponent implements OnInit {
 
 
   autoLogout(exp: any) {
+
+
     const timeLeftInMs = exp * 1000 - Date.now()
 
     console.log(timeLeftInMs)
@@ -37,6 +39,8 @@ export class AppComponent implements OnInit {
         this.router.navigate(["login"])
       }, timeLeftInMs
     )
+
+
   }
 
   ngOnInit() {

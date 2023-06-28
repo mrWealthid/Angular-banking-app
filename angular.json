@@ -34,7 +34,7 @@
               {
                 "input": "node_modules/@swimlane/ngx-datatable/assets/icons.css"
               },
-              "node_modules/ngx-toastr/toastr.css",
+              "src/assets/toast-styles/toast-style.scss",
               "src/styles.scss"
             ],
             "scripts": []

@@ -1,5 +1,4 @@
 import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {AuthService} from "../auth.service";
 import * as AuthActions from "../core/store/Auth/actions";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
@@ -19,7 +18,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   currentUser: Observable<IProfile | null>;
 
 
-  constructor(public authService: AuthService, private router: Router, public store: Store<AppStateInterface>) {
+  constructor(private router: Router, public store: Store<AppStateInterface>) {
 
     this.isAuthenticated = this.store.pipe(select(isAuthenticated))
     this.currentUser = this.store.pipe(select(currentUserSelector))
