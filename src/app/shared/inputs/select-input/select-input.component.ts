@@ -21,7 +21,7 @@ export class SelectInputComponent {
   @Input() bindLabel: string;
   @Input() bindValue: string;
   @Input() placeholder: string;
-  @Input() formControl: FormControl
+  @Input({required: true}) formControl: FormControl
 
   value: any;
   onChange: any = () => {

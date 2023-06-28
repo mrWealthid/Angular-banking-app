@@ -31,7 +31,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   page = new Page();
 
   // @Input() rows: any[]
-  @Input() columns: any[];
+  @Input({required: true}) columns: any[];
   // pageIndex: number = 0;
   @Input() pageSize: number;
   totalRecords: number;
@@ -42,7 +42,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   allSelected: any[] = []
-  @Input()
+  @Input({required: true})
   tableService: any
 
 

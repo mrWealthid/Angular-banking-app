@@ -19,7 +19,7 @@ import {BehaviorSubject} from "rxjs";
   `,
 })
 export class ClipboardComponent {
-  @Input() textToCopy: string;
+  @Input({required: true}) textToCopy: string;
   @Input() buttonText: string;
   timer: any
   valueState = new BehaviorSubject(false)

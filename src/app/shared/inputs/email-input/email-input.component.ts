@@ -17,9 +17,9 @@ import {faAt, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./email-input.component.scss']
 })
 export class EmailInputComponent implements ControlValueAccessor {
-  @Input() label: string;
+  @Input({required: true}) label: string;
   @Input() type: string;
-  @Input() formControl: FormControl;
+  @Input({required: true}) formControl: FormControl;
   @Input() placeholder: string = 'wealth@gmail.com'
 
   isShown: boolean = false;

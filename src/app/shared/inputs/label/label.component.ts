@@ -7,8 +7,8 @@ import {Component, Input} from '@angular/core';
 
 })
 export class LabelComponent {
-  @Input() label: string;
-  @Input() required: boolean
+  @Input({required: true}) label: string;
+  @Input({required: true}) required: boolean
 
 
 }

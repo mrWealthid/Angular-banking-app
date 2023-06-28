@@ -17,9 +17,9 @@ import {faEye, faEyeSlash, faLock} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./password-input.component.scss']
 })
 export class PasswordInputComponent implements ControlValueAccessor {
-  @Input() label: string;
+  @Input({required: true}) label: string;
   @Input() type: string;
-  @Input() formControl: FormControl;
+  @Input({required: true}) formControl: FormControl;
   @Input() placeholder: string = 'password'
 
   isShown: boolean = false;
