@@ -38,7 +38,7 @@ export class TransactionService {
     // queryParams = queryParams.appendAll({'limit': params.size, 'page': params.pageNumber + 1});
     // queryParams = queryParams.append('page', params.pageNumber + 1);
     console.log(queryParams)
-    return this.Http.get<IList>(`http://localhost:3000/api/v1/transactions`, {params: query}).pipe(map((data: any) => {
+    return this.Http.get<IList>(`/api/v1/transactions`, {params: query}).pipe(map((data: any) => {
       return {
         status: data.status,
         totalRecords: data.totalRecords,
