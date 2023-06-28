@@ -8,9 +8,10 @@ import {Component, OnInit} from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   links = [
-    {path: '/dashboard', text: 'Overview'},
-    {path: 'profile', text: 'Profile'},
-    {path: 'transactions', text: 'Transactions'}, {path: 'payments', text: 'Payments'}
+    {icon: "", path: '/dashboard', text: 'Overview'},
+    {icon: "", path: 'profile', text: 'Profile'},
+    {icon: "", path: 'transactions', text: 'Transactions'},
+    {icon: "", path: 'payments', text: 'Payments'}
   ]
   isOpen: Boolean = false;
 

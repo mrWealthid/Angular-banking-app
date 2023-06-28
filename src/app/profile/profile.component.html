@@ -1,11 +1,12 @@
-<section class="flex md:flex-row w-full container-text flex-col items-center gap-6 min-h-screen h-screen">
-  <section *ngIf="currentUser$|async as currentUser" class="text-center skin   border w-1/3   h-4/6 rounded-xl">
+<section class="flex md:flex-row w-full container-text flex-col items-center gap-2 min-h-screen">
+  <section *ngIf="currentUser$|async as currentUser"
+           class="text-center skin py-3   border w-full  lg:w-1/3    rounded-xl">
     <div class="py-3 ">
       <img alt="" class="  border rounded-full mx-auto w-32 object-cover  h-32" height="820"
            src="http://localhost:3000/{{currentUser.imgUrl}}" width="900">
     </div>
     <section class="flex flex-col gap-4 ">
-      <p class="text-2xl">Personal Details</p>
+      <p class=" lg:text-2xl">Personal Details</p>
       <span>
           {{currentUser.name}}
         </span>
@@ -32,10 +33,10 @@
       </div>
     </section>
   </section>
-  <section class="flex flex-col gap-7 flex-1   h-5/6 ">
+  <section class="flex flex-col w-full lg:w-2/3 gap-7">
 
 
-    <section class="bg-white p-6 flex flex-col gap-4  h-auto w-full rounded-xl ">
+    <section class="bg-white p-6 flex flex-col gap-4  w-full rounded-xl ">
       <section class="flex justify-end">
         <app-stepper [step]="profileService.step"
                      class="w-1/2"></app-stepper>
