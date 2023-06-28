@@ -12,7 +12,7 @@
        routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Signup</a>
     <a (click)="logout()" *ngIf="(isAuthenticated|async)" class="cursor-pointer"
        routerLinkActive="text-gray-800 rounded-full">Logout</a>
-    <img *ngIf="(isAuthenticated|async)"
+    <img *ngIf="(isAuthenticated|async)" alt="user-avatar"
          class="rounded-full border w-10 object-contain flex items-center justify-center border-green-600"
          src="http://localhost:3000/{{(currentUser|async)?.imgUrl}}"
     />

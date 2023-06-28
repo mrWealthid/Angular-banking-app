@@ -50,13 +50,13 @@ export const AuthReducer = createReducer(initialState,
     ...state, isLoading: false, error: action.error, token: null
   })),
 
-  on(AuthActions.logout, (state, action) => ({
+  on(AuthActions.logout, (state) => ({
     ...state, isLoading: false, error: null, token: null, isAuthenticated: false
   })),
 
 
   ///I'm setting the user to be authenticated only when the profile is successfully loaded
-  on(AuthActions.profileLookupSuccess, (state, action) => ({
+  on(AuthActions.profileLookupSuccess, (state) => ({
     ...state, isLoading: false, isAuthenticated: true, error: null
   })),
 );

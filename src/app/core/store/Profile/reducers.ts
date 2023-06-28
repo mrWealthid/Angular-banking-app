@@ -12,7 +12,7 @@ export const initialState: IProfileState = {
 export const ProfileReducer = createReducer(initialState,
 
 
-  on(ProfileActions.profileLookup, (state, action) => ({
+  on(ProfileActions.profileLookup, (state) => ({
     ...state, isLoading: true, currentUser: null, error: null
   })),
   on(ProfileActions.profileLookupSuccess, (state, action) => ({
@@ -21,7 +21,7 @@ export const ProfileReducer = createReducer(initialState,
     ...state, isLoading: false, currentUser: null, error: action.error
   })),
 
-  on(ProfileActions.profileUpdate, (state, action) => ({
+  on(ProfileActions.profileUpdate, (state) => ({
     ...state, isLoading: true, error: null
   })), on(ProfileActions.profileUpdateSuccess, (state, action) => ({
     ...state, isLoading: false, currentUser: action.updateUser, error: null
@@ -29,7 +29,7 @@ export const ProfileReducer = createReducer(initialState,
     ...state, isLoading: false, error: action.error
   })),
 
-  on(AuthActions.logout, (state, action) => ({
+  on(AuthActions.logout, (state) => ({
     ...state, isLoading: false, currentUser: null, error: null
   })),
 );

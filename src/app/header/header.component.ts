@@ -16,7 +16,7 @@ import {currentUserSelector} from "../core/store/Profile/selectors";
 export class HeaderComponent implements OnInit, OnChanges {
 
   isAuthenticated;
-  private currentUser: Observable<IProfile | null>;
+  currentUser: Observable<IProfile | null>;
 
 
   constructor(public authService: AuthService, private router: Router, public store: Store<AppStateInterface>) {
