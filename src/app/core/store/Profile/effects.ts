@@ -7,6 +7,7 @@ import {catchError} from "rxjs/operators";
 import {IProfile} from "../../../shared/interface/userAuth";
 import {Router} from "@angular/router";
 import {ProfileService} from "../../../profile/profile.service";
+import {NotificationService} from "../../../shared/services/notification.service";
 
 @Injectable()
 export class ProfileEffect {
@@ -30,6 +31,8 @@ export class ProfileEffect {
         formData.append('photo', payload.photo)
         return this.profileService.updateUser(formData).pipe(map((updateUser: IProfile) => AuthActions.profileUpdateSuccess({updateUser})), tap(() => this.profileService.updateSteps(1)), catchError(error => of(AuthActions.profileUpdateFailure({
           error: error.message
+        })).pipe(tap(() => {
+          this.Notify.showError(error.statusText, "Auth Error")
         }))));
       }))
   );
@@ -44,7 +47,7 @@ export class ProfileEffect {
   );
 
 
-  constructor(private actions$: Actions, private authService: AuthService, private profileService: ProfileService, private router: Router) {
+  constructor(private actions$: Actions, private authService: AuthService, private profileService: ProfileService, private router: Router, private Notify: NotificationService) {
   }
 }
 
