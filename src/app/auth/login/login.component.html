@@ -1,9 +1,9 @@
-<section class="flex main_color  min-h-screen items-center justify-center ">
+<section class="flex main_color bg  min-h-screen items-center justify-center ">
   <section
     class="bg-white w-5/6 md:w-1/2 lg:w-1/3 py-10 px-5 flex gap-4 flex-col  items-center justify-center">
 
     <ng-container *ngIf="formRoute$|async as routes">
-      <p *ngIf="routes === 'loginForm'" class=" text-center font-bold text-2xl">Login</p>
+      <p *ngIf="routes === 'loginForm'" class=" text-center font-bold text-2xl">Login to your account</p>
       <p *ngIf="routes === 'resetPassword'" class=" text-center font-bold text-2xl">Reset Password</p>
       <p *ngIf="routes === 'updatePasswordForm'" class=" text-center font-bold text-2xl">Update Password</p>
 
