@@ -1,11 +1,11 @@
 <section class="section-hero min-h-screen skin container-text flex items-center">
-  <section class="text-gray-800 flex flex-col  gap-5">
-    <p class='text-4xl lg:text-4xl  max-w-sm '>
+  <section class="text-gray-800 max-w-[301px] md:max-w-[512px] flex flex-col  gap-5">
+    <h1 class='text-3xl  lg:text-4xl  max-w-sm '>
       The Easiest Way
       To Manage Personal
       Finances
-    </p>
-    <p class='text leading-normal lg:max-w-xl   '>
+    </h1>
+    <p class='text leading-normal lg:max-w-xl'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
       enim ad minim veniam, quis nostrud exercitation ullamco laboris.
@@ -16,69 +16,178 @@
   </section>
 
 
-  <div
-    class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
-    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
-      <img alt=""
-           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl" src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">
-      <img alt=""
-           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl" src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">
-    </div>
-  </div>
-  <div
-    class="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl h-[24px] max-w-[301px] md:h-[42px] md:max-w-[512px]"></div>
-  <div class="relative mx-auto bg-gray-800 rounded-b-xl h-[55px] max-w-[83px] md:h-[95px] md:max-w-[142px]"></div>
+  <section class='flex w-full  md:w-1/2 gap-8  glassTxt justify-end'>
+    <div class='w-1/2 hidden  lg:flex '>
+      <section
+        class='w-60 flex flex-col h-96  shadow-gray-200 shadow-md  box-border   rounded-lg cap text-primary'>
+        <div class='flex flex-1    justify-between p-3'>
+          <p>WealthPay</p>
+          <i class="fa-solid fa-wifi"></i>
+        </div>
 
-  <!--  <button-->
-  <!--    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"-->
-  <!--    data-popover-target="popover-user-profile"-->
-  <!--    type="button">-->
-  <!--    User profile-->
-  <!--  </button>-->
+        <div class=' p-3 flex flex-col mb-5'>
+          <div class='flex gap-4 items-center'>
+            <div class='flex text-sm gap-1'>
+              <p>5123</p>
+              <p>****</p>
+              <p>****</p>
+              <p>****</p>
+            </div>
+
+            <div class='flex'>
+              <p class='bg-yellow-500 z-10  opacity-80  rounded-full w-8 h-8'></p>
+              <p class='bg-red-800 -ml-4 rounded-full w-8 h-8'></p>
+            </div>
+          </div>
+          <!--          <p>{{userDetails?.name || 'Wealth Iduwe'}}</p>-->
+          <p *ngIf="(currentUser| async) as user">{{ user.name }}</p>
+        </div>
+      </section>
+    </div>
+
+
+  </section>
+
   <!--  <div-->
-  <!--    class="absolute z-10 invisible inline-block w-64 text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 dark:text-gray-400 dark:bg-gray-800 dark:border-gray-600"-->
-  <!--    data-popover id="popover-user-profile"-->
-  <!--    role="tooltip">-->
-  <!--    <div class="p-3">-->
-  <!--      <div class="flex items-center justify-between mb-2">-->
-  <!--        <a href="#">-->
-  <!--          <img alt="Jese Leos" class="w-10 h-10 rounded-full" src="/docs/images/people/profile-picture-1.jpg">-->
-  <!--        </a>-->
-  <!--        <div>-->
-  <!--          <button-->
-  <!--            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-3 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"-->
-  <!--            type="button">-->
-  <!--            Follow-->
-  <!--          </button>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--      <p class="text-base font-semibold leading-none text-gray-900 dark:text-white">-->
-  <!--        <a href="#">Jese Leos</a>-->
-  <!--      </p>-->
-  <!--      <p class="mb-3 text-sm font-normal">-->
-  <!--        <a class="hover:underline" href="#">@jeseleos</a>-->
-  <!--      </p>-->
-  <!--      <p class="mb-4 text-sm">Open-source contributor. Building <a-->
-  <!--        class="text-blue-600 dark:text-blue-500 hover:underline"-->
-  <!--        href="#">flowbite.com</a>.-->
-  <!--      </p>-->
-  <!--      <ul class="flex text-sm">-->
-  <!--        <li class="mr-2">-->
-  <!--          <a class="hover:underline" href="#">-->
-  <!--            <span class="font-semibold text-gray-900 dark:text-white">799</span>-->
-  <!--            <span>Following</span>-->
-  <!--          </a>-->
-  <!--        </li>-->
-  <!--        <li>-->
-  <!--          <a class="hover:underline" href="#">-->
-  <!--            <span class="font-semibold text-gray-900 dark:text-white">3,758</span>-->
-  <!--            <span>Followers</span>-->
-  <!--          </a>-->
-  <!--        </li>-->
-  <!--      </ul>-->
+  <!--    class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">-->
+  <!--    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">-->
+  <!--      <img alt=""-->
+  <!--           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"-->
+  <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">-->
+  <!--      <img alt=""-->
+  <!--           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"-->
+  <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">-->
   <!--    </div>-->
-  <!--    <div data-popper-arrow></div>-->
   <!--  </div>-->
+  <!--  <div-->
+  <!--    class="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl h-[24px] max-w-[301px] md:h-[42px] md:max-w-[512px]"></div>-->
+  <!--  <div class="relative mx-auto bg-gray-800 rounded-b-xl h-[55px] max-w-[83px] md:h-[95px] md:max-w-[142px]"></div>-->
 
 
 </section>
+
+
+<section
+  class=" container skin flex-col lg:flex-row container-text py-5 items-center md:items-start lg:items-center flex gap-10">
+  <div
+    class="relative w-full lg:w-1/2 border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
+    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
+      <img alt=""
+           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"
+           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">
+      <img alt=""
+           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"
+           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">
+    </div>
+  </div>
+
+
+  <div class="w-full lg:w-1/2 flex flex-col gap-5 p-2">
+    <h2 class="text-3xl font-semibold ">Unlimited Transfers. Hitch Free Transactions.</h2>
+
+
+    <p>Experience the fastest-growing funds transfers for free, easy loan access, No hidden charges.</p>
+
+    <div class="w-1/2">
+      <button *ngIf="(isAuthenticated|async)" [routerLink]="['dashboard']"
+              class='w-full cap text-white bg-gray-800 px-2 py-4 rounded-full'>
+        View Dashboard
+      </button>
+      <button *ngIf="!(isAuthenticated|async)" [routerLink]="['login']"
+              class='w-full cap text-white bg-gray-800 px-2 py-4 rounded-full'>
+        Login
+      </button>
+    </div>
+    <small>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, eos omnis accusamus ab beatae saepe qui tenetur
+      culpa, quos quisquam velit perferendis natus perspiciatis unde placeat voluptates sunt quidem ipsum Lorem ipsum
+      dolor sit amet.
+    </small>
+  </div>
+
+
+</section>
+
+
+<div class="pb-0 mt-10 bg-primary  text-white md:pb-10">
+  <div class="w-10/12 mx-auto pt-8 md:pt-16 flex-wrap flex flex-col md:flex-row  justify-between">
+    <div class=" md:mt-2 mt-0  ">
+      <p class="mb-0 text-sm md:text-lg md:mb-20  font-medium">
+        Wealth_Bank
+      </p>
+
+      <p class="text-xs md:text-sm ">
+        Wealth_Transact <br/>
+        &copy; A subsidiary of Wealth_Bank | <br/>
+      </p>
+      <p><i class="fa-solid text-sm fa-phone"></i> +13362103455
+        <app-clipboard [textToCopy]="'+13362103455'"></app-clipboard>
+      </p>
+
+
+      <p>
+        <i class="fa-solid text-sm fa-at"></i>
+        wealthiduwe@gmail.com
+        <app-clipboard [textToCopy]="'wealthiduwe@gmail.com'"></app-clipboard>
+      </p>
+
+    </div>
+    <div class="mt-5">
+      <p class="text-xs md:text-sm  font-medium">Quick Links</p>
+      <a
+        class="block text-xs md:text-sm  cursor-pointer"
+      >
+        Home
+      </a>
+      <a
+        class="block text-xs md:text-sm  cursor-pointer"
+      >
+        About
+      </a>
+      <a
+        class="block text-xs md:text-sm  cursor-pointer"
+
+
+      >
+        Resume
+      </a>
+      <a
+        class="block text-xs md:text-sm  cursor-pointer"
+
+
+      >
+        Projects
+      </a>
+      <a
+        class="block text-xs md:text-sm  cursor-pointer"
+
+
+      >
+        Contact
+      </a>
+    </div>
+
+    <div class="mt-5">
+      <p class=" font-medium text-sm md:text-sm">Get In Touch</p>
+
+      <p class="text-xs md:text-sm "> We'll love to hear from you</p>
+
+      <p class="flex mt-4 mb-8 md:mt-16 md:mb-0 gap-3">
+        <a
+          class="bg-gray-500 block w-10 h-10 text-center hover:bg-gray-700 hover:scale-110 transform cursor-pointer rounded-full text-white p-2"
+          href="https://github.com/mrWealthid"
+        >
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a
+          class="bg-gray-500 hover:scale-110 w-10 h-10   hover:bg-gray-700 transform cursor-pointer text-center  block rounded-full text-white p-2"
+          href="https://www.linkedin.com/in/mrwealthid"
+        >
+          <i class="fa-brands  fa-linkedin-in"></i>
+        </a>
+
+
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {faCheck, faClipboard} from "@fortawesome/free-solid-svg-icons";
 import {BehaviorSubject} from "rxjs";
 
 @Component({
@@ -8,10 +7,12 @@ import {BehaviorSubject} from "rxjs";
 
     <span (click)="copyToClipboard()">
 
-     <ng-container *ngIf="(valueState| async)"> <i class="fa font-thin cursor-pointer fa-check text-green-400 "></i>
+     <ng-container *ngIf="(valueState| async)"> <i [ngClass]="style? style: 'text-inherit'"
+                                                   class="fa font-thin cursor-pointer fa-check  "></i>
       </ng-container>
 
-    <ng-container *ngIf="!(valueState| async)"> <i class="fa cursor-pointer text-green-400 fa-clipboard"></i>
+    <ng-container *ngIf="!(valueState| async)"> <i [ngClass]="style? style: 'text-inherit'"
+                                                   class="fa cursor-pointer  fa-clipboard"></i>
 
       </ng-container>
     </span>
@@ -21,10 +22,10 @@ import {BehaviorSubject} from "rxjs";
 export class ClipboardComponent {
   @Input({required: true}) textToCopy: string;
   @Input() buttonText: string;
+  @Input() style: string
   timer: any
   valueState = new BehaviorSubject(false)
-  protected readonly faClipboard = faClipboard;
-  protected readonly faCheck = faCheck;
+
 
   copyToClipboard() {
     clearTimeout(this.timer)
@@ -41,5 +42,4 @@ export class ClipboardComponent {
         console.error('Error copying text to clipboard:', error);
       });
   }
-
 }
