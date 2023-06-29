@@ -182,9 +182,9 @@
   <ng-template #headerActions class="border p-2 w-1/4">
 
     <button
-      class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"
-      onclick="popuphandler(true)">
-      <p class="text-sm font-medium leading-none text-white">Make Transfer</p>
+      class="mt-4 sm:mt-0 border inline-flex items-start justify-start px-6 py-2 text-primary  focus:outline-none rounded"
+    >
+      Make Transfer
     </button>
   </ng-template>
 
@@ -203,16 +203,16 @@
 
   <ng-template #rowActions let-row="row">
     <button class='btn'>
-      View
+      <i class="fa-solid fa-arrow-up-right-from-square"></i> View
     </button>
   </ng-template>
   <ng-template #customRows let-colProp='colProp' let-row="rowVal">
     <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
     <ng-container>
     <span *ngIf="row==='credit'"
-          class=" py-1 px-4 bg-green-100 inline-block rounded">{{row}}</span>
+          class=" py-1 px-4 bg-green-100 inline-block capitalize rounded">{{row}}</span>
       <span *ngIf="row==='debit'"
-            class=" py-1 px-4 bg-red-100 inline-block rounded">{{row}}</span>
+            class=" py-1 px-4 bg-red-100 inline-block capitalize rounded">{{row}}</span>
       <span *ngIf="colProp==='initiatorAccountNumber'"
             class=" flex gap-2">{{row}}
         <!--        <fa-icon [icon]="faClipboard"-->
