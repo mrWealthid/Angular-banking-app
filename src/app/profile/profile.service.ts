@@ -28,7 +28,7 @@ export class ProfileService {
   }
 
 
-  updateUser(payload: any): Observable<any> {
+  updateUser(payload: FormData): Observable<IProfile> {
     return this.Http.patch<any>('/api/v1/users/updateMe', payload).pipe(map((result) => {
         return {
           ...result.data.user
@@ -37,7 +37,7 @@ export class ProfileService {
     )
   }
 
-  updatePassword(payload: any): Observable<any> {
+  updatePassword(payload: Partial<IProfile>): Observable<IProfile> {
     return this.Http.patch<any>('/api/v1/users/updatePassword', payload)
   }
 

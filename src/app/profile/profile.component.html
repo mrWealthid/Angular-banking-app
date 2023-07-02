@@ -3,18 +3,21 @@
            class=" skin  p-6 border w-full  lg:w-1/3 rounded-xl">
     <div class="py-3">
       <img alt="" class="border rounded-full mx-0 w-32 object-cover h-32" height="820"
-           src="http://localhost:3000/{{currentUser.imgUrl}}" width="900">
+           src="{{currentUser.imgUrl}}" width="900">
     </div>
     <section class="flex flex-col gap-4">
       <p class=" lg:text-lg">Personal Details</p>
-      <span>
-        <i class="fa-solid text-sm fa-user"></i>  {{currentUser.name}}
+      <span class="text-xs">
+        <i class="fa-solid fa-user"></i>  {{currentUser.name}}
         </span>
-      <span>
-        <i class="fa-solid text-sm fa-at"></i>    {{currentUser.email}}
+      <span class="text-xs">
+        <i class="fa-solid  fa-at"></i>    {{currentUser.email}}
         </span>
-      <span>
-        <i class="fa-solid text-sm fa-phone"></i>   {{currentUser.accountNumber}}
+      <span class="text-xs">
+           <span><i class="fa-solid fa-building-columns"></i></span>
+        {{currentUser.accountNumber}}
+
+        <app-clipboard [style]="'text-green-500 text-xs'" [textToCopy]="currentUser.accountNumber"></app-clipboard>
         </span>
       <hr>
 
@@ -55,7 +58,7 @@
           <div class="py-3 relative w-32 ">
 
             <img *ngIf="!previewUrl" alt="" class="  border rounded-full mx-auto w-32 object-cover  h-32" height="820"
-                 ngSrc='http://localhost:3000/{{data.imgUrl}}' width="900">
+                 ngSrc='{{data.imgUrl}}' width="900">
 
             <img *ngIf="previewUrl" alt="" class="  border rounded-full mx-auto w-32 object-cover  h-32" height="820"
                  src='{{previewUrl}}' width="900">
