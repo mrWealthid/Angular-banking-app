@@ -50,7 +50,7 @@ export class HeadersInterceptor implements HttpInterceptor {
   logout() {
 
     this.store.dispatch(AuthActions.logout())
-    this.router.navigate(["login"])
+    this.router.navigate(["auth/login"])
 
     // this.authService.logout();
   }

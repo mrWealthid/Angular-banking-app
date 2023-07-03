@@ -6,9 +6,9 @@
     <a *ngIf="(isAuthenticated|async)" [routerLink]='["dashboard"] '
        routerLinkActive="text-gray-800  rounded-full border px-3 py-2 ">Dashboard</a>
 
-    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["login"]'
+    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/login"]'
        routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Login</a>
-    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["signup"]'
+    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/signup"]'
        routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Signup</a>
     <a (click)="logout()" *ngIf="(isAuthenticated|async)" class="cursor-pointer"
        routerLinkActive="text-gray-800 rounded-full">Logout</a>

@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
   handleLogin(value: ILogin) {
     // this.authservice.login(value);
     console.log(value);
@@ -54,22 +53,18 @@ export class LoginComponent implements OnInit {
   }
 
 
-  handleModal($event: any) {
-    console.log("I Bubbled", $event);
-    this.showModal = $event;
-  }
-
-
-  updateRoute(route: string) {
-    this.formRoute$.next(route)
-
-  }
-
-
   // toggleModal() {
   //   this.showModal = !this.showModal;
   //   this.showMe = true;
   // }
 
+  handleModal($event: any) {
+    console.log("I Bubbled", $event);
+    this.showModal = $event;
+  }
 
+  updateRoute(route: string) {
+    this.formRoute$.next(route)
+
+  }
 }
