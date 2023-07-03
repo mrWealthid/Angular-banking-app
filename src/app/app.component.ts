@@ -29,12 +29,12 @@ export class AppComponent implements OnInit {
 
 
   autoLogout(exp: any) {
-    
+
     const timeLeftInMs = exp * 1000 - Date.now()
     console.log(timeLeftInMs)
     setTimeout(() => {
         this.store.dispatch(AuthActions.logout())
-        this.router.navigate(["login"])
+        this.router.navigate(["auth/login"])
       }, timeLeftInMs
     )
 
