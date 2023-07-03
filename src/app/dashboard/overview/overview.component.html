@@ -104,10 +104,23 @@
   </section>
 
 
-  <section class="flex md:flex-row flex-col gap-5">
+  <section class="flex  md:flex-row flex-col gap-5">
 
-    <section class="w-full md:w-4/6 h-60 md:h-auto flex items-center justify-center bg-primary ">
-      <p class="text-white">Chart goes Here</p>
+    <section class="w-full md:w-4/6 py-5 px-3  md:h-auto skin ">
+      <section class="flex justify-between p-2 items-center">
+        <p>Revenue Statistics</p>
+
+        <div>
+          <select class="bg-gray-100 border-none text-xs px-5 rounded py-2">
+            <option>Last 6 Months</option>
+          </select>
+        </div>
+      </section>
+
+      <hr/>
+      <app-charts></app-charts>
+
+      <p class="font-bold text-xs text-center">Total Revenue (600M)</p>
 
     </section>
 
@@ -177,3 +190,7 @@
     </section>
   </section>
 </section>
+
+
+<!--<apx-chart [chart]="chartOptions.chart" [series]="chartOptions.series" [title]="chartOptions.title"></apx-chart>-->
+

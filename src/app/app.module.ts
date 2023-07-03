@@ -53,6 +53,8 @@ import {PaymentsComponent} from './payments/payments.component';
 import {AccountLookupComponent} from './shared/account-lookup/account-lookup.component';
 import {LabelComponent} from './shared/inputs/label/label.component';
 import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
+import {NgApexchartsModule} from "ng-apexcharts";
+import { ChartsComponent } from './shared/charts/charts.component';
 
 
 @NgModule({
@@ -84,7 +86,7 @@ import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, PaymentsComponent, AccountLookupComponent, LabelComponent
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, PaymentsComponent, AccountLookupComponent, LabelComponent, ChartsComponent
   ],
   imports: [
     FontAwesomeModule,
@@ -158,7 +160,7 @@ import {CurrencyPipe, NgOptimizedImage} from "@angular/common";
     FormsModule,
     NgSelectModule,
     BsDropdownModule.forRoot(),
-    NgOptimizedImage
+    NgOptimizedImage, NgApexchartsModule
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}, CurrencyPipe],
