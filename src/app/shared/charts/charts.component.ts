@@ -1,26 +1,33 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
   ApexDataLabels,
   ApexFill,
   ApexLocale,
+  ApexNoData,
+  ApexPlotOptions,
   ApexStroke,
   ApexTitleSubtitle,
   ApexXAxis,
+  ApexYAxis,
   ChartComponent
 } from "ng-apexcharts";
+import {IDashboardData} from "../../dashboard/dashboard.model";
 
 
 export type ChartOptions = {
   series: ApexAxisChartSeries | any;
   chart: ApexChart | any;
   xaxis: ApexXAxis | any;
+  yaxis: ApexYAxis | any;
   title: ApexTitleSubtitle | any;
   stroke: ApexStroke | any
   fill: ApexFill | any
   datalabels: ApexDataLabels | any
-  toolbar: ApexLocale | any
+  toolbar: ApexLocale | any,
+  noData: ApexNoData | any,
+  plotOptions: ApexPlotOptions | any;
 
 };
 
@@ -30,11 +37,20 @@ export type ChartOptions = {
   styleUrls: ['./charts.component.css']
 })
 
-export class ChartsComponent {
+export class ChartsComponent implements OnInit, AfterViewInit {
   @ViewChild("chart") chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
+
+  @Input({required: true}) series: IDashboardData[]
+  @Input() type: string = 'bar'
+  @Input() xTitle: string = 'Years'
+  @Input() yTitle: string = 'Time'
+
   constructor() {
+
+
+    console.log(this.series)
     this.chartOptions = {
       datalabels: {
         enabled: false,
@@ -45,7 +61,6 @@ export class ChartsComponent {
         offsetX: 0,
         offsetY: 5,
         tools: {
-
           show: true,
           download: true,
           selection: true,
@@ -57,71 +72,41 @@ export class ChartsComponent {
           customIcons: [],
         },
       },
-
-      series: [
-        {
-          name: "Debit",
-          data: [1, 42, 21, 54, 45, 111, 100, 210],
-        },
-        {
-          name: "Credit",
-          data: [22, 73, 88, 89, 42, 96, 100, 300],
-        },
-        // {
-        //   name: "Tours",
-        //   data: [33, 40, 22, 33, 47, 188, 10, 150],
-        // },
-        // {
-        //   name: "Restaurant",
-        //   data: [31, 40, 28, 51, 42, 109, 100, 200],
-        // },
-        // {
-        //   name: "Photography",
-        //   data: [11, 32, 45, 32, 34, 52, 41, 250],
-        // },
-        // {
-        //   name: "Workstation",
-        //   data: [5, 8, 43, 35, 39, 54, 41, 280],
-        //
-        // },
-      ],
-
+      noData: {
+        text: 'Loading...'
+      },
       chart: {
-
         sparkline: {
           enabled: false
         },
-
         height: 350,
-        type: "area",
+        // type: "area",
         fontFamily: "Raleway, Arial, sans-serif",
-
-
         legend: {
           position: "top",
           offsetY: 5,
           horizontalAlign: "left",
         },
 
-        xaxis: {
+        plotOptions: {
+          bar: {
+            horizontal: false,
+            columnWidth: "90%",
+            endingShape: "rounded"
+          }
+        }, xaxis: {
           title: {
-            text: "Time(Years)",
+            text: "Time(Months)",
             offsetX: 0,
             offsetY: 0,
             style: {
               color: undefined,
               fontSize: "15px",
-
               fontWeight: 600,
               cssClass: "apexcharts-xaxis-title",
             },
           },
-          type: "category",
 
-          categories: [
-            2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012,
-            2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022,
-          ],
 
           tickPlacement: "off",
           tooltip: {
@@ -133,11 +118,9 @@ export class ChartsComponent {
         yaxis: {
           title: {
             text: "Amount",
-
             style: {
               color: undefined,
               fontSize: "15px",
-
               fontWeight: 600,
               cssClass: "apexcharts-xaxis-title",
             },
@@ -165,7 +148,7 @@ export class ChartsComponent {
         //   lineCap: 'butt',
         //   colors: undefined,
         width: 1,
-        dashArray: 0,
+        dashArray: 1,
       },
 
 
@@ -190,4 +173,160 @@ export class ChartsComponent {
   }
 
 
+  ngOnInit() {
+    this.chartOptions.chart.type = this.type
+    // this.chartOptions.xaxis.title.text = this.xTitle
+    // this.chartOptions.yaxis.title.text = this.yTitle
+
+    // console.log(this.series)
+    this.chartOptions.series = this.series
+
+    // this.chartOptions.xaxis.type = 'category',
+    //   this.chartOptions.xaxis.categories = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+
+    // console.log(this.xTitle)
+    // console.log(this.yTitle)
+    // console.log(this.series)
+
+    console.log(this.chartOptions.xaxis)
+    // this.chartOptions.xaxis.type = this.xTitle
+    // this.chartOptions.series = this.series
+  }
+
+
+  ngAfterViewInit() {
+    console.log(this.type)
+
+    console.log(this.series);
+    // this.chart.series = [{
+    //   name: "debit", data: [
+    //     {
+    //       x: "Jun", y: 2000
+    //     }, {
+    //       x: "Jun", y: 3000
+    //     }, {
+    //       x: "Jul", y: 5000
+    //     }, {
+    //       x: "Aug", y: 9000
+    //     }, {
+    //       x: "Sep", y: 9000
+    //     }
+    //   ]
+    // }
+    //]
+
+
+    // this.chart.series = [{
+    //   name: 'Debit',
+    //   data:
+    //     [
+    //       {
+    //         "x": "Jan",
+    //         "y": 322
+    //       },
+    //       {
+    //         "x": "Feb",
+    //         "y": 324
+    //       },
+    //       {
+    //         "x": "Mar",
+    //         "y": 329
+    //       },
+    //       {
+    //         "x": "Apr",
+    //         "y": 342
+    //       },
+    //       {
+    //         "x": "May",
+    //         "y": 348
+    //       },
+    //       {
+    //         "x": "Jun",
+    //         "y": 334
+    //       },
+    //       {
+    //         "x": "Jul",
+    //         "y": 325
+    //       },
+    //       {
+    //         "x": "Aug",
+    //         "y": 316
+    //       },
+    //       {
+    //         "x": "Sep",
+    //         "y": 318
+    //       },
+    //       {
+    //         "x": "Oct",
+    //         "y": 330
+    //       },
+    //       {
+    //         "x": "Nov",
+    //         "y": 355
+    //       },
+    //       {
+    //         "x": "Dec",
+    //         "y": 366
+    //       },
+    //
+    //     ]
+    //
+    // }]
+    // {
+    //     name: 'Credit', data: [
+    //       {
+    //         "x": "Jan",
+    //         "y": 922
+    //       },
+    //       {
+    //         "x": "Feb",
+    //         "y": 524
+    //       },
+    //       {
+    //         "x": "Mar",
+    //         "y": 429
+    //       },
+    //       {
+    //         "x": "Apr",
+    //         "y": 400
+    //       },
+    //       {
+    //         "x": "May",
+    //         "y": 329
+    //       },
+    //       {
+    //         "x": "Jun",
+    //         "y": 384
+    //       },
+    //       {
+    //         "x": "Jul",
+    //         "y": 385
+    //       },
+    //       {
+    //         "x": "Aug",
+    //         "y": 716
+    //       },
+    //       {
+    //         "x": "Sep",
+    //         "y": 418
+    //       },
+    //       {
+    //         "x": "Oct",
+    //         "y": 335
+    //       },
+    //       {
+    //         "x": "Nov",
+    //         "y": 354
+    //       },
+    //       {
+    //         "x": "Dec",
+    //         "y": 306
+    //       },
+    //
+    //     ]
+    //
+    //
+    //   },]
+
+  }
 }

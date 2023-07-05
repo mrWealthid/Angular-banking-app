@@ -12,7 +12,6 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {EffectsModule} from "@ngrx/effects";
 
 import {StoreModule} from "@ngrx/store";
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {effects, localStorageSyncReducer, reducers} from "./core/store";
 import {HeadersInterceptor} from "./headers.interceptor";
@@ -24,17 +23,11 @@ import {SharedModule} from "./shared/shared.module";
 @NgModule({
   declarations: [
     AppComponent,
-
     HomeComponent,
-
     HeaderComponent,
-
     AdminComponent,
-
-
   ],
   imports: [
-    FontAwesomeModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
@@ -54,14 +47,9 @@ import {SharedModule} from "./shared/shared.module";
         persist: true
       }
     }),
-
-
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-
-
     SharedModule
-
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HeadersInterceptor, multi: true}, CurrencyPipe],
   bootstrap: [AppComponent]
