@@ -209,15 +209,13 @@
   <ng-template #customRows let-colProp='colProp' let-row="rowVal">
     <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
     <ng-container>
-    <span *ngIf="row==='credit'"
+    <span *ngIf="row ==='Credit'"
           class=" py-1 px-4 bg-green-100 inline-block capitalize rounded">{{row}}</span>
-      <span *ngIf="row==='debit'"
+      <span *ngIf="row ==='Debit'"
             class=" py-1 px-4 bg-red-100 inline-block capitalize rounded">{{row}}</span>
-      <span *ngIf="colProp==='initiatorAccountNumber'"
+      <span *ngIf="colProp ==='initiatorAccountNumber'"
             class=" flex gap-2">{{row}}
-        <!--        <fa-icon [icon]="faClipboard"-->
-        <!--                 class="cursor-pointer text-gray-300"></fa-icon> -->
-      <app-clipboard [buttonText]="'Copy Text'" [textToCopy]="row"></app-clipboard>
+        <app-clipboard [buttonText]="'Copy Text'" [style]="'text-green-400'" [textToCopy]="row"></app-clipboard>
 
 
       </span>

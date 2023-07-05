@@ -67,7 +67,10 @@ export class PaymentsComponent implements OnInit {
       initiatorAccountNumber: this.userDetails.accountNumber,
       beneficiaryAccountNumber: +values.accountNumber,
       amount: Number(values.amount.replace(/[$,]/g, '')),
-      transactionType: 'credit'
+      transactionType: 'Credit',
+      createdAt: new Date('2023-06-20')
+      // createdAt: new Date(Date.now())
+
     }
     console.log(payload)
 
