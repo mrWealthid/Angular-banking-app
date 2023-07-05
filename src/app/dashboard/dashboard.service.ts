@@ -15,7 +15,7 @@ export class DashboardService {
 
 
   getStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
-    return this.Http.get(`api/v1/transactions/monthly-plan/${type}/${year}`).pipe(map(({data}: any) => {
+    return this.Http.get(`api/v1/transactions/monthly-stats/${type}/${year}`).pipe(map(({data}: any) => {
       return ([
         {
           name: type,
