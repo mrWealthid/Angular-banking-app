@@ -118,8 +118,10 @@
       </section>
 
       <hr/>
-      <app-charts></app-charts>
 
+      <ng-container *ngIf="series?.length>0">
+        <app-charts [series]=series [type]="'area'" [xTitle]="'Months'" [yTitle]="'Amount'"></app-charts>
+      </ng-container>
       <p class="font-bold text-xs text-center">Total Revenue (600M)</p>
 
     </section>
