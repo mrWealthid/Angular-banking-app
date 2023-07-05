@@ -4,6 +4,7 @@ export interface IPayment {
   transactionType: String
   user: String,
   initiatorAccountNumber: number,
-  beneficiaryAccountNumber: number
+  beneficiaryAccountNumber: number,
+  createdAt?: Date
 
 }

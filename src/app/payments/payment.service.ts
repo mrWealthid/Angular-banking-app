@@ -19,6 +19,6 @@ export class PaymentService {
 
 
   initiateTransaction(payload: IPayment): Observable<any> {
-    return this.Http.post('http://localhost:3000/api/v1/transactions', payload)
+    return this.Http.post('/api/v1/transactions', payload)
   }
 }
