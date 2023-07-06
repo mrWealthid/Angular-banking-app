@@ -27,11 +27,12 @@ export class DashboardService {
 
   getStatsData(type: string = 'month', time: number = new Date().getMonth()): Observable<ISummary> {
     return this.Http.get(`api/v1/transactions/stats/${type}/${time}`).pipe(map(({data}: any) => {
-      const {Credit, Debit} = data.stats[0]
+      const {Credit = {totalAmount: 0}, Debit = {totalAmount: 0}} = data.stats[0]
       return (
         {
-          totalCredit: Credit ? Credit.totalAmount : 0,
-          totalDebit: Debit ? Math.abs(Debit.totalAmount) : 0,
+          totalCredit: Credit.totalAmount,
+          totalDebit: Math.abs(Debit.totalAmount),
+          profit: Credit.totalAmount - Debit.totalAmount,
         }
       )
     }));

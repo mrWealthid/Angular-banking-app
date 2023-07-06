@@ -28,9 +28,13 @@ export class OverviewComponent implements OnInit {
   //     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
   //   }
   // };
-  series: IDashboardData[]
+  series: IDashboardData[] = []
 
-  summary: ISummary
+  summary: ISummary = {
+    totalCredit: 0,
+    totalDebit: 0,
+    profit: 0
+  }
   month = JSON.stringify({type: 'month', time: new Date().getMonth()})
   year = JSON.stringify({type: 'year', time: new Date().getFullYear()})
 
@@ -59,7 +63,7 @@ export class OverviewComponent implements OnInit {
     const {value} = event.target
 
     const payload = JSON.parse(value)
-    
+
     this.fetchStatsData({type: payload.type, time: payload.time})
 
   }

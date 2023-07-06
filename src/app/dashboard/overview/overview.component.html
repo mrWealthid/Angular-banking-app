@@ -8,8 +8,8 @@
           class="  flex flex-col"
         >
           <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
-          <p class="italic text-xs "> Title</p>
-          <p class="text-2xl"> 150</p>
+          <p class="italic text-xs "> Today</p>
+          <p class="text"> {{summary.profit| currency:'USD'}}</p>
         </section>
         <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
           View details
@@ -21,16 +21,16 @@
       >
         <div class="flex flex-col text-xs text-center justify-around">
           <!--      <p>{{statusOne}}</p>-->
-          <p>statusOne</p>
+          <p>Credit</p>
 
-          <p class="font-bold text-xl">150</p>
+          <p class="font-bold">{{summary.totalCredit | currency:'USD'}}</p>
         </div>
 
         <div class="flex text-xs flex-col justify-around">
           <!--      <p>{{statusTwo}}</p>-->
-          <p>statusTwo</p>
+          <p>Debit</p>
 
-          <p class="font-bold text-xl">250</p>
+          <p class="font-bold">{{summary.totalDebit|currency:'USD'}}</p>
         </div>
       </section>
     </div>
@@ -40,8 +40,8 @@
           class="text-black  flex flex-col"
         >
           <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
-          <p class="italic text-xs "> Title</p>
-          <p class="text-2xl"> 150</p>
+          <p class="italic text-xs "> July</p>
+          <p class="text"> {{summary.profit| currency:'USD'}}</p>
         </section>
         <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
 
@@ -54,16 +54,16 @@
       >
         <div class="flex flex-col text-xs text-center justify-around">
           <!--      <p>{{statusOne}}</p>-->
-          <p>statusOne</p>
+          <p>Credit</p>
 
-          <p class="font-bold text-xl">150</p>
+          <p class="font-bold ">{{summary.totalCredit|currency:'USD'}}</p>
         </div>
 
         <div class="flex text-xs flex-col justify-around">
           <!--      <p>{{statusTwo}}</p>-->
-          <p>statusTwo</p>
+          <p>Debit</p>
 
-          <p class="font-bold text-xl">250</p>
+          <p class="font-bold ">{{summary.totalDebit|currency:'USD'}}</p>
         </div>
       </section>
     </div>
@@ -73,8 +73,8 @@
           class=" text-black  flex flex-col"
         >
           <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
-          <p class="italic text-xs "> Title</p>
-          <p class="text-2xl"> 150</p>
+          <p class="italic text-xs "> 2023</p>
+          <p class="texte"> {{summary.profit| currency:'USD'}}</p>
         </section>
         <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
 
@@ -87,16 +87,16 @@
       >
         <div class="flex flex-col text-xs text-center justify-around">
           <!--      <p>{{statusOne}}</p>-->
-          <p>statusOne</p>
+          <p>Credit</p>
 
-          <p class="font-bold text-xl">150</p>
+          <p class="font-bold text">{{summary.totalCredit|currency:'USD'}}</p>
         </div>
 
         <div class="flex text-xs flex-col justify-around">
           <!--      <p>{{statusTwo}}</p>-->
-          <p>statusTwo</p>
+          <p>Debit</p>
 
-          <p class="font-bold text-xl">250</p>
+          <p class="font-bold text">{{summary.totalDebit|currency:'USD'}}</p>
         </div>
       </section>
     </div>
@@ -112,7 +112,7 @@
 
         <div>
           <select class="bg-gray-100 border-none text-xs px-5 rounded py-2">
-            <option>Last 6 Months</option>
+            <option selected>This Year</option>
           </select>
         </div>
       </section>
@@ -122,7 +122,8 @@
       <ng-container *ngIf="series?.length>0">
         <app-charts [series]=series [type]="'area'" [xTitle]="'Months'" [yTitle]="'Amount'"></app-charts>
       </ng-container>
-      <p class="font-bold text-xs text-center">Total Revenue (600M)</p>
+
+      <p class="font-bold text-xs text-center">Total Profit: {{summary.profit |currency:'USD'}}</p>
 
     </section>
 
@@ -182,13 +183,13 @@
       <section class="bg-gray-100 rounded-lg p-6 space-y-12">
         <div class="text-xs">
           <p>Credit Transactions</p>
-          <p class="text-green-500 font-bold">{{summary?.totalCredit}}</p>
+          <p class="text-green-500 font-bold">{{summary.totalCredit}}</p>
         </div>
 
         <div class="text-xs">
           <p>Debit Transactions</p>
 
-          <p class="text-red-600 font-bold">{{summary?.totalDebit}}</p>
+          <p class="text-red-600 font-bold">{{summary.totalDebit}}</p>
         </div>
       </section>
     </section>

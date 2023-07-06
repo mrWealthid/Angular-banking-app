@@ -23,8 +23,8 @@ export interface IMonthlyStatsParam {
 
 export interface ISummary {
   totalCredit: Number,
-  totalDebit: Number
-
+  totalDebit: Number,
+  profit: Number
 }
 
 

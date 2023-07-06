@@ -4,7 +4,6 @@ import {
   ApexChart,
   ApexDataLabels,
   ApexFill,
-  ApexLocale,
   ApexNoData,
   ApexPlotOptions,
   ApexStroke,
@@ -26,11 +25,11 @@ export type ChartOptions = {
   stroke: ApexStroke | any
   fill: ApexFill | any
   datalabels: ApexDataLabels | any
-  toolbar: ApexLocale | any,
+  toolbar: any,
   noData: ApexNoData | any,
   plotOptions: ApexPlotOptions | any;
   colors: any,
-  type: ChartType
+  type: ChartType,
 
 };
 
@@ -62,30 +61,30 @@ export class ChartsComponent implements OnInit, AfterViewInit {
       datalabels: {
         enabled: false,
       },
-      toolbar: {
-        show: false,
-        offsetX: 0,
-        offsetY: 5,
-        tools: {
-          show: true,
-          download: true,
-          selection: true,
-          zoom: true,
-          zoomin: true,
-          zoomout: true,
-          pan: true,
-          // reset: true| '<img src="/static/icons/reset.png" width="20">',
-          customIcons: [],
-        },
-      },
 
 
       noData: {
-        text: 'Loading...'
+        text: 'No Data Available...'
       },
       chart: {
         sparkline: {
           enabled: false
+        },
+
+        toolbar: {
+          show: true,
+          offsetX: 0,
+          offsetY: 5,
+          tools: {
+            show: true,
+            download: true,
+            selection: true,
+            zoom: true,
+            zoomin: true,
+            zoomout: true,
+            pan: true,
+            reset: true,
+          },
         },
 
 
