@@ -14,6 +14,7 @@ import {
   ChartComponent
 } from "ng-apexcharts";
 import {IDashboardData} from "../../dashboard/dashboard.model";
+import {ChartType} from "ng-apexcharts/lib/model/apex-types";
 
 
 export type ChartOptions = {
@@ -28,6 +29,8 @@ export type ChartOptions = {
   toolbar: ApexLocale | any,
   noData: ApexNoData | any,
   plotOptions: ApexPlotOptions | any;
+  colors: any,
+  type: ChartType
 
 };
 
@@ -43,19 +46,22 @@ export class ChartsComponent implements OnInit, AfterViewInit {
 
 
   @Input({required: true}) series: IDashboardData[]
-  @Input() type: string = 'bar'
+  @Input() type: ChartType = 'bar'
+
   @Input() xTitle: string = 'Years'
   @Input() yTitle: string = 'Time'
+  @Input() colors = ['#22C55E', '#DC2626']
 
   constructor() {
 
-
-    console.log(this.series)
     this.chartOptions = {
+
+      colors: this.colors,
+      type: this.type,
+
       datalabels: {
         enabled: false,
       },
-      // colors: ["pink", "yellow", "green", "blue", "black"],
       toolbar: {
         show: false,
         offsetX: 0,
@@ -72,6 +78,8 @@ export class ChartsComponent implements OnInit, AfterViewInit {
           customIcons: [],
         },
       },
+
+
       noData: {
         text: 'Loading...'
       },
@@ -79,10 +87,13 @@ export class ChartsComponent implements OnInit, AfterViewInit {
         sparkline: {
           enabled: false
         },
+
+
         height: 350,
         // type: "area",
         fontFamily: "Raleway, Arial, sans-serif",
         legend: {
+
           position: "top",
           offsetY: 5,
           horizontalAlign: "left",
@@ -96,7 +107,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
           }
         }, xaxis: {
           title: {
-            text: "Time(Months)",
+            text: this.xTitle,
             offsetX: 0,
             offsetY: 0,
             style: {
@@ -117,7 +128,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
         },
         yaxis: {
           title: {
-            text: "Amount",
+            text: this.yTitle,
             style: {
               color: undefined,
               fontSize: "15px",
@@ -144,7 +155,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
       },
       stroke: {
         curve: "smooth",
-        // show: true,
+        show: true,
         //   lineCap: 'butt',
         //   colors: undefined,
         width: 1,
@@ -174,6 +185,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit() {
+
     this.chartOptions.chart.type = this.type
     // this.chartOptions.xaxis.title.text = this.xTitle
     // this.chartOptions.yaxis.title.text = this.yTitle
