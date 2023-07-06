@@ -134,8 +134,10 @@
             <option>Transactions</option>
           </select>
 
-          <select class="wheat-light text-xs border-none  py-2 px-5 ml-6 rounded p-2">
-            <option>Daily</option>
+          <select (change)="handleChange($event)"
+                  class="bg-yellow-50 text-xs border-none  py-2 px-5 ml-4 rounded p-2">
+            <option selected value="{{month}}"> This Month</option>
+            <option value="{{year}}">This Year</option>
           </select>
         </section>
       </div>
@@ -180,13 +182,13 @@
       <section class="bg-gray-100 rounded-lg p-6 space-y-12">
         <div class="text-xs">
           <p>Credit Transactions</p>
-          <p class="text-green-500 font-bold">121</p>
+          <p class="text-green-500 font-bold">{{summary?.totalCredit}}</p>
         </div>
 
         <div class="text-xs">
           <p>Debit Transactions</p>
 
-          <p class="text-red-600 font-bold">886</p>
+          <p class="text-red-600 font-bold">{{summary?.totalDebit}}</p>
         </div>
       </section>
     </section>

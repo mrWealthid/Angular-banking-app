@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
-import {IDashboardData} from "../dashboard.model";
+import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
 import {forkJoin} from "rxjs";
 
 @Component({
@@ -30,15 +30,39 @@ export class OverviewComponent implements OnInit {
   // };
   series: IDashboardData[]
 
+  summary: ISummary
+  month = JSON.stringify({type: 'month', time: new Date().getMonth()})
+  year = JSON.stringify({type: 'year', time: new Date().getFullYear()})
+
+  protected readonly Date = Date;
+
   constructor(private dashboardService: DashboardService) {
 
-    forkJoin([this.dashboardService.getStatsData('Credit'), this.dashboardService.getStatsData('Debit')]).subscribe(data => {
-      this.series = (data.map(x => x[0]))
-    })
+
   }
 
   ngOnInit() {
 
+    forkJoin([this.dashboardService.getMonthlyStatsData('Credit'), this.dashboardService.getMonthlyStatsData('Debit')]).subscribe(data => {
+      this.series = (data.map(x => x[0]))
+    })
+
+    this.fetchStatsData()
+
   }
 
+  fetchStatsData(val?: IStatsParam) {
+    this.dashboardService.getStatsData(val?.type, val?.time).subscribe(x => this.summary = x)
+  }
+
+  handleChange(event: any) {
+    const {value} = event.target
+
+    const payload = JSON.parse(value)
+    
+    this.fetchStatsData({type: payload.type, time: payload.time})
+
+  }
 }
+
+
