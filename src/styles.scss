@@ -167,3 +167,75 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
   border: none;
 
 }
+
+
+//.custom-day {
+//  text-align: center;
+//  padding: 0.185rem 0.25rem;
+//  display: inline-block;
+//  height: 2rem;
+//  width: 2rem;
+//  border-radius: 0.25rem;
+//  line-height: 2rem;
+//}
+//
+//.custom-day.disabled {
+//  opacity: 0.5;
+//}
+//
+//.custom-day.selected {
+//  background-color: #0275d8;
+//  color: white;
+//}
+//
+//.custom-day.focused {
+//  background-color: #e6e6e6;
+//}
+//
+//
+//.mdc-line-ripple::before {
+//  border: none
+//}
+//
+//.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-line-ripple::before {
+//  border: none !important;
+//
+//}
+//
+//.mdc-text-field--filled:not(.mdc-text-field--disabled), .mdc-text-field--filled:focus {
+//  border: 1px solid rgb(219, 234, 254);
+//  background: transparent;
+//  border-radius: 8px;
+//
+//
+//}
+//
+//
+//.mat-calendar-body-selected {
+//
+//  color: #fff;
+//  @apply bg-primary
+//}
+//
+//.mat-calendar-body-disabled > .mat-calendar-body-selected {
+//  @apply bg-gray-500 border-none
+//}
+//
+//.mat-calendar-body-today.mat-calendar-body-selected {
+//  box-shadow: inset 0 0 0 1px #fff
+//}
+//
+//.cdk-keyboard-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical), .cdk-program-focused .mat-calendar-body-active > .mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+//  background-color: rgba(63, 81, 181, .3)
+//}
+//
+//.mat-mdc-text-field-wrapper:not(.mdc-text-field--outlined) .mat-mdc-form-field-infix {
+//  padding-top: 24px;
+//  padding-bottom: 8px
+//}
+//
+//.mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
+//  padding-top: 16px;
+//  padding-bottom: 16px
+//}
+//

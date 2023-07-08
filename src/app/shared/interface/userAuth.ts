@@ -67,7 +67,8 @@ export interface IUserDetails {
   name: String,
   email: String,
   role: String
-  photo?: String
+  photo?: String,
+  dob?: Date
   accountNumber: number
   imgUrl?: String
 }

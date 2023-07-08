@@ -7,6 +7,8 @@ import * as AuthActions from "../../core/store/Auth/actions";
 
 import {select, Store} from "@ngrx/store";
 import {isLoadingSelector} from "../../core/store/Auth/selectors";
+import {IDatePickerConfig} from "ng2-date-picker";
+import * as dayjs from "dayjs";
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +17,7 @@ import {isLoadingSelector} from "../../core/store/Auth/selectors";
 })
 export class SignupComponent implements OnInit {
 
+  date = dayjs();
   SignupForm: UntypedFormGroup;
   firstname: UntypedFormControl;
   lastname: UntypedFormControl;
@@ -23,13 +26,22 @@ export class SignupComponent implements OnInit {
   password: UntypedFormControl;
   passwordConfirm: UntypedFormControl;
   loading: Boolean;
+  selectedDate: Date;
+  config: IDatePickerConfig = {
+    max: this.date.subtract(7, 'year'),
+  };
 
 
   constructor(public authservice: AuthService, public modalService: ModalService, private store: Store<AppStateInterface>
   ) {
 
     this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
+    this.selectedDate = new Date();
+  }
 
+  onDateSelected(event: any) {
+    // Handle the selected date
+    console.log(event.value);
   }
 
   ngOnInit(): void {
@@ -76,4 +88,10 @@ export class SignupComponent implements OnInit {
   toggleModal() {
     this.modalService.HandleShowModal();
   }
+
+  onDateSelection($event: Event) {
+
+  }
+
+
 }

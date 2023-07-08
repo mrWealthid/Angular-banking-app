@@ -23,16 +23,38 @@
         <email-input
           [formControl]="email"
           [label]="'Email'"
-          class="w-5/6"
+          class="w-full"
         ></email-input>
-        <text-input [formControl]="DOB"
-                    [label]="'Date Of Birth'"
 
-                    [placeholder]="'Select Date'" class="w-5/6">
 
-        </text-input>
+        <app-date-picker [dateConfig]="config" [formControl]="DOB" [label]="'Date Of Birth'"
+                         class="w-full"></app-date-picker>
+
+
+        <!--                    <app-label [label]="'label'" [required]="true"></app-label>-->
+        <!--                    <mat-form-field class="lg:w-full "-->
+        <!--                    >-->
+        <!--                      <input (dateChange)="onDateSelected($event)" [formControl]="DOB" [matDatepicker]="picker"-->
+        <!--                             class="lg:w-full" matInput-->
+        <!--                             placeholder="Select a date">-->
+        <!--                      <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>-->
+        <!--                      <mat-datepicker #picker></mat-datepicker>-->
+        <!--                    </mat-form-field>-->
+        <!--        </section>-->
+
+
+        <!--        <text-input [formControl]="DOB"-->
+        <!--                    [label]="'Date Of Birth'"-->
+
+        <!--                    [placeholder]="'Select Date'" class="w-5/6">-->
+
+        <!--        </text-input>-->
 
       </div>
+      <section>
+
+
+      </section>
       <div class="w-full flex gap-4">
         <password-input
           [formControl]="password"
@@ -59,7 +81,7 @@
       </section>
       <p class="text-sm  flex gap-2">
         Already Have An Account
-        <a [routerLink]="['auth/login']" class="text-blue-700  text-sm">Login</a>
+        <a [routerLink]="['/auth/login']" class="text-blue-700  text-sm">Login</a>
       </p>
     </form>
   </section>
