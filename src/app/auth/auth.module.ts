@@ -25,7 +25,9 @@ import {CommonModule} from "@angular/common";
       secondaryColour: "red",
       tertiaryColour: "blue",
     }),
-    SharedModule
+    SharedModule,
+
+
   ]
 })
 export class AuthModule {

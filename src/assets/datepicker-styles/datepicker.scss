@@ -1,0 +1,65 @@
+
+dp-date-picker.dp-material .dp-picker-input {
+  box-sizing: border-box;
+  height: auto !important;
+  width: auto;
+  font-size: 15px;
+
+  @apply border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-3 lg:py-3.5 focus:border-blue-100 focus-within:ring-0 rounded-lg  w-full
+
+}
+
+dp-calendar-nav.dp-material .dp-calendar-nav-container {
+  height: 40px !important;
+  border: 1px solid #E0E0E0;
+}
+
+dp-day-calendar.dp-material .dp-calendar-wrapper {
+  border: 1px solid white;
+  padding: 15px !important;
+
+}
+
+.dp-weekdays, .dp-calendar-week {
+  @apply flex gap-2
+}
+
+dp-date-picker {
+  @apply w-full;
+
+
+}
+
+.dp-picker-input {
+  &:disabled {
+    @apply text-gray-500 cursor-not-allowed
+  }
+}
+
+dp-date-picker.dp-material .dp-picker-input {
+  box-sizing: border-box;
+  height: 30px;
+  width: 100% !important;
+  font-size: 13px;
+  outline: none;
+}
+
+dp-day-calendar.dp-material .dp-selected {
+  background: rgba(17, 24, 39, 1) !important;
+  color: #fff;
+}
+
+dp-day-calendar.dp-material .dp-current-day {
+  border: 1px solid rgba(17, 24, 39, 1) !important;;
+}
+
+.dp-calendar-day {
+
+  &:disabled {
+    @apply text-gray-500 cursor-not-allowed
+  }
+}
+
+.dp-next-month, .dp-prev-month {
+  border: 1px solid gainsboro !important;
+}

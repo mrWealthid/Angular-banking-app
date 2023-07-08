@@ -134,37 +134,16 @@
     </div>
     <div class="mt-5">
       <p class="text-xs md:text-sm  font-medium">Quick Links</p>
-      <a
-        class="block text-xs md:text-sm  cursor-pointer"
+      <a *ngIf="(isAuthenticated| async)" [routerLink]="['dashboard']"
+         class="block text-xs md:text-sm  cursor-pointer"
       >
-        Home
-      </a>
-      <a
-        class="block text-xs md:text-sm  cursor-pointer"
-      >
-        About
-      </a>
-      <a
-        class="block text-xs md:text-sm  cursor-pointer"
+        Dashboard
+      </a> <a *ngIf="!(isAuthenticated| async)" [routerLink]="['auth/login']"
+              class="block text-xs md:text-sm  cursor-pointer"
+    >
+      Login
+    </a>
 
-
-      >
-        Resume
-      </a>
-      <a
-        class="block text-xs md:text-sm  cursor-pointer"
-
-
-      >
-        Projects
-      </a>
-      <a
-        class="block text-xs md:text-sm  cursor-pointer"
-
-
-      >
-        Contact
-      </a>
     </div>
 
     <div class="mt-5">
