@@ -13,6 +13,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "apexcharts",
+              "deepmerge",
+              "dayjs"
+            ],
             "outputPath": "dist/angular-fintech",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -25,20 +31,16 @@
               "src/assets"
             ],
             "styles": [
-              {
-                "input": "node_modules/@ng-select/ng-select/themes/default.theme.css"
-              },
-              {
-                "input": "src/assets/table-styles/tables-styles.scss"
-              },
-              {
-                "input": "node_modules/@swimlane/ngx-datatable/assets/icons.css"
-              },
+              "node_modules/@ng-select/ng-select/themes/default.theme.css",
+              "src/assets/table-styles/tables-styles.scss",
+              "node_modules/@swimlane/ngx-datatable/assets/icons.css",
               "src/assets/toast-styles/toast-style.scss",
+              "src/assets/datepicker-styles/datepicker.scss",
+              "@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/@angular/cdk/overlay-prebuilt.css",
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {
