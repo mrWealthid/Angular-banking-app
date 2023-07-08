@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   role: FormControl;
   name: FormControl;
   photo: FormControl;
+  dob: FormControl;
   currentUser$: Observable<IProfile | null>;
   currentPassword: FormControl
   newPassword: FormControl
@@ -56,12 +57,14 @@ export class ProfileComponent implements OnInit {
     this.name = new FormControl({value: this.data?.name, disabled: false}, Validators.required);
     this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
     this.photo = new FormControl("");
+    this.dob = new FormControl({value: this.data?.dob, disabled: true}, Validators.required);
     this.role = new FormControl({value: this.data?.role, disabled: false}, Validators.required);
     this.profileForm = new FormGroup({
       name: this.name,
       role: this.role,
       email: this.email,
       photo: this.photo,
+      dob: this.dob
 
     });
   }

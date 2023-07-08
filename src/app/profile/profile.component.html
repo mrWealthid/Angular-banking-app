@@ -70,7 +70,6 @@
               <i
                 class="fa-solid absolute cursor-pointer bg-white text-green-900 border border-gray-200 rounded-full p-2 top-2 left-[90px] fa-arrow-up-from-bracket"></i>
 
-              <!--              <fa-icon [icon]="faUserEdit" class="text-gray-300 absolute cursor-pointer top-2 left-[102px]"></fa-icon>-->
             </label>
 
 
@@ -99,6 +98,8 @@
 
           </email-input>
 
+
+          <app-date-picker [formControl]="dob" [label]="'Date Of Birth'"></app-date-picker>
           <select-input
             [bindLabel]="'name'"
             [bindValue]="'id'"

@@ -1,0 +1,12 @@
+<section class="relative">
+  <ng-container>
+    <app-label [label]="label" [required]="hasRequiredValidator()"></app-label>
+  </ng-container>
+  <dp-date-picker #datepicker [config]="config" [displayDate]="config.max" [formControl]="formControl"
+                  [placeholder]="'Select Date'" [theme]="'dp-material'"
+  ></dp-date-picker>
+
+  <!--  <i (click)="OpenCalendar()" class="fa-solid absolute right-3  top-9 text-gray-600 fa-calendar-days"></i>-->
+</section>
+
+
