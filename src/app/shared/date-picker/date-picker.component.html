@@ -10,8 +10,9 @@
                   [theme]="'dp-material'"
   ></dp-date-picker>
 
-  <i (click)="openCalendar()" [ngClass]="formControl.disabled ? 'cursor-not-allowed': ''"
-     class="fa-solid  absolute top-9 right-4 text-gray-600 fa-calendar-days"></i>
+  <i (click)="openCalendar()"
+     [ngClass]="formControl.disabled ? 'top-10 cursor-not-allowed': 'hover:bg-gray-200 top-8 cursor-pointer rounded-full p-2'"
+     class="fa-solid  absolute  right-4 text-gray-600 fa-calendar-days"></i>
 
 </section>
 
