@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {IList} from "../shared/table/model/table-interface";
@@ -7,10 +7,7 @@ import {IList} from "../shared/table/model/table-interface";
   providedIn: 'root'
 })
 export class TransactionService {
-
-  constructor(private Http: HttpClient) {
-
-  }
+  private Http = inject(HttpClient)
 
 
   createParams(params: any) {

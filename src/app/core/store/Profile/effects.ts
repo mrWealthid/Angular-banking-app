@@ -1,8 +1,7 @@
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import * as AuthActions from "./actions";
 import {map, mergeMap, of, switchMap, tap} from "rxjs";
-import {AuthService} from "../../../auth.service";
 import {catchError} from "rxjs/operators";
 import {IProfile} from "../../../shared/interface/userAuth";
 import {Router} from "@angular/router";
@@ -11,7 +10,20 @@ import {NotificationService} from "../../../shared/services/notification.service
 
 @Injectable()
 export class ProfileEffect {
+  private Notify = inject(NotificationService);
+  private router = inject(Router);
+  private profileService = inject(ProfileService);
+  private actions$ = inject(Actions);
 
+
+  profilePasswordUpdate$ = createEffect(() =>
+    this.actions$.pipe(ofType(AuthActions.profilePasswordUpdate),
+      switchMap((payload) => {
+        return this.profileService.updatePassword(payload).pipe(map((updateCredentials) => AuthActions.profilePasswordUpdateSuccess({updateCredentials})), tap(() => this.profileService.updateSteps(2)), catchError(error => of(AuthActions.profilePasswordUpdateFailure({
+          error: error.message
+        }))));
+      }))
+  );
 
   profile$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.profileLookup),
@@ -21,7 +33,6 @@ export class ProfileEffect {
         }))));
       }))
   );
-
 
   profileUpdate$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.profileUpdate),
@@ -37,17 +48,5 @@ export class ProfileEffect {
       }))
   );
 
-  profilePasswordUpdate$ = createEffect(() =>
-    this.actions$.pipe(ofType(AuthActions.profilePasswordUpdate),
-      switchMap((payload) => {
-        return this.profileService.updatePassword(payload).pipe(map((updateCredentials) => AuthActions.profilePasswordUpdateSuccess({updateCredentials})), tap(() => this.profileService.updateSteps(2)), catchError(error => of(AuthActions.profilePasswordUpdateFailure({
-          error: error.message
-        }))));
-      }))
-  );
-
-
-  constructor(private actions$: Actions, private authService: AuthService, private profileService: ProfileService, private router: Router, private Notify: NotificationService) {
-  }
 }
 

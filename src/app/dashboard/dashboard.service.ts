@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {IDashboardData, IDashboardStats, ISummary} from "./dashboard.model";
@@ -8,10 +8,7 @@ import {IDashboardData, IDashboardStats, ISummary} from "./dashboard.model";
 })
 export class DashboardService {
 
-  constructor(private Http: HttpClient) {
-
-
-  }
+  private Http = inject(HttpClient)
 
 
   getMonthlyStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {

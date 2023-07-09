@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import * as AuthActions from "../core/store/Auth/actions";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
@@ -12,34 +12,23 @@ import {currentUserSelector} from "../core/store/Profile/selectors";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
 
-  isAuthenticated;
+  isAuthenticated: Observable<boolean>;
   currentUser: Observable<IProfile | null>;
+  private router = inject(Router)
+  private store = inject(Store<AppStateInterface>)
 
-
-  constructor(private router: Router, public store: Store<AppStateInterface>) {
-
-    this.isAuthenticated = this.store.pipe(select(isAuthenticated))
-    this.currentUser = this.store.pipe(select(currentUserSelector))
-
-
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.log('xxx')
-  }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.store.pipe(select(isAuthenticated))
+    this.currentUser = this.store.pipe(select(currentUserSelector))
   }
 
 
   logout() {
-
     this.store.dispatch(AuthActions.logout())
     this.router.navigate(["auth/login"])
-
-    // this.authService.logout();
   }
 
 

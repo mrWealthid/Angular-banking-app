@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {IPayment} from "./model/payment-model";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
@@ -8,9 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class PaymentService {
 
-  constructor(private Http: HttpClient) {
-
-  }
+  private Http = inject(HttpClient)
 
 
   accountLookup(value: any): Observable<any> {

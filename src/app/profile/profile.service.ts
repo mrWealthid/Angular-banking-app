@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable} from "rxjs";
 import {IProfile} from "../shared/interface/userAuth";
 import {HttpClient} from "@angular/common/http";
@@ -8,9 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ProfileService {
   step = new BehaviorSubject(0)
-
-  constructor(private Http: HttpClient) {
-  }
+  private Http = inject(HttpClient)
 
 
   updateSteps(val: number): void {
