@@ -40,7 +40,7 @@ export class DashboardService {
         {
           totalCredit: Credit.totalAmount,
           totalDebit: Math.abs(Debit.totalAmount),
-          profit: Credit.totalAmount - Debit.totalAmount,
+          profit: Credit.totalAmount - Math.abs(Debit.totalAmount),
         }
       )
     }));
