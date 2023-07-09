@@ -4,7 +4,7 @@ import {OverviewComponent} from "./overview/overview.component";
 import {ProfileComponent} from "../profile/profile.component";
 import {TransactionsComponent} from "../transactions/transactions.component";
 import {PaymentsComponent} from "../payments/payments.component";
-import {authGuard} from "../shared/services/auth-guard.service";
+import {authGuard} from "../shared/services/guards/auth.guard";
 
 export const routes: Routes = [
 
