@@ -1,5 +1,5 @@
-import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {IDatePickerConfig} from "ng2-date-picker";
+import {Component, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
+import {DatePickerComponent, IDatePickerConfig,} from "ng2-date-picker";
 import * as dayjs from "dayjs";
 import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
@@ -10,14 +10,13 @@ import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DatePickerComponent),
+      useExisting: forwardRef(() => DatePickerComponents),
       multi: true,
     },
   ],
 })
-export class DatePickerComponent implements OnInit {
-  // @ViewChild(DatePickerDirective, {static: false}) datepicker: DatePickerDirective;
-  // @ViewChild('datePickerComponent', {static: false}) datepicker: DatePickerComponent;
+export class DatePickerComponents implements OnInit {
+  @ViewChild(DatePickerComponent) datepicker: DatePickerComponent;
 
 
   date = dayjs();
@@ -27,7 +26,7 @@ export class DatePickerComponent implements OnInit {
   @Input() dateConfig: IDatePickerConfig;
 
   config: IDatePickerConfig = {
-    format: 'DD-MM-YYYY',
+    format: 'YYYY-MM-DD',
 
 
   };
@@ -35,7 +34,13 @@ export class DatePickerComponent implements OnInit {
   ngOnInit() {
     this.config = {...this.config, ...this.dateConfig}
     this.setDefaults()
+
+
   }
+
+  // ngAfterViewInit() {
+  //   console.log(this.datepicker.api.open)
+  // }
 
 
   setDefaults() {
@@ -77,6 +82,11 @@ export class DatePickerComponent implements OnInit {
   }
 
 
+  openCalendar() {
+
+    if (this.formControl.disabled) return
+    this.datepicker.api.open()
+  }
 }
 
 
