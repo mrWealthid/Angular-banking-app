@@ -39,6 +39,7 @@ export class OverviewComponent implements OnInit {
   year = JSON.stringify({type: 'year', time: new Date().getFullYear()})
 
   protected readonly Date = Date;
+  protected readonly Math = Math;
 
   constructor(private dashboardService: DashboardService) {
 

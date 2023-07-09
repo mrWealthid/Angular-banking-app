@@ -74,7 +74,7 @@
         >
           <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
           <p class="italic text-xs "> 2023</p>
-          <p class="texte"> {{summary.profit| currency:'USD'}}</p>
+          <p class=""> {{summary.profit| currency:'USD'}}</p>
         </section>
         <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
 
@@ -123,7 +123,21 @@
         <app-charts [series]=series [type]="'area'" [xTitle]="'Months'" [yTitle]="'Amount'"></app-charts>
       </ng-container>
 
-      <p class="font-bold text-xs text-center">Total Profit: {{summary.profit |currency:'USD'}}</p>
+
+      <p *ngIf="!(summary.profit > 0) && summary.profit !==0" class="font-bold text-xs text-center"><i
+        class="fa-solid fa-circle-arrow-down"
+        style="color: #ee1111;"></i>
+        <span
+          class="text-red-600"> {{Math.abs(summary.profit) |currency:'USD'}}</span></p>
+      <p *ngIf="summary.profit > 0" class="font-bold text-xs text-center"><i
+        class="fa-solid fa-circle-arrow-down fa-rotate-180" style="color: #41ee11;"></i> <span
+        class="text-green-700">{{summary.profit |currency:'USD'}}</span>
+      </p>
+
+      <!--      <p *ngIf="summary.profit === 0" class="font-bold text-xs text-center">Total:-->
+      <!--        <span-->
+      <!--        >{{summary.profit |currency:'USD'}}</span>-->
+      <!--      </p>-->
 
     </section>
 

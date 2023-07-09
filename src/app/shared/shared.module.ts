@@ -29,7 +29,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ToastrModule} from "ngx-toastr";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {DatePickerComponent} from './date-picker/date-picker.component';
+import {DatePickerComponents} from './date-picker/date-picker.component';
 import {DpDatePickerModule} from "ng2-date-picker";
 
 
@@ -51,7 +51,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
     TableRowDirective,
     ClipboardComponent,
 
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponent],
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -90,7 +90,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponent]
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents]
 })
 export class SharedModule {
 }

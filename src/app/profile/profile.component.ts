@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
 import * as profileActions from "../core/store/Profile/actions"
 import {ProfileService} from "./profile.service";
+import * as dayjs from "dayjs";
 
 @Component({
   selector: 'app-profile',
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
     {id: "admin", name: 'Admin'},
   ];
   loading: Boolean;
+
   protected readonly faUserEdit = faUserEdit;
   protected readonly isLoading = isLoading;
   private image: any;
@@ -57,7 +59,7 @@ export class ProfileComponent implements OnInit {
     this.name = new FormControl({value: this.data?.name, disabled: false}, Validators.required);
     this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
     this.photo = new FormControl("");
-    this.dob = new FormControl({value: this.data?.dob, disabled: true}, Validators.required);
+    this.dob = new FormControl({value: dayjs(this.data?.dateOfBirth), disabled: true}, Validators.required);
     this.role = new FormControl({value: this.data?.role, disabled: false}, Validators.required);
     this.profileForm = new FormGroup({
       name: this.name,
