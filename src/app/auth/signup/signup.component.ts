@@ -74,7 +74,8 @@ export class SignupComponent implements OnInit {
       name: values.firstname + " " + values.lastname,
       email: values.email,
       password: values.password,
-      passwordConfirm: values.password
+      passwordConfirm: values.password,
+      dateOfBirth: values.dob
     }
 
     console.log(payload);

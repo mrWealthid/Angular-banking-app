@@ -1,16 +1,16 @@
 export interface ILogin {
-  email: String,
-  password: String
+  email: string,
+  password: string
 }
 
 export interface IRegister {
-  name: String
-  email: String
-  role?: String
-  photo?: String
-
-  password: String
-  passwordConfirm: String
+  name: string
+  email: string
+  role?: string
+  photo?: string
+  dateOfBirth: Date
+  password: string
+  passwordConfirm: string
 }
 
 
@@ -21,17 +21,17 @@ export interface IProfile extends IUserDetails {
 
 
 export interface ITransactions {
-  depositorName: String
-  amount: Number
+  depositorName: string
+  amount: number
   transactionType: 'debit | credit'
-  user?: String,
-  depositorAccountNumber: Number,
+  user?: string,
+  depositorAccountNumber: number,
   createdAt: Date
 }
 
 
 export interface AuthState {
-  isLoading: Boolean
+  isLoading: boolean
   isAuthenticated: boolean,
   token: IToken | null
 
@@ -39,15 +39,15 @@ export interface AuthState {
 }
 
 export interface IToken {
-  key: String,
-  exp: String,
-  iat: String
+  key: string,
+  exp: string,
+  iat: string
 }
 
 export interface IProfileState {
-  isLoading: Boolean
+  isLoading: boolean
   currentUser: IProfile | null,
-  error: String | null
+  error: string | null
 }
 
 export interface AppStateInterface {
@@ -58,19 +58,19 @@ export interface AppStateInterface {
 type User = Pick<IUser, "token">
 
 export interface IUser {
-  status: String,
-  token: String,
+  status: string,
+  token: string,
 
 }
 
 export interface IUserDetails {
-  name: String,
-  email: String,
-  role: String
-  photo?: String,
-  dob?: Date
+  name: string,
+  email: string,
+  role: string
+  photo?: string,
+  dateOfBirth: Date,
   accountNumber: number
-  imgUrl?: String
+  imgUrl?: string
 }
 
 
