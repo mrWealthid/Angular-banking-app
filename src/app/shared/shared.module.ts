@@ -29,7 +29,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ToastrModule} from "ngx-toastr";
 import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import {MatDatepickerModule} from "@angular/material/datepicker";
-import {DatePickerComponents} from './date-picker/date-picker.component';
+import {DatePickerComponents} from './date-picker/date-pickers.component';
 import {DpDatePickerModule} from "ng2-date-picker";
 
 
