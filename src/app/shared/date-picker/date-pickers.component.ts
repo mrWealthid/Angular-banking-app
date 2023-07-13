@@ -5,8 +5,8 @@ import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-date-picker',
-  templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.css'],
+  templateUrl: './date-pickers.component.html',
+  styleUrls: ['./date-pickers.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
