@@ -8,3 +8,11 @@ export interface IPayment {
   createdAt?: Date
 
 }
+
+
+type User = Pick<IPayment, "user" | "createdAt">
+
+export interface IBeneficiary extends User {
+  name: string,
+  accountNumber: number
+}

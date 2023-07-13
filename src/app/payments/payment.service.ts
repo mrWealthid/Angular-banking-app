@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
-import {IPayment} from "./model/payment-model";
-import {Observable} from "rxjs";
+import {IBeneficiary, IPayment} from "./model/payment-model";
+import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({
@@ -18,5 +18,15 @@ export class PaymentService {
 
   initiateTransaction(payload: IPayment): Observable<any> {
     return this.Http.post('/api/v1/transactions', payload)
+  }
+
+  fetchBeneficiaries(): Observable<IBeneficiary[]> {
+    return this.Http.get('/api/v1/beneficiaries').pipe(map(({data}: any) => {
+      return data
+    }))
+  }
+
+  addBeneficiaries(payload: IBeneficiary): Observable<any> {
+    return this.Http.post('/api/v1/beneficiaries', payload)
   }
 }
