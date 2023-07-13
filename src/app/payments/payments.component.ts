@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {CurrencyPipe} from "@angular/common";
@@ -44,7 +44,6 @@ export class PaymentsComponent implements OnInit {
     this.createPaymentForm()
     this.amount.valueChanges.subscribe(x => {
       if (x) {
-        console.log(x)
         this.amount.patchValue(this.currencyPipe.transform(this.amount.value.replace(/\D/g, '').replace(/^0+/, ''), 'USD', "symbol", '1.0-0'), {emitEvent: false})
       }
     })
@@ -52,18 +51,29 @@ export class PaymentsComponent implements OnInit {
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
   }
 
+
+  // setControlErrors(control: FormControl) {
+  //   console.log(control)
+  //
+  //   control.setErrors({amount: true})
+  // }
+
   hasRequiredValidator() {
     return this.amount.hasValidator(Validators.required)
   }
 
-  validateControl() {
-    return !this.amount.pristine && /INVALID/i.test(this.amount.status);
+  validateControl(type: string) {
+    return !this.amount.pristine && this.amount.errors?.hasOwnProperty(type);
   }
+
+  // validateAmount() {
+  //   return !this.amount.pristine && this.amount.errors?.hasOwnProperty('maxValue');
+  // }
 
   createPaymentForm() {
 
     this.accountNumber = new FormControl('', [Validators.required], this.validateAccount.bind(this));
-    this.amount = new FormControl('', [Validators.required]);
+    this.amount = new FormControl('', [Validators.required, this.maxValueValidator]);
     this.paymentForm = new FormGroup({
       accountNumber: this.accountNumber,
       amount: this.amount
@@ -78,15 +88,28 @@ export class PaymentsComponent implements OnInit {
       initiatorName: this.userDetails.name,
       initiatorAccountNumber: this.userDetails.accountNumber,
       beneficiaryAccountNumber: +values.accountNumber,
-      amount: Number(values.amount.replace(/[$,]/g, '')),
+      amount: this.removeCurrencyFormat(values.amount),
       transactionType: 'Credit',
       // createdAt: new Date('2023-06-20')
       createdAt: new Date(Date.now())
-
     }
     this.paymentService.initiateTransaction(payload).subscribe()
   }
 
+  removeCurrencyFormat(amount: string) {
+    console.log(Number(amount.replace(/[$,]/g, '')))
+    return Number(amount.replace(/[$,]/g, ''))
+  }
+
+  maxValueValidator(control: AbstractControl): ValidationErrors | null {
+    const value = Number(control.value?.replace(/[$,]/g, ''));
+
+    if (value && value > 5000) {
+      return {maxValue: true};
+    }
+
+    return null;
+  }
 
   validateAccount(control: AbstractControl): Promise<any> | Observable<any> {
     if (!(String(control.value).length > 6)) return of({'InvalidAccountNumber': true})

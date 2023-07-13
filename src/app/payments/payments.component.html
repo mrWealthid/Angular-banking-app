@@ -193,7 +193,7 @@
                style="font-size: xx-small"></i>
           </label>
           <div
-            [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
+            [ngClass]="{'error-input':this.validateControl('required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl('required')}"
             class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
           >
             <span><i class="fa-solid   fa-money-check-dollar"></i></span>
@@ -206,7 +206,9 @@
               type="text"/>
           </div>
           <span *ngIf
-                  ="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
+                  ="this.validateControl('required')" class="text-red-800 text-xs">This Field is Required</span>
+          <span *ngIf
+                  ="this.validateControl('maxValue')" class="text-red-800 text-xs">Balance Exceeded</span>
         </section>
 
         <section>
@@ -282,7 +284,7 @@
         <ng-container *ngIf="(beneficiaries|async) as beneficiaries">
           <section *ngFor="let beneficiary of beneficiaries">
             <div (click)="selectBeneficiary($event , beneficiary)"
-                 class="flex cursor-copy beneficiary-list items-center  p-2 border rounded-lg  mt-4 gap-2">
+                 class="flex cursor-pointer beneficiary-list items-center  p-2 border rounded-lg  mt-4 gap-2">
               <i class="fa text-gray-300 fa-circle-check"></i>
               <section class="flex flex-col"><h4 class="text-sm">{{beneficiary.name}}</h4>
                 <p class="text-sm">{{beneficiary.accountNumber}}</p>
