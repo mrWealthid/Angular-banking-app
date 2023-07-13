@@ -3,21 +3,7 @@ import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-clipboard',
-  template: `
-
-    <span (click)="copyToClipboard()">
-
-     <ng-container *ngIf="(valueState| async)"> <i [ngClass]="style? style: 'text-inherit'"
-                                                   class="fa font-thin  cursor-pointer fa-check  "></i>
-      </ng-container>
-
-    <ng-container *ngIf="!(valueState| async)"> <i [ngClass]="style? style: 'text-inherit'"
-                                                   class="fa cursor-pointer   fa-clipboard"></i>
-
-      </ng-container>
-    </span>
-    <!--    <button ">{{ buttonText }}</button>-->
-  `,
+  templateUrl: './clipboard.component.html',
 })
 export class ClipboardComponent {
   @Input({required: true}) textToCopy: any;
