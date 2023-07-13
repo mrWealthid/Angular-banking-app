@@ -29,4 +29,10 @@ export class PaymentService {
   addBeneficiaries(payload: IBeneficiary): Observable<any> {
     return this.Http.post('/api/v1/beneficiaries', payload)
   }
+
+  getBalance() {
+    return this.Http.get('/api/v1/transactions/user/balance').pipe(map(({data}: any) => {
+      return data.stats[0]
+    }))
+  }
 }

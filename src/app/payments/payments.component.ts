@@ -8,6 +8,7 @@ import {currentUserSelector} from "../core/store/Profile/selectors";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {PaymentService} from "./payment.service";
 import {IPayment} from "./model/payment-model";
+import {ITabs} from "../shared/tabs/tabs.component";
 
 @Component({
   selector: 'app-payments',
@@ -16,18 +17,36 @@ import {IPayment} from "./model/payment-model";
 })
 export class PaymentsComponent implements OnInit {
   paymentForm: FormGroup;
+  loanForm: FormGroup;
   accountNumber: FormControl;
   amount: FormControl;
   name: FormControl;
-  tabs = new BehaviorSubject(1)
+  tabIndex = new BehaviorSubject(1)
+  formTabIndex = new BehaviorSubject(1)
+  loanAmount: FormControl;
+
+
+  tabsForm: ITabs[] = [{
+    title: "Make Payment",
+    external: false,
+    step: 1
+
+  }, {
+    title: "Loan Request",
+    external: false,
+    step: 2,
+
+
+  }]
+
 
   asyncValue: any;
   beneficiaries: Observable<any[]>;
+  balance: Observable<any>;
   private userDetails: IProfile;
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
-
 
   constructor() {
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
@@ -36,42 +55,38 @@ export class PaymentsComponent implements OnInit {
 
   }
 
-  navigateTab(tab: number) {
-    this.tabs.next(tab)
+  navigateTab(tab: number, type: BehaviorSubject<any>) {
+    type.next(tab)
   }
+
 
   ngOnInit() {
     this.createPaymentForm()
-    this.amount.valueChanges.subscribe(x => {
-      if (x) {
-        this.amount.patchValue(this.currencyPipe.transform(this.amount.value.replace(/\D/g, '').replace(/^0+/, ''), 'USD', "symbol", '1.0-0'), {emitEvent: false})
-      }
-    })
-
+    this.createLoanForm()
+    this.formatControlValue(this.amount)
+    this.formatControlValue(this.loanAmount)
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
+    this.balance = this.paymentService.getBalance()
   }
 
-
-  // setControlErrors(control: FormControl) {
-  //   console.log(control)
-  //
-  //   control.setErrors({amount: true})
-  // }
+  formatControlValue(control: FormControl) {
+    control.valueChanges.subscribe(x => {
+      if (x) {
+        control.patchValue(this.currencyPipe.transform(control.value.replace(/\D/g, '').replace(/^0+/, ''), 'USD', "symbol", '1.0-0'), {emitEvent: false})
+      }
+    })
+  }
 
   hasRequiredValidator() {
     return this.amount.hasValidator(Validators.required)
   }
 
-  validateControl(type: string) {
-    return !this.amount.pristine && this.amount.errors?.hasOwnProperty(type);
+  validateControl(control: FormControl, type: string) {
+    return !control.pristine && control.errors?.hasOwnProperty(type);
   }
 
-  // validateAmount() {
-  //   return !this.amount.pristine && this.amount.errors?.hasOwnProperty('maxValue');
-  // }
 
   createPaymentForm() {
-
     this.accountNumber = new FormControl('', [Validators.required], this.validateAccount.bind(this));
     this.amount = new FormControl('', [Validators.required, this.maxValueValidator]);
     this.paymentForm = new FormGroup({
@@ -80,9 +95,15 @@ export class PaymentsComponent implements OnInit {
     });
   }
 
+  createLoanForm() {
+    this.loanAmount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.loanForm = new FormGroup({
+      amount: this.loanAmount
+    });
+  }
 
-  handleSettlement(values: any) {
 
+  handlePayment(values: any) {
     const payload: IPayment = {
       user: this.asyncValue.id,
       initiatorName: this.userDetails.name,
@@ -97,17 +118,14 @@ export class PaymentsComponent implements OnInit {
   }
 
   removeCurrencyFormat(amount: string) {
-    console.log(Number(amount.replace(/[$,]/g, '')))
-    return Number(amount.replace(/[$,]/g, ''))
+    return Number(amount?.replace(/[$,]/g, ''))
   }
 
   maxValueValidator(control: AbstractControl): ValidationErrors | null {
-    const value = Number(control.value?.replace(/[$,]/g, ''));
-
+    const value = Number(control.value?.replace(/[$,]/g, ''))
     if (value && value > 5000) {
       return {maxValue: true};
     }
-
     return null;
   }
 
@@ -145,5 +163,13 @@ export class PaymentsComponent implements OnInit {
       element.children[0].classList.remove('text-green-400')
       element.classList.remove('border-green-200')
     })
+  }
+
+  updateSteps($event: number) {
+
+  }
+
+  handleLoanRequest() {
+
   }
 }

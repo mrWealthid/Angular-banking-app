@@ -23,6 +23,34 @@
       </svg>
 
       <div class=" flex-grow">
+        <p class="font-bold text-xs pr-6  ">{{(balance|async)?.total |currency:'USD'}} </p>
+        <span class="text-xs capitalize font-normal">Balance</span>
+      </div>
+    </div>
+    <div class=" bg-white rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
+      <svg
+        fill="none"
+        height="42"
+        viewBox="0 0 42 42"
+        width="42"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          fill="#009EB3"
+          height="41.1699"
+          opacity="0.1"
+          rx="20.585"
+          width="41.1699"
+          y="0.830078"
+        />
+        <path
+          d="M23.321 15C25.5245 15 27 16.547 27 18.848V24.1591C27 26.4536 25.5245 28 23.321 28H17.6855C15.482 28 14 26.4536 14 24.1591V18.848C14 16.547 15.482 15 17.6855 15H23.321ZM20.4935 20.5126C20.1815 20.5126 19.928 20.772 19.928 21.0847V23.9577C19.928 24.2696 20.1815 24.5231 20.4935 24.5231C20.812 24.5231 21.0655 24.2696 21.0655 23.9577V21.0847C21.0655 20.772 20.812 20.5126 20.4935 20.5126ZM20.5065 18.4521C20.188 18.4521 19.9345 18.7056 19.9345 19.0241C19.9345 19.3355 20.188 19.5896 20.4935 19.5896C20.8185 19.5896 21.072 19.3355 21.072 19.0241C21.072 18.7056 20.8185 18.4521 20.5065 18.4521Z"
+          fill="#009EB3"
+        />
+      </svg>
+
+
+      <div class=" flex-grow">
         <p class="font-bold text-xl pr-6  ">{{(beneficiaries|async)?.length}} </p>
         <span class="text-xs capitalize font-normal">Beneficiaries</span>
       </div>
@@ -51,65 +79,13 @@
 
       <div class=" flex-grow">
         <p class="font-bold text-xl pr-6  ">116 </p>
-        <span class="text-xs capitalize font-normal">Pending</span>
-      </div>
-    </div>
-    <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
-      <svg
-        fill="none"
-        height="42"
-        viewBox="0 0 42 42"
-        width="42"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          fill="#AD2EDA"
-          height="41.1699"
-          opacity="0.1"
-          rx="20.585"
-          width="41.1699"
-          y="0.830078"
-        />
-        <path
-          d="M21 27.6663C17.318 27.6663 14.3334 24.6817 14.3334 20.9997C14.3334 17.3177 17.318 14.333 21 14.333C24.682 14.333 27.6667 17.3177 27.6667 20.9997C27.6667 24.6817 24.682 27.6663 21 27.6663ZM20.3334 22.9997V24.333H21.6667V22.9997H20.3334ZM21.6667 21.903C22.2025 21.7415 22.6624 21.393 22.9628 20.9208C23.2632 20.4487 23.384 19.8844 23.3032 19.3307C23.2224 18.7769 22.9454 18.2706 22.5227 17.904C22.1 17.5373 21.5596 17.3347 21 17.333C20.4606 17.333 19.9378 17.5198 19.5206 17.8617C19.1033 18.2036 18.8174 18.6794 18.7114 19.2083L20.0194 19.4703C20.0565 19.2846 20.1456 19.1133 20.2763 18.9762C20.407 18.8392 20.5739 18.742 20.7577 18.6961C20.9414 18.6503 21.1344 18.6575 21.3142 18.717C21.494 18.7765 21.6532 18.8858 21.7733 19.0323C21.8933 19.1787 21.9694 19.3563 21.9925 19.5442C22.0156 19.7322 21.9849 19.9229 21.9039 20.0941C21.8229 20.2653 21.6949 20.4099 21.5349 20.5112C21.3749 20.6125 21.1894 20.6663 21 20.6663C20.8232 20.6663 20.6537 20.7366 20.5286 20.8616C20.4036 20.9866 20.3334 21.1562 20.3334 21.333V22.333H21.6667V21.903Z"
-          fill="#AD2EDA"
-        />
-      </svg>
-
-      <div class=" flex-grow">
-        <p class="font-bold text-xl pr-6  ">24 </p>
-        <span class="text-xs capitalize font-normal">Queried</span>
+        <span class="text-xs capitalize font-normal">Pending Loan</span>
       </div>
     </div>
 
-    <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
-      <svg
-        fill="none"
-        height="42"
-        viewBox="0 0 42 42"
-        width="42"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <rect
-          fill="#009EB3"
-          height="41.1699"
-          opacity="0.1"
-          rx="20.585"
-          width="41.1699"
-          y="0.830078"
-        />
-        <path
-          d="M23.321 15C25.5245 15 27 16.547 27 18.848V24.1591C27 26.4536 25.5245 28 23.321 28H17.6855C15.482 28 14 26.4536 14 24.1591V18.848C14 16.547 15.482 15 17.6855 15H23.321ZM20.4935 20.5126C20.1815 20.5126 19.928 20.772 19.928 21.0847V23.9577C19.928 24.2696 20.1815 24.5231 20.4935 24.5231C20.812 24.5231 21.0655 24.2696 21.0655 23.9577V21.0847C21.0655 20.772 20.812 20.5126 20.4935 20.5126ZM20.5065 18.4521C20.188 18.4521 19.9345 18.7056 19.9345 19.0241C19.9345 19.3355 20.188 19.5896 20.4935 19.5896C20.8185 19.5896 21.072 19.3355 21.072 19.0241C21.072 18.7056 20.8185 18.4521 20.5065 18.4521Z"
-          fill="#009EB3"
-        />
-      </svg>
 
-      <div class=" flex-grow">
-        <p class="font-bold text-xl pr-6  ">6</p>
-        <span class="text-xs capitalize font-normal">Resubmitted</span>
-      </div>
-    </div>
     <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+
       <svg
         fill="none"
         height="42"
@@ -131,60 +107,64 @@
         />
       </svg>
 
+
       <div class=" flex-grow">
-        <p class="font-bold text-xl pr-6  ">46 </p>
-        <span class="text-xs capitalize font-normal">Verified</span>
+        <p class="font-bold text-xl pr-6  ">6</p>
+        <span class="text-xs capitalize font-normal">Approved Loan</span>
       </div>
     </div>
-    <!--    <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">-->
-    <!--      <svg-->
-    <!--        fill="none"-->
-    <!--        height="42"-->
-    <!--        viewBox="0 0 42 42"-->
-    <!--        width="42"-->
-    <!--        xmlns="http://www.w3.org/2000/svg"-->
-    <!--      >-->
-    <!--        <rect-->
-    <!--          fill="#F91313"-->
-    <!--          height="41.1699"-->
-    <!--          opacity="0.1"-->
-    <!--          rx="20.585"-->
-    <!--          width="41.1699"-->
-    <!--          y="0.830078"-->
-    <!--        />-->
-    <!--        <path-->
-    <!--          d="M27.6667 23H25.6667V15H27.6667C27.8435 15 28.0131 15.0702 28.1381 15.1953C28.2631 15.3203 28.3334 15.4899 28.3334 15.6667V22.3333C28.3334 22.5101 28.2631 22.6797 28.1381 22.8047C28.0131 22.9298 27.8435 23 27.6667 23ZM24.138 23.862L19.8714 28.1287C19.8146 28.1855 19.7393 28.22 19.6592 28.2258C19.5791 28.2315 19.4996 28.2082 19.4354 28.16L18.8667 27.7333C18.7088 27.6148 18.5895 27.4521 18.5239 27.2658C18.4582 27.0796 18.4493 26.878 18.498 26.6867L19.2667 23.6667H15C14.6464 23.6667 14.3073 23.5262 14.0572 23.2761C13.8072 23.0261 13.6667 22.687 13.6667 22.3333V20.9307C13.6665 20.7564 13.7005 20.5838 13.7667 20.4227L15.8307 15.4133C15.8809 15.2912 15.9662 15.1867 16.0759 15.1131C16.1856 15.0395 16.3146 15.0001 16.4467 15H23.6667C23.8435 15 24.0131 15.0702 24.1381 15.1953C24.2631 15.3203 24.3334 15.4899 24.3334 15.6667V23.3907C24.3333 23.5675 24.2631 23.737 24.138 23.862Z"-->
-    <!--          fill="#F91313"-->
-    <!--        />-->
-    <!--      </svg>-->
+    <!--        <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">-->
+
 
     <!--      <div class=" flex-grow">-->
-    <!--        <p class="font-bold text-xl pr-6  ">6 </p>-->
-    <!--        <span class="text-xs capitalize font-normal">Declined</span>-->
+    <!--        <p class="font-bold text-xl pr-6  ">46 </p>-->
+    <!--        <span class="text-xs capitalize font-normal">Verified</span>-->
     <!--      </div>-->
     <!--    </div>-->
+    <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+
+      <svg
+        fill="none"
+        height="42"
+        viewBox="0 0 42 42"
+        width="42"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <rect
+          fill="#F91313"
+          height="41.1699"
+          opacity="0.1"
+          rx="20.585"
+          width="41.1699"
+          y="0.830078"
+        />
+        <path
+          d="M27.6667 23H25.6667V15H27.6667C27.8435 15 28.0131 15.0702 28.1381 15.1953C28.2631 15.3203 28.3334 15.4899 28.3334 15.6667V22.3333C28.3334 22.5101 28.2631 22.6797 28.1381 22.8047C28.0131 22.9298 27.8435 23 27.6667 23ZM24.138 23.862L19.8714 28.1287C19.8146 28.1855 19.7393 28.22 19.6592 28.2258C19.5791 28.2315 19.4996 28.2082 19.4354 28.16L18.8667 27.7333C18.7088 27.6148 18.5895 27.4521 18.5239 27.2658C18.4582 27.0796 18.4493 26.878 18.498 26.6867L19.2667 23.6667H15C14.6464 23.6667 14.3073 23.5262 14.0572 23.2761C13.8072 23.0261 13.6667 22.687 13.6667 22.3333V20.9307C13.6665 20.7564 13.7005 20.5838 13.7667 20.4227L15.8307 15.4133C15.8809 15.2912 15.9662 15.1867 16.0759 15.1131C16.1856 15.0395 16.3146 15.0001 16.4467 15H23.6667C23.8435 15 24.0131 15.0702 24.1381 15.1953C24.2631 15.3203 24.3334 15.4899 24.3334 15.6667V23.3907C24.3333 23.5675 24.2631 23.737 24.138 23.862Z"
+          fill="#F91313"
+        />
+      </svg>
+      <div class=" flex-grow">
+        <p class="font-bold text-xl pr-6  ">6 </p>
+        <span class="text-xs capitalize font-normal">Declined Loan</span>
+      </div>
+    </div>
   </div>
 
 
   <section class="flex  flex-col sm:flex-row gap-3">
-    <section class="w-full py-10  px-5 sm:w-1/2  skin rounded-lg border">
+    <section class="w-full py-6  px-5 sm:w-1/2  skin rounded-lg border">
 
-      <!--    <h3>Payment</h3>-->
 
-      <form (ngSubmit)="handleSettlement(paymentForm.value)" [formGroup]="paymentForm"
-            class="w-full flex flex-col gap-2">
+      <app-tabs (steps)=" navigateTab($event, formTabIndex)" [tabs]="tabsForm"></app-tabs>
+
+      <form (ngSubmit)="handlePayment(paymentForm.value)" *ngIf="(formTabIndex|async) ===1" [formGroup]="paymentForm"
+            class="w-full flex flex-col mt-3 gap-2">
 
         <acc-lookup [data]="asyncValue"
                     [formControl]="accountNumber"
                     [label]="'Account Number'" [placeholder]="'Enter Account Number'">
 
         </acc-lookup>
-
-        <!--      <app-input [formControl]="amount" [icon]="'fa-regular fa-address-card'" [label]="'Enter Amount'"-->
-        <!--                 [placeholder]="'Amount($)'">-->
-
-
-        <!--      </app-input>-->
 
         <section>
           <label class=" flex gap-1 text-xs">
@@ -193,29 +173,28 @@
                style="font-size: xx-small"></i>
           </label>
           <div
-            [ngClass]="{'error-input':this.validateControl('required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl('required')}"
+            [ngClass]="{'error-input':this.validateControl(amount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl(amount,'required')}"
             class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
           >
-            <span><i class="fa-solid   fa-money-check-dollar"></i></span>
+            <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
             <input
               [formControl]="amount"
-              autocapitalize="words"
               class="input-style"
-              name="test"
+
               placeholder="Enter Amount"
               type="text"/>
           </div>
           <span *ngIf
-                  ="this.validateControl('required')" class="text-red-800 text-xs">This Field is Required</span>
+                  ="this.validateControl(amount,'required')" class="text-red-800 text-xs">This Field is Required</span>
           <span *ngIf
-                  ="this.validateControl('maxValue')" class="text-red-800 text-xs">Balance Exceeded</span>
+                  ="this.validateControl(amount,'maxValue')" class="text-red-800 text-xs">Balance Exceeded</span>
         </section>
 
         <section>
           <label class="relative inline-flex items-center mb-4 cursor-pointer">
             <input class="sr-only peer" type="checkbox" value="">
             <div
-              class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-white peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-gray-600 after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-300"></div>
+              class="w-11 h-6 bg-gray-200  rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-300"></div>
             <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Add to beneficiaries</span>
           </label>
         </section>
@@ -227,7 +206,7 @@
         <!--        </label>-->
 
         <!--        <label class="relative inline-flex items-center mb-3 cursor-pointer">-->
-        <!--          <input class="sr-only peer" disabled type="checkbox" value="">-->
+        <!--          <input class="sr-only peer" type="checkbox" value="">-->
         <!--          <div-->
         <!--            class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>-->
         <!--          <span class="ml-3 text-sm font-medium text-gray-400 dark:text-gray-500">Disabled toggle</span>-->
@@ -237,17 +216,49 @@
 
 
       </form>
+      <form (ngSubmit)="handleLoanRequest()" *ngIf="(formTabIndex|async) ===2" [formGroup]="loanForm"
+            class="w-full flex cla flex-col mt-3 gap-2">
 
+
+        <section>
+          <label class=" flex gap-1 text-xs">
+            <span>Loan Amount</span>
+            <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
+               style="font-size: xx-small"></i>
+          </label>
+          <div
+            [ngClass]="{'error-input':this.validateControl(loanAmount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl( loanAmount,'required')}"
+            class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+          >
+            <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
+            <input
+              [formControl]="loanAmount"
+              class="input-style"
+              placeholder="Enter Amount"
+              type="text"/>
+          </div>
+          <span *ngIf
+                  ="this.validateControl(loanAmount,'required')"
+                class="text-red-800 text-xs">This Field is Required</span>
+          <span *ngIf
+                  ="this.validateControl(loanAmount,'maxValue')" class="text-red-800 text-xs">Balance Exceeded</span>
+        </section>
+
+
+        <app-button [btnText]="'Send Request'" [disabled]="loanAmount.invalid" [styles]="'btn-primary'"></app-button>
+
+
+      </form>
 
     </section>
 
 
-    <section class="w-full skin sm:w-1/2 rounded bg-white p-3">
+    <section class="w-full skin sm:w-1/2 rounded bg-white py-6 px-5">
       <div class="border-b-2 border-gray-200 dark:border-transparent">
         <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-600 dark:text-gray-600">
           <li class="mr-2">
-            <a (click)="navigateTab(1)"
-               [ngClass]="(tabs|async) ===1 ? 'border-b-2 active dark:text-primary dark:border-primary': ''"
+            <a (click)="navigateTab(1, tabIndex)"
+               [ngClass]="(tabIndex|async) ===1 ? 'border-b-2 active dark:text-primary dark:border-primary': ''"
                class="inline-flex p-4 border-b-2 border-transparent rounded-t-lg  group"
             >
               <svg aria-hidden="true"
@@ -261,8 +272,8 @@
             </a>
           </li>
           <li class="mr-2">
-            <a (click)="navigateTab(2)"
-               [ngClass]="(tabs|async) ===2 ? 'border-b-2 active dark:text-primary dark:border-primary': ''"
+            <a (click)="navigateTab(2, tabIndex)"
+               [ngClass]="(tabIndex|async) ===2 ? 'border-b-2 active dark:text-primary dark:border-primary': ''"
                aria-current="page"
                class="inline-flex p-4 text-primary rounded-t-lg   group"
             >
@@ -279,9 +290,16 @@
         </ul>
       </div>
 
-      <section *ngIf="(tabs| async)===1" class="px-4">
+
+      <section *ngIf="(tabIndex| async)===1" class="">
 
         <ng-container *ngIf="(beneficiaries|async) as beneficiaries">
+          <section *ngIf="beneficiaries.length > 5" class="flex items-center justify-between"><small class="mt-2">Showing {{beneficiaries.length}}
+            beneficiaries</small>
+            <div>
+              <button class="btn btn-primary cursor-pointer rounded-3xl">Show All</button>
+            </div>
+          </section>
           <section *ngFor="let beneficiary of beneficiaries">
             <div (click)="selectBeneficiary($event , beneficiary)"
                  class="flex cursor-pointer beneficiary-list items-center  p-2 border rounded-lg  mt-4 gap-2">
@@ -293,7 +311,7 @@
           </section>
         </ng-container>
       </section>
-      <section *ngIf="(tabs| async)===2" class="px-6">
+      <section *ngIf="(tabIndex| async)===2" class="">
         <!--        <p class="mb-2">Transaction Timeline</p>-->
         <ol class="relative border-l mt-4 border-gray-200 dark:border-gray-700">
           <li class="mb-10 ml-6">
