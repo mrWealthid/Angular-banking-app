@@ -31,6 +31,10 @@ import {ngxLoadingAnimationTypes, NgxLoadingModule} from "ngx-loading";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {DatePickerComponents} from './date-picker/date-pickers.component';
 import {DpDatePickerModule} from "ng2-date-picker";
+import {TabsComponent} from './tabs/tabs.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {TableFilterComponent} from './table/table-filter/table-filter.component';
+import { MatModalComponent } from './mat-modal/mat-modal.component';
 
 
 @NgModule({
@@ -51,7 +55,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
     TableRowDirective,
     ClipboardComponent,
 
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents],
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, TableFilterComponent, MatModalComponent],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -62,6 +66,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
     NgxDatatableModule,
     FormsModule,
     NgSelectModule,
+    MatDialogModule,
     BsDropdownModule.forRoot(),
     NgOptimizedImage, NgApexchartsModule,
     ToastrModule.forRoot(),
@@ -90,7 +95,7 @@ import {DpDatePickerModule} from "ng2-date-picker";
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents]
+    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent]
 })
 export class SharedModule {
 }

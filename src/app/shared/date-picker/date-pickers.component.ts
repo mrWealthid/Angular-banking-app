@@ -12,8 +12,10 @@ import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => DatePickerComponents),
       multi: true,
+
     },
   ],
+  
 })
 export class DatePickerComponents implements OnInit {
   @ViewChild(DatePickerComponent) datepicker: DatePickerComponent;
