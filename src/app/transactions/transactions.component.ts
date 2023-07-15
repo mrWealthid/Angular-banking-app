@@ -14,11 +14,11 @@ export class TransactionsComponent implements OnInit {
   faClipboard = faClipboard;
   tableColumns = [
     // {prop: 'id', name: 'Id'},
-    {prop: 'initiatorName', name: 'Payer'},
+    {prop: 'initiatorName', name: 'Payer', searchType: 'text'},
     {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true},
-    {prop: 'transactionType', name: 'Transaction', custom: true},
-    {prop: 'initiatorAccountNumber', name: 'Payer Account', custom: true},
-    {prop: 'createdAt', name: 'Time', pipe: "Date"}
+    {prop: 'transactionType', name: 'Transaction', custom: true, searchType: 'dropdown'},
+    {prop: 'initiatorAccountNumber', name: 'Payer Account', custom: true, searchType: 'number'},
+    {prop: 'createdAt', name: 'Time', pipe: "Date", searchType: 'Date'}
   ];
 
   protected readonly TransactionService = TransactionService;

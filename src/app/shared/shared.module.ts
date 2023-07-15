@@ -9,7 +9,6 @@ import {PasswordInputComponent} from "./inputs/password-input/password-input.com
 import {EmailInputComponent} from "./inputs/email-input/email-input.component";
 import {TextInputComponent} from "./inputs/text-input/text-input.component";
 import {SelectInputComponent} from "./inputs/select-input/select-input.component";
-import {ProjectionsComponent, ProjectionsDirective} from "../projections/projections.component";
 import {TableHeaderComponent, TableHeaderRowDirective} from "./table/table-header/table-header.component";
 import {TableRowComponent, TableRowDirective} from "./table/table-row/table-row.component";
 import {ClipboardComponent} from "./clipboard/clipboard.component";
@@ -33,8 +32,7 @@ import {DatePickerComponents} from './date-picker/date-pickers.component';
 import {DpDatePickerModule} from "ng2-date-picker";
 import {TabsComponent} from './tabs/tabs.component';
 import {MatDialogModule} from "@angular/material/dialog";
-import {TableFilterComponent} from './table/table-filter/table-filter.component';
-import { MatModalComponent } from './mat-modal/mat-modal.component';
+import {MatModalComponent} from './mat-modal/mat-modal.component';
 
 
 @NgModule({
@@ -50,12 +48,12 @@ import { MatModalComponent } from './mat-modal/mat-modal.component';
     ModalComponent,
     ModalsComponent,
     SelectInputComponent,
-    ProjectionsDirective,
+
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
 
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, TableFilterComponent, MatModalComponent],
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -91,11 +89,10 @@ import { MatModalComponent } from './mat-modal/mat-modal.component';
     ModalComponent,
     ModalsComponent,
     SelectInputComponent,
-    ProjectionsDirective,
     TableHeaderRowDirective,
     TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, ProjectionsComponent, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent]
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent]
 })
 export class SharedModule {
 }
