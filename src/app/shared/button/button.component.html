@@ -20,7 +20,8 @@
 <!--</button>-->
 
 
-<button [class]='styles'
+<button (click)="emitEvent()"
+        [class]='styles'
         [disabled]=disabled
         [type]="type"
 >
