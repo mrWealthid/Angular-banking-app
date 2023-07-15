@@ -38,14 +38,14 @@
     <button *ngIf="!tableSettings?.isDownloadable"
             class=" text-primary text-sm flex gap-2 items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
 
-      <i class="fa-solid fa-download"></i>
+      <i class="fa-solid text-green-600 fa-download"></i>
       Download
     </button>
 
 
-    <button
-      class=" text-primary flex gap-2 text-sm items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
-      <i class="fa-solid fa-rotate-right"></i>
+    <button (click)="handleReload()"
+            class=" text-primary flex gap-2 text-sm items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
+      <i class="fa-solid text-green-600 fa-rotate-right"></i>
       Reload
     </button>
 

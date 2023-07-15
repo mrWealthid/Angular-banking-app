@@ -1,4 +1,4 @@
-import {Component, Directive, Input} from '@angular/core';
+import {Component, Directive, EventEmitter, Input, Output} from '@angular/core';
 
 
 @Directive({
@@ -17,5 +17,11 @@ export class TableHeaderComponent {
 
 
   @Input() tableSettings: any
+
+  @Output() reload = new EventEmitter();
+
   // @ContentChild('headerActions') headerActions!: TemplateRef<any>;
+  handleReload() {
+    this.reload.emit()
+  }
 }
