@@ -3,6 +3,7 @@ import {
   Component,
   ContentChild,
   EventEmitter,
+  inject,
   Input,
   OnInit,
   Output,
@@ -10,8 +11,10 @@ import {
   ViewChild
 } from '@angular/core';
 import {faEllipsis, faLock} from "@fortawesome/free-solid-svg-icons";
-import {Page} from "./Model";
+import {columnProps, Page} from "./model/table-model";
 import {ModalService} from "../services/modal.service";
+import {FormControl, UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
+import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 
 
 @Component({
@@ -23,7 +26,11 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ContentChild('headerActions') headerActions!: TemplateRef<any>;
   @ContentChild('rowActions') rowActions!: TemplateRef<any>;
   @ContentChild('customRows') customRows!: TemplateRef<any>;
-  @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
+  // @ContentChild('filterRef') filterRef: ComponentRef<any>;
+  // @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
+
+  dialogRef: MatDialogRef<any>;
+  @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
 
   @ViewChild('myTable') table: any;
   rows: any[]
@@ -31,7 +38,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   page = new Page();
 
   // @Input() rows: any[]
-  @Input({required: true}) columns: any[];
+  @Input({required: true}) columns: columnProps[]
   // pageIndex: number = 0;
   @Input() pageSize: number;
   totalRecords: number;
@@ -56,20 +63,51 @@ export class TableComponent implements OnInit, AfterViewInit {
   singleAction: Boolean = true
   showModal: boolean = false;
   showMe: boolean = true;
+  form: UntypedFormGroup;
   protected readonly faEllipsis = faEllipsis;
   protected readonly faLock = faLock;
 
-  constructor(public modalService: ModalService,) {
+  //injected services
+  formBuilder = inject(UntypedFormBuilder)
+  modalService = inject(ModalService)
+  private dialog = inject(MatDialog)
+
+  constructor() {
     this.page.pageNumber = 1;
     this.page.limit = 3;
+
+
   }
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({});
+    //filter column without search
+    this.columns.filter((col) => col.searchType !== undefined).forEach((control) => {
+      this.form.addControl(control.prop, new FormControl(''));
+    });
+
+    this.loadTableData()
+
+
+    this.columns.push({name: "Actions", prop: ""});
+    this.updatedColumn = this.columns
+
+  }
+
 
   handleSelections() {
     this.onSelectAll.emit(this.allSelected);
   }
 
 
+  getInputControl(controlName: string): FormControl {
+    return this.form.get(controlName) as FormControl
+
+  }
+
   ngAfterViewInit() {
+
+
     this.table.bodyComponent.updatePage = function (direction: string): void {
       let offset = this.indexes.first / this.pageSize;
 
@@ -89,12 +127,11 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.page.pageNumber = pageInfo.offset;
     this.page.limit = pageInfo.limit
 
-    this.page.search = {}
+    this.page.search = pageInfo.search
     this.tableService.getListData(this.page).subscribe((data: any) => {
       this.page.totalElements = data.totalRecords
       this.rows = data.data
     })
-
 
     //when page changes I want to unselect all selected rows
     this.emitSelected([])
@@ -102,23 +139,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (headerCheckbox?.checked) headerCheckbox?.click()
   }
 
-  ngOnInit(): void {
-    this.setPage({offset: 0, limit: 10});
-    this.columns.push({name: "Actions"});
-    this.updatedColumn = this.columns
-  }
-
-  onSelectRed(row: any) {
-    console.log(row)
-  }
-
-  onSelectBlue(value: any) {
-    console.log(value)
-  }
-
-  handleTest(row: any) {
-
-  }
 
   toggleRowSelection({target}: any) {
     const selectAllRows = document.querySelectorAll('.my-rows')
@@ -162,20 +182,72 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.onSelectAll.emit(rowVal);
   }
 
-  // handleModal() {
-  //
-  //
-  //   this.modalService.HandleShowModal()
-  //
-  // }
-
   handleModal($event: any) {
     console.log("I Bubbled", $event);
     this.showModal = $event;
+  }
+
+
+  testModal(course: any) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = course;
+    dialogConfig.width = '100%';
+
+    const dialogRef = this.dialog.open(this.dialogTemplate, dialogConfig);
+
+
+    // dialogRef.afterClosed()
+    //   .pipe(
+    //     filter(val => !!val),
+    //     tap(() => this.courseEdited.emit())
+    //   )
+    //   .subscribe();
+
   }
 
   toggleModal(e: any) {
     this.showModal = !this.showModal;
     this.showMe = true;
   }
+
+
+  closeModal() {
+    this.showModal = !this.showModal;
+    this.showMe = false;
+  }
+
+  handleFilter(value: any) {
+    const data = this.removeEmptyKeys(value)
+    this.setPage({offset: 0, limit: 10, search: {...data}})
+    this.closeModal()
+  }
+
+  handleResetFilter() {
+    this.setPage({offset: 0, limit: 10})
+    this.closeModal()
+  }
+
+
+  loadTableData() {
+    this.setPage({offset: 0, limit: 10})
+  }
+
+
+  removeEmptyKeys(obj: {}) {
+    const result: Record<string, any> = {};
+    Object.entries(obj).forEach(([key, value]) => {
+      if (value !== '') {
+        result[key] = value;
+      }
+    });
+
+    return result;
+  }
+
+  protected readonly length = length;
 }
