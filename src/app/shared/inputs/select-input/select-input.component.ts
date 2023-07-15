@@ -23,6 +23,7 @@ export class SelectInputComponent {
   @Input() placeholder: string;
   @Input({required: true}) formControl: FormControl
 
+
   value: any;
   onChange: any = () => {
   };
@@ -34,7 +35,7 @@ export class SelectInputComponent {
   }
 
   writeValue(value: any): void {
-    this.value = value;
+    this.value = this.formControl.value === "" ? null : this.formControl.value;
   }
 
   registerOnChange(fn: any): void {
