@@ -13,8 +13,6 @@
     </button>
   </app-table-header>
 
-  <button (click)="testModal({name:'wealth'})"> Click</button>
-
   <ngx-datatable #myTable
                  (page)="setPage($event)"
                  [columnMode]="'force'"
@@ -118,11 +116,9 @@
 
         <datatable-pager (change)="table.onFooterPage($event)"
                          [count]="rowCount"
-                         [hidden]="!((rowCount / pageSize) > 1)"
+                         [hidden]="hidePaginator(rows,pageSize,rowCount,curPage)"
                          [page]="curPage"
                          [pagerLeftArrowIcon]="'datatable-icon-left'"
-
-
                          [pagerNextIcon]="'datatable-icon-skip'"
                          [pagerPreviousIcon]="'datatable-icon-prev'"
                          [pagerRightArrowIcon]="'datatable-icon-right'"

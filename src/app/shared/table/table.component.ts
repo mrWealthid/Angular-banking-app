@@ -74,7 +74,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.page.pageNumber = 1;
-    this.page.limit = 3;
+    this.page.limit = 10;
 
 
   }
@@ -131,12 +131,28 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.tableService.getListData(this.page).subscribe((data: any) => {
       this.page.totalElements = data.totalRecords
       this.rows = data.data
+
+      // if (this.rows.length < this.page.limit) {
+      //   this.page.limit = this.rows.length
+      // }
     })
 
     //when page changes I want to unselect all selected rows
     this.emitSelected([])
     const headerCheckbox: HTMLElement | any | null = document.getElementById("header-check")
     if (headerCheckbox?.checked) headerCheckbox?.click()
+  }
+
+
+  hidePaginator(rows: any[], pageSize: number, rowCount: number, currPage: number) {
+    let status = false
+    if (!(rowCount / pageSize > 1)) {
+      status = true
+    }
+    if ((rows?.length < pageSize) && (currPage === 1)) {
+      status = true
+    }
+    return status
   }
 
 
