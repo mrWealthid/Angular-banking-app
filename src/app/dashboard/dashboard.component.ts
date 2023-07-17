@@ -15,9 +15,6 @@ export class DashboardComponent implements OnInit {
   ]
   isOpen: Boolean = false;
 
-  constructor() {
-  }
-
 
   ngOnInit(): void {
 

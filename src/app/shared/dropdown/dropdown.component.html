@@ -6,63 +6,10 @@
 
   </div>
   <div *ngIf="isMenuOpened"
-       class="menu flex items-start px-3 py-2   z-10 flex-col gap-2 absolute w-[150px] right-3 top-6 bg-gray-100">
+       class="menu flex border rounded items-start px-3 py-2   z-10 flex-col gap-2 absolute w-[150px] right-10 top-6 bg-white hover:bg-gray-100">
 
 
     <ng-content></ng-content>
 
-    <!--    <div class="menu-item">News</div>-->
-    <!--    <div class="menu-item">Contacts</div>-->
-    <!--    <div class="menu-item">About</div>-->
   </div>
 </div>
-
-<!--<p>Content Projection</p>-->
-
-<!--<div>-->
-
-<!--  <h2>Multi-slot content projection</h2>-->
-
-<!--  Default:-->
-<!--  <ng-content></ng-content>-->
-
-<!--  Question:-->
-<!--  <ng-content select="[question]"></ng-content>-->
-<!--</div>-->
-
-
-<!--<div class="row">-->
-<!--  <div class="col-xs-12 col-12 col-sm-6 mb-3">-->
-<!--    <p>Default behavior: dropdown closes after outside click or pressing ESC</p>-->
-<!--    <div (clickOutside)="handleOutsideClick()" class="btn-group" clickOutside dropdown>-->
-<!--      <button aria-controls="dropdown-autoclose1" class="btn btn-primary dropdown-toggle" dropdownToggle-->
-<!--              id="button-autoclose1"-->
-<!--              type="button">-->
-<!--        Button dropdown <span class="caret"></span>-->
-<!--      </button>-->
-<!--      <ul *dropdownMenu aria-labelledby="button-autoclose1" class="dropdown-menu"-->
-<!--          id="dropdown-autoclose1" role="menu">-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div class="col-xs-12 col-12 col-sm-6 mb-3">-->
-<!--    <p>This dropdown won't be closed after outside click or pressing ESC</p>-->
-<!--    <div [autoClose]="false" class="btn-group" dropdown>-->
-<!--      <button aria-controls="dropdown-autoclose2" class="btn btn-primary dropdown-toggle" dropdownToggle-->
-<!--              id="button-autoclose2"-->
-<!--              type="button">-->
-<!--        Button dropdown <span class="caret"></span>-->
-<!--      </button>-->
-<!--      <ul *dropdownMenu aria-labelledby="button-autoclose2" class="dropdown-menu" id="dropdown-autoclose2" role="menu">-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--        <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>-->
-<!--      </ul>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-

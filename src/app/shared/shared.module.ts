@@ -10,7 +10,6 @@ import {EmailInputComponent} from "./inputs/email-input/email-input.component";
 import {TextInputComponent} from "./inputs/text-input/text-input.component";
 import {SelectInputComponent} from "./inputs/select-input/select-input.component";
 import {TableHeaderComponent, TableHeaderRowDirective} from "./table/table-header/table-header.component";
-import {TableRowComponent, TableRowDirective} from "./table/table-row/table-row.component";
 import {ClipboardComponent} from "./clipboard/clipboard.component";
 import {DropdownComponent} from "./dropdown/dropdown.component";
 import {ClickOutsideDirective} from "./directives/ClickOutside";
@@ -33,6 +32,8 @@ import {DpDatePickerModule} from "ng2-date-picker";
 import {TabsComponent} from './tabs/tabs.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatModalComponent} from './mat-modal/mat-modal.component';
+import {SummaryCardsComponent} from './summary-cards/summary-cards.component';
+import {MaskDirective} from "./directives/Mask-directive";
 
 
 @NgModule({
@@ -50,10 +51,10 @@ import {MatModalComponent} from './mat-modal/mat-modal.component';
     SelectInputComponent,
 
     TableHeaderRowDirective,
-    TableRowDirective,
     ClipboardComponent,
+    MaskDirective,
 
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent],
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -79,6 +80,7 @@ import {MatModalComponent} from './mat-modal/mat-modal.component';
   ],
   exports: [
     ButtonComponent,
+    MaskDirective,
     TableComponent,
     ImageUploadComponent,
     StepperComponent,
@@ -90,9 +92,8 @@ import {MatModalComponent} from './mat-modal/mat-modal.component';
     ModalsComponent,
     SelectInputComponent,
     TableHeaderRowDirective,
-    TableRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, TableRowComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent]
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent]
 })
 export class SharedModule {
 }

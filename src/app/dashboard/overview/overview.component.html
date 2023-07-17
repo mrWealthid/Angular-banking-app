@@ -1,13 +1,32 @@
 <section class="flex flex-col gap-10">
+  <div *ngIf="(currentUser$|async) as currentUser"
+       class=' my-2  animate-slideOut'
+
+  >
+    <section class="flex justify-between">
+      <div><p class='text-base flex gap-3 text-gray-800  md:text-xl'>
+        Welcome Back,
+        <span class='text-gray-800'>{{currentUser.name}} !</span>
+      </p>
+
+        <p class='text-sm flex gap-4 text-gray-800  md:text-base'>
+          Account Number : {{currentUser.accountNumber}}
+          <app-clipboard [style]="'text-green-400'" [textToCopy]=currentUser.accountNumber></app-clipboard>
+        </p>
+
+      </div>
 
 
-  <section class=" grid lg:grid-cols-3  sm:grid-cols-2 grid-cols-1  gap-5">
+    </section>
+
+  </div>
+
+  <section class=" grid lg:grid-cols-3 animate-slideOut  sm:grid-cols-2 grid-cols-1  gap-5">
     <div class="card bg-primary flex-1 flex gap-3">
       <section class="flex  flex-col mt-4 gap-8 ">
         <section
           class="  flex flex-col"
         >
-          <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
           <p class="italic text-xs "> Today</p>
           <p class="text"> {{summary.profit| currency:'USD'}}</p>
         </section>
@@ -124,20 +143,20 @@
       </ng-container>
 
 
-      <p *ngIf="!(summary.profit > 0) && summary.profit !==0" class="font-bold text-xs text-center"><i
-        class="fa-solid fa-circle-arrow-down"
-        style="color: #ee1111;"></i>
-        <span
-          class="text-red-600"> {{Math.abs(summary.profit) |currency:'USD'}}</span></p>
-      <p *ngIf="summary.profit > 0" class="font-bold text-xs text-center"><i
-        class="fa-solid fa-circle-arrow-down fa-rotate-180" style="color: #41ee11;"></i> <span
-        class="text-green-700">{{summary.profit |currency:'USD'}}</span>
-      </p>
-
-      <!--      <p *ngIf="summary.profit === 0" class="font-bold text-xs text-center">Total:-->
+      <!--      <p *ngIf="!(summary.profit > 0) && summary.profit !==0" class="font-bold text-xs text-center"><i-->
+      <!--        class="fa-solid fa-circle-arrow-down"-->
+      <!--        style="color: #ee1111;"></i>-->
       <!--        <span-->
-      <!--        >{{summary.profit |currency:'USD'}}</span>-->
+      <!--          class="text-red-600"> {{Math.abs(summary.profit) |currency:'USD'}}</span></p>-->
+      <!--      <p *ngIf="summary.profit > 0" class="font-bold text-xs text-center"><i-->
+      <!--        class="fa-solid fa-circle-arrow-down fa-rotate-180" style="color: #41ee11;"></i> <span-->
+      <!--        class="text-green-700">{{summary.profit |currency:'USD'}}</span>-->
       <!--      </p>-->
+
+      <p *ngIf="summary.profit === 0" class="font-bold text-xs text-center">Total:
+        <span
+        >{{(balance|async)?.total |currency:'USD'}}</span>
+      </p>
 
     </section>
 

@@ -10,8 +10,8 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {faEllipsis, faLock} from "@fortawesome/free-solid-svg-icons";
-import {columnProps, Page} from "./model/table-model";
+import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
+import {columnProps, ITableConfig, Page} from "./model/table-model";
 import {ModalService} from "../services/modal.service";
 import {FormControl, UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
 import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
@@ -34,19 +34,22 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @ViewChild('myTable') table: any;
   rows: any[]
-  additionalSettings: any
+
   page = new Page();
 
-  // @Input() rows: any[]
   @Input({required: true}) columns: columnProps[]
-  // pageIndex: number = 0;
+
   @Input() pageSize: number;
   totalRecords: number;
-  @Input() settings = {
-    actionable: true,
+  @Input() tableSettings: ITableConfig = {
+    actionable: false,
+    checkable: false,
     downloadable: false,
-    summary: true
+    singleAction: false,
+    showSummary: true,
+    tableName: ''
   }
+
 
   allSelected: any[] = []
   @Input({required: true})
@@ -56,22 +59,20 @@ export class TableComponent implements OnInit, AfterViewInit {
   @Output()
   onSelectAll = new EventEmitter<any[]>();
 
-
-  defaultSettings = {}
   updatedColumn: any[]
-  checkable: boolean = true;
-  singleAction: Boolean = true
+
   showModal: boolean = false;
   showMe: boolean = true;
   form: UntypedFormGroup;
   protected readonly faEllipsis = faEllipsis;
-  protected readonly faLock = faLock;
+
 
   //injected services
   formBuilder = inject(UntypedFormBuilder)
   modalService = inject(ModalService)
   private dialog = inject(MatDialog)
   filterActive: Boolean = false;
+  loading: boolean;
 
   constructor() {
     this.page.pageNumber = 1;
@@ -81,20 +82,24 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.createFilterForm()
+    this.loadTableData()
+    this.updatedColumn = this.updateColumnsWithActions()
+  }
+
+
+  updateColumnsWithActions() {
+    this.tableSettings.actionable ? this.columns.push({name: "Actions", prop: ""}) : this.columns
+    return this.columns
+  }
+
+  createFilterForm() {
     this.form = this.formBuilder.group({});
     //filter column without search
     this.columns.filter((col) => col.searchType !== undefined).forEach((control) => {
       this.form.addControl(control.prop, new FormControl(''));
     });
-
-    this.loadTableData()
-
-
-    this.columns.push({name: "Actions", prop: ""});
-    this.updatedColumn = this.columns
-
   }
-
 
   handleSelections() {
     this.onSelectAll.emit(this.allSelected);
@@ -109,33 +114,33 @@ export class TableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
 
 
-    this.table.bodyComponent.updatePage = function (direction: string): void {
-      let offset = this.indexes.first / this.pageSize;
-
-      if (direction === 'up') {
-        offset = Math.ceil(offset);
-      } else if (direction === 'down') {
-        offset = Math.floor(offset);
-      }
-
-      if (direction !== undefined && !isNaN(offset)) {
-        this.page.emit({offset});
-      }
-    }
+    // this.table.bodyComponent.updatePage = function (direction: string): void {
+    //   let offset = this.indexes.first / this.pageSize;
+    //
+    //   if (direction === 'up') {
+    //     offset = Math.ceil(offset);
+    //   } else if (direction === 'down') {
+    //     offset = Math.floor(offset);
+    //   }
+    //
+    //   if (direction !== undefined && !isNaN(offset)) {
+    //     this.page.emit({offset});
+    //   }
+    // }
   }
 
   setPage(pageInfo: any) {
+
+    this.loading = true
     this.page.pageNumber = pageInfo.offset;
     this.page.limit = pageInfo.limit
 
     this.page.search = pageInfo.search
     this.tableService.getListData(this.page).subscribe((data: any) => {
+
+      this.loading = false
       this.page.totalElements = data.totalRecords
       this.rows = data.data
-
-      // if (this.rows.length < this.page.limit) {
-      //   this.page.limit = this.rows.length
-      // }
     })
 
     //when page changes I want to unselect all selected rows
@@ -295,4 +300,5 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   protected readonly length = length;
+
 }

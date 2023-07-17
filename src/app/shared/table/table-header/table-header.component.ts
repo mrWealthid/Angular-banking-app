@@ -1,4 +1,5 @@
 import {Component, Directive, EventEmitter, Input, Output} from '@angular/core';
+import {ITableConfig} from "../model/table-model";
 
 
 @Directive({
@@ -16,7 +17,7 @@ export class TableHeaderRowDirective {
 export class TableHeaderComponent {
 
 
-  @Input() tableSettings: any
+  @Input() tableSettings: ITableConfig
 
   @Output() reload = new EventEmitter();
 

@@ -1,14 +1,14 @@
 <div class="bg-white rounded-t-xl py-4 md:py-4 px-4 md:px-8 xl:px-10">
-  <div class="sm:flex justify-end gap-3 items-center">
+  <div class="sm:flex justify-end header-actions gap-3 items-center">
     <ng-content></ng-content>
-    <button *ngIf="!tableSettings?.isDownloadable"
-            class=" table-header-btn">
+    <button *ngIf="tableSettings.downloadable"
+    >
       <i class="fa-solid text-green-600 fa-download"></i>
       Download
     </button>
 
     <button (click)="handleReload()"
-            class="table-header-btn">
+    >
       <i class="fa-solid text-green-600 fa-rotate-right"></i>
       Reload
     </button>

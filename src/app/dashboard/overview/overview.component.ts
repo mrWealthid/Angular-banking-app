@@ -1,7 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
-import {forkJoin} from "rxjs";
+import {forkJoin, Observable} from "rxjs";
+import {PaymentService} from "../../payments/payment.service";
+import {globalizeDate} from "../../shared/helpers/helperFunctions";
+import {select, Store} from "@ngrx/store";
+import {currentUserSelector} from "../../core/store/Profile/selectors";
+import {AppStateInterface, IProfile} from "../../shared/interface/userAuth";
 
 @Component({
   selector: 'app-overview',
@@ -10,24 +15,10 @@ import {forkJoin} from "rxjs";
 })
 export class OverviewComponent implements OnInit {
 
-  // chartOptions = {
-  //   series: [
-  //     {
-  //       name: "My-series",
-  //       data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-  //     }
-  //   ],
-  //   chart: {
-  //     height: 350,
-  //     type: "bar"
-  //   },
-  //   title: {
-  //     text: "My First Angular Chart"
-  //   },
-  //   xaxis: {
-  //     categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-  //   }
-  // };
+  private dashboardService = inject(DashboardService)
+  private paymentService = inject(PaymentService)
+  private store = inject(Store<AppStateInterface>)
+
   series: IDashboardData[] = []
 
   summary: ISummary = {
@@ -40,24 +31,23 @@ export class OverviewComponent implements OnInit {
 
   protected readonly Date = Date;
   protected readonly Math = Math;
-
-  constructor(private dashboardService: DashboardService) {
-
-
-  }
+  balance: Observable<any>;
+  currentUser$: Observable<IProfile | null>;
 
   ngOnInit() {
+    this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
     forkJoin([this.dashboardService.getMonthlyStatsData('Credit'), this.dashboardService.getMonthlyStatsData('Debit')]).subscribe(data => {
       this.series = (data.map(x => x[0]))
     })
-
     this.fetchStatsData()
+
+    this.balance = this.paymentService.getBalance()
 
   }
 
   fetchStatsData(val?: IStatsParam) {
-    this.dashboardService.getStatsData(val?.type, val?.time).subscribe(x => this.summary = x)
+    this.dashboardService.getStatsData(val?.type, val?.time).subscribe((x: ISummary) => this.summary = x)
   }
 
   handleChange(event: any) {
@@ -68,6 +58,8 @@ export class OverviewComponent implements OnInit {
     this.fetchStatsData({type: payload.type, time: payload.time})
 
   }
+
+  protected readonly globalizeDate = globalizeDate()
 }
 
 
