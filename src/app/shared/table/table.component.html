@@ -1,7 +1,7 @@
 <section class="w-full mb-6">
 
   <ng-container *ngIf="rows?.length > 0">
-    <app-table-header (reload)="loadTableData()" [tableSettings]="tableSettings">
+    <app-table-header (reload)="loadTableData()" [tableSettings]="additionalSettings">
       <ng-container [ngTemplateOutlet]="headerActions">
       </ng-container>
       <button
@@ -34,7 +34,7 @@
 
 
     <!--    This piece control the general toggle on the left-end of the header column-->
-    <ngx-datatable-column *ngIf='tableSettings.checkable' name="S/N" prop="S/N">
+    <ngx-datatable-column *ngIf='additionalSettings.checkable' name="S/N" prop="S/N">
 
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>#</span>
@@ -54,7 +54,7 @@
       <!--      This checks the table settings to know of the user needs the table row to be actionable-->
       <ngx-datatable-column *ngIf='column.name === "Actions"' name="Actions" prop="actions">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <app-dropdown *ngIf="!tableSettings.singleAction">
+          <app-dropdown *ngIf="!additionalSettings.singleAction">
             <ng-container header>
               <fa-icon [icon]="faEllipsis" class="cursor-pointer text-gray-300"></fa-icon>
             </ng-container>
@@ -62,7 +62,7 @@
             </ng-container>
           </app-dropdown>
 
-          <span *ngIf="tableSettings.singleAction">
+          <span *ngIf="additionalSettings.singleAction">
           <ng-container *ngTemplateOutlet="rowActions; context:{row: row.id} ">
           </ng-container>
             </span>
@@ -98,7 +98,7 @@
 
     </ng-container>
 
-    <ngx-datatable-footer *ngIf="tableSettings.showSummary">
+    <ngx-datatable-footer *ngIf="additionalSettings.showSummary">
 
 
       <ng-template
@@ -110,7 +110,7 @@
         ngx-datatable-footer-template
       >
         <div style="padding: 5px 10px">
-          <div><strong>Summary</strong>:   {{tableSettings.tableName}}</div>
+          <div><strong>Summary</strong>:   {{additionalSettings.tableName}}</div>
           <hr style="width:100%"/>
           <div>Total: {{ rowCount }} | Size: {{ pageSize }} | Page: {{ curPage }}</div>
         </div>

@@ -34,20 +34,21 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild('myTable') table: any;
   rows: any[]
 
+  additionalSettings: ITableConfig = {
+    actionable: true,
+    checkable: true,
+    downloadable: false,
+    singleAction: false,
+    showSummary: true,
+    tableName: ''
+  }
   page = new Page();
 
   @Input({required: true}) columns: columnProps[]
 
   @Input() pageSize: number;
   totalRecords: number;
-  @Input() tableSettings: ITableConfig = {
-    actionable: false,
-    checkable: false,
-    downloadable: false,
-    singleAction: false,
-    showSummary: true,
-    tableName: ''
-  }
+  @Input() tableSettings: ITableConfig
 
 
   allSelected: any[] = []
@@ -81,6 +82,9 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+
+
+    this.additionalSettings = {...this.additionalSettings, ...this.tableSettings,}
     this.createFilterForm()
     this.loadTableData()
     this.updatedColumn = this.updateColumnsWithActions()
@@ -88,7 +92,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
 
   updateColumnsWithActions() {
-    this.tableSettings.actionable ? this.columns.push({name: "Actions", prop: ""}) : this.columns
+    this.additionalSettings.actionable ? this.columns.push({name: "Actions", prop: ""}) : this.columns
     return this.columns
   }
 
