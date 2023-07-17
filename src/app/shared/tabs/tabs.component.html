@@ -4,7 +4,7 @@
     <li *ngFor="let tab of tabs; let i = index" class="mr-2">
       <a (click)="navigateTab(tab.step)"
          [ngClass]="tab.step ===selectedTab ? 'border-b-2 active dark:text-primary dark:border-primary': ''"
-         class="inline-flex p-4 border-b-2 border-transparent rounded-t-lg  group"
+         class="inline-flex p-4 border-b-2 cursor-pointer border-transparent rounded-t-lg  group"
       >
 
         {{tab.title}}

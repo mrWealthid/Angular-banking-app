@@ -146,15 +146,33 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   hidePaginator(rows: any[], pageSize: number, rowCount: number, currPage: number) {
     let status = false
-    if (!(rowCount / pageSize > 1)) {
+    let lastPage: number = this.getLastPageNumber(rowCount, pageSize)
+    if (!(rowCount / pageSize >= 1)) {
       status = true
     }
-    if ((rows?.length < pageSize) && (currPage === 1)) {
-      status = true
+
+    if (rows?.length < pageSize) {
+      status = currPage !== lastPage;
     }
+
     return status
   }
 
+  getLastPageNumber(rowCount: number, pageSize: number) {
+
+    //Get the last page!
+
+    //40 ===> 10 === 4
+    //41 ===> 10 ==
+
+    let lastPage: number = Math.floor(rowCount / pageSize)
+    let pageNumber = rowCount % pageSize
+
+    if (pageNumber) {
+      lastPage = lastPage + 1
+    }
+    return lastPage
+  }
 
   toggleRowSelection({target}: any) {
     const selectAllRows = document.querySelectorAll('.my-rows')
@@ -239,12 +257,13 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   handleFilter(value: any) {
     const data = this.removeEmptyKeys(value)
-    this.setPage({offset: 0, limit: 10, search: {...data}})
+    this.setPage({offset: 0, limit: Infinity, search: {...data}})
     this.closeModal()
   }
 
   handleResetFilter() {
     this.setPage({offset: 0, limit: 10})
+    this.form.reset()
     this.closeModal()
   }
 
@@ -257,7 +276,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   removeEmptyKeys(obj: {}) {
     const result: Record<string, any> = {};
     Object.entries(obj).forEach(([key, value]) => {
-      if (value !== '') {
+      if (value) {
         result[key] = value;
       }
     });
