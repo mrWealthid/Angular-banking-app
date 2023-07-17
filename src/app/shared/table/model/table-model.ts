@@ -40,3 +40,20 @@ export type columnProps = {
 //   searchType: 'Date',
 // }
 
+
+export type ITableConfig = {
+  actionable?: boolean,
+  checkable?: boolean,
+  showSummary?: boolean
+  downloadable?: boolean,
+  singleAction?: boolean
+
+} & (SummaryName | SummaryProps)
+
+type SummaryName = {
+  showSummary: true,
+  tableName: string
+}
+type SummaryProps = {
+  showSummary: false,
+}

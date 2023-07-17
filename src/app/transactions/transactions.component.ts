@@ -1,6 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {TransactionService} from "./transaction.service";
 import {faClipboard} from "@fortawesome/free-solid-svg-icons";
+import {globalizeDate} from "../shared/helpers/helperFunctions";
+import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
+import {select, Store} from "@ngrx/store";
+import {currentUserSelector} from "../core/store/Profile/selectors";
+import {Observable} from "rxjs";
+import {PaymentService} from "../payments/payment.service";
+import {ITableConfig} from "../shared/table/model/table-model";
 
 @Component({
   selector: 'app-transactions',
@@ -21,18 +28,26 @@ export class TransactionsComponent implements OnInit {
     {prop: 'createdAt', name: 'Time', pipe: "Date", searchType: 'Date'}
   ];
 
-  protected readonly TransactionService = TransactionService;
-
-
-  constructor(public service: TransactionService) {
+  service = inject(TransactionService)
+  paymentService = inject(PaymentService)
+  private store = inject(Store<AppStateInterface>)
+  currentUser$: Observable<IProfile | null>;
+  balance$: Observable<any>;
+  tableConfig: ITableConfig = {
+    showSummary: true,
+    tableName: "Transactions Table"
   }
+
 
   ngOnInit(): void {
 
-
+    this.currentUser$ = this.store.pipe(select(currentUserSelector))
+    this.balance$ = this.paymentService.getBalance()
   }
 
   handleAllSelection(rows: []) {
     console.log("I bubbled up", rows)
   }
+
+  protected readonly globalizeDate = globalizeDate();
 }
