@@ -1,0 +1,26 @@
+<div class="card bg-primary  flex gap-3">
+  <section class="flex   flex-col mt-4 gap-8 ">
+    <section
+      class="  flex flex-col"
+    >
+      <p class="italic text-xs "> Balance</p>
+
+    </section>
+    <button (click)="toggleValue()" class="p-2 w-24 rounded-lg text-xs text-black bg-gray-100">
+      {{showValue ? "Hide Balance" : "Show Balance"}}
+    </button>
+  </section>
+
+  <section
+    class=" rounded-lg bg-white skin  flex-grow w-1/2 justify-center text-black flex gap-4"
+  >
+
+    <div class="flex  items-center justify-around">
+
+      <p *ngIf="showValue" class="text-md font-bold">{{value |currency:'USD'}}</p>
+      <p *ngIf="!showValue" class="text-2xl font-bold" appMask>{{value |currency:'USD'}}</p>
+
+
+    </div>
+  </section>
+</div>
