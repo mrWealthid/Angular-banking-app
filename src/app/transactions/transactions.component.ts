@@ -15,7 +15,7 @@ export class TransactionsComponent implements OnInit {
   tableColumns = [
     // {prop: 'id', name: 'Id'},
     {prop: 'initiatorName', name: 'Payer', searchType: 'text'},
-    {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true},
+    {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true, searchType: 'number'},
     {prop: 'transactionType', name: 'Transaction', custom: true, searchType: 'dropdown'},
     {prop: 'initiatorAccountNumber', name: 'Payer Account', custom: true, searchType: 'number'},
     {prop: 'createdAt', name: 'Time', pipe: "Date", searchType: 'Date'}

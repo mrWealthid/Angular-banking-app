@@ -91,6 +91,9 @@ input:-webkit-autofill {
   @apply w-full
 }
 
+.table-header-btn {
+  @apply text-primary text-sm flex gap-2 items-center border px-4   py-2 bg-white hover:bg-gray-100 focus:outline-none rounded-full
+}
 
 /*Table Styling*/
 

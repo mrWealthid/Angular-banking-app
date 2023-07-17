@@ -3,11 +3,10 @@
   <app-table-header (reload)="loadTableData()" [tableSettings]="settings">
     <ng-container [ngTemplateOutlet]="headerActions">
     </ng-container>
-
     <button
       (click)="toggleModal($event)"
-
-      class=" text-primary border px-4 text-sm  flex items-center gap-2  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
+      [ngClass]="filterActive? 'ring-1 ring-offset-2 ring-green-500' : ''"
+      class="table-header-btn">
       <i class="fa-solid text-gray-600 fa-filter"></i>
       Filter
     </button>
@@ -116,7 +115,6 @@
 
         <datatable-pager (change)="table.onFooterPage($event)"
                          [count]="rowCount"
-                         [hidden]="hidePaginator(rows,pageSize,rowCount,curPage)"
                          [page]="curPage"
                          [pagerLeftArrowIcon]="'datatable-icon-left'"
                          [pagerNextIcon]="'datatable-icon-skip'"

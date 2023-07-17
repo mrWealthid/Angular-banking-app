@@ -1,50 +1,14 @@
-<div class="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-  <div class="sm:flex justify-end gap-4 items-center">
-
-    <!--    <div class="flex items-center">-->
-    <!--      <a href="javascript:void(0)">-->
-    <!--        <div class="py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full">-->
-    <!--          <p>All</p>-->
-    <!--        </div>-->
-    <!--      </a>-->
-    <!--      <a href="javascript:void(0)">-->
-    <!--        <div class="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full ml-4 sm:ml-8">-->
-    <!--          <p>Done</p>-->
-    <!--        </div>-->
-    <!--      </a>-->
-    <!--      <a href="javascript:void(0)">-->
-    <!--        <div class="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full ml-4 sm:ml-8">-->
-    <!--          <p>Pending</p>-->
-    <!--        </div>-->
-    <!--      </a>-->
-    <!--    </div>-->
-
-
+<div class="bg-white rounded-t-xl py-4 md:py-4 px-4 md:px-8 xl:px-10">
+  <div class="sm:flex justify-end gap-3 items-center">
     <ng-content></ng-content>
-    <!--    <ng-container [ngTemplateOutlet]="headerActions">-->
-    <!--    </ng-container>-->
-    <!--    <button-->
-    <!--      class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"-->
-    <!--      onclick="popuphandler(true)">-->
-    <!--      <p class="text-sm font-medium leading-none text-white">Filter</p>-->
-    <!--    </button>-->
-    <!--    <button-->
-    <!--      class="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded"-->
-    <!--      onclick="popuphandler(true)">-->
-    <!--      <p class="text-sm font-medium leading-none text-white">Make Transfer</p>-->
-    <!--    </button>-->
-
-
     <button *ngIf="!tableSettings?.isDownloadable"
-            class=" text-primary text-sm flex gap-2 items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
-
+            class=" table-header-btn">
       <i class="fa-solid text-green-600 fa-download"></i>
       Download
     </button>
 
-
     <button (click)="handleReload()"
-            class=" text-primary flex gap-2 text-sm items-center border px-4  py-2 bg-white hover:bg-gray-100 focus:outline-none rounded">
+            class="table-header-btn">
       <i class="fa-solid text-green-600 fa-rotate-right"></i>
       Reload
     </button>

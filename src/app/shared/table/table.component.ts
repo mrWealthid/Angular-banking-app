@@ -71,6 +71,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   formBuilder = inject(UntypedFormBuilder)
   modalService = inject(ModalService)
   private dialog = inject(MatDialog)
+  filterActive: Boolean = false;
 
   constructor() {
     this.page.pageNumber = 1;
@@ -143,36 +144,36 @@ export class TableComponent implements OnInit, AfterViewInit {
     if (headerCheckbox?.checked) headerCheckbox?.click()
   }
 
-
-  hidePaginator(rows: any[], pageSize: number, rowCount: number, currPage: number) {
-    let status = false
-    let lastPage: number = this.getLastPageNumber(rowCount, pageSize)
-    if (!(rowCount / pageSize >= 1)) {
-      status = true
-    }
-
-    if (rows?.length < pageSize) {
-      status = currPage !== lastPage;
-    }
-
-    return status
-  }
-
-  getLastPageNumber(rowCount: number, pageSize: number) {
-
-    //Get the last page!
-
-    //40 ===> 10 === 4
-    //41 ===> 10 ==
-
-    let lastPage: number = Math.floor(rowCount / pageSize)
-    let pageNumber = rowCount % pageSize
-
-    if (pageNumber) {
-      lastPage = lastPage + 1
-    }
-    return lastPage
-  }
+  //
+  // hidePaginator(rows: any[], pageSize: number, rowCount: number, currPage: number) {
+  //   let status = false
+  //   let lastPage: number = this.getLastPageNumber(rowCount, pageSize)
+  //   if (!(rowCount / pageSize >= 1)) {
+  //     status = true
+  //   }
+  //
+  //   if (rows?.length < pageSize) {
+  //     status = currPage !== lastPage;
+  //   }
+  //
+  //   return status
+  // }
+  //
+  // getLastPageNumber(rowCount: number, pageSize: number) {
+  //
+  //   //Get the last page!
+  //
+  //   //40 ===> 10 === 4
+  //   //41 ===> 10 ==
+  //
+  //   let lastPage: number = Math.floor(rowCount / pageSize)
+  //   let pageNumber = rowCount % pageSize
+  //
+  //   if (pageNumber) {
+  //     lastPage = lastPage + 1
+  //   }
+  //   return lastPage
+  // }
 
   toggleRowSelection({target}: any) {
     const selectAllRows = document.querySelectorAll('.my-rows')
@@ -257,6 +258,10 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   handleFilter(value: any) {
     const data = this.removeEmptyKeys(value)
+
+    //check if the filter object has values to set the active filter flag
+    this.filterActive = Object.values(data).length > 0
+
     this.setPage({offset: 0, limit: Infinity, search: {...data}})
     this.closeModal()
   }
@@ -264,12 +269,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   handleResetFilter() {
     this.setPage({offset: 0, limit: 10})
     this.form.reset()
+
+    //unset filterActive flag when user resets search form
+    this.filterActive = false
     this.closeModal()
+
   }
 
 
   loadTableData() {
     this.setPage({offset: 0, limit: 10})
+    this.filterActive = false
   }
 
 
