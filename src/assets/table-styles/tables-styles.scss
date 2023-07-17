@@ -157,7 +157,7 @@ $datatable-summary-row-background-hover: #ddd !default;
 	 */
   .empty-row {
     height: 50px;
-    text-align: left;
+    text-align: center;
     padding: 0.5rem 1.2rem;
     vertical-align: top;
     border-top: 0;
@@ -204,8 +204,8 @@ $datatable-summary-row-background-hover: #ddd !default;
       //color: $datatable-header-cell-color;
       //vertical-align: bottom;
       font-size: 12px;
-      font-weight: 500;
 
+      margin-left: 30px;
 
       .datatable-header-cell-wrapper {
         position: relative;
@@ -273,7 +273,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         border-top: 0;
         color: $datatable-body-cell-color;
         transition: width 0.3s ease;
-
+        margin-left: 30px;
         font-size: 13px;
         font-weight: 400;
 
