@@ -26,8 +26,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   @ContentChild('headerActions') headerActions!: TemplateRef<any>;
   @ContentChild('rowActions') rowActions!: TemplateRef<any>;
   @ContentChild('customRows') customRows!: TemplateRef<any>;
-  // @ContentChild('filterRef') filterRef: ComponentRef<any>;
-  // @ContentChild('ngx-datatable-cell-template') testRows!: TemplateRef<any>
+
 
   dialogRef: MatDialogRef<any>;
   @ViewChild('dialogTemplate') dialogTemplate: TemplateRef<any>;
