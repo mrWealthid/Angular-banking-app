@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
 import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
 
 
@@ -15,17 +15,20 @@ import {FormControl, NG_VALUE_ACCESSOR, Validators} from "@angular/forms";
   ]
 })
 export class SelectInputComponent {
-  @Input() items: any[];
+  @Input() items: selectOptions[];
   @Input() label: string
   @Input() multiple: boolean;
   @Input() bindLabel: string;
   @Input() bindValue: string;
   @Input() placeholder: string;
   @Input({required: true}) formControl: FormControl
+  @Output()
+  changeEvent = new EventEmitter()
 
 
   value: any;
-  onChange: any = () => {
+  onChange: any = (val: any) => {
+
   };
   onTouched: any = () => {
   };
@@ -39,6 +42,7 @@ export class SelectInputComponent {
   }
 
   registerOnChange(fn: any): void {
+
     this.onChange = fn;
   }
 
@@ -47,4 +51,12 @@ export class SelectInputComponent {
   }
 
 
+  handleChange($event: any) {
+    this.changeEvent.emit($event)
+  }
+}
+
+export type selectOptions = {
+  name?: string,
+  id?: number | string
 }

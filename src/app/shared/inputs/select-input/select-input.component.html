@@ -5,6 +5,7 @@
   >
 
     <ng-select (ngModelChange)="onChange($event)"
+               (change)="handleChange($event)"
                [bindLabel]="bindLabel"
                [bindValue]="bindValue"
                [disabled]="formControl.disabled"
