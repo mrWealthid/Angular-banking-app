@@ -4,7 +4,6 @@ import {select, Store} from "@ngrx/store";
 import {token} from "./core/store/Auth/selectors";
 import * as AuthActions from "../app/core/store/Auth/actions";
 import {Router} from "@angular/router";
-import {environment} from "../environments/environment";
 
 
 @Component({
@@ -43,7 +42,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(environment.production)
-    console.log(environment.API_URL)
+
   }
 }
