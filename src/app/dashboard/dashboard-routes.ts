@@ -5,6 +5,8 @@ import {ProfileComponent} from "../profile/profile.component";
 import {TransactionsComponent} from "../transactions/transactions.component";
 import {PaymentsComponent} from "../payments/payments.component";
 import {authGuard} from "../shared/services/guards/auth.guard";
+import {UsersComponent} from "../users/users.component";
+import {LoansComponent} from "../loans/loans.component";
 
 export const routes: Routes = [
 
@@ -21,10 +23,16 @@ export const routes: Routes = [
       }, {
         path: 'transactions',
         component: TransactionsComponent
+      }, {
+        path: 'users',
+        component: UsersComponent
       },
       {
         path: 'payments',
         component: PaymentsComponent
+      }, {
+        path: 'loans',
+        component: LoansComponent
       }
     ]
   },

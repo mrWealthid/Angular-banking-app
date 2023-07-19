@@ -9,6 +9,8 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {routes} from "./dashboard-routes";
+import {UsersComponent} from "../users/users.component";
+import {LoansComponent} from "../loans/loans.component";
 
 
 @NgModule({
@@ -17,9 +19,10 @@ import {routes} from "./dashboard-routes";
 
     ProfileComponent,
     DashboardComponent,
-
+    UsersComponent,
     OverviewComponent,
     PaymentsComponent,
+    LoansComponent
   ],
   imports: [
     SharedModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes),
