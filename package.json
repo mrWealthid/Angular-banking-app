@@ -6,7 +6,9 @@
     "start": "ng serve --proxy-config ./proxy.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:prod": "http-server dist/angular-fintech",
+    "build-and-start:prod": "run-s build start:prod"
   },
   "private": true,
   "dependencies": {
