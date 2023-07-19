@@ -1,7 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {IDashboardData, IDashboardStats, ISummary} from "./dashboard.model";
+import {IDashboardData, IDashboardStats, ISummary} from "../dashboard.model";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class DashboardService {
 
 
   getMonthlyStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
-    return this.Http.get(`api/v1/transactions/monthly-stats/${type}/${year}`).pipe(map(({data}: any) => {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/monthly-stats/${type}/${year}`).pipe(map(({data}: any) => {
       return ([
         {
           name: type,
@@ -23,7 +24,7 @@ export class DashboardService {
   }
 
   getStatsData(type: string = 'month', time: number = new Date().getMonth()): Observable<ISummary> {
-    return this.Http.get(`api/v1/transactions/stats/${type}/${time}`).pipe(map(({data}: any) => {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/stats/${type}/${time}`).pipe(map(({data}: any) => {
 
       if (data.stats.length === 0) {
         return {

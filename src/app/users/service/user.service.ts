@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {IList} from "../../shared/table/model/table-model";
 import {createParams} from "../../shared/helpers/helperFunctions";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
 
     const query = createParams(params)
 
-    return this.Http.get<IList>(`/api/v1/users`, {params: query}).pipe(map((data: any) => {
+    return this.Http.get<IList>(`${environment.API_URL}/api/v1/users`, {params: query}).pipe(map((data: any) => {
       return {
         status: data.status,
         totalRecords: data.totalRecords,

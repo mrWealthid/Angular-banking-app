@@ -6,7 +6,7 @@ import {CurrencyPipe} from "@angular/common";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../core/store/Profile/selectors";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
-import {PaymentService} from "./payment.service";
+import {PaymentService} from "./service/payment.service";
 import {IPayment} from "./model/payment-model";
 import {ITabs} from "../shared/tabs/tabs.component";
 import {selectOptions} from "../shared/inputs/select-input/select-input.component";

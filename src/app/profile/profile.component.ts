@@ -8,7 +8,7 @@ import {currentUserSelector, isLoading} from "../core/store/Profile/selectors";
 import {Observable} from "rxjs";
 import {AuthService} from "../auth.service";
 import * as profileActions from "../core/store/Profile/actions"
-import {ProfileService} from "./profile.service";
+import {ProfileService} from "./service/profile.service";
 import * as dayjs from "dayjs";
 import {selectOptions} from "../shared/inputs/select-input/select-input.component";
 

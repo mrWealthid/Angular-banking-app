@@ -1,11 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {TransactionService} from "./transaction.service";
+import {TransactionService} from "./service/transaction.service";
 import {globalizeDate} from "../shared/helpers/helperFunctions";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../core/store/Profile/selectors";
 import {Observable} from "rxjs";
-import {PaymentService} from "../payments/payment.service";
+import {PaymentService} from "../payments/service/payment.service";
 import {ITableConfig} from "../shared/table/model/table-model";
 
 @Component({

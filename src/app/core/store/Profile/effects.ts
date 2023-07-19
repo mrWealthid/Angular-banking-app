@@ -5,7 +5,7 @@ import {map, mergeMap, of, switchMap, tap} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {IProfile} from "../../../shared/interface/userAuth";
 import {Router} from "@angular/router";
-import {ProfileService} from "../../../profile/profile.service";
+import {ProfileService} from "../../../profile/service/profile.service";
 import {NotificationService} from "../../../shared/services/notification.service";
 import {AuthService} from "../../../auth.service";
 

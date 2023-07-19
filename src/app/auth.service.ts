@@ -27,7 +27,7 @@ export class AuthService {
 
 
   register(credentials: IRegister): Observable<IUser> {
-    return this.Http.post<IUser>('/api/v1/users/signup', credentials, {
+    return this.Http.post<IUser>(`${environment.API_URL}/api/v1/users/signup`, credentials, {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
   }

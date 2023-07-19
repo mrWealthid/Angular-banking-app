@@ -1,7 +1,8 @@
 import {inject, Injectable} from '@angular/core';
 import {BehaviorSubject, map, Observable} from "rxjs";
-import {IProfile} from "../shared/interface/userAuth";
+import {IProfile} from "../../shared/interface/userAuth";
 import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ProfileService {
 
 
   fetchProfile(): Observable<IProfile> {
-    return this.Http.get<any>('/api/v1/users/me').pipe(map((result) => {
+    return this.Http.get<any>(`${environment.API_URL}/api/v1/users/me`).pipe(map((result) => {
         return {
           ...result.data
         }
@@ -27,7 +28,7 @@ export class ProfileService {
 
 
   updateUser(payload: FormData): Observable<IProfile> {
-    return this.Http.patch<any>('/api/v1/users/updateMe', payload).pipe(map((result) => {
+    return this.Http.patch<any>(`${environment.API_URL}/api/v1/users/updateMe`, payload).pipe(map((result) => {
         return {
           ...result.data.user
         }
@@ -36,7 +37,7 @@ export class ProfileService {
   }
 
   updatePassword(payload: Partial<IProfile>): Observable<IProfile> {
-    return this.Http.patch<any>('/api/v1/users/updatePassword', payload)
+    return this.Http.patch<any>(`${environment.API_URL}/api/v1/users/updatePassword`, payload)
   }
 
 

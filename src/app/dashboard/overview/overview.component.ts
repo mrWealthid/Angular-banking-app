@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {DashboardService} from "../dashboard.service";
+import {DashboardService} from "../service/dashboard.service";
 import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
 import {forkJoin, Observable} from "rxjs";
-import {PaymentService} from "../../payments/payment.service";
+import {PaymentService} from "../../payments/service/payment.service";
 import {globalizeDate} from "../../shared/helpers/helperFunctions";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../../core/store/Profile/selectors";
