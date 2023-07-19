@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {HttpClient, HttpContext} from "@angular/common/http";
 import {BEARER_TOKEN} from "./headers.interceptor";
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AuthService {
 
 
   login(credentials: ILogin): Observable<IUser> {
-    return this.Http.post<IUser>('www.google/api/v1/users/login', credentials, {
+    return this.Http.post<IUser>(`${environment.API_URL}/api/v1/users/login`, credentials, {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
 
