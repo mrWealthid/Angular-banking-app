@@ -17,7 +17,7 @@
         <p class='text-sm text-gray-800 '>As at {{globalizeDate}}</p>
       </div>
     </div>
-    <app-summary-cards class="w-auto xs:w-1/2 md:w-1/3  xl:w-1/4" [value]='(balance$|async)?.total'></app-summary-cards>
+    <app-summary-cards class="w-auto xs:w-1/2 md:w-1/3" [value]='(balance$|async)?.total'></app-summary-cards>
 
   </section>
 
@@ -51,9 +51,9 @@
     <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
     <ng-container>
     <span *ngIf="row ==='Credit'"
-          class=" py-1 px-4 bg-green-100 inline-block capitalize rounded">{{row}}</span>
+          class=" py-1 px-4 bg-green-100 text-black  inline-block capitalize rounded-full">{{row}}</span>
       <span *ngIf="row ==='Debit'"
-            class=" py-1 px-4 bg-red-100 inline-block capitalize rounded">{{row}}</span>
+            class=" py-1 px-4 bg-red-200 inline-block capitalize rounded-full">{{row}}</span>
       <span *ngIf="colProp ==='initiatorAccountNumber'"
             class=" flex gap-2">{{row}}
         <app-clipboard [buttonText]="'Copy Text'" [style]="'text-green-400'" [textToCopy]="row"></app-clipboard>

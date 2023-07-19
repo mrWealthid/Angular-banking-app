@@ -26,6 +26,8 @@ import {SharedModule} from "./shared/shared.module";
     HomeComponent,
     HeaderComponent,
     AdminComponent,
+
+
   ],
   imports: [
     ReactiveFormsModule,

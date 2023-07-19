@@ -9,6 +9,7 @@ import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {PaymentService} from "./payment.service";
 import {IPayment} from "./model/payment-model";
 import {ITabs} from "../shared/tabs/tabs.component";
+import {selectOptions} from "../shared/inputs/select-input/select-input.component";
 
 @Component({
   selector: 'app-payments',
@@ -21,10 +22,15 @@ export class PaymentsComponent implements OnInit {
   accountNumber: FormControl;
   amount: FormControl;
   name: FormControl;
+  duration: FormControl;
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
 
+  options: selectOptions[] = [
+    {id: 6, name: '6 Months'},
+    {id: 12, name: 'One Year'},
+  ];
 
   tabsForm: ITabs[] = [{
     title: "Make Payment",
@@ -35,8 +41,6 @@ export class PaymentsComponent implements OnInit {
     title: "Loan Request",
     external: false,
     step: 2,
-
-
   }]
 
 
@@ -49,6 +53,7 @@ export class PaymentsComponent implements OnInit {
   private store = inject(Store<AppStateInterface>)
 
   constructor() {
+    console.log("changes")
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
       if (userDetails) this.userDetails = userDetails
     })
@@ -59,10 +64,17 @@ export class PaymentsComponent implements OnInit {
     type.next(tab)
   }
 
+  // ngOnChanges(changes: SimpleChanges) {
+  //
+  //
+  //   this.amount.valueChanges.subscribe(x => console.log(x))
+  // }
 
   ngOnInit() {
     this.createPaymentForm()
     this.createLoanForm()
+    // this.duration.valueChanges.subscribe(x => console.log(x))
+
     this.formatControlValue(this.amount)
     this.formatControlValue(this.loanAmount)
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
@@ -97,8 +109,10 @@ export class PaymentsComponent implements OnInit {
 
   createLoanForm() {
     this.loanAmount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.duration = new FormControl('', [Validators.required]);
     this.loanForm = new FormGroup({
-      amount: this.loanAmount
+      amount: this.loanAmount,
+      duration: this.duration
     });
   }
 
@@ -171,5 +185,9 @@ export class PaymentsComponent implements OnInit {
 
   handleLoanRequest() {
 
+  }
+
+  handleChange($event: any) {
+    console.log($event)
   }
 }

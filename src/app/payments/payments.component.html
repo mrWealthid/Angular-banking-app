@@ -216,6 +216,10 @@
 
 
       </form>
+
+      <!--      Loan Request Form-->
+
+
       <form (ngSubmit)="handleLoanRequest()" *ngIf="(formTabIndex|async) ===2" [formGroup]="loanForm"
             class="w-full flex cla flex-col mt-3 gap-2">
 
@@ -245,6 +249,17 @@
         </section>
 
 
+        <select-input
+          [bindLabel]="'name'"
+          [bindValue]="'id'"
+          [formControl]="duration"
+          [items]="options"
+          [label]="'Duration'"
+          [multiple]="true"
+          [placeholder]="'Select options'"
+          (changeEvent)="handleChange($event)"
+          class="ring-0">
+        </select-input>
         <app-button [btnText]="'Send Request'" [disabled]="loanAmount.invalid" [styles]="'btn-primary'"></app-button>
 
 

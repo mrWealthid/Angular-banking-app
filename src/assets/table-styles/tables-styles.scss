@@ -205,7 +205,8 @@ $datatable-summary-row-background-hover: #ddd !default;
       //vertical-align: bottom;
       font-size: 12px;
 
-      margin-left: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
 
       .datatable-header-cell-wrapper {
         position: relative;
@@ -273,7 +274,8 @@ $datatable-summary-row-background-hover: #ddd !default;
         border-top: 0;
         color: $datatable-body-cell-color;
         transition: width 0.3s ease;
-        margin-left: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
         font-size: 13px;
         font-weight: 400;
 

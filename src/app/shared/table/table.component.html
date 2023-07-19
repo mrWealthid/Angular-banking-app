@@ -1,6 +1,6 @@
 <section class="w-full mb-6">
 
-  <ng-container *ngIf="rows?.length > 0">
+  <ng-container>
     <app-table-header (reload)="loadTableData()" [tableSettings]="additionalSettings">
       <ng-container [ngTemplateOutlet]="headerActions">
       </ng-container>
@@ -81,10 +81,10 @@
         <ng-template let-row="row" ngx-datatable-cell-template>
 
 
-          <span *ngIf="column.custom">
-          <ng-container *ngTemplateOutlet="customRows; context:{rowVal: row[column.prop], colProp: column['prop']} ">
+          <ng-container *ngIf="column.custom">
+            <ng-container *ngTemplateOutlet="customRows; context:{rowVal: row[column.prop], colProp: column['prop']} ">
+            </ng-container>
           </ng-container>
-            </span>
 
           <span *ngIf="column.pipe==='Date'">{{row[column.prop] | date:'short' }}</span>
           <span *ngIf="column.pipe==='Currency'">{{row[column.prop] | currency:'USD' }}</span>

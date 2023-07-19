@@ -10,6 +10,7 @@ import {AuthService} from "../auth.service";
 import * as profileActions from "../core/store/Profile/actions"
 import {ProfileService} from "./profile.service";
 import * as dayjs from "dayjs";
+import {selectOptions} from "../shared/inputs/select-input/select-input.component";
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +31,7 @@ export class ProfileComponent implements OnInit {
   confirmPassword: FormControl
   passwordForm: FormGroup
   previewUrl: string | ArrayBuffer | null;
-  options = [
+  options: selectOptions[] = [
     {id: "user", name: 'User'},
     {id: "admin", name: 'Admin'},
   ];

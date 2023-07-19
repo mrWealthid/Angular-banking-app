@@ -1,6 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {TransactionService} from "./transaction.service";
-import {faClipboard} from "@fortawesome/free-solid-svg-icons";
 import {globalizeDate} from "../shared/helpers/helperFunctions";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
@@ -17,10 +16,7 @@ import {ITableConfig} from "../shared/table/model/table-model";
 })
 export class TransactionsComponent implements OnInit {
 
-  // faCopy = faCopy;
-  faClipboard = faClipboard;
   tableColumns = [
-    // {prop: 'id', name: 'Id'},
     {prop: 'initiatorName', name: 'Payer', searchType: 'text'},
     {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true, searchType: 'number'},
     {prop: 'transactionType', name: 'Transaction', custom: true, searchType: 'dropdown'},
