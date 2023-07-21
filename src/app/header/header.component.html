@@ -1,15 +1,15 @@
 <header class="flex skin z-10  fixed w-full items-center  justify-between container-text">
   <section class="section-left"></section>
-  <section class="flex items-center gap-5">
+  <section class="flex text-xs lg:text-base items-center gap-5">
     <a [routerLinkActiveOptions]="{exact:true}" [routerLink]='[""]'
-       routerLinkActive="text-gray-800 border rounded-full px-3 py-2 ">Home</a>
+       routerLinkActive="text-gray-800 border rounded-full px-3 lg:px-4  py-1 ">Home</a>
     <a *ngIf="(isAuthenticated|async)" [routerLink]='["dashboard"] '
-       routerLinkActive="text-gray-800  rounded-full border px-3 py-2 ">Dashboard</a>
+       routerLinkActive="text-gray-800  rounded-full border px-3 py-1 ">Dashboard</a>
 
     <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/login"]'
-       routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Login</a>
+       routerLinkActive=" border px-3 py-1 lg:px-4  rounded-full text-gray-800">Login</a>
     <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/signup"]'
-       routerLinkActive=" border px-3 py-2  rounded-full text-gray-800">Signup</a>
+       routerLinkActive=" border px-3 py-1  rounded-full text-gray-800">Signup</a>
     <a (click)="logout()" *ngIf="(isAuthenticated|async)" class="cursor-pointer"
        routerLinkActive="text-gray-800 rounded-full">Logout</a>
 
@@ -21,10 +21,10 @@
 
     <div *ngIf="(isAuthenticated|async)" class="relative">
       <img alt="profile image"
-           class="rounded-full border h-10 w-10 object-contain flex items-center justify-center border-green-600"
+           class="rounded-full border h-6 w-6 lg:h-10 lg:w-10 object-contain flex items-center justify-center border-green-600"
            src="{{(currentUser|async)?.imgUrl}}">
       <span
-        class="top-0 left-7 absolute  w-3.5 h-3.5 bg-green-500 border-2 border-white dark:border-none rounded-full"></span>
+        class="top-0 left-4 lg:left-7 absolute  w-2 h-2 lg:w-3.5 lg:h-3.5 bg-green-500 border-2 border-white dark:border-none rounded-full"></span>
     </div>
 
   </section>
