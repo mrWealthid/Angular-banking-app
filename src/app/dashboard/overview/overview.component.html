@@ -1,234 +1,233 @@
-<section class="flex flex-col gap-10">
-  <div *ngIf="(currentUser$|async) as currentUser"
-       class=' my-2  animate-slideOut'
+<section class="container-text">
+  <section class="flex flex-col gap-10">
+    <div *ngIf="(currentUser$|async) as currentUser"
+         class='  animate-slideOut'
 
-  >
-    <section class="flex justify-between">
-      <div><p class='text-base flex gap-3 text-gray-800  md:text-xl'>
-        Welcome Back,
-        <span class='text-gray-800'>{{currentUser.name}} !</span>
-      </p>
-
-        <p class='text-sm flex gap-4 text-gray-800  md:text-base'>
-          Account Number : {{currentUser.accountNumber}}
-          <app-clipboard [style]="'text-green-400'" [textToCopy]=currentUser.accountNumber></app-clipboard>
+    >
+      <section class="flex justify-between">
+        <div><p class='text-base flex gap-3 text-gray-800  md:text-xl'>
+          Welcome Back,
+          <span class='text-gray-800'>{{currentUser.name}} !</span>
         </p>
 
-      </div>
+          <p class='text-sm flex gap-4 text-gray-800  md:text-base'>
+            Account Number : {{currentUser.accountNumber}}
+            <app-clipboard [style]="'text-green-400'" [textToCopy]=currentUser.accountNumber></app-clipboard>
+          </p>
 
+        </div>
+
+
+      </section>
+
+    </div>
+
+    <section class=" grid lg:grid-cols-3 animate-slideOut  sm:grid-cols-2 grid-cols-1  gap-5">
+      <div class="card bg-primary flex-1 flex gap-3">
+        <section class="flex  flex-col mt-4 gap-8 ">
+          <section
+            class="  flex flex-col"
+          >
+            <p class="italic text-xs "> Today</p>
+            <p class="text"> {{summary.profit| currency:'USD'}}</p>
+          </section>
+          <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
+            View details
+          </button>
+        </section>
+
+        <section
+          class="  flex-1 rounded-lg bg-white skin   w-48 justify-center text-black flex gap-4"
+        >
+          <div class="flex flex-col text-xs text-center justify-around">
+            <!--      <p>{{statusOne}}</p>-->
+            <p>Credit</p>
+
+            <p class="font-bold">{{summary.totalCredit | currency:'USD'}}</p>
+          </div>
+
+          <div class="flex text-xs flex-col justify-around">
+            <!--      <p>{{statusTwo}}</p>-->
+            <p>Debit</p>
+
+            <p class="font-bold">{{summary.totalDebit|currency:'USD'}}</p>
+          </div>
+        </section>
+      </div>
+      <div class="card glass flex-1 flex gap-3">
+        <section class="flex  flex-col mt-4 gap-8 ">
+          <section
+            class="text-black  flex flex-col"
+          >
+            <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
+            <p class="italic text-xs "> July</p>
+            <p class="text"> {{summary.profit| currency:'USD'}}</p>
+          </section>
+          <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
+
+            View details
+          </button>
+        </section>
+
+        <section
+          class="  flex-1 rounded-lg bg-blue-100 w-48 justify-center text-black flex gap-4"
+        >
+          <div class="flex flex-col text-xs text-center justify-around">
+            <!--      <p>{{statusOne}}</p>-->
+            <p>Credit</p>
+
+            <p class="font-bold ">{{summary.totalCredit|currency:'USD'}}</p>
+          </div>
+
+          <div class="flex text-xs flex-col justify-around">
+            <!--      <p>{{statusTwo}}</p>-->
+            <p>Debit</p>
+
+            <p class="font-bold ">{{summary.totalDebit|currency:'USD'}}</p>
+          </div>
+        </section>
+      </div>
+      <div class="card glass flex-1 flex gap-3">
+        <section class="flex  flex-col mt-4 gap-8 ">
+          <section
+            class=" text-black  flex flex-col"
+          >
+            <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
+            <p class="italic text-xs "> 2023</p>
+            <p class=""> {{summary.profit| currency:'USD'}}</p>
+          </section>
+          <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
+
+            View details
+          </button>
+        </section>
+
+        <section
+          class="  flex-1 rounded-lg bg-[#f48220] w-48 justify-center text-black flex gap-4"
+        >
+          <div class="flex flex-col text-xs text-center justify-around">
+            <!--      <p>{{statusOne}}</p>-->
+            <p>Credit</p>
+
+            <p class="font-bold text">{{summary.totalCredit|currency:'USD'}}</p>
+          </div>
+
+          <div class="flex text-xs flex-col justify-around">
+            <!--      <p>{{statusTwo}}</p>-->
+            <p>Debit</p>
+
+            <p class="font-bold text">{{summary.totalDebit|currency:'USD'}}</p>
+          </div>
+        </section>
+      </div>
 
     </section>
 
-  </div>
 
-  <section class=" grid lg:grid-cols-3 animate-slideOut  sm:grid-cols-2 grid-cols-1  gap-5">
-    <div class="card bg-primary flex-1 flex gap-3">
-      <section class="flex  flex-col mt-4 gap-8 ">
-        <section
-          class="  flex flex-col"
-        >
-          <p class="italic text-xs "> Today</p>
-          <p class="text"> {{summary.profit| currency:'USD'}}</p>
+    <section class="flex  md:flex-row flex-col gap-5">
+
+      <section class="w-full md:w-4/6 py-5 px-3 rounded-lg  md:h-auto skin ">
+        <section class="flex justify-between p-2 items-center">
+          <p>Transactions Statistics</p>
+
+          <div>
+            <select class="bg-gray-100 border-none text-xs px-5 rounded py-2">
+              <option selected>This Year</option>
+            </select>
+          </div>
         </section>
-        <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
-          View details
-        </button>
+
+        <hr/>
+
+        <ng-container>
+          <app-charts [series]=series [type]="'area'" [xTitle]="'Months'" [yTitle]="'Amount'"></app-charts>
+        </ng-container>
+
+
+        <!--      <p *ngIf="!(summary.profit > 0) && summary.profit !==0" class="font-bold text-xs text-center"><i-->
+        <!--        class="fa-solid fa-circle-arrow-down"-->
+        <!--        style="color: #ee1111;"></i>-->
+        <!--        <span-->
+        <!--          class="text-red-600"> {{Math.abs(summary.profit) |currency:'USD'}}</span></p>-->
+        <!--      <p *ngIf="summary.profit > 0" class="font-bold text-xs text-center"><i-->
+        <!--        class="fa-solid fa-circle-arrow-down fa-rotate-180" style="color: #41ee11;"></i> <span-->
+        <!--        class="text-green-700">{{summary.profit |currency:'USD'}}</span>-->
+        <!--      </p>-->
+
+        <p *ngIf="(balance|async) as balance" class="font-bold text-xs text-center">Total:
+          <span
+          >{{balance.total |currency:'USD'}}</span>
+        </p>
+
       </section>
 
-      <section
-        class="  flex-1 rounded-lg bg-white skin   w-48 justify-center text-black flex gap-4"
-      >
-        <div class="flex flex-col text-xs text-center justify-around">
-          <!--      <p>{{statusOne}}</p>-->
-          <p>Credit</p>
+      <section class="bg-white w-full  md:w-2/6 flex flex-col gap-8  rounded-lg p-4">
+        <div class="flex justify-between">
+          <p>Summary</p>
+          <section class="flex flex-col gap-5 justify-end">
+            <select class="bg-gray-100 border-none rounded text-xs py-2 px-5">
+              <option>Transactions</option>
+            </select>
 
-          <p class="font-bold">{{summary.totalCredit | currency:'USD'}}</p>
+            <select (change)="handleChange($event)"
+                    class="bg-yellow-50 text-xs border-none  py-2 px-5 ml-4 rounded p-2">
+              <option selected value="{{month}}"> This Month</option>
+              <option value="{{year}}">This Year</option>
+            </select>
+          </section>
         </div>
 
-        <div class="flex text-xs flex-col justify-around">
-          <!--      <p>{{statusTwo}}</p>-->
-          <p>Debit</p>
+        <div class="w-[150px] h-[150px] mx-auto">
 
-          <p class="font-bold">{{summary.totalDebit|currency:'USD'}}</p>
+          <!--      <CircularProgressbarWithChildren-->
+          <!--        value={66}-->
+          <!--        strokeWidth={10}-->
+          <!--        styles={buildStyles({-->
+          <!--      // Rotation of path and trail, in number of turns (0-1)-->
+          <!--      rotation: 1,-->
+
+          <!--      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'-->
+          <!--      strokeLinecap: "round",-->
+
+          <!--      // Text size-->
+          <!--      // textSize: "14px",-->
+
+          <!--      // How long animation takes to go from one percentage to another, in seconds-->
+          <!--      pathTransitionDuration: 0.5,-->
+
+          <!--      // Can specify path transition in more detail, or remove it entirely-->
+          <!--      // pathTransition: 'none',-->
+
+          <!--      // Colors-->
+
+          <!--      pathColor: "rgb(31, 41, 55)",-->
+          <!--      textColor: "black",-->
+          <!--      trailColor: "gainsboro",-->
+          <!--      backgroundColor: "white",-->
+          <!--      })}-->
+          <!--      >-->
+
+
+          <!--      <div style={{ fontSize: 18, fontWeight: 300 }}>Total</div>-->
+          <!--      <div style={{ fontSize: 18, fontWeight: 800, marginTop: 3 }}>-->
+          <!--        8000-->
+          <!--      </div>-->
+          <!--      </CircularProgressbarWithChildren>-->
         </div>
-      </section>
-    </div>
-    <div class="card glass flex-1 flex gap-3">
-      <section class="flex  flex-col mt-4 gap-8 ">
-        <section
-          class="text-black  flex flex-col"
-        >
-          <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
-          <p class="italic text-xs "> July</p>
-          <p class="text"> {{summary.profit| currency:'USD'}}</p>
+        <section class="bg-gray-100 rounded-lg p-6 space-y-12">
+          <div class="text-xs">
+            <p>Credit Transactions</p>
+            <p class="text-green-500 font-bold">{{summary.totalCredit}}</p>
+          </div>
+
+          <div class="text-xs">
+            <p>Debit Transactions</p>
+
+            <p class="text-red-600 font-bold">{{summary.totalDebit}}</p>
+          </div>
         </section>
-        <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
-
-          View details
-        </button>
-      </section>
-
-      <section
-        class="  flex-1 rounded-lg bg-blue-100 w-48 justify-center text-black flex gap-4"
-      >
-        <div class="flex flex-col text-xs text-center justify-around">
-          <!--      <p>{{statusOne}}</p>-->
-          <p>Credit</p>
-
-          <p class="font-bold ">{{summary.totalCredit|currency:'USD'}}</p>
-        </div>
-
-        <div class="flex text-xs flex-col justify-around">
-          <!--      <p>{{statusTwo}}</p>-->
-          <p>Debit</p>
-
-          <p class="font-bold ">{{summary.totalDebit|currency:'USD'}}</p>
-        </div>
-      </section>
-    </div>
-    <div class="card glass flex-1 flex gap-3">
-      <section class="flex  flex-col mt-4 gap-8 ">
-        <section
-          class=" text-black  flex flex-col"
-        >
-          <!--    <p class= "italic text-xs "}> {{title}}</p>   -->
-          <p class="italic text-xs "> 2023</p>
-          <p class=""> {{summary.profit| currency:'USD'}}</p>
-        </section>
-        <button class="p-2 w-full rounded-lg text-xs text-black bg-gray-100">
-
-          View details
-        </button>
-      </section>
-
-      <section
-        class="  flex-1 rounded-lg bg-[#f48220] w-48 justify-center text-black flex gap-4"
-      >
-        <div class="flex flex-col text-xs text-center justify-around">
-          <!--      <p>{{statusOne}}</p>-->
-          <p>Credit</p>
-
-          <p class="font-bold text">{{summary.totalCredit|currency:'USD'}}</p>
-        </div>
-
-        <div class="flex text-xs flex-col justify-around">
-          <!--      <p>{{statusTwo}}</p>-->
-          <p>Debit</p>
-
-          <p class="font-bold text">{{summary.totalDebit|currency:'USD'}}</p>
-        </div>
-      </section>
-    </div>
-
-  </section>
-
-
-  <section class="flex  md:flex-row flex-col gap-5">
-
-    <section class="w-full md:w-4/6 py-5 px-3  md:h-auto skin ">
-      <section class="flex justify-between p-2 items-center">
-        <p>Transactions Statistics</p>
-
-        <div>
-          <select class="bg-gray-100 border-none text-xs px-5 rounded py-2">
-            <option selected>This Year</option>
-          </select>
-        </div>
-      </section>
-
-      <hr/>
-
-      <ng-container *ngIf="series?.length>0">
-        <app-charts [series]=series [type]="'area'" [xTitle]="'Months'" [yTitle]="'Amount'"></app-charts>
-      </ng-container>
-
-
-      <!--      <p *ngIf="!(summary.profit > 0) && summary.profit !==0" class="font-bold text-xs text-center"><i-->
-      <!--        class="fa-solid fa-circle-arrow-down"-->
-      <!--        style="color: #ee1111;"></i>-->
-      <!--        <span-->
-      <!--          class="text-red-600"> {{Math.abs(summary.profit) |currency:'USD'}}</span></p>-->
-      <!--      <p *ngIf="summary.profit > 0" class="font-bold text-xs text-center"><i-->
-      <!--        class="fa-solid fa-circle-arrow-down fa-rotate-180" style="color: #41ee11;"></i> <span-->
-      <!--        class="text-green-700">{{summary.profit |currency:'USD'}}</span>-->
-      <!--      </p>-->
-
-      <p *ngIf="summary.profit === 0" class="font-bold text-xs text-center">Total:
-        <span
-        >{{(balance|async)?.total |currency:'USD'}}</span>
-      </p>
-
-    </section>
-
-    <section class="bg-white w-full  md:w-2/6 flex flex-col gap-8  rounded-lg p-4">
-      <div class="flex justify-between">
-        <p>Summary</p>
-        <section class="flex flex-col gap-5 justify-end">
-          <select class="bg-gray-100 border-none rounded text-xs py-2 px-5">
-            <option>Transactions</option>
-          </select>
-
-          <select (change)="handleChange($event)"
-                  class="bg-yellow-50 text-xs border-none  py-2 px-5 ml-4 rounded p-2">
-            <option selected value="{{month}}"> This Month</option>
-            <option value="{{year}}">This Year</option>
-          </select>
-        </section>
-      </div>
-
-      <div class="w-[150px] h-[150px] mx-auto">
-
-        <!--      <CircularProgressbarWithChildren-->
-        <!--        value={66}-->
-        <!--        strokeWidth={10}-->
-        <!--        styles={buildStyles({-->
-        <!--      // Rotation of path and trail, in number of turns (0-1)-->
-        <!--      rotation: 1,-->
-
-        <!--      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'-->
-        <!--      strokeLinecap: "round",-->
-
-        <!--      // Text size-->
-        <!--      // textSize: "14px",-->
-
-        <!--      // How long animation takes to go from one percentage to another, in seconds-->
-        <!--      pathTransitionDuration: 0.5,-->
-
-        <!--      // Can specify path transition in more detail, or remove it entirely-->
-        <!--      // pathTransition: 'none',-->
-
-        <!--      // Colors-->
-
-        <!--      pathColor: "rgb(31, 41, 55)",-->
-        <!--      textColor: "black",-->
-        <!--      trailColor: "gainsboro",-->
-        <!--      backgroundColor: "white",-->
-        <!--      })}-->
-        <!--      >-->
-
-
-        <!--      <div style={{ fontSize: 18, fontWeight: 300 }}>Total</div>-->
-        <!--      <div style={{ fontSize: 18, fontWeight: 800, marginTop: 3 }}>-->
-        <!--        8000-->
-        <!--      </div>-->
-        <!--      </CircularProgressbarWithChildren>-->
-      </div>
-      <section class="bg-gray-100 rounded-lg p-6 space-y-12">
-        <div class="text-xs">
-          <p>Credit Transactions</p>
-          <p class="text-green-500 font-bold">{{summary.totalCredit}}</p>
-        </div>
-
-        <div class="text-xs">
-          <p>Debit Transactions</p>
-
-          <p class="text-red-600 font-bold">{{summary.totalDebit}}</p>
-        </div>
       </section>
     </section>
   </section>
 </section>
-
-
-<!--<apx-chart [chart]="chartOptions.chart" [series]="chartOptions.series" [title]="chartOptions.title"></apx-chart>-->
 

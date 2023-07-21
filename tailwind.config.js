@@ -17,8 +17,14 @@ module.exports = {
         '3xl': '1600px',
       },
       colors: {
-        'primary': 'var(--primary-color)'
+        'primary': 'var(--primary-color)',
+        'secondary': 'var(--secondary-color)'
 
+      },
+      height: {
+        'lg': 'var(--header-height-lg)',
+        'md': 'var(--header-height-md)',
+        'sm': 'var(--header-height-sm)'
       },
       animation: {
         none: 'none',

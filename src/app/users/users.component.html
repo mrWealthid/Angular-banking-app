@@ -1,24 +1,26 @@
-<app-table [columns]="columns" [tableService]="userService">
+<section class="container-text">
+  <app-table [columns]="columns" [tableService]="userService">
 
-  <ng-template #rowActions let-row="row">
-    <button class='btn'>
-      <i class="fa-solid fa-arrow-up-right-from-square"></i> View
-    </button>
-    <button class='btn'>
-      <i class="fa-solid fa-arrow-up-right-from-square"></i> Query
-    </button>
-  </ng-template>
-  <ng-template #customRows let-colProp='colProp' let-row="rowVal">
-    <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
-    <ng-container>
+    <ng-template #rowActions let-row="row">
+      <button class='btn'>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View
+      </button>
+      <button class='btn'>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> Query
+      </button>
+    </ng-template>
+    <ng-template #customRows let-colProp='colProp' let-row="rowVal">
+      <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
+      <ng-container>
     <span *ngIf="row ==='user'"
           class=" py-1 px-4 bg-blue-300 w-20 text-center block capitalize rounded-full">{{row}}</span>
-      <span *ngIf="row ==='admin'"
-            class=" py-1 px-4 bg-yellow-300 w-20 text-center block capitalize rounded-full">{{row}}</span>
-      <span *ngIf="colProp ==='accountNumber'"
-            class=" flex gap-2">{{row}}
-        <app-clipboard [buttonText]="'Copy Text'" [style]="'text-green-400'" [textToCopy]="row"></app-clipboard>
+        <span *ngIf="row ==='admin'"
+              class=" py-1 px-4 bg-yellow-300 w-20 text-center block capitalize rounded-full">{{row}}</span>
+        <span *ngIf="colProp ==='accountNumber'"
+              class=" flex gap-2">{{row}}
+          <app-clipboard [buttonText]="'Copy Text'" [style]="'text-green-400'" [textToCopy]="row"></app-clipboard>
       </span>
-    </ng-container>
-  </ng-template>
-</app-table>
+      </ng-container>
+    </ng-template>
+  </app-table>
+</section>

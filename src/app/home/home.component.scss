@@ -2,11 +2,22 @@
 .section-hero {
   //height: calc(100vh - var(--header-height));
 
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
   background-size: 10%;
   background-position: top;
 }
 
 .skin {
   background-size: 15%;
+}
+
+.skin-card {
+  background-size: 50%;
+}
+
+
+@media only screen and (min-width: 992px) {
+  .section-hero {
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  }
 }

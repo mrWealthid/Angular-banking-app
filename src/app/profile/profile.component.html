@@ -1,12 +1,12 @@
-<section class="flex md:flex-row w-full animate-slideIn container-text flex-col items-center gap-2 min-h-screen">
+<section class="flex md:flex-row flex-col w-full animate-slideIn container-text  gap-2 ">
   <section *ngIf="currentUser$|async as currentUser"
-           class=" skin  p-6 border w-full  lg:w-1/3 rounded-xl">
+           class=" skin h-fit p-6 border  w-full  lg:w-1/3 rounded-xl">
     <div class="py-3">
       <img alt="" class="border rounded-full mx-0 w-32 object-cover h-32" height="820"
            src="{{currentUser.imgUrl}}" width="900">
     </div>
     <section class="flex flex-col gap-4">
-      <p class=" lg:text-lg">Personal Details</p>
+      <p class="lg:text-lg">Personal Details</p>
       <span class="text-xs">
         <i class="fa-solid fa-user"></i>  {{currentUser.name}}
         </span>
@@ -50,7 +50,7 @@
       <section *ngIf="(profileService.step| async) === 0" class="flex flex-col gap-5">
 
 
-        <h2 class="text-lg">Account Information</h2>
+        <h2 class="lg:text-lg">Account Information</h2>
         <form (ngSubmit)="handlePersonalFormUpdate(profileForm.value)" [formGroup]="profileForm"
               class="flex flex-col gap-3"
         >
@@ -110,7 +110,7 @@
             [placeholder]="'Select options'"
             class="ring-0">
           </select-input>
-          
+
           <div class="mt-2 flex justify-end ">
             <app-button [btnText]="'Next'" [loading]="loading" [styles]="'btn-primary  rounded-3xl'"
                         class="w-1/2  md:w-1/3 ">

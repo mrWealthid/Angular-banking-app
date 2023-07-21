@@ -1,26 +1,28 @@
-<section class="section-hero min-h-screen skin container-text flex items-center">
-  <section class="text-gray-800 max-w-[301px] md:max-w-[512px] flex flex-col  gap-5">
+<section
+  class="section-hero min-h-screen border   md:min-h-[50vh] container-text lg:min-h-screen   skin  flex items-center">
+  <section class="text-gray-800  max-w-[301px] md:max-w-[512px] flex flex-col  gap-5">
     <h1 class='text-3xl  lg:text-4xl  max-w-sm '>
       The Easiest Way
       To Manage Personal
       Finances
     </h1>
-    <p class='text leading-normal lg:max-w-xl'>
+    <p class='text leading-normal md:max-w-md lg:max-w-xl'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
       eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
       enim ad minim veniam, quis nostrud exercitation ullamco laboris.
     </p>
-    <button [routerLink]="['dashboard']" class='w-1/3 cap text-white bg-gray-800 px-2 py-4 rounded-full'>
+    <button [routerLink]="['dashboard']"
+            class='w-3/4  md:w-1/2 lg:w-1/3 cap text-secondary bg-gray-800 px-2 py-4 rounded-full'>
       Explore
     </button>
   </section>
 
 
   <section class='flex w-full  md:w-1/2 gap-8  glassTxt justify-end'>
-    <div class='w-1/2 hidden  lg:flex '>
+    <div class='w-1/2 hidden  md:flex '>
       <section
-        class='w-60 flex flex-col h-96  shadow-gray-200 shadow-md  box-border   rounded-lg cap text-primary'>
-        <div class='flex flex-1    justify-between p-3'>
+        class='w-60 flex flex-col h-96    skin  skin-card bg-gray-800 shadow-gray-200 shadow-md  box-border   rounded-xl  text-secondary'>
+        <div class='flex flex-1    justify-between px-3 py-5'>
           <p>WealthPay</p>
           <i class="fa-solid fa-wifi"></i>
         </div>
@@ -68,9 +70,9 @@
 
 
 <section
-  class="  section-hero2 container skin flex-col lg:flex-row container-text py-5 items-center md:items-start lg:items-center flex gap-10">
+  class="  section-hero2  skin flex-col lg:flex-row container-text py-5 justify-center items-center  lg:items-center flex gap-10">
   <div
-    class="relative w-full lg:w-1/2 border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">
+    class="relative w-full lg:w-1/2 border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[320px] lg:max-w-[512px] md:max-w-[700px]">
     <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
       <img alt=""
            class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"
@@ -82,23 +84,23 @@
   </div>
 
 
-  <div class="w-full lg:w-1/2 flex flex-col gap-5 p-2">
-    <h2 class="text-3xl font-semibold ">Unlimited Transfers. Hitch Free Transactions.</h2>
+  <div class="w-full lg:w-1/2 flex md:text-center lg:text-start flex-col gap-5 ">
+    <h2 class="text-3xl font-semibold  ">Unlimited Transfers. Hitch Free Transactions.</h2>
 
 
     <p>Experience the fastest-growing funds transfers for free, easy loan access, No hidden charges.</p>
 
-    <div class="w-1/2">
+    <div class=" flex justify-center  lg:w-1/3">
       <button *ngIf="(isAuthenticated|async)" [routerLink]="['dashboard']"
-              class='w-full cap text-white bg-gray-800 px-2 py-4 rounded-full'>
+              class='w-1/2 lg:w-full cap text-secondary bg-gray-800 px-2 py-4 rounded-full'>
         View Dashboard
       </button>
       <button *ngIf="!(isAuthenticated|async)" [routerLink]="['auth/login']"
-              class='w-full cap text-white bg-gray-800 px-2 py-4 rounded-full'>
+              class='w-full md:w-1/2 cap text-secondary bg-gray-800 px-2 py-4 rounded-full'>
         Login
       </button>
     </div>
-    <small>
+    <small class="md:text-center lg:text-start mx-auto md:max-w-md lg:max-w-max">
       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, eos omnis accusamus ab beatae saepe qui tenetur
       culpa, quos quisquam velit perferendis natus perspiciatis unde placeat voluptates sunt quidem ipsum Lorem ipsum
       dolor sit amet.
@@ -109,8 +111,8 @@
 </section>
 
 
-<footer class="pb-0 mt-10 bg-primary  text-white md:pb-10">
-  <div class="w-10/12 mx-auto pt-8 md:pt-16 flex-wrap flex flex-col md:flex-row  justify-between">
+<footer class="pb-0 lg:mt-10 bg-primary container-text  text-secondary md:pb-10">
+  <div class=" pt-8 md:pt-16 flex-wrap flex flex-col md:flex-row  justify-between">
     <div class=" md:mt-2 mt-0  ">
       <p class="mb-0 text-sm md:text-lg md:mb-20  font-medium">
         Wealth_Bank
@@ -120,16 +122,16 @@
         Wealth_Transact <br/>
         &copy; A subsidiary of Wealth_Bank | <br/>
       </p>
-      <p><i class="fa-solid text-sm fa-phone"></i> +13362103455
+      <small class="block"><i class="fa-solid  fa-phone"></i> +13362103455
         <app-clipboard [textToCopy]="'+13362103455'"></app-clipboard>
-      </p>
+      </small>
 
 
-      <p>
-        <i class="fa-solid text-sm fa-at"></i>
+      <small>
+        <i class="fa-solid  fa-at"></i>
         wealthiduwe@gmail.com
         <app-clipboard [textToCopy]="'wealthiduwe@gmail.com'"></app-clipboard>
-      </p>
+      </small>
 
     </div>
     <div class="mt-5">
