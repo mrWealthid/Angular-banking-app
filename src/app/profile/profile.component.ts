@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {faUserEdit} from '@fortawesome/free-solid-svg-icons';
 import {ModalService} from "../shared/services/modal.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -6,7 +6,6 @@ import {select, Store} from "@ngrx/store";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {currentUserSelector, isLoading} from "../core/store/Profile/selectors";
 import {Observable} from "rxjs";
-import {AuthService} from "../auth.service";
 import * as profileActions from "../core/store/Profile/actions"
 import {ProfileService} from "./service/profile.service";
 import * as dayjs from "dayjs";
@@ -41,7 +40,13 @@ export class ProfileComponent implements OnInit {
   protected readonly isLoading = isLoading;
   private image: any;
 
-  constructor(private store: Store<AppStateInterface>, private modalService: ModalService, protected profileService: ProfileService, private authService: AuthService) {
+  //injected services
+  private store = inject(Store<AppStateInterface>)
+  private modalService = inject(ModalService)
+
+  protected profileService = inject(ProfileService)
+
+  constructor() {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
     this.store.pipe(select(isLoading)).subscribe(x => this.loading = x)
 

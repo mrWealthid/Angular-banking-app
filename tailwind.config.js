@@ -21,7 +21,9 @@ module.exports = {
         'secondary': 'var(--secondary-color)',
         'base': 'var(--base-color)',
         'success': 'var(--success-color)',
-        'error': 'var(--error-color)'
+        'error': 'var(--error-color)',
+        'pending': 'var(--pending-color)',
+        'light-blue': 'var(--light-blue)'
 
       },
       height: {

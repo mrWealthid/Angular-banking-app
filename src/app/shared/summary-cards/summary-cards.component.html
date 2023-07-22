@@ -1,9 +1,11 @@
 <div class="card bg-primary dark:glass  flex gap-3">
   <section class="flex   flex-col mt-4 gap-8 ">
     <section
-      class="  flex flex-col"
+      class="  flex  items-center flex-col"
     >
-      <p class="italic text-xs "> Balance</p>
+
+      <ng-content></ng-content>
+
 
     </section>
     <button (click)="toggleValue()" class="p-2 w-24 rounded-lg text-xs text-black bg-gray-100">

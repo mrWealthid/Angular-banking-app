@@ -15,10 +15,17 @@
   --success-color: rgb(34, 197, 94);
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
-  --light-blue: rgb(147, 197, 253)
+  --light-blue: rgb(147, 197, 253);
+  --autofill: white
 
 
   /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --autofill: #848484;
+  }
 }
 
 
@@ -64,7 +71,7 @@ header {
 }
 
 .btn-primary {
-  @apply py-2.5 px-5 w-full mr-2 text-sm font-medium text-primary dark:text-secondary  border border-gray-200 hover:bg-gray-100 dark:hover:bg-primary focus:z-10 focus:ring-1 focus:ring-secondary dark:border-none    dark:hover:text-white  inline-flex justify-center items-center bg-primary dark:glass my-1
+  @apply py-2.5 px-5 w-full mr-2 text-sm font-medium text-secondary dark:text-secondary  border border-gray-200 hover:bg-primary dark:hover:bg-primary focus:z-10 focus:ring-1 focus:ring-secondary dark:focus:ring-primary dark:border-none  hover:text-white   dark:hover:text-white  inline-flex justify-center items-center bg-primary dark:glass my-1
 }
 
 
@@ -107,8 +114,7 @@ header {
 //}
 
 input:-webkit-autofill {
-  box-shadow: 0 0 0 1000px #848484 inset !important;
-
+  box-shadow: 0 0 0 1000px var(--autofill) inset !important;
 }
 
 

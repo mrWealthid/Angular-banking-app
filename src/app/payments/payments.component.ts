@@ -43,6 +43,17 @@ export class PaymentsComponent implements OnInit {
     step: 2,
   }]
 
+  BeneficiaryTabs: ITabs[] = [{
+    title: "Beneficiaries",
+    external: false,
+    step: 1
+
+  }, {
+    title: "Timelines",
+    external: false,
+    step: 2,
+  }]
+
 
   asyncValue: any;
   beneficiaries: Observable<any[]>;
