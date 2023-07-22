@@ -10,7 +10,7 @@ export class DropdownComponent {
   @Input() styles: string = 'right-10 top-6 w-[180px]'
   isMenuOpened: boolean = false;
 
-  toggleMenu(): void {
+  toggleMenu(ev?: any): void {
     this.isMenuOpened = !this.isMenuOpened;
   }
 

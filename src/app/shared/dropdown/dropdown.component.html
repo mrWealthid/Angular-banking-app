@@ -1,10 +1,11 @@
 <div (clickOutside)="clickedOutside()" class="menu-container">
-  <div (click)="toggleMenu()" class="menu-toggler relative">
+  <div (click)="toggleMenu($event)" class="menu-toggler relative">
     <ng-content select="[header]">
     </ng-content>
   </div>
   <div *ngIf="isMenuOpened"
        [class]="styles"
+       (click)="isMenuOpened= false"
        class="menu flex border rounded items-start overflow-hidden    z-10 flex-col  absolute w-[180px]  dark:border-none dark:glass-input bg-white">
     <ng-content></ng-content>
 

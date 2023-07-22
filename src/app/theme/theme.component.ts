@@ -15,8 +15,9 @@ export class ThemeComponent {
   ngOnInit(): void {
   }
 
-  toggleTheme(): void {
-
+  toggleTheme(ev: any): void {
+    ev.stopPropagation()
+    console.log('light')
   }
 
 
