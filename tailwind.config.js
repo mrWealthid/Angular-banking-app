@@ -13,12 +13,15 @@ module.exports = {
 
     extend: {
       screens: {
-        'xs': '450px',
+        'xs': '320px',
         '3xl': '1600px',
       },
       colors: {
         'primary': 'var(--primary-color)',
-        'secondary': 'var(--secondary-color)'
+        'secondary': 'var(--secondary-color)',
+        'base': 'var(--base-color)',
+        'success': 'var(--success-color)',
+        'error': 'var(--error-color)'
 
       },
       height: {

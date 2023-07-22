@@ -6,9 +6,9 @@
       </ng-container>
       <button
         (click)="toggleModal($event)"
-        [ngClass]="filterActive? 'ring-1 ring-offset-2 ring-green-500' : ''"
+        [ngClass]="filterActive? 'ring-1 ring-offset-2 text-success ring-green-500 ' : ''"
       >
-        <i class="fa-solid text-gray-600 fa-filter"></i>
+        <i [ngClass]="filterActive?'text-success':''" class="fa-solid  text-gray-600 fa-filter"></i>
         Filter
       </button>
     </app-table-header>
@@ -38,12 +38,13 @@
 
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>#</span>
-        <input (click)="toggleRowSelection($event)" class="ml-1 text-gray-700   rounded datatable-checkbox"
+        <input (click)="toggleRowSelection($event)" class="ml-1 text-gray-700 dark:text-success   rounded "
                id="header-check" type="checkbox"/>
       </ng-template>
       <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
         <span>{{rowIndex + 1  }}.</span>
-        <input (click)="handleSelection(row, $event)" class="my-rows text-gray-400 rounded ml-1 " type="checkbox"/>
+        <input (click)="handleSelection(row, $event)" class="my-rows dark:text-success rounded ml-1 "
+               type="checkbox"/>
 
       </ng-template>
     </ngx-datatable-column>

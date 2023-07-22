@@ -2,4 +2,7 @@ header {
   //height: var(--header-height);
   background-size: 10%;
 
+  a {
+    @apply dark:text-secondary  text-primary
+  }
 }

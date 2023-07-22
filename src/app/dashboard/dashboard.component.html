@@ -1,20 +1,13 @@
 <section class="flex ">
-  <!--  <div class="w-1/5 bg-gray-900 flex flex-col gap-1  text-white min-h-screen p-2">-->
-  <!--    <p class="text-lg text-center mb-2">Angular</p>-->
-  <!--    &lt;!&ndash;    <ng-container *ngFor="let link of links">&ndash;&gt;-->
-  <!--    &lt;!&ndash;      <a [routerLinkActiveOptions]="{exact:true}" [routerLink]="[link.path]"&ndash;&gt;-->
-  <!--    &lt;!&ndash;         class="p-2 transition duration-500 hover:translate-x-0.5"&ndash;&gt;-->
-  <!--    &lt;!&ndash;         routerLinkActive="bg-[#f48220] rounded-lg ">{{link.text}}</a>&ndash;&gt;-->
-  <!--    &lt;!&ndash;    </ng-container>&ndash;&gt;-->
-  <!--  </div>-->
+
   <section (clickOutside)="clickedOutside()">
     <button (click)="handleToggle()" aria-controls="default-sidebar"
-            class="inline-flex  absolute sidebar z-50 p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-inherit focus:outline-none focus:ring-2 focus:ring-transparent dark:text-gray-400 dark:hover:bg-inherit dark:focus:ring-transparent"
+            class="inline-flex  absolute sidebar z-50 p-2 mt-2 md:mt-3 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-inherit focus:outline-none focus:ring-2 focus:ring-transparent dark:text-gray-400 dark:hover:bg-inherit dark:focus:ring-transparent"
             data-drawer-target="default-sidebar"
             data-drawer-toggle="default-sidebar"
             type="button">
       <span class="sr-only">Open sidebar</span>
-      <svg aria-hidden="true" class="w-6 fixed  h-6" fill="currentColor" viewBox="0 0 20 20"
+      <svg aria-hidden="true" class="w-4 h-4 lg:w-6 fixed  lg:h-6" fill="currentColor" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path clip-rule="evenodd"
               d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
@@ -24,7 +17,7 @@
   </section>
 
   <aside [ngClass]="isOpen ? '' : '-translate-x-full'" aria-label="Sidebar"
-         class="fixed top-0   left-0 z-50 w-64 h-screen transition-transform  lg:translate-x-0"
+         class="fixed top-0   left-0 z-50 w-64 h-screen md:h-fit lg:h-screen transition-transform  lg:translate-x-0"
          id="default-sidebar">
     <div class="h-full px-3 py-4 overflow-y-auto  bg-gray-50 skin dark:bg-gray-800">
       <ul class="space-y-2 font-medium">

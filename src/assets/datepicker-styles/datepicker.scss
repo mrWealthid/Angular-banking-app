@@ -5,9 +5,10 @@ dp-date-picker.dp-material .dp-picker-input {
   width: auto;
   font-size: 15px;
 
-  @apply border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-3 lg:py-3.5 focus:border-blue-100 focus-within:ring-0 rounded-lg  w-full
+  @apply border text-black border-blue-100 flex justify-between items-center form-input my-1 px-2 py-3 lg:py-3.5 focus:border-blue-100 focus-within:ring-0 rounded-lg  w-full
 
 }
+
 
 dp-calendar-nav.dp-material .dp-calendar-nav-container {
   height: 40px !important;
@@ -34,14 +35,23 @@ dp-date-picker {
   &:disabled {
     @apply text-gray-500 cursor-not-allowed
   }
+
+
 }
 
 dp-date-picker.dp-material .dp-picker-input {
   box-sizing: border-box;
-  height: 30px;
+  padding-left: 15px;
   width: 100% !important;
   font-size: 13px;
   outline: none;
+  background: unset;
+  border: none;
+  color: black;
+
+  &::placeholder {
+    @apply dark:text-primary
+  }
 }
 
 dp-day-calendar.dp-material .dp-selected {

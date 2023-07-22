@@ -1,7 +1,7 @@
 <section class="container-text">
   <section class=" flex flex-col gap-5">
     <div class="flex flex-col flex-wrap md:flex-nowrap md:flex-row justify-between items-center gap-8">
-      <div class=" bg-white rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
+      <div class=" bg-white dark:glass  rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
         <svg
           fill="none"
           height="42"
@@ -28,7 +28,7 @@
           <span class="text-xs capitalize font-normal">Balance</span>
         </div>
       </div>
-      <div class=" bg-white rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
+      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
         <svg
           fill="none"
           height="42"
@@ -56,7 +56,7 @@
           <span class="text-xs capitalize font-normal">Beneficiaries</span>
         </div>
       </div>
-      <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
         <svg
           fill="none"
           height="42"
@@ -85,7 +85,7 @@
       </div>
 
 
-      <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
 
         <svg
           fill="none"
@@ -114,7 +114,7 @@
           <span class="text-xs capitalize font-normal">Approved Loan</span>
         </div>
       </div>
-      <!--        <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">-->
+      <!--        <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">-->
 
 
       <!--      <div class=" flex-grow">-->
@@ -122,7 +122,7 @@
       <!--        <span class="text-xs capitalize font-normal">Verified</span>-->
       <!--      </div>-->
       <!--    </div>-->
-      <div class=" bg-white rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
 
         <svg
           fill="none"
@@ -153,7 +153,7 @@
 
 
     <section class="flex  flex-col sm:flex-row gap-3">
-      <section class="w-full py-6  px-5 sm:w-1/2  skin rounded-lg border">
+      <section class="w-full py-6  px-5 sm:w-1/2   skin dark:glass rounded-lg border dark:border-none">
 
 
         <app-tabs (steps)=" navigateTab($event, formTabIndex)" [tabs]="tabsForm"></app-tabs>
@@ -175,7 +175,7 @@
             </label>
             <div
               [ngClass]="{'error-input':this.validateControl(amount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl(amount,'required')}"
-              class="border border-blue-100 flex justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
             >
               <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
               <input
@@ -203,14 +203,14 @@
           <!--        <label class="relative inline-flex items-center mb-4 cursor-pointer">-->
           <!--          <input checked class="sr-only peer" type="checkbox" value="">-->
           <!--          <div-->
-          <!--            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>-->
+          <!--            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white dark:glass after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>-->
           <!--          <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Checked toggle</span>-->
           <!--        </label>-->
 
           <!--        <label class="relative inline-flex items-center mb-3 cursor-pointer">-->
           <!--          <input class="sr-only peer" type="checkbox" value="">-->
           <!--          <div-->
-          <!--            class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>-->
+          <!--            class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white dark:glass after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>-->
           <!--          <span class="ml-3 text-sm font-medium text-gray-400 dark:text-gray-500">Disabled toggle</span>-->
           <!--        </label>-->
 
@@ -270,7 +270,7 @@
       </section>
 
 
-      <section class="w-full skin sm:w-1/2 rounded bg-white py-6 px-5">
+      <section class="w-full skin sm:w-1/2 rounded bg-white dark:glass py-6 px-5">
         <div class="border-b-2 border-gray-200 dark:border-transparent">
           <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-600 dark:text-gray-600">
             <li class="mr-2">
@@ -319,7 +319,7 @@
             </section>
             <section *ngFor="let beneficiary of beneficiaries">
               <div (click)="selectBeneficiary($event , beneficiary)"
-                   class="flex cursor-pointer beneficiary-list items-center  p-2 border rounded-lg  mt-4 gap-2">
+                   class="flex cursor-pointer beneficiary-list items-center  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">
                 <i class="fa text-gray-300 fa-circle-check"></i>
                 <section class="flex flex-col"><h4 class="text-sm">{{beneficiary.name}}</h4>
                   <p class="text-sm">{{beneficiary.accountNumber}}</p>
@@ -353,7 +353,7 @@
                 including
                 a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
               <a
-                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white dark:glass border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
                 href="#">
                 <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                   <path clip-rule="evenodd"

@@ -71,6 +71,9 @@ export class ChartsComponent implements OnInit, AfterViewInit {
           enabled: false
         },
 
+        foreColor: 'black',
+
+
         toolbar: {
           show: true,
           offsetX: 0,

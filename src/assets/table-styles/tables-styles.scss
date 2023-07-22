@@ -49,8 +49,8 @@ $datatable-header-resize-handle-color: #eee !default;
 $datatable-row-detail-background: #f5f5f5 !default;
 $datatable-body-cell-color: rgba(0, 0, 0, 0.87) !default;
 $datatable-group-header-background: #f5f5f5 !default;
-$datatable-group-header-border-top-color: #d9d8d9 !default;
-$datatable-group-header-border-bottom-color: #d9d8d9 !default;
+$datatable-group-header-border-top-color: rgba(0, 0, 0, 0.12) !default;
+$datatable-group-header-border-bottom-color: rgba(0, 0, 0, 0.12) !default;
 
 // colors for footer elements
 $datatable-footer-cell-color: rgba(0, 0, 0, 0.54) !default;
@@ -106,7 +106,7 @@ $datatable-summary-row-background-hover: #ddd !default;
       &:hover .datatable-row-group {
         background-color: $ngx-datatable-default-background-hover;
         transition-property: background;
-        transition-duration: 0.3s;
+        transition-duration: 0s;
         transition-timing-function: linear;
       }
 
@@ -180,6 +180,7 @@ $datatable-summary-row-background-hover: #ddd !default;
       background-position: 100% 0;
       background-repeat: repeat-y;
       background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAABCAYAAAD5PA/NAAAAFklEQVQIHWPSkNeSBmJhTQVtbiDNCgASagIIuJX8OgAAAABJRU5ErkJggg==);
+
     }
 
     .datatable-row-right {
@@ -258,6 +259,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-row-detail {
       background: $datatable-row-detail-background;
       padding: 10px;
+
     }
 
     .datatable-group-header {
@@ -294,6 +296,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         transition: width 0.3s ease;
         font-size: 14px;
         font-weight: 400;
+
       }
     }
 
@@ -414,60 +417,6 @@ $datatable-summary-row-background-hover: #ddd !default;
   }
 }
 
-/**
- * Checkboxes
-**/
-.datatable-checkbox {
-  position: relative;
-  margin: 0;
-  cursor: pointer;
-  vertical-align: middle;
-  display: inline-block;
-  box-sizing: border-box;
-  padding: 0;
-
-  input[type='checkbox'] {
-    position: relative;
-    margin: 0 1rem 0 0;
-    cursor: pointer;
-    outline: none;
-
-    &:before {
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out;
-      content: '';
-      position: absolute;
-      left: 0;
-      z-index: 1;
-      width: 1rem;
-      height: 1rem;
-      border: 2px solid #f2f2f2;
-    }
-
-    &:checked:before {
-      -webkit-transform: rotate(-45deg);
-      -moz-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-      transform: rotate(-45deg);
-      height: 0.5rem;
-      border-color: #009688;
-      border-top-style: none;
-      border-right-style: none;
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 1rem;
-      height: 1rem;
-      background: #fff;
-      cursor: pointer;
-    }
-  }
-}
 
 /**
  * Progress bar animations

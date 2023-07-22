@@ -33,7 +33,7 @@ export class PaymentService {
 
   getBalance() {
     return this.Http.get(`${environment.API_URL}/api/v1/transactions/user/balance`).pipe(map(({data}: any) => {
-      return data.stats[0]
+      return data.stats[0]?.total
     }))
   }
 }

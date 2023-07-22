@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DashboardService} from "../service/dashboard.service";
 import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
-import {forkJoin, Observable} from "rxjs";
+import {forkJoin, map, Observable} from "rxjs";
 import {PaymentService} from "../../payments/service/payment.service";
 import {globalizeDate} from "../../shared/helpers/helperFunctions";
 import {select, Store} from "@ngrx/store";
@@ -19,7 +19,7 @@ export class OverviewComponent implements OnInit {
   private paymentService = inject(PaymentService)
   private store = inject(Store<AppStateInterface>)
 
-  series: IDashboardData[] = []
+  series: Observable<IDashboardData[]>
 
   summary: ISummary = {
     totalCredit: 0,
@@ -37,9 +37,9 @@ export class OverviewComponent implements OnInit {
   ngOnInit() {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
-    forkJoin([this.dashboardService.getMonthlyStatsData('Credit'), this.dashboardService.getMonthlyStatsData('Debit')]).subscribe(data => {
-      this.series = (data.map(x => x[0]))
-    })
+    this.series = forkJoin([this.dashboardService.getMonthlyStatsData('Credit'), this.dashboardService.getMonthlyStatsData('Debit')]).pipe(map(data => {
+      return data.map(x => x[0])
+    }))
     this.fetchStatsData()
 
     this.balance = this.paymentService.getBalance()
