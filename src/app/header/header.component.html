@@ -18,7 +18,9 @@
     <!--      </svg>-->
     <!--    </button>-->
 
-    <!--    <app-theme></app-theme>-->
+    <app-theme></app-theme>
+
+
     <a [routerLinkActiveOptions]="{exact:true}" [routerLink]='[""]'
        routerLinkActive="text-gray-800 border border-gray-300  dark:border-none dark:text-secondary dark:glass rounded-full px-3 lg:px-4  py-2 ">Home</a>
     <a *ngIf="(isAuthenticated|async)" [routerLink]='["dashboard"] '
