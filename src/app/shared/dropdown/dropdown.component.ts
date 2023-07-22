@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 
 })
 export class DropdownComponent {
-
+  @Input() styles: string = 'right-10 top-6 w-[180px]'
   isMenuOpened: boolean = false;
 
   toggleMenu(): void {

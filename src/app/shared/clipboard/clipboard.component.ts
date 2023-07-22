@@ -18,7 +18,6 @@ export class ClipboardComponent {
     this.valueState.next(true)
     navigator.clipboard.writeText(this.textToCopy)
       .then(() => {
-
         this.timer = setTimeout(() => {
           this.valueState.next(false)
         }, 2000);

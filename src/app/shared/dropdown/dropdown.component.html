@@ -2,13 +2,10 @@
   <div (click)="toggleMenu()" class="menu-toggler relative">
     <ng-content select="[header]">
     </ng-content>
-
-
   </div>
   <div *ngIf="isMenuOpened"
-       class="menu flex border rounded items-start overflow-hidden    z-10 flex-col  absolute w-[180px] right-10 top-6 dark:border-none dark:glass-input bg-white">
-
-
+       [class]="styles"
+       class="menu flex border rounded items-start overflow-hidden    z-10 flex-col  absolute w-[180px]  dark:border-none dark:glass-input bg-white">
     <ng-content></ng-content>
 
   </div>
