@@ -1,0 +1,47 @@
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="100px" height="100px"
+     viewBox="-317.44 -317.44 1658.88 1658.88" id="svg39788" version="1.1" inkscape:version="0.91 r13725"
+     sodipodi:docname="badge.svg" fill="#000000" transform="matrix(1, 0, 0, 1, 0, 0)">
+
+  <g id="SVGRepo_bgCarrier" stroke-width="0">
+
+    <rect x="-317.44" y="-317.44" width="1658.88" height="1658.88" rx="829.44" opacity="0.2" fill="#dcdcdc"
+          strokewidth="0"/>
+
+  </g>
+
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g id="SVGRepo_iconCarrier">
+    <defs id="defs39790"/>
+    <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                        inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.38041516"
+                        inkscape:cx="977.999" inkscape:cy="611.74531" inkscape:document-units="px"
+                        inkscape:current-layer="layer1" showgrid="false" units="px" inkscape:window-width="1918"
+                        inkscape:window-height="1014" inkscape:window-x="1920" inkscape:window-y="32"
+                        inkscape:window-maximized="1"/>
+    <metadata id="metadata39793">
+      <rdf:rdf>
+        <cc:work rdf:about="">
+          <dc:format>image/svg+xml</dc:format>
+          <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+          <dc:title></dc:title>
+        </cc:work>
+      </rdf:rdf>
+    </metadata>
+    <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-28.362183)">
+      <g style="display:inline;fill:#20c1e9" inkscape:label="Capa 1" id="g26541"
+         transform="matrix(2.436195,0,0,2.436195,24.761001,-1536.1583)">
+        <path style="opacity:1;fill:darkgoldenrod;fill-opacity:1;stroke:none"
+              d="M 200.02167,652.36216 146.48196,723.62471 58.666257,711.14948 71.155824,799.04256 -5e-7,852.48679 71.155824,905.93079 l -12.489567,87.89237 88.148373,-12.5218 53.38836,71.06084 53.36078,-71.02364 87.98755,12.4996 L 328.99554,905.4799 400,852.15003 l -70.80582,-53.1816 12.5022,-87.98359 -88.21618,12.53183 -53.45853,-71.15451 z"
+              id="path26543" inkscape:connector-curvature="0"/>
+      </g>
+    </g>
+  </g>
+
+</svg>

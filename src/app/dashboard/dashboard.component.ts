@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
+import {currentUserSelector} from "../core/store/Profile/selectors";
+import {select, Store} from "@ngrx/store";
+import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-dashboard',
@@ -14,9 +18,12 @@ export class DashboardComponent implements OnInit {
     {icon: "", path: 'payments', text: 'Payments'}
   ]
   isOpen: Boolean = false;
+  private store = inject(Store<AppStateInterface>)
+  currentUser$: Observable<IProfile | null>;
 
 
   ngOnInit(): void {
+    this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
   }
 
@@ -29,4 +36,6 @@ export class DashboardComponent implements OnInit {
   clickedOutside() {
     this.isOpen = false
   }
+
+
 }
