@@ -10,14 +10,31 @@ export class ThemeComponent {
   isDarkMode = false;
 
   constructor() {
+   this.updateTheme()
   }
 
   ngOnInit(): void {
   }
 
-  toggleTheme(ev: any): void {
-    ev.stopPropagation()
-    console.log('light')
+
+  updateTheme() {
+    if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+      this.isDarkMode = true;
+    } else {
+      document.documentElement.classList.remove('dark')
+      this.isDarkMode = false;
+    }
+  }
+
+  toggleTheme(theme:string): void {
+    localStorage['theme'] = theme
+    this.updateTheme()
+  }
+
+  useOSPreference () {
+    localStorage.removeItem('theme')
+    this.updateTheme()
   }
 
 

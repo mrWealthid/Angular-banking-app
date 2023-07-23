@@ -57,8 +57,8 @@ header {
     //border-top: 1px solid rgba(255, 255, 255, 0.5);
     //border-left: 1px solid rgba(255, 255, 255, 0.5);
     //backdrop-filter: blur(5px);
-
-    @apply dark:text-secondary text-primary
+    //
+    //@apply dark:text-secondary text-primary
   }
 
   .glass-input {
@@ -147,7 +147,7 @@ input:-webkit-autofill {
 
 .menu {
   button {
-    @apply items-center bg-white hover:text-secondary gap-2 px-2  hover:bg-primary py-3  flex w-full
+    @apply items-center hover:text-secondary gap-2 px-2  hover:bg-primary py-3  flex w-full
   }
 }
 

@@ -3,14 +3,22 @@
 
   <app-dropdown [styles]="'right-[194px] top-[60px] lg:top-[80px] w-[150px]'">
     <ng-container header>
-      <svg id="theme-toggle-dark-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
+      <svg *ngIf="isDarkMode" id="theme-toggle-dark-icon" class=" w-5 h-5" fill="cadetblue" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
       </svg>
 
+
+      <svg *ngIf="!isDarkMode" id="theme-toggle-light-icon" class=" w-5 h-5" fill="cadetblue" viewBox="0 0 20 20"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+          fill-rule="evenodd" clip-rule="evenodd"></path>
+      </svg>
+
     </ng-container>
 
-    <button (click)="toggleTheme($event)" class="flex gap-2 items-center">
+    <button (click)="toggleTheme('light')" [ngClass]="!isDarkMode? 'bg-secondary text-primary':''"  class="flex gap-2 items-center">
       <svg id="theme-toggle-light-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path
@@ -20,19 +28,15 @@
 
       Light
     </button>
-    <button class="flex gap-2 items-center">
+    <button (click)="toggleTheme('dark')" [ngClass]="isDarkMode? 'bg-secondary text-primary':''"  class="flex gap-2 items-center">
       <svg id="theme-toggle-dark-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
       </svg>
       Dark
     </button>
-    <button class="flex gap-2 items-center">
-      <svg id="theme-toggle-dark-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
-           xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-      </svg>
-      System
+    <button (click)="useOSPreference()" class="flex gap-2 items-center" >
+<svg viewBox="0 0 1024 1024" class="w-5 h-5" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="gainsboro" stroke="gainsboro" stroke-width="27.648000000000003"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M981.333333 469.333333a21.333333 21.333333 0 0 0-21.333333 21.333334v85.333333a85.333333 85.333333 0 0 1-85.333333 85.333333H149.333333a85.333333 85.333333 0 0 1-85.333333-85.333333V149.333333a85.333333 85.333333 0 0 1 85.333333-85.333333h725.333334a85.333333 85.333333 0 0 1 85.333333 85.333333 21.333333 21.333333 0 0 0 42.666667 0 128 128 0 0 0-128-128H149.333333a128 128 0 0 0-128 128v426.666667a128 128 0 0 0 128 128h725.333334a128 128 0 0 0 128-128v-85.333333a21.333333 21.333333 0 0 0-21.333334-21.333334z" fill="#050505"></path><path d="M981.333333 298.666667a21.333333 21.333333 0 0 0-21.333333 21.333333v85.333333a21.333333 21.333333 0 0 0 42.666667 0v-85.333333a21.333333 21.333333 0 0 0-21.333334-21.333333zM966.186667 219.52a21.333333 21.333333 0 0 0 0 30.293333 21.333333 21.333333 0 0 0 30.293333 0l2.56-3.413333a11.946667 11.946667 0 0 0 1.92-3.626667 13.226667 13.226667 0 0 0 1.706667-3.84 26.88 26.88 0 0 0 0-4.266666 21.333333 21.333333 0 0 0-36.48-15.146667zM896 960H128a21.333333 21.333333 0 0 0 0 42.666667h768a21.333333 21.333333 0 0 0 0-42.666667zM682.666667 853.333333a21.333333 21.333333 0 0 0 0-42.666666H341.333333a21.333333 21.333333 0 0 0 0 42.666666zM704 384a21.333333 21.333333 0 0 0 0-42.666667h-44.373333a149.333333 149.333333 0 0 0-28.16-67.84l31.36-31.36a21.333333 21.333333 0 1 0-30.08-30.08l-31.573334 31.146667A149.333333 149.333333 0 0 0 533.333333 215.04V170.666667a21.333333 21.333333 0 0 0-42.666666 0v44.373333a149.333333 149.333333 0 0 0-67.84 28.16l-31.573334-31.36a21.333333 21.333333 0 0 0-30.08 30.08l31.36 31.36A149.333333 149.333333 0 0 0 364.373333 341.333333H320a21.333333 21.333333 0 0 0 0 42.666667h44.373333a149.333333 149.333333 0 0 0 28.16 67.84l-31.36 31.36a21.333333 21.333333 0 1 0 30.08 30.08l31.36-31.36A149.333333 149.333333 0 0 0 490.666667 510.293333V554.666667a21.333333 21.333333 0 0 0 42.666666 0v-44.373334a149.333333 149.333333 0 0 0 67.84-28.16l31.36 31.36a21.333333 21.333333 0 0 0 30.08-30.08l-31.146666-31.573333A149.333333 149.333333 0 0 0 659.626667 384z m-192 85.333333a106.666667 106.666667 0 1 1 106.666667-106.666666 106.666667 106.666667 0 0 1-106.666667 106.666666z" fill="gainsboro"></path></g></svg>      System
     </button>
 
   </app-dropdown>

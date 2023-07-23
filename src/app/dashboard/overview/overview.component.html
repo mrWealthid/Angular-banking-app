@@ -32,7 +32,7 @@
     </div>
 
     <section class=" grid lg:grid-cols-2 xl:grid-cols-3 animate-slideOut  sm:grid-cols-2 grid-cols-1  gap-5">
-      <div class="card bg-primary dark:glass flex-1 flex gap-3">
+      <div class="card bg-primary dark:glass dark:text-secondary  flex-1 flex gap-3">
         <section class="flex  flex-col mt-4 gap-8 ">
           <section
             class="  flex flex-col"
@@ -42,7 +42,7 @@
 
             <p class="text"> {{summary.profit| currency:'USD'}}</p>
           </section>
-          <button class="p-2 w-full rounded-lg dark:glass text-primary text-xs  bg-gray-100">
+          <button class="p-2 w-full rounded-lg dark:glass dark:text-secondary text-primary text-xs  bg-gray-100">
             View details
           </button>
         </section>
@@ -77,7 +77,7 @@
 
             <p class="text text-primary dark:text-secondary"> {{summary.profit| currency:'USD'}}</p>
           </section>
-          <button class="p-2 w-full rounded-lg dark:glass text-primary text-xs bg-gray-100">
+          <button class="p-2 w-full rounded-lg dark:glass dark:text-secondary text-primary  text-xs bg-gray-100">
 
             View details
           </button>
@@ -103,7 +103,7 @@
           </div>
         </section>
       </div>
-      <div class="card glass flex-1 flex gap-3">
+      <div class="card glass  flex-1 flex gap-3">
         <section class="flex  flex-col mt-4 gap-8 ">
           <section
             class="  flex flex-col"
@@ -111,7 +111,7 @@
             <p class="italic text-xs text-primary dark:text-secondary "> 2023</p>
             <p class="text-primary dark:text-secondary"> {{summary.profit| currency:'USD'}}</p>
           </section>
-          <button class="p-2 w-full dark:glass rounded-lg text-xs text-black bg-gray-100">
+          <button class="p-2 w-full dark:glass rounded-lg text-xs  dark:text-secondary text-primary bg-gray-100">
 
             View details
           </button>
@@ -144,7 +144,7 @@
     <section class="flex  md:flex-row  flex-col gap-5">
 
       <section class="w-full  md:w-4/6 py-5 px-3 rounded-lg  md:h-auto bg-white skin dark:glass ">
-        <section class="flex border-b border-secondary justify-between p-2 items-center">
+        <section class="flex border-b border-secondary dark:text-secondary text-primary justify-between p-2 items-center">
           <p>Transactions Statistics</p>
 
           <div>
@@ -168,7 +168,7 @@
 
       </section>
 
-      <section class="bg-white dark:glass w-full  md:w-2/6 flex flex-col gap-8  rounded-lg p-4">
+      <section class="bg-white dark:glass w-full  dark:text-secondary text-primary md:w-2/6 flex flex-col gap-8  rounded-lg p-4">
         <div class="flex justify-between">
           <p>Summary</p>
           <section class="flex flex-col gap-5 justify-end">

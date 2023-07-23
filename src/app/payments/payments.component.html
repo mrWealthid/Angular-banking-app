@@ -24,8 +24,8 @@
             <path d="M23.603 18.623h3.147v1.049h-3.147v-1.049z" fill="#0bc19c"></path>
           </g>
         </svg>
-        <div class=" flex-grow">
-          <p class="font-bold text-xs pr-6  ">{{(balance|async)?.total |currency:'USD'}} </p>
+        <div class=" flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-xs pr-6   ">{{(balance|async)?.total |currency:'USD'}} </p>
           <span class="text-xs capitalize font-normal">Balance</span>
         </div>
       </div>
@@ -52,7 +52,7 @@
         </svg>
 
 
-        <div class=" flex-grow">
+        <div class=" flex-grow dark:text-secondary text-primary">
           <p class="font-bold text-xl pr-6  ">{{(beneficiaries|async)?.length}} </p>
           <span class="text-xs capitalize font-normal">Beneficiaries</span>
         </div>
@@ -79,7 +79,7 @@
           />
         </svg>
 
-        <div class=" flex-grow">
+        <div class=" flex-grow dark:text-secondary text-primary">
           <p class="font-bold text-xl pr-6  ">116 </p>
           <span class="text-xs capitalize font-normal">Pending Loan</span>
         </div>
@@ -110,7 +110,7 @@
         </svg>
 
 
-        <div class=" flex-grow">
+        <div class=" flex-grow dark:text-secondary text-primary">
           <p class="font-bold text-xl pr-6  ">6</p>
           <span class="text-xs capitalize font-normal">Approved Loan</span>
         </div>
@@ -145,7 +145,7 @@
             fill="#F91313"
           />
         </svg>
-        <div class=" flex-grow">
+        <div class=" flex-grow dark:text-secondary text-primary">
           <p class="font-bold text-xl pr-6  ">6 </p>
           <span class="text-xs capitalize font-normal">Declined Loan</span>
         </div>
@@ -199,7 +199,7 @@
               <input class="sr-only peer" type="checkbox" value="">
               <div
                 class="w-11 h-6 bg-gray-200  rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"></div>
-              <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Add to beneficiaries</span>
+              <span class="ml-3 text-sm font-medium dark:text-secondary text-primary">Add to beneficiaries</span>
             </label>
           </section>
           <!--        <label class="relative inline-flex items-center mb-4 cursor-pointer">-->
@@ -324,7 +324,7 @@
             </section>
             <section *ngFor="let beneficiary of beneficiaries">
               <div (click)="selectBeneficiary($event , beneficiary)"
-                   class="flex cursor-pointer beneficiary-list items-center  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">
+                   class="flex cursor-pointer beneficiary-list items-center dark:text-secondary text-primary  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">
                 <i class="fa text-gray-300 fa-circle-check"></i>
                 <section class="flex flex-col"><h4 class="text-sm">{{beneficiary.name}}</h4>
                   <p class="text-sm">{{beneficiary.accountNumber}}</p>
@@ -335,7 +335,7 @@
         </section>
         <section *ngIf="(tabIndex| async)===2" class="">
           <!--        <p class="mb-2">Transaction Timeline</p>-->
-          <ol class="relative border-l mt-4 border-gray-200 dark:border-gray-700">
+          <ol class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700">
             <li class="mb-10 ml-6">
               <span
                 class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
@@ -344,7 +344,7 @@
                                                                                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                                                                     fill-rule="evenodd"></path></svg>
               </span>
-              <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite
+              <h3 class="flex items-center mb-1 text-lg font-semibold ">Flowbite
                 Application
                 UI
                 v2.0.0 <span
@@ -354,7 +354,7 @@
                 January
                 13th, 2022
               </time>
-              <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Get access to over 20+ pages
+              <p class="mb-4  font-normal ">Get access to over 20+ pages
                 including
                 a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
               <a
@@ -375,11 +375,11 @@
                                                                                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                                                                     fill-rule="evenodd"></path></svg>
               </span>
-              <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite Figma v1.3.0</h3>
+              <h3 class="mb-1 text-lg font-semibold ">Flowbite Figma v1.3.0</h3>
               <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
                 December 7th, 2021
               </time>
-              <p class="text-base font-normal text-gray-500 dark:text-gray-400">All of the pages and components are
+              <p class="font-normal text-gray-500">All of the pages and components are
                 first
                 designed in Figma and we keep a parity between the two versions even as we update the project.</p>
             </li>
@@ -391,11 +391,11 @@
                                                                                     d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                                                                     fill-rule="evenodd"></path></svg>
               </span>
-              <h3 class="mb-1 text-lg font-semibold text-gray-900 dark:text-white">Flowbite Library v1.2.2</h3>
+              <h3 class="mb-1 text-lg font-semibold">Flowbite Library v1.2.2</h3>
               <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
                 December 2nd, 2021
               </time>
-              <p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web
+              <p class=" font-normal ">Get started with dozens of web
                 components
                 and interactive elements built on top of Tailwind CSS.</p>
             </li>
