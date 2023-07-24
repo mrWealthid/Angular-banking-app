@@ -21,6 +21,10 @@ export class PaymentService {
     return this.Http.post(`${environment.API_URL}/api/v1/transactions`, payload)
   }
 
+  requestLoan(payload: any): Observable<any> {
+    return this.Http.post(`${environment.API_URL}/api/v1/loans`, payload)
+  }
+
   fetchBeneficiaries(): Observable<IBeneficiary[]> {
     return this.Http.get(`${environment.API_URL}/api/v1/beneficiaries`).pipe(map(({data}: any) => {
       return data

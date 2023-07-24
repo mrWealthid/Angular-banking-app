@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal, Signal} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -10,6 +10,7 @@ import {PaymentService} from "./service/payment.service";
 import {IPayment} from "./model/payment-model";
 import {ITabs} from "../shared/tabs/tabs.component";
 import {selectOptions} from "../shared/inputs/select-input/select-input.component";
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-payments',
@@ -26,6 +27,8 @@ export class PaymentsComponent implements OnInit {
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
+
+  transferSteps= signal(0)
 
   options: selectOptions[] = [
     {id: 6, name: '6 Months'},
@@ -48,20 +51,27 @@ export class PaymentsComponent implements OnInit {
     external: false,
     step: 1
 
-  }, {
-    title: "Timelines",
-    external: false,
-    step: 2,
-  }]
+  }, 
+  // {
+  //   title: "Timelines",
+  //   external: false,
+  //   step: 2,
+  // }
+]
 
 
   asyncValue: any;
   beneficiaries: Observable<any[]>;
-  balance: Observable<any>;
+  balance= signal<number>(0)
   private userDetails: IProfile;
+  transferDetails:any
+  loanDetails:any
+  paymentLoader:boolean = false
+  loanLoader:boolean = false
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
+  private notify = inject(NotificationService)
 
   constructor() {
     console.log("changes")
@@ -75,11 +85,7 @@ export class PaymentsComponent implements OnInit {
     type.next(tab)
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //
-  //
-  //   this.amount.valueChanges.subscribe(x => console.log(x))
-  // }
+  
 
   ngOnInit() {
     this.createPaymentForm()
@@ -89,7 +95,13 @@ export class PaymentsComponent implements OnInit {
     this.formatControlValue(this.amount)
     this.formatControlValue(this.loanAmount)
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
-    this.balance = this.paymentService.getBalance()
+    this.fetchBalance()
+  }
+
+
+  fetchBalance() {
+    this.paymentService.getBalance().subscribe(x=> 
+      this.balance.set(x))
   }
 
   formatControlValue(control: FormControl) {
@@ -105,13 +117,13 @@ export class PaymentsComponent implements OnInit {
   }
 
   validateControl(control: FormControl, type: string) {
-    return !control.pristine && control.errors?.hasOwnProperty(type);
+    return !control.pristine && control.errors?.hasOwnProperty(type) 
   }
 
 
   createPaymentForm() {
     this.accountNumber = new FormControl('', [Validators.required], this.validateAccount.bind(this));
-    this.amount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.amount = new FormControl('', [Validators.required, this.maxValueValidator.bind(this)]);
     this.paymentForm = new FormGroup({
       accountNumber: this.accountNumber,
       amount: this.amount
@@ -119,7 +131,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   createLoanForm() {
-    this.loanAmount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.loanAmount = new FormControl('', [Validators.required, this.maxLoanValueValidator.bind(this)]);
     this.duration = new FormControl('', [Validators.required]);
     this.loanForm = new FormGroup({
       amount: this.loanAmount,
@@ -128,7 +140,9 @@ export class PaymentsComponent implements OnInit {
   }
 
 
-  handlePayment(values: any) {
+  handlePayment() {
+
+    const values =this.paymentForm.value
     const payload: IPayment = {
       user: this.asyncValue.id,
       initiatorName: this.userDetails.name,
@@ -139,20 +153,92 @@ export class PaymentsComponent implements OnInit {
       // createdAt: new Date('2023-06-20')
       createdAt: new Date(Date.now())
     }
-    this.paymentService.initiateTransaction(payload).subscribe()
+
+    this.paymentLoader = true
+
+  
+    this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
+      this.paymentLoader = false
+     this.notify.showSuccess('Transfer Successful','Payment Notification' )
+     this.fetchBalance()
+     this.updateSignal(0)
+     this.paymentForm.reset({accountNumber: '', amount : '' })
+    }, err=> {
+      this.paymentLoader = false   
+      this.notify.showError('Transfer Failed, Please Try Again','Payment Notification' )
+    })
   }
 
+  updateSignal(val:number) {
+  
+  if(val === 1) {
+    const values =this.paymentForm.value
+   this.transferDetails ={
+    initiatorName: this.userDetails.name,
+    amount:this.removeCurrencyFormat(values.amount),
+    beneficiaryName:this.asyncValue.name,
+    beneficiaryAccount: values.accountNumber
+  }
+}
+
+if(val === 2) {
+  const values = this.loanForm.value
+  this.loanDetails = {
+    amount: values.amount,
+    duration: values.duration
+  }
+}
+    this.transferSteps.set(val)
+  }
+
+  myValue:number = 5000
   removeCurrencyFormat(amount: string) {
     return Number(amount?.replace(/[$,]/g, ''))
   }
 
   maxValueValidator(control: AbstractControl): ValidationErrors | null {
+
     const value = Number(control.value?.replace(/[$,]/g, ''))
-    if (value && value > 5000) {
-      return {maxValue: true};
+
+    if(!value) return null;
+    if (value && value <= this.balance()) {
+      return  null
     }
-    return null;
+    return {maxValue: true};
   }
+
+
+
+  maxLoanValueValidator(control: AbstractControl): ValidationErrors | null {
+
+//Conditions for loan approval
+//1) You must not have an existing unpaid loan --- The loan feature should be unavailable --pending
+//2) if you don't have an existing loan, You can only request for loans one third of your balance
+
+    const value = Number(control.value?.replace(/[$,]/g, ''))
+if(!value) return null;
+    if (value && value <= this.balance()* 2) {
+      return  null
+    }
+    return {maxLoanValue: true};
+  }
+  
+  //Validating balance asynchronously
+  // validateBalance(control: AbstractControl): Promise<any> | Observable<any> {
+  //   return this.paymentService.getBalance().pipe(map((val: any) => {
+  //     let error:any
+  //     const balance = val
+  //     let value = this.removeCurrencyFormat(control.value)
+  //     if (value > balance) {
+  //       error = {'maxValue': true}
+  //     } else if (val <= balance) {
+  //       error = null;
+  //     }
+  //  return error
+  //   }), catchError(err => {
+  //     return of({'InvalidAccountNumber': true})
+  //   }));
+  // }
 
   validateAccount(control: AbstractControl): Promise<any> | Observable<any> {
     if (!(String(control.value).length > 6)) return of({'InvalidAccountNumber': true})
@@ -195,8 +281,28 @@ export class PaymentsComponent implements OnInit {
   }
 
   handleLoanRequest() {
+    const values =this.loanForm.value
+    this.loanDetails = {
+      amount: this.removeCurrencyFormat(values.amount),
+      duration: values.duration,
+      name:this.userDetails.name,
+      accountNumber: this.userDetails.accountNumber,
+      user: this.userDetails.id
+    } 
+this.loanLoader = true
 
+this.paymentService.requestLoan(this.loanDetails).subscribe((x:any)=> {
+  this.loanLoader= false
+ this.notify.showSuccess('Request Sent Successful','Loan Notification')
+ this.loanForm.reset({duration: '', amount : '' })
+ this.updateSignal(0)
+}, err=> {
+  this.loanLoader = false   
+  this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
+})
+    console.log(values)
   }
+
 
   handleChange($event: any) {
     console.log($event)

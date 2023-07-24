@@ -34,6 +34,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatModalComponent} from './mat-modal/mat-modal.component';
 import {SummaryCardsComponent} from './summary-cards/summary-cards.component';
 import {MaskDirective} from "./directives/Mask-directive";
+import { SummaryTreeComponent } from './summary-tree/summary-tree.component';
 
 
 @NgModule({
@@ -54,7 +55,7 @@ import {MaskDirective} from "./directives/Mask-directive";
     ClipboardComponent,
     MaskDirective,
 
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent],
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent, SummaryTreeComponent],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -93,7 +94,7 @@ import {MaskDirective} from "./directives/Mask-directive";
     SelectInputComponent,
     TableHeaderRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent]
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent, SummaryTreeComponent]
 })
 export class SharedModule {
 }
