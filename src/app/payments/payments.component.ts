@@ -123,7 +123,7 @@ export class PaymentsComponent implements OnInit {
 
   createPaymentForm() {
     this.accountNumber = new FormControl('', [Validators.required], this.validateAccount.bind(this));
-    this.amount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.amount = new FormControl('', [Validators.required, this.maxValueValidator.bind(this)]);
     this.paymentForm = new FormGroup({
       accountNumber: this.accountNumber,
       amount: this.amount
@@ -131,7 +131,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   createLoanForm() {
-    this.loanAmount = new FormControl('', [Validators.required, this.maxValueValidator]);
+    this.loanAmount = new FormControl('', [Validators.required]);
     this.duration = new FormControl('', [Validators.required]);
     this.loanForm = new FormGroup({
       amount: this.loanAmount,
@@ -191,17 +191,36 @@ if(val === 2) {
     this.transferSteps.set(val)
   }
 
+  myValue:number = 5000
   removeCurrencyFormat(amount: string) {
     return Number(amount?.replace(/[$,]/g, ''))
   }
 
   maxValueValidator(control: AbstractControl): ValidationErrors | null {
+
     const value = Number(control.value?.replace(/[$,]/g, ''))
-    if (value && value > 5000) {
-      return {maxValue: true};
+    if (value && value <= this.balance()) {
+      return  null
     }
-    return null;
+    return {maxValue: true};
   }
+  
+  //Validating balance asynchronously
+  // validateBalance(control: AbstractControl): Promise<any> | Observable<any> {
+  //   return this.paymentService.getBalance().pipe(map((val: any) => {
+  //     let error:any
+  //     const balance = val
+  //     let value = this.removeCurrencyFormat(control.value)
+  //     if (value > balance) {
+  //       error = {'maxValue': true}
+  //     } else if (val <= balance) {
+  //       error = null;
+  //     }
+  //  return error
+  //   }), catchError(err => {
+  //     return of({'InvalidAccountNumber': true})
+  //   }));
+  // }
 
   validateAccount(control: AbstractControl): Promise<any> | Observable<any> {
     if (!(String(control.value).length > 6)) return of({'InvalidAccountNumber': true})
