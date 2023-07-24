@@ -117,7 +117,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   validateControl(control: FormControl, type: string) {
-    return !control.pristine && control.errors?.hasOwnProperty(type);
+    return !control.pristine && control.errors?.hasOwnProperty(type) 
   }
 
 
@@ -131,7 +131,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   createLoanForm() {
-    this.loanAmount = new FormControl('', [Validators.required]);
+    this.loanAmount = new FormControl('', [Validators.required, this.maxLoanValueValidator.bind(this)]);
     this.duration = new FormControl('', [Validators.required]);
     this.loanForm = new FormGroup({
       amount: this.loanAmount,
@@ -199,10 +199,28 @@ if(val === 2) {
   maxValueValidator(control: AbstractControl): ValidationErrors | null {
 
     const value = Number(control.value?.replace(/[$,]/g, ''))
+
+    if(!value) return null;
     if (value && value <= this.balance()) {
       return  null
     }
     return {maxValue: true};
+  }
+
+
+
+  maxLoanValueValidator(control: AbstractControl): ValidationErrors | null {
+
+//Conditions for loan approval
+//1) You must not have an existing unpaid loan --- The loan feature should be unavailable --pending
+//2) if you don't have an existing loan, You can only request for loans one third of your balance
+
+    const value = Number(control.value?.replace(/[$,]/g, ''))
+if(!value) return null;
+    if (value && value <= this.balance()* 2) {
+      return  null
+    }
+    return {maxLoanValue: true};
   }
   
   //Validating balance asynchronously
