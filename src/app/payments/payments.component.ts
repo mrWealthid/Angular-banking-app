@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal, Signal} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {BehaviorSubject, map, Observable, of} from "rxjs";
 import {catchError} from "rxjs/operators";
@@ -26,6 +26,8 @@ export class PaymentsComponent implements OnInit {
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
+
+  transferSteps= signal(0)
 
   options: selectOptions[] = [
     {id: 6, name: '6 Months'},
@@ -59,6 +61,8 @@ export class PaymentsComponent implements OnInit {
   beneficiaries: Observable<any[]>;
   balance: Observable<any>;
   private userDetails: IProfile;
+  transferDetails:any
+  loanDetails:any
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
@@ -128,7 +132,9 @@ export class PaymentsComponent implements OnInit {
   }
 
 
-  handlePayment(values: any) {
+  handlePayment() {
+
+    const values =this.paymentForm.value
     const payload: IPayment = {
       user: this.asyncValue.id,
       initiatorName: this.userDetails.name,
@@ -139,7 +145,33 @@ export class PaymentsComponent implements OnInit {
       // createdAt: new Date('2023-06-20')
       createdAt: new Date(Date.now())
     }
+
+
+
+  
     this.paymentService.initiateTransaction(payload).subscribe()
+  }
+
+  updateSignal(val:number) {
+  
+  if(val === 1) {
+    const values =this.paymentForm.value
+   this.transferDetails ={
+    initiatorName: this.userDetails.name,
+    amount:this.removeCurrencyFormat(values.amount),
+    beneficiaryName:this.asyncValue.name,
+    beneficiaryAccount: values.accountNumber
+  }
+}
+
+if(val === 2) {
+  const values = this.loanForm.value
+  this.loanDetails = {
+    amount: values.amount,
+    duration: values.duration
+  }
+}
+    this.transferSteps.set(val)
   }
 
   removeCurrencyFormat(amount: string) {
@@ -195,8 +227,15 @@ export class PaymentsComponent implements OnInit {
   }
 
   handleLoanRequest() {
+    const values =this.loanForm.value
+    this.loanDetails = {
+      amount: values.amount,
+      duration: values.duration
+    }
 
+    console.log(values)
   }
+
 
   handleChange($event: any) {
     console.log($event)
