@@ -10,6 +10,8 @@
   --header-height-md: 60px;
   --header-height-sm: 7vh;
   --primary-color: rgb(31, 41, 55);
+  --primary-color-light: rgba(31, 41, 55, 0.5);
+
   --secondary-color: rgb(156 163 175);
   --base-color: black;
   --success-color: rgb(34, 197, 94);
@@ -147,7 +149,7 @@ input:-webkit-autofill {
 
 .menu {
   button {
-    @apply items-center hover:text-secondary gap-2 px-2  hover:bg-primary py-3  flex w-full
+    @apply items-center bg-white hover:text-secondary gap-2 px-2  hover:bg-primary py-3  flex w-full
   }
 }
 

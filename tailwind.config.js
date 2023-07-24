@@ -20,6 +20,7 @@ module.exports = {
       },
       colors: {
         'primary': 'var(--primary-color)',
+        'primary-light': 'var( --primary-color-light)',
         'secondary': 'var(--secondary-color)',
         'base': 'var(--base-color)',
         'success': 'var(--success-color)',

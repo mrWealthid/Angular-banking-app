@@ -18,7 +18,7 @@
 
     </ng-container>
 
-    <button (click)="toggleTheme('light')" [ngClass]="!isDarkMode? 'bg-secondary text-primary':''"  class="flex gap-2 items-center">
+    <button (click)="toggleTheme('light')" [ngClass]="!isDarkMode? '!bg-primary-light text-primary !hover:text-secondary':''"  class="flex gap-2 items-center">
       <svg id="theme-toggle-light-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path
@@ -28,7 +28,7 @@
 
       Light
     </button>
-    <button (click)="toggleTheme('dark')" [ngClass]="isDarkMode? 'bg-secondary text-primary':''"  class="flex gap-2 items-center">
+    <button (click)="toggleTheme('dark')" [ngClass]="isDarkMode? '!bg-primary-light text-primary !hover:text-secondary':''"  class="flex gap-2 items-center">
       <svg id="theme-toggle-dark-icon" class=" w-5 h-5" fill="gainsboro" viewBox="0 0 20 20"
            xmlns="http://www.w3.org/2000/svg">
         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
