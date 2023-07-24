@@ -10,6 +10,7 @@ import {PaymentService} from "./service/payment.service";
 import {IPayment} from "./model/payment-model";
 import {ITabs} from "../shared/tabs/tabs.component";
 import {selectOptions} from "../shared/inputs/select-input/select-input.component";
+import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
   selector: 'app-payments',
@@ -50,22 +51,27 @@ export class PaymentsComponent implements OnInit {
     external: false,
     step: 1
 
-  }, {
-    title: "Timelines",
-    external: false,
-    step: 2,
-  }]
+  }, 
+  // {
+  //   title: "Timelines",
+  //   external: false,
+  //   step: 2,
+  // }
+]
 
 
   asyncValue: any;
   beneficiaries: Observable<any[]>;
-  balance: Observable<any>;
+  balance= signal<number>(0)
   private userDetails: IProfile;
   transferDetails:any
   loanDetails:any
+  paymentLoader:boolean = false
+  loanLoader:boolean = false
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
+  private notify = inject(NotificationService)
 
   constructor() {
     console.log("changes")
@@ -79,11 +85,7 @@ export class PaymentsComponent implements OnInit {
     type.next(tab)
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //
-  //
-  //   this.amount.valueChanges.subscribe(x => console.log(x))
-  // }
+  
 
   ngOnInit() {
     this.createPaymentForm()
@@ -93,7 +95,13 @@ export class PaymentsComponent implements OnInit {
     this.formatControlValue(this.amount)
     this.formatControlValue(this.loanAmount)
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
-    this.balance = this.paymentService.getBalance()
+    this.fetchBalance()
+  }
+
+
+  fetchBalance() {
+    this.paymentService.getBalance().subscribe(x=> 
+      this.balance.set(x))
   }
 
   formatControlValue(control: FormControl) {
@@ -146,10 +154,19 @@ export class PaymentsComponent implements OnInit {
       createdAt: new Date(Date.now())
     }
 
-
+    this.paymentLoader = true
 
   
-    this.paymentService.initiateTransaction(payload).subscribe()
+    this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
+      this.paymentLoader = false
+     this.notify.showSuccess('Transfer Successful','Payment Notification' )
+     this.fetchBalance()
+     this.updateSignal(0)
+     this.paymentForm.reset({accountNumber: '', amount : '' })
+    }, err=> {
+      this.paymentLoader = false   
+      this.notify.showError('Transfer Failed, Please Try Again','Payment Notification' )
+    })
   }
 
   updateSignal(val:number) {
@@ -229,10 +246,23 @@ if(val === 2) {
   handleLoanRequest() {
     const values =this.loanForm.value
     this.loanDetails = {
-      amount: values.amount,
-      duration: values.duration
-    }
+      amount: this.removeCurrencyFormat(values.amount),
+      duration: values.duration,
+      name:this.userDetails.name,
+      accountNumber: this.userDetails.accountNumber,
+      user: this.userDetails.id
+    } 
+this.loanLoader = true
 
+this.paymentService.requestLoan(this.loanDetails).subscribe((x:any)=> {
+  this.loanLoader= false
+ this.notify.showSuccess('Request Sent Successful','Loan Notification')
+ this.loanForm.reset({duration: '', amount : '' })
+ this.updateSignal(0)
+}, err=> {
+  this.loanLoader = false   
+  this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
+})
     console.log(values)
   }
 
