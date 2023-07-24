@@ -70,7 +70,8 @@ export interface IUserDetails {
   photo?: string,
   dateOfBirth: Date,
   accountNumber: number
-  imgUrl?: string
+  imgUrl?: string,
+  id?:string
 }
 
 
