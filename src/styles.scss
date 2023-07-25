@@ -198,6 +198,10 @@ input:-webkit-autofill {
   @apply border-none ring-0
 }
 
+.ng-placeholder {
+  color: var(--primary-color),  !important;
+  @apply text-xs font-light
+}
 //.txt {
 //  @apply bg-gray-400
 //
@@ -205,7 +209,7 @@ input:-webkit-autofill {
 //}
 
 input::placeholder {
-  @apply text-secondary dark:text-primary
+  @apply text-secondary dark:text-primary text-xs font-light
 }
 
 ng-select.ng-invalid.ng-touched .ng-select-container {

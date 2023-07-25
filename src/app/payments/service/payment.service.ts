@@ -16,6 +16,10 @@ export class PaymentService {
     return this.Http.get(`${environment.API_URL}/api/v1/users/lookup?accountNumber=${value}`)
   }
 
+  createPaymentSession(beneficiaryId: string, amount:number):Observable<any> {
+    return this.Http.get(`${environment.API_URL}/api/v1/bookings/checkout-session/${beneficiaryId}/${amount}`)
+
+  }
 
   initiateTransaction(payload: IPayment): Observable<any> {
     return this.Http.post(`${environment.API_URL}/api/v1/transactions`, payload)

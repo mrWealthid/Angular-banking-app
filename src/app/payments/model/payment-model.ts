@@ -1,8 +1,8 @@
 export interface IPayment {
-  initiatorName: String
+  initiatorName: string
   amount: number,
-  transactionType: String
-  user: String,
+  transactionType: string
+  user: string,
   initiatorAccountNumber: number,
   beneficiaryAccountNumber: number,
   createdAt?: Date

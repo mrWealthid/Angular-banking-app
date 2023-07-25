@@ -156,21 +156,25 @@ export class PaymentsComponent implements OnInit {
 
     this.paymentLoader = true
 
+
+//First Create a payment Session
+
+this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
+
   
-    this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
-      this.paymentLoader = false
-     this.notify.showSuccess('Transfer Successful','Payment Notification' )
-     this.fetchBalance()
-     this.updateSignal(0)
-     this.paymentForm.reset({accountNumber: '', amount : '' })
-    }, err=> {
-      this.paymentLoader = false   
-      this.notify.showError('Transfer Failed, Please Try Again','Payment Notification' )
-    })
+    // this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
+    //   this.paymentLoader = false
+    //  this.notify.showSuccess('Transfer Successful','Payment Notification' )
+    //  this.fetchBalance()
+    //  this.updateSignal(0)
+    //  this.paymentForm.reset({accountNumber: '', amount : '' })
+    // }, err=> {
+    //   this.paymentLoader = false   
+    //   this.notify.showError('Transfer Failed, Please Try Again','Payment Notification' )
+    // })
   }
 
   updateSignal(val:number) {
-  
   if(val === 1) {
     const values =this.paymentForm.value
    this.transferDetails ={
