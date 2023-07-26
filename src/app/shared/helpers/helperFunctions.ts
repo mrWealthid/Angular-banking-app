@@ -24,7 +24,7 @@ export function createParams(params: any) {
     ...params.search,
     limit: params.limit,
     page: params.pageNumber + 1,
-    sort: '-createdAt'
+    sort: '-createdAt, -_id'
   }
   return queryParams.appendAll(newObj)
 }
