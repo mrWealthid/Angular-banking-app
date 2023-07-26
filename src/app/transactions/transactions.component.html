@@ -68,9 +68,10 @@
 
     <ng-template #headerActions class="border p-2 w-1/4">
 
-      <button
+      <button  [routerLink]="['/dashboard/payments']"
       >
-        Make Transfer
+      <img height="13" width="13" ngSrc="assets/images/credit.svg">
+      Transfer
       </button>
     </ng-template>
 

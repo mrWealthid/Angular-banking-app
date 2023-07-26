@@ -29,7 +29,11 @@
     --autofill: #848484;
   }
 }
-
+@media (prefers-color-scheme: light) {
+  :root {
+    --autofill: white;
+  }
+}
 
 header {
   @apply lg:h-lg md:h-md h-sm

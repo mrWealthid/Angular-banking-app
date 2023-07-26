@@ -19,7 +19,7 @@
 
     <div class="flex  items-center justify-around">
 
-      <p *ngIf="showValue" class="text-md font-bold">{{value |currency:'USD'}}</p>
+      <p *ngIf="showValue" class="text-2xl font-bold">{{value |currency:'USD'}}</p>
       <p *ngIf="!showValue" class="text-2xl font-bold" appMask>{{value |currency:'USD'}}</p>
 
 
