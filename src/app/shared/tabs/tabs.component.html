@@ -1,15 +1,13 @@
 <div class="">
   <ul
-    class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-0 items-center text-xs  md:text-sm font-medium text-gray-600 dark:text-gray-600">
+    class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-0 items-center text-xs  md:text-sm font-medium text-gray-600 dark:text-gray-600">
     <li  *ngFor="let tab of tabs; let i = index" class="">
 
       <a (click)="navigateTab(tab.step)"
          [ngClass]="tab.step ===selectedTab ? 'text-gray-800   border border-gray-300  dark:border-none dark:text-secondary dark:glass   py-2': ''"
          class=" text-primary dark:text-secondary px-3 inline-flex items-center lg:px-4 cursor-pointer  rounded-full "
       >
-<img [src]="tab.icon" />
-
-      <!-- <svg width="20px" height="20px" viewBox="-10.32 -10.32 44.64 44.64" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M10.25 4.00003C10.25 3.69074 10.0602 3.41317 9.77191 3.30105C9.48366 3.18892 9.15614 3.26524 8.94715 3.49324L3.44715 9.49324C3.24617 9.71248 3.19374 10.0298 3.3135 10.302C3.43327 10.5743 3.70259 10.75 4.00002 10.75H20C20.4142 10.75 20.75 10.4142 20.75 10C20.75 9.58582 20.4142 9.25003 20 9.25003L10.25 9.25003V4.00003Z" fill="#8cca63"></path> <path opacity="0.5" d="M13.75 20L13.75 14.75H4C3.58579 14.75 3.25 14.4142 3.25 14C3.25 13.5858 3.58579 13.25 4 13.25L20 13.25C20.2974 13.25 20.5667 13.4258 20.6865 13.698C20.8063 13.9703 20.7538 14.2875 20.5529 14.5068L15.0529 20.5068C14.8439 20.7348 14.5164 20.8111 14.2281 20.699C13.9399 20.5869 13.75 20.3093 13.75 20Z" fill="#8cca63"></path> </g></svg> -->
+<img [src]="tab.icon" alt="tab.title" />
 
         {{tab.title}}
       </a>
