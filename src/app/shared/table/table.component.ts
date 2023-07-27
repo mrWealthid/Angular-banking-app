@@ -91,6 +91,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
 
+  getDropdownOptions(col:any) {
+
+    console.log(col)
+   return col?.searchOptions
+  }
+
   updateColumnsWithActions() {
     this.additionalSettings.actionable ? this.columns.push({name: "Actions", prop: ""}) : this.columns
     return this.columns

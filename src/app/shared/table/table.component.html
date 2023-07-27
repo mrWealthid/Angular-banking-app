@@ -163,8 +163,13 @@
                             [placeholder]="'Enter' + ' '+ column.name" class="w-full"></text-input>
               </ng-container>
               <ng-container *ngIf="column.searchType ==='dropdown'">
+
+
                 <select-input [formControl]="getInputControl(column.prop)"
                               [label]="column.name"
+                              [bindLabel]="'name'"
+                              [bindValue]="'id'"
+                              [items]= "column.searchOptions"
                               [placeholder]="'Enter' + ' '+ column.name" class="w-full"></select-input>
               </ng-container>
 

@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
-        <svg
+        <!-- <svg
           fill="none"
           height="42"
           viewBox="0 0 42 42"
@@ -29,7 +29,11 @@
             d="M23.321 15C25.5245 15 27 16.547 27 18.848V24.1591C27 26.4536 25.5245 28 23.321 28H17.6855C15.482 28 14 26.4536 14 24.1591V18.848C14 16.547 15.482 15 17.6855 15H23.321ZM20.4935 20.5126C20.1815 20.5126 19.928 20.772 19.928 21.0847V23.9577C19.928 24.2696 20.1815 24.5231 20.4935 24.5231C20.812 24.5231 21.0655 24.2696 21.0655 23.9577V21.0847C21.0655 20.772 20.812 20.5126 20.4935 20.5126ZM20.5065 18.4521C20.188 18.4521 19.9345 18.7056 19.9345 19.0241C19.9345 19.3355 20.188 19.5896 20.4935 19.5896C20.8185 19.5896 21.072 19.3355 21.072 19.0241C21.072 18.7056 20.8185 18.4521 20.5065 18.4521Z"
             fill="#009EB3"
           />
-        </svg>
+        </svg> -->
+
+
+        
+        <img src="../../assets/images/beneficiaries.svg"/>
 
 
         <div class=" flex-grow dark:text-secondary text-primary">
@@ -128,9 +132,9 @@
 
     <section class="flex  flex-col sm:flex-row gap-3">
       <section
-        class="w-full py-6  px-5 sm:w-1/2   skin dark:glass rounded-lg">
+        class="w-full py-6  px-5 sm:w-1/2   skin dark:glass rounded-2xl">
 
-        <div *ngIf="transferSteps() ===0" class="">
+        <div *ngIf="transferSteps() ===0" >
           <app-tabs (steps)=" navigateTab($event, formTabIndex)" [tabs]="tabsForm"></app-tabs>
         </div>
         <form (ngSubmit)="handlePayment(paymentForm.value)" *ngIf="(formTabIndex|async) ===1 && transferSteps() ===0" [formGroup]="paymentForm"
@@ -233,6 +237,8 @@
         class="w-full flex cla flex-col mt-3 gap-2">
 
 
+    
+
     <section>
       <label class=" flex gap-1 text-xs">
         <span>Amount</span>
@@ -253,6 +259,16 @@
       <span *ngIf="this.validateControl(fundAmount,'required')" class="text-red-800 text-xs">This Field is Required</span>
     </section>
 
+    <select-input
+    [bindLabel]="'name'"
+    [bindValue]="'id'"
+    [formControl]="fundChannel"
+    [items]="selectOptions"
+    [label]="'Channel'"
+    [multiple]="true"
+    [placeholder]="'Select options'"
+    class="ring-0">
+  </select-input>
 
     <app-button [type]="'button'" [btnText]="'Process Request'" (clickEvent)="updateSignal(3)" [disabled]="walletFund.invalid" [styles]="'btn-primary'"></app-button>
 
@@ -378,7 +394,7 @@ Fund request Summary -->
                                                                             fill-rule="evenodd"></path></svg>
       </span>
       <h3 class="flex items-center mb-1 text-md ">
-      Fund Details <span
+      Fund Status <span
           class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">In Progress</span>
       </h3>
       <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
@@ -399,7 +415,10 @@ Fund request Summary -->
                                                                             d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
                                                                             fill-rule="evenodd"></path></svg>
       </span>
-      <p class=" text-sm text-primary dark:text-secondary">Request is subject to approval</p>
+      <p class=" text-sm text-primary dark:text-secondary">For Test Kindly Use Demo Card Details </p>
+
+      <p class=" text-sm text-primary dark:text-secondary">4242424242424242   <app-clipboard [style]="'text-green-500 text-xs'" [textToCopy]="'4242424242424242'"></app-clipboard></p>
+
     </li>
 
   </ol>
@@ -414,12 +433,12 @@ Fund request Summary -->
       </section>
 
 
-      <section class="w-full skin sm:w-1/2 rounded bg-white dark:glass py-6 px-5">
-        <div class="">
+      <section class="w-full skin sm:w-1/2 rounded-2xl bg-white dark:glass py-6 px-5">
+    
 
           <app-tabs (steps)=" navigateTab($event,tabIndex)" [tabs]="BeneficiaryTabs"></app-tabs>
 
-        </div>
+      
 
 
         <section *ngIf="(tabIndex| async)===1" class="">

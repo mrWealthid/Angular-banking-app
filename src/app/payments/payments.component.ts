@@ -32,6 +32,7 @@ export class PaymentsComponent implements OnInit {
   name: FormControl;
   duration: FormControl;
   fundAmount:FormControl;
+  fundChannel:FormControl
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
@@ -47,22 +48,25 @@ export class PaymentsComponent implements OnInit {
   tabsForm: ITabs[] = [{
     title: "Make Payment",
     external: false,
-    step: 1
+    step: 1,icon:"../../../assets/images/transfer.svg"
 
   }, {
     title: "Loan Request",
     external: false,
     step: 2,
+    icon:"../../../assets/images/transfer.svg"
   }, {
     title: "Fund Wallet",
     external: false,
     step: 3,
+    icon:"../../../assets/images/fund.svg"
   }]
 
   BeneficiaryTabs: ITabs[] = [{
     title: "Beneficiaries",
     external: false,
-    step: 1
+    step: 1,
+    icon:"../../../assets/images/beneficiaries.svg"
 
   }, 
   // {
@@ -85,6 +89,9 @@ export class PaymentsComponent implements OnInit {
   loanLoader:boolean = false
   fundLoader=false
 
+  selectOptions: selectOptions[] = [
+    {id: "Card", name: 'Card'},
+  ];
   //INJECTED SERVICES
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
@@ -140,9 +147,11 @@ export class PaymentsComponent implements OnInit {
   }
 
   createWalletFundForm() {
-    this.fundAmount = new FormControl('', [Validators.required, this.maxLoanValueValidator.bind(this)]);
+    this.fundAmount = new FormControl('', [Validators.required]);
+    this.fundChannel = new FormControl('Card', [Validators.required]);
     this.walletFund = new FormGroup({
       amount: this.fundAmount,
+      channel:this.fundChannel
     });
   }
 

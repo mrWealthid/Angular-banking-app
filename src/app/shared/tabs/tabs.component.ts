@@ -32,6 +32,7 @@ export class TabsComponent {
 
 export type ITabs = {
   title: string,
+  icon:string
 
 } & (LinksProps | StepsProps)
 
