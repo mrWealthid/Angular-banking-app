@@ -20,6 +20,7 @@ import {routes} from "./app-routes";
 import {SharedModule} from "./shared/shared.module";
 import {ThemeComponent} from './theme/theme.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { TransactionviewComponent } from './transactions/view/transactionview/transactionview.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     HeaderComponent,
     AdminComponent,
     ThemeComponent,
+    TransactionviewComponent,
 
 
   ],

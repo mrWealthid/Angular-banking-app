@@ -46,7 +46,7 @@ export class PaymentsComponent implements OnInit {
 
   //TABS CONFIG
   tabsForm: ITabs[] = [{
-    title: "Make Payment",
+    title: "Transfer",
     external: false,
     step: 1,icon:"../../../assets/images/transfer.svg"
 

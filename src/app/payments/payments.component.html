@@ -443,13 +443,18 @@ Fund request Summary -->
 
         <section *ngIf="(tabIndex| async)===1" class="">
 
-          <ng-container *ngIf="(beneficiaries|async) as beneficiaries">
+          <ng-container *ngIf="(beneficiaries|async) as beneficiaries;">
             <section *ngIf="beneficiaries.length > 5" class="flex items-center justify-between"><small class="mt-2">Showing {{beneficiaries.length}}
               beneficiaries</small>
               <div>
                 <button class="btn btn-primary cursor-pointer rounded-3xl">Show All</button>
               </div>
             </section>
+            
+
+        
+
+            <ng-container *ngIf="beneficiaries.length > 1; else noRecord">
             <section *ngFor="let beneficiary of beneficiaries">
               <div (click)="selectBeneficiary($event , beneficiary)"
                    class="flex cursor-pointer beneficiary-list items-center dark:text-secondary text-primary  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">
@@ -459,7 +464,16 @@ Fund request Summary -->
                 </section>
               </div>
             </section>
+            </ng-container>
+
+          <ng-template #noRecord>
+          <section class="h-[250px] flex items-center justify-center">
+            <p class="text-primary dark:text-secondary">No Beneficiary Saved!</p>
+          </section>
+          </ng-template>
           </ng-container>
+            
+   
         </section>
         <section *ngIf="(tabIndex| async)===2" class="">
           <!--        <p class="mb-2">Transaction Timeline</p>-->

@@ -36,7 +36,8 @@ export class TransactionsComponent implements OnInit {
   balance$: Observable<any>;
   tableConfig: ITableConfig = {
     showSummary: true,
-    tableName: "Transactions Table"
+    tableName: "Transactions Table",
+    // actionable:false
   }
 
 
