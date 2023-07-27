@@ -18,12 +18,20 @@ import { NotificationService } from '../shared/services/notification.service';
   styleUrls: ['./payments.component.css']
 })
 export class PaymentsComponent implements OnInit {
+  
+  // FORM GROUPS
+  
   paymentForm: FormGroup;
   loanForm: FormGroup;
+  walletFund:FormGroup
+
+
+// FORM CONTROLS
   accountNumber: FormControl;
   amount: FormControl;
   name: FormControl;
   duration: FormControl;
+  fundAmount:FormControl;
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
@@ -35,6 +43,7 @@ export class PaymentsComponent implements OnInit {
     {id: 12, name: 'One Year'},
   ];
 
+  //TABS CONFIG
   tabsForm: ITabs[] = [{
     title: "Make Payment",
     external: false,
@@ -44,6 +53,10 @@ export class PaymentsComponent implements OnInit {
     title: "Loan Request",
     external: false,
     step: 2,
+  }, {
+    title: "Fund Wallet",
+    external: false,
+    step: 3,
   }]
 
   BeneficiaryTabs: ITabs[] = [{
@@ -60,21 +73,25 @@ export class PaymentsComponent implements OnInit {
 ]
 
 
+// PROPERTIES
   asyncValue: any;
   beneficiaries: Observable<any[]>;
   balance= signal<number>(0)
   private userDetails: IProfile;
   transferDetails:any
   loanDetails:any
+  fundDetails: any
   paymentLoader:boolean = false
   loanLoader:boolean = false
+  fundLoader=false
+
+  //INJECTED SERVICES
   private paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
   private notify = inject(NotificationService)
 
   constructor() {
-    console.log("changes")
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
       if (userDetails) this.userDetails = userDetails
     })
@@ -90,10 +107,12 @@ export class PaymentsComponent implements OnInit {
   ngOnInit() {
     this.createPaymentForm()
     this.createLoanForm()
+    this.createWalletFundForm()
     // this.duration.valueChanges.subscribe(x => console.log(x))
 
     this.formatControlValue(this.amount)
     this.formatControlValue(this.loanAmount)
+    this.formatControlValue(this.fundAmount)
     this.beneficiaries = this.paymentService.fetchBeneficiaries()
     this.fetchBalance()
   }
@@ -118,6 +137,13 @@ export class PaymentsComponent implements OnInit {
 
   validateControl(control: FormControl, type: string) {
     return !control.pristine && control.errors?.hasOwnProperty(type) 
+  }
+
+  createWalletFundForm() {
+    this.fundAmount = new FormControl('', [Validators.required, this.maxLoanValueValidator.bind(this)]);
+    this.walletFund = new FormGroup({
+      amount: this.fundAmount,
+    });
   }
 
 
@@ -188,9 +214,19 @@ this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe
 if(val === 2) {
   const values = this.loanForm.value
   this.loanDetails = {
-    amount: values.amount,
+    amount: this.removeCurrencyFormat(values.amount),
     duration: values.duration
   }
+}
+
+if(val === 3) {
+  const values = this.walletFund.value
+  this.fundDetails = {
+    amount: this.removeCurrencyFormat(values.amount),
+    name:this.userDetails.name,
+    accountNumber: this.userDetails.accountNumber,
+    user: this.userDetails.id
+  } 
 }
     this.transferSteps.set(val)
   }
@@ -285,14 +321,14 @@ if(!value) return null;
   }
 
   handleLoanRequest() {
-    const values =this.loanForm.value
-    this.loanDetails = {
-      amount: this.removeCurrencyFormat(values.amount),
-      duration: values.duration,
-      name:this.userDetails.name,
-      accountNumber: this.userDetails.accountNumber,
-      user: this.userDetails.id
-    } 
+    // const values =this.loanForm.value
+    // this.loanDetails = {
+    //   amount: this.removeCurrencyFormat(values.amount),
+    //   duration: values.duration,
+    //   name:this.userDetails.name,
+    //   accountNumber: this.userDetails.accountNumber,
+    //   user: this.userDetails.id
+    // } 
 this.loanLoader = true
 
 this.paymentService.requestLoan(this.loanDetails).subscribe((x:any)=> {
@@ -304,9 +340,28 @@ this.paymentService.requestLoan(this.loanDetails).subscribe((x:any)=> {
   this.loanLoader = false   
   this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
 })
-    console.log(values)
+    // console.log(values)
   }
 
+  handleFundRequest() {
+  
+// this.fundLoader = true
+
+
+// this.paymentService.requestWalletFunding(this.fundDetails).subscribe((x:any)=> {
+//   this.loanLoader= false
+// //  this.notify.showSuccess('Request Sent Successful','Loan Notification')
+//  this.loanForm.reset({duration: '', amount : '' })
+//  this.updateSignal(0)
+// }, err=> {
+//   this.loanLoader = false   
+//   this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
+// })
+
+this.paymentService.createFundingSession(this.fundDetails.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
+
+    // console.log(this.fundDetails)
+  }
 
   handleChange($event: any) {
     console.log($event)

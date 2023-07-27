@@ -17,7 +17,12 @@ export class PaymentService {
   }
 
   createPaymentSession(beneficiaryId: string, amount:number):Observable<any> {
-    return this.Http.get(`${environment.API_URL}/api/v1/bookings/checkout-session/${beneficiaryId}/${amount}`)
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/payment-session/${beneficiaryId}/${amount}`)
+
+  }
+
+  createFundingSession(amount:number):Observable<any> {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/funding-session/${amount}`)
 
   }
 
@@ -28,6 +33,10 @@ export class PaymentService {
   requestLoan(payload: any): Observable<any> {
     return this.Http.post(`${environment.API_URL}/api/v1/loans`, payload)
   }
+  // requestWalletFunding(payload: any): Observable<any> {
+  //   return this.Http.post(`${environment.API_URL}/api/v1/loans`, payload)
+  // }
+
 
   fetchBeneficiaries(): Observable<IBeneficiary[]> {
     return this.Http.get(`${environment.API_URL}/api/v1/beneficiaries`).pipe(map(({data}: any) => {
