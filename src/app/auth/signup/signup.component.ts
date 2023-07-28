@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
   DOB: UntypedFormControl;
   email: UntypedFormControl;
   password: UntypedFormControl;
-  passwordConfirm: UntypedFormControl;
+  // passwordConfirm: UntypedFormControl;
   loading: Boolean;
   selectedDate: Date;
   config: IDatePickerConfig = {
@@ -54,15 +54,15 @@ export class SignupComponent implements OnInit {
     this.lastname = new UntypedFormControl('', Validators.required);
     this.email = new UntypedFormControl('', [Validators.required, Validators.email]);
     this.DOB = new UntypedFormControl('', [Validators.required],);
-    this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(6)]);
-    this.passwordConfirm = new UntypedFormControl('', [Validators.required, Validators.minLength(6)]);
+    this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(8)]);
+    // this.passwordConfirm = new UntypedFormControl('', [Validators.required, Validators.minLength(8)]);
     this.SignupForm = new UntypedFormGroup({
       firstname: this.firstname,
       lastname: this.lastname,
       dob: this.DOB,
       email: this.email,
       password: this.password,
-      passwordConfirm: this.passwordConfirm
+      passwordConfirm: this.password
     });
 
   }

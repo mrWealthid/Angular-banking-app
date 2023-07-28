@@ -233,7 +233,7 @@
         </form>
 
         <!-- Fund Wallet Form -->
-        <form (ngSubmit)="handleFundRequest()" *ngIf="(formTabIndex|async) ===3 && transferSteps()=== 0 " [formGroup]="walletFund"
+        <form  *ngIf="(formTabIndex|async) ===3 && transferSteps()=== 0 " [formGroup]="walletFund"
         class="w-full flex cla flex-col mt-3 gap-2">
 
 

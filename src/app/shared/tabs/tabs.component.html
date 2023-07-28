@@ -1,16 +1,16 @@
 <div class="">
   <ul
-    class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-0 items-center text-xs  md:text-sm font-medium text-gray-600 dark:text-gray-600">
+    class="grid-cols-2 grid md:grid-cols-3 gap-4 md:gap-0 items-center text-xs  md:text-sm font-medium text-gray-600 dark:text-gray-600">
     <li  *ngFor="let tab of tabs; let i = index" class="">
 
-      <a (click)="navigateTab(tab.step)"
+      <span (click)="navigateTab(tab.step)"
          [ngClass]="tab.step ===selectedTab ? 'text-gray-800   border border-gray-300  dark:border-none dark:text-secondary dark:glass   py-1': ''"
-         class=" text-primary dark:text-secondary px-2 inline-flex items-center  cursor-pointer  py-1 rounded-full "
+         class=" text-primary dark:text-secondary px-1  flex items-center justify-center  cursor-pointer  py-1 rounded-full "
       >
-<img [src]="tab.icon" alt="tab.title" />
+<img  class=" " [src]="tab.icon" alt="tab.title" />
 
-        {{tab.title}}
-      </a>
+    <span class=""> {{tab.title}}</span>   
+    </span>
     </li>
 
   </ul>
