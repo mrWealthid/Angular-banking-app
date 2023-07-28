@@ -9,7 +9,7 @@ export class SummaryCardsComponent {
   @Input({required: true}) value: number
   @Input() valueTxt: string = 'Balance'
 
-  showValue = true
+  showValue = false
 
 
   toggleValue() {

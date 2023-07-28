@@ -274,7 +274,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         //padding: 0.9rem 1.2rem;
         vertical-align: top;
         border-top: 0;
-        color: $datatable-body-cell-color;
+        // color: $datatable-body-cell-color;
         transition: width 0.3s ease;
         margin-left: 10px;
         margin-right: 10px;
@@ -285,6 +285,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         // &.active {
         //  background: #0829e0
         // }
+        @apply dark:text-secondary text-primary
       }
 
       .datatable-body-group-cell {
