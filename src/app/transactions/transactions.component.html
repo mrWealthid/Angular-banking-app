@@ -7,12 +7,10 @@
       <div><p class='text-md dark:text-secondary text-primary flex gap-3 text-gray-800  md:text-xl'>
         Welcome Back,
         <span class='dark:text-secondary text-primary'>{{currentUser.name}}
-          <img *ngIf="currentUser.role ==='user'"
+          <img
                class="inline-flex items-center justify-center"
                width="25" height="25" ngSrc="assets/images/userbadge.svg" alt="badge">
-          <img *ngIf="currentUser.role ==='admin'"
-               class="inline-flex items-center justify-center"
-               width="25" height="25" ngSrc="assets/images/adminbadge.svg" alt="badge">
+     
         </span>
       </p>
 
@@ -59,10 +57,8 @@
       <div><p class='text-md dark:text-secondary text-primary flex gap-3 text-gray-800  md:text-xl'>
         Welcome Back,
         <span class='dark:text-secondary text-primary'>{{currentUser.name}}
-          <img *ngIf="currentUser.role ==='user'"
-               class="inline-flex items-center justify-center"
-               width="25" height="25" ngSrc="assets/images/userbadge.svg" alt="badge">
-          <img *ngIf="currentUser.role ==='admin'"
+       
+          <img
                class="inline-flex items-center justify-center"
                width="25" height="25" ngSrc="assets/images/adminbadge.svg" alt="badge">
         </span>

@@ -19,7 +19,7 @@
           </p>
 
 
-          <p class='text-sm mt-1 flex gap-4 dark:text-secondary text-primary  md:text-md'>
+          <p *ngIf="currentUser.role==='user'" class='text-sm mt-1 flex gap-4 dark:text-secondary text-primary  md:text-md'>
             Account Number : {{currentUser.accountNumber}}
             <app-clipboard [style]="'text-green-400'" [textToCopy]=currentUser.accountNumber></app-clipboard>
           </p>

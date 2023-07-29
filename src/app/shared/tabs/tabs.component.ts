@@ -34,7 +34,7 @@ export type ITabs = {
   title: string,
   icon:string
 
-} & (LinksProps | StepsProps)
+} & ( StepsProps)
 
 type LinksProps = { external: true, link: string }
 

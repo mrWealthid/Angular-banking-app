@@ -4,7 +4,7 @@
     <app-label [label]="label" [required]="hasRequiredValidator()"></app-label>
   </ng-container>
 
-  <dp-date-picker [config]="config" [displayDate]="config.max"
+  <dp-date-picker [config]="config" [displayDate]="config.max? config.max : date"
                   [formControl]="formControl"
                   [placeholder]="'Select Date'"
                   [theme]="'dp-material'"

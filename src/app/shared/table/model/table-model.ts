@@ -1,4 +1,5 @@
 import {Pipe} from "@angular/core";
+import { selectOptions } from "../../inputs/select-input/select-input.component";
 
 export interface IList {
   status: string,
@@ -23,10 +24,10 @@ export class Page {
 export type columnProps = {
   name: string,
   prop: string,
-  selectOptions?: { [key: string]: any },
+  selectOptions?: any,
   searchType?: any,
-  pipe?: Pipe
-  custom?: string
+  pipe?: any
+  custom?: boolean
 
 }
 // & (selectProps | otherProps)

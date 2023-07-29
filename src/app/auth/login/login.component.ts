@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
 
   formRoute$ = new BehaviorSubject('loginForm')
-  loading: Boolean;
+  loading: boolean;
 
 
   constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {

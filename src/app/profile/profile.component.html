@@ -65,7 +65,7 @@
 
             <img *ngIf="!previewUrl" alt=""
                  class="  border dark:border-none rounded-full mx-auto w-32 object-cover  h-32" height="820"
-                 src='{{data.imgUrl}}' width="900">
+                 src='{{data?.imgUrl}}' width="900">
 
             <img *ngIf="previewUrl" alt="" class="  border rounded-full mx-auto w-32 object-cover  h-32" height="820"
                  src='{{previewUrl}}' width="900">

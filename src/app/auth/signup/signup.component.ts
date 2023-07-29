@@ -24,8 +24,8 @@ export class SignupComponent implements OnInit {
   DOB: UntypedFormControl;
   email: UntypedFormControl;
   password: UntypedFormControl;
-  // passwordConfirm: UntypedFormControl;
-  loading: Boolean;
+  accountType: UntypedFormControl;
+  loading: boolean;
   selectedDate: Date;
   config: IDatePickerConfig = {
     max: this.date.subtract(7, 'year'),
@@ -55,14 +55,15 @@ export class SignupComponent implements OnInit {
     this.email = new UntypedFormControl('', [Validators.required, Validators.email]);
     this.DOB = new UntypedFormControl('', [Validators.required],);
     this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(8)]);
-    // this.passwordConfirm = new UntypedFormControl('', [Validators.required, Validators.minLength(8)]);
+    this.accountType = new UntypedFormControl('Wallet', [Validators.required]);
     this.SignupForm = new UntypedFormGroup({
       firstname: this.firstname,
       lastname: this.lastname,
       dob: this.DOB,
       email: this.email,
       password: this.password,
-      passwordConfirm: this.password
+      passwordConfirm: this.password,
+     accountType:this.accountType
     });
 
   }

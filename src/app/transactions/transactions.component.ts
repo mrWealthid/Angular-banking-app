@@ -19,7 +19,7 @@ export class TransactionsComponent implements OnInit {
   tableColumns = [
     {prop: 'initiatorName', name: 'Payer', searchType: 'text'},
     {prop: 'amount', name: 'Amount', pipe: "Currency", custom: true, searchType: 'number'},
-    {prop: 'transactionType', name: 'Transaction', custom: true, searchType: 'dropdown', searchOptions:[
+    {prop: 'transactionType', name: 'Transaction', custom: true, searchType: 'dropdown',  selectOptions:[
       {id: "Credit", name: 'Credit'},
       {id: "Debit", name: 'Debit'},
     ]},
@@ -47,7 +47,7 @@ export class TransactionsComponent implements OnInit {
     this.balance$ = this.paymentService.getBalance()
   }
 
-  handleAllSelection(rows: []) {
+  handleAllSelection(rows: any[]) {
     console.log("I bubbled up", rows)
   }
 

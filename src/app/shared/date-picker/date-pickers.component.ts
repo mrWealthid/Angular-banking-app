@@ -33,6 +33,8 @@ export class DatePickerComponents implements OnInit {
 
   };
 
+  
+
   ngOnInit() {
     this.config = {...this.config, ...this.dateConfig}
     this.setDefaults()

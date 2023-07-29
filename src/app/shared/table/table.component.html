@@ -119,7 +119,7 @@
         <datatable-pager (change)="table.onFooterPage($event)"
                          [count]="rowCount"
                          [page]="curPage"
-                         [hidden]=" rows?.length < 1"
+                         [hidden]=" rows.length < 1"
                          [pagerLeftArrowIcon]="'datatable-icon-left'"
                          [pagerNextIcon]="'datatable-icon-skip'"
                          [pagerPreviousIcon]="'datatable-icon-prev'"
@@ -169,7 +169,7 @@
                               [label]="column.name"
                               [bindLabel]="'name'"
                               [bindValue]="'id'"
-                              [items]= "column.searchOptions"
+                              [items]= "column.selectOptions"
                               [placeholder]="'Enter' + ' '+ column.name" class="w-full"></select-input>
               </ng-container>
 

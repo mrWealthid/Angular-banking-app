@@ -137,7 +137,7 @@
         <div *ngIf="transferSteps() ===0" >
           <app-tabs (steps)=" navigateTab($event, formTabIndex)" [tabs]="tabsForm"></app-tabs>
         </div>
-        <form (ngSubmit)="handlePayment(paymentForm.value)" *ngIf="(formTabIndex|async) ===1 && transferSteps() ===0" [formGroup]="paymentForm"
+        <form (ngSubmit)="handlePayment()" *ngIf="(formTabIndex|async) ===1 && transferSteps() ===0" [formGroup]="paymentForm"
               class="w-full flex flex-col mt-3 gap-2">
 
           <acc-lookup [data]="asyncValue"
@@ -191,7 +191,7 @@
         <!--      Loan Request Form-->
 
 
-        <form (ngSubmit)="handleLoanRequest(loanForm.value)" *ngIf="(formTabIndex|async) ===2 && transferSteps()=== 0 " [formGroup]="loanForm"
+        <form (ngSubmit)="handleLoanRequest()" *ngIf="(formTabIndex|async) ===2 && transferSteps()=== 0 " [formGroup]="loanForm"
               class="w-full flex cla flex-col mt-3 gap-2">
 
 

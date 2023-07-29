@@ -17,7 +17,7 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
 export class TextInputComponent implements ControlValueAccessor {
   @Input({required: true}) label: string;
   @Input() type: string = 'text';
-  @Input() placeholder: string;
+  @Input() placeholder: string|undefined;
   @Input({required: true}) formControl: FormControl;
 
 
