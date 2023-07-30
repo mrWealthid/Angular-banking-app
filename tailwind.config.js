@@ -20,9 +20,9 @@ module.exports = {
       },
       colors: {
         'primary': 'var(--primary-color)',
-        'primary-light': 'var( --primary-color-light)',
+        'primary-light': 'var( --primary-color-muted)',
         'secondary': 'var(--secondary-color)',
-        'base': 'var(--base-color)',
+        'base-color': 'var(--color-text-base)',
         'success': 'var(--success-color)',
         'error': 'var(--error-color)',
         'pending': 'var(--pending-color)',

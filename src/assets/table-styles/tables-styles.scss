@@ -24,7 +24,7 @@ $ngx-datatable-row-odd-background: #eee !default;
 
 // default row and cell background colors
 $ngx-datatable-default-background: #fff !default;
-$ngx-datatable-default-background-hover: #eee !default;
+$ngx-datatable-default-background-hover: #eeeeee !default;
 $ngx-datatable-default-background-focus: #ddd !default;
 
 // default background colors for cell selection style
@@ -104,10 +104,11 @@ $datatable-summary-row-background-hover: #ddd !default;
     .datatable-body-row {
       &:hover,
       &:hover .datatable-row-group {
-        background-color: $ngx-datatable-default-background-hover;
+        // background-color: $ngx-datatable-default-background-hover;
         transition-property: background;
         transition-duration: 0s;
         transition-timing-function: linear;
+        @apply dark:bg-primary bg-secondary
       }
 
       &:focus,
@@ -285,7 +286,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         // &.active {
         //  background: #0829e0
         // }
-        @apply dark:text-secondary text-primary
+        @apply  text-black
       }
 
       .datatable-body-group-cell {

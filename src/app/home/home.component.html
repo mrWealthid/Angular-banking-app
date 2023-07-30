@@ -12,7 +12,7 @@
       enim ad minim veniam, quis nostrud exercitation ullamco laboris.
     </p>
     <button [routerLink]="['dashboard']"
-            class='w-3/4  md:w-1/2 lg:w-1/3 cap text-secondary dark:text-secondary  bg-gray-800 dark:glass px-2 py-4 rounded-full'>
+            class='w-3/4  md:w-1/2 lg:w-1/3 cap text-secondary dark:text-secondary  bg-primary dark:glass px-2 py-4 rounded-full'>
       Explore
     </button>
   </section>
@@ -21,7 +21,7 @@
   <section class='flex w-full  md:w-1/2 gap-8  glassTxt justify-end'>
     <div class='w-1/2 hidden  md:flex '>
       <section
-        class='w-60 flex flex-col h-96    skin  skin-card dark:glass bg-gray-800 shadow-gray-200 shadow-md  box-border   rounded-xl  text-secondary'>
+        class='w-60 flex flex-col h-96    skin  skin-card dark:glass bg-primary shadow-gray-200 shadow-md  box-border   rounded-xl  text-secondary'>
         <div class='flex flex-1    justify-between px-3 py-5'>
           <p>WealthPay</p>
           <i class="fa-solid fa-wifi"></i>
@@ -72,7 +72,7 @@
 <section
   class="section-hero2 dark:glass bg-white dark:text-secondary text-primary  skin flex-col lg:flex-row container-text py-14 justify-center items-center  lg:items-center flex gap-10">
   <div
-    class="relative w-full lg:w-1/2 border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[320px] lg:max-w-[512px] md:max-w-[700px]">
+    class="relative w-full lg:w-1/2 border-primary dark:border-primary bg-primary border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[320px] lg:max-w-[512px] md:max-w-[700px]">
     <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
       <img alt=""
            class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"
@@ -92,11 +92,11 @@
 
     <div class=" flex justify-center  lg:w-1/3">
       <button *ngIf="(isAuthenticated|async)" [routerLink]="['dashboard']"
-              class='w-1/2 lg:w-full cap text-secondary bg-gray-800 px-2 py-4 rounded-full'>
+              class='w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full'>
         View Dashboard
       </button>
       <button *ngIf="!(isAuthenticated|async)" [routerLink]="['auth/login']"
-              class='w-1/2 lg:w-full cap text-secondary bg-gray-800 px-2 py-4 rounded-full'>
+              class='w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full'>
         Login
       </button>
     </div>

@@ -119,7 +119,7 @@
         <datatable-pager (change)="table.onFooterPage($event)"
                          [count]="rowCount"
                          [page]="curPage"
-                         [hidden]=" rows.length < 1"
+                         [hidden]=" rows&& rows.length < 1"
                          [pagerLeftArrowIcon]="'datatable-icon-left'"
                          [pagerNextIcon]="'datatable-icon-skip'"
                          [pagerPreviousIcon]="'datatable-icon-prev'"

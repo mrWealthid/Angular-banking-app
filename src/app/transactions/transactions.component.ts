@@ -1,10 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {TransactionService} from "./service/transaction.service";
 import {globalizeDate} from "../shared/helpers/helperFunctions";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../core/store/Profile/selectors";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {PaymentService} from "../payments/service/payment.service";
 import {ITableConfig} from "../shared/table/model/table-model";
 
@@ -33,7 +33,7 @@ export class TransactionsComponent implements OnInit {
   paymentService = inject(PaymentService)
   private store = inject(Store<AppStateInterface>)
   currentUser$: Observable<IProfile | null>;
-  balance$: Observable<any>;
+  balance= signal<number>(0)
   tableConfig: ITableConfig = {
     showSummary: true,
     tableName: "Transactions Table",
@@ -44,8 +44,14 @@ export class TransactionsComponent implements OnInit {
   ngOnInit(): void {
 
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
-    this.balance$ = this.paymentService.getBalance()
+  this.fetchBalance()
   }
+
+  fetchBalance() {
+    this.paymentService.getBalance().subscribe(x=> 
+      this.balance.set(x))
+  }
+
 
   handleAllSelection(rows: any[]) {
     console.log("I bubbled up", rows)
