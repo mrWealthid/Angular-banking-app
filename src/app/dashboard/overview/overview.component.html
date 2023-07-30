@@ -172,13 +172,14 @@
         <div class="flex justify-between">
           <p>Summary</p>
           <section class="flex flex-col gap-5 justify-end">
-            <select class="bg-gray-100 dark:glass border-none rounded text-xs py-2 px-5">
+            <select class="bg-gray-50 dark:glass border-none rounded text-xs py-2 px-5">
               <option>Transactions</option>
             </select>
 
             <select (change)="handleChange($event)"
-                    class="bg-yellow-50 dark:glass text-xs border-none  py-2 px-5 ml-4 rounded p-2">
-              <option selected value="{{month}}"> This Month</option>
+                    class="bg-gray-50 dark:glass text-xs border-none  py-2 px-5 ml-4 rounded p-2">
+              <option selected value="{{month}}"> This Month</
+                option>
               <option value="{{year}}">This Year</option>
             </select>
           </section>
