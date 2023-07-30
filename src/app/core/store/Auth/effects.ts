@@ -13,7 +13,7 @@ export class AuthEffect {
 
   private AuthService = inject(AuthService);
   private actions$ = inject(Actions);
-  private Notify = inject(NotificationService);
+
 
   register$ = createEffect(() =>
     this.actions$.pipe(ofType(AuthActions.register), switchMap((credentials: IRegister) => {
@@ -24,7 +24,8 @@ export class AuthEffect {
         }), catchError(error => of(AuthActions.registerFailure({
           error: error.message
         })).pipe(tap(() => {
-          this.Notify.showError(error.statusText, "Auth Error")
+this.AuthService.setError(error.error.message)
+        
         }))));
     }))
   );
@@ -36,9 +37,10 @@ export class AuthEffect {
             return [AuthActions.loginSuccess({currentUser}), profileLookup()
             ]
           }), catchError(error => of(AuthActions.loginFailure({
-            error: error.message
+            error: error.error.message
           })).pipe(tap(() => {
-            this.Notify.showError(error.statusText, "Auth Error")
+            console.log(error.error.message)
+          this.AuthService.setError(error.error.message)
           }))))
       }))
     ))

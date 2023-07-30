@@ -6,9 +6,10 @@ import {ModalService} from "../../shared/services/modal.service";
 import * as AuthActions from "../../core/store/Auth/actions";
 
 import {select, Store} from "@ngrx/store";
-import {isLoadingSelector} from "../../core/store/Auth/selectors";
+import { isLoadingSelector} from "../../core/store/Auth/selectors";
 import {IDatePickerConfig} from "ng2-date-picker";
 import * as dayjs from "dayjs";
+
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +31,7 @@ export class SignupComponent implements OnInit {
   config: IDatePickerConfig = {
     max: this.date.subtract(7, 'year'),
   };
-
+  
 
   constructor(public authservice: AuthService, public modalService: ModalService, private store: Store<AppStateInterface>
   ) {
@@ -46,6 +47,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm()
+   
   }
 
 

@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {ILogin, IRegister, IUser} from "./shared/interface/userAuth";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -17,6 +17,12 @@ export class AuthService {
   router = inject(Router);
   private Http = inject(HttpClient)
 
+  error = signal('')
+
+
+  setError( message:string) {
+    this.error.set(message)
+  }
 
   login(credentials: ILogin): Observable<IUser> {
     return this.Http.post<IUser>(`${environment.API_URL}/api/v1/users/login`, credentials, {

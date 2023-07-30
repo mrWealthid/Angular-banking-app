@@ -59,4 +59,6 @@ export const AuthReducer = createReducer(initialState,
   on(AuthActions.profileLookupSuccess, (state) => ({
     ...state, isLoading: false, isAuthenticated: true, error: null
   })),
+
+
 );

@@ -12,6 +12,7 @@ export const registerSuccess = createAction('[AUTH] Get RegisterSuccess', props<
 export const registerFailure = createAction('[AUTH] Get RegisterFailure', props<{ error: string }>());
 
 
+
 export const profileLookup = createAction('[PROFILE] profileLookup');
 
 export const profileLookupSuccess = createAction('[PROFILE] Get profileLookupSuccess', props<{ newUser:IProfile }>());

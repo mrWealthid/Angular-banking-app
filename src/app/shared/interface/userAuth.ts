@@ -35,7 +35,7 @@ export interface AuthState {
   isAuthenticated: boolean,
   token: IToken | null
 
-  error: String | null
+  error: string | null
 }
 
 export interface IToken {
