@@ -21,7 +21,15 @@ export class AuthService {
 
 
   setError( message:string) {
+    let timer;
+
+    clearTimeout(timer)
     this.error.set(message)
+ timer=  setTimeout(()=> {
+//Clear Alert
+      this.error.set('')
+    }, 3000)
+   
   }
 
   login(credentials: ILogin): Observable<IUser> {

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
   createLoginForm() {
     this.email = new UntypedFormControl('', [Validators.required, Validators.email]);
-    this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(6)]);
+    this.password = new UntypedFormControl('', [Validators.required, Validators.minLength(8)]);
     this.LoginForm = new UntypedFormGroup({
       email: this.email,
       password: this.password
