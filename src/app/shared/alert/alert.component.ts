@@ -1,4 +1,5 @@
-import { Component, Input} from '@angular/core';
+import { Component, Input, inject} from '@angular/core';
+import { AuthService } from 'src/app/auth.service';
 
 
 
@@ -10,10 +11,10 @@ import { Component, Input} from '@angular/core';
 export class AlertComponent {
   @Input({required:true}) msg =""
 
+  authService = inject(AuthService)
+
 
   handleClose() {
-
-    this.msg = ""
-
+this.authService.setError('')
   }
 }
