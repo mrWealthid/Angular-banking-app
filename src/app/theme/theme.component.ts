@@ -34,7 +34,7 @@ setAutofill(color:string) {
       document.documentElement.classList.add('dark')
       this.isDarkMode = true;
 
-      this.setAutofill('#848484')
+      this.setAutofill('#777777')
     } else {
       document.documentElement.classList.remove('dark')
       this.isDarkMode = false;
