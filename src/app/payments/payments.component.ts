@@ -32,7 +32,8 @@ export class PaymentsComponent implements OnInit {
   name: FormControl;
   duration: FormControl;
   fundAmount:FormControl;
-  fundChannel:FormControl
+  fundChannel:FormControl;
+  paymentChannel:FormControl;
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
@@ -92,8 +93,14 @@ export class PaymentsComponent implements OnInit {
   selectOptions: selectOptions[] = [
     {id: "Card", name: 'Card'},
   ];
+
+
+  PaymentOptions: selectOptions[] = [
+    {id: "Card", name: 'Card'},
+    {id: "Wallet", name: 'Wallet'},
+  ];
   //INJECTED SERVICES
-  private paymentService = inject(PaymentService);
+   paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
   private notify = inject(NotificationService)
@@ -158,8 +165,10 @@ export class PaymentsComponent implements OnInit {
 
   createPaymentForm() {
     this.accountNumber = new FormControl('', [Validators.required], this.validateAccount.bind(this));
+    this.paymentChannel = new FormControl('Wallet', [Validators.required]);
     this.amount = new FormControl('', [Validators.required, this.maxValueValidator.bind(this)]);
     this.paymentForm = new FormGroup({
+     paymentChannel: this.paymentChannel,
       accountNumber: this.accountNumber,
       amount: this.amount
     });
@@ -194,20 +203,30 @@ export class PaymentsComponent implements OnInit {
 
 //First Create a payment Session
 
+if(this.paymentChannel.value ==="Card") {
 this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
-
+}
+else {
+ this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
+  console.log(x)
+      this.paymentLoader = false
+     this.notify.showSuccess('Transfer Successful','Payment Notification' )
+     this.fetchBalance()
+     this.updateSignal(0)
+     this.paymentForm.reset({accountNumber: '', amount : '' })
+    }, err=> {
+      this.paymentLoader = false   
+    this.paymentService.setError(err.error.message)
+    })
+}
   
-    // this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
-    //   this.paymentLoader = false
-    //  this.notify.showSuccess('Transfer Successful','Payment Notification' )
-    //  this.fetchBalance()
-    //  this.updateSignal(0)
-    //  this.paymentForm.reset({accountNumber: '', amount : '' })
-    // }, err=> {
-    //   this.paymentLoader = false   
-    //   this.notify.showError('Transfer Failed, Please Try Again','Payment Notification' )
-    // })
+   
   }
+
+  handleClearError(){
+    this.paymentService.setError('')
+  }
+
 
   updateSignal(val:number) {
   if(val === 1) {
@@ -313,6 +332,7 @@ if(!value) return null;
     target.children[0].classList.add('text-green-400')
     target.classList.add('border-green-200')
     this.paymentForm.patchValue({accountNumber: beneficiary.accountNumber})
+    this.accountNumber.updateValueAndValidity()
   }
 
 
@@ -374,5 +394,16 @@ this.paymentService.createFundingSession(this.fundDetails.amount).subscribe((x: 
 
   handleChange($event: any) {
     console.log($event)
+  }
+
+  handlePaymentChannelChange(selectedOption:any) {
+
+if(selectedOption.name ==="Card") {
+  this.amount.setValidators([Validators.required])
+}
+else {
+  this.amount.setValidators([Validators.required,this.maxValueValidator.bind(this) ])
+}
+this.amount.updateValueAndValidity()
   }
 }

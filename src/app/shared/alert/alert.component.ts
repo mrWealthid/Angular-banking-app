@@ -1,4 +1,4 @@
-import { Component, Input, inject} from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject} from '@angular/core';
 import { AuthService } from 'src/app/auth.service';
 
 
@@ -11,10 +11,10 @@ import { AuthService } from 'src/app/auth.service';
 export class AlertComponent {
   @Input({required:true}) msg =""
 
-  authService = inject(AuthService)
+  @Output() clearError = new EventEmitter<string>();
 
 
   handleClose() {
-this.authService.setError('')
+this.clearError.emit('')
   }
 }

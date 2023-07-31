@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {IBeneficiary, IPayment} from "../model/payment-model";
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
@@ -10,6 +10,21 @@ import {environment} from "../../../environments/environment";
 export class PaymentService {
 
   private Http = inject(HttpClient)
+
+  error = signal('')
+
+
+  setError( message:string) {
+    let timer;
+
+    clearTimeout(timer)
+    this.error.set(message)
+ timer=  setTimeout(()=> {
+//Clear Alert
+      this.error.set('')
+    }, 3000)
+   
+  }
 
 
   accountLookup(value: any): Observable<any> {
