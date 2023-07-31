@@ -55,8 +55,17 @@ export class PasswordInputComponent implements ControlValueAccessor {
   }
 
   validatePassword() {
-    return !this.formControl.pristine && /INVALID/i.test(this.formControl.status);
+    return this.formControl.pristine &&  this.formControl.value.length < 1  && /INVALID/i.test(this.formControl.status);
   }
+
+
+  // validateControl() {
+  //   return !this.formControl.pristine && this.formControl.errors?.hasOwnProperty('required');
+  // }
+
+  // validateControl(type:string) {
+  //   return !this.formControl.pristine && this.formControl.errors?.hasOwnProperty(type);
+  // }
 
   setDisabledState(isDisabled: boolean): void {
     if (isDisabled) {
