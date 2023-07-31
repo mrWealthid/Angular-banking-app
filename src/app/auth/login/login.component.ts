@@ -55,6 +55,10 @@ export class LoginComponent implements OnInit {
   }
 
 
+  handleClearError(){
+    this.authservice.setError('')
+  }
+
   // toggleModal() {
   //   this.showModal = !this.showModal;
   //   this.showMe = true;

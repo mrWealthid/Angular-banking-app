@@ -1,7 +1,7 @@
 <section class="flex flex-col  min-h-screen items-center justify-center ">
   
   <ng-container *ngIf="authservice.error()">
-  <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" [msg]="authservice.error()"></app-alert>
+  <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" (clearError)="handleClearError()"  [msg]="authservice.error()"></app-alert>
 </ng-container>
 
   <section

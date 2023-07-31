@@ -50,6 +50,9 @@ export class SignupComponent implements OnInit {
    
   }
 
+  handleClearError(){
+    this.authservice.setError('')
+  }
 
   createForm() {
     this.firstname = new UntypedFormControl('', Validators.required);

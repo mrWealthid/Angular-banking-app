@@ -171,7 +171,7 @@ header {
 }
 
 .container-text {
-  @apply px-4 md:px-6 lg:px-10 ;
+  @apply px-4 md:px-6  2xl:px-10 ;
 }
 
 
@@ -325,6 +325,7 @@ input:-webkit-autofill {
 .ng-placeholder {
   color: var(--base-color),  !important;
   @apply text-xs font-light
+
 }
 //.txt {
 //  @apply bg-gray-400
@@ -383,7 +384,7 @@ ng-select.ng-invalid.ng-touched .ng-select-container {
 
 dp-date-picker {
 
-  @apply dark:glass-input text-black border border-blue-100 dark:border-none rounded-lg
+  @apply dark:glass-input  border border-blue-100 dark:border-none rounded-lg
 }
 
 
