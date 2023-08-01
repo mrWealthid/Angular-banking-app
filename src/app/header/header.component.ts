@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isAuthenticated = this.store.pipe(select(isAuthenticated))
     this.currentUser = this.store.pipe(select(currentUserSelector))
+  
   }
 
 
