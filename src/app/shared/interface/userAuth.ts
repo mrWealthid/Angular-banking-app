@@ -71,7 +71,7 @@ export interface IUserDetails {
   dateOfBirth: Date,
   accountNumber: number
   imgUrl?: string,
-  id?:string
+  id:string
 }
 
 

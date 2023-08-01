@@ -7,7 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../core/store/Profile/selectors";
 import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
 import {PaymentService} from "./service/payment.service";
-import {IPayment} from "./model/payment-model";
+import {IBeneficiary, IPayment} from "./model/payment-model";
 import {ITabs} from "../shared/tabs/tabs.component";
 import {selectOptions} from "../shared/inputs/select-input/select-input.component";
 import { NotificationService } from '../shared/services/notification.service';
@@ -39,6 +39,14 @@ export class PaymentsComponent implements OnInit {
   loanAmount: FormControl;
 
   transferSteps= signal(0)
+
+  toggleAddBeneficiary =signal(false)
+  isBeneficiarySelected =signal(false)
+
+
+  handleBeneficiaryChange() {
+    this.  toggleAddBeneficiary.set(!this.  toggleAddBeneficiary())
+  }
 
   options: selectOptions[] = [
     {id: 6, name: '6 Months'},
@@ -127,10 +135,13 @@ export class PaymentsComponent implements OnInit {
     this.formatControlValue(this.amount)
     this.formatControlValue(this.loanAmount)
     this.formatControlValue(this.fundAmount)
-    this.beneficiaries = this.paymentService.fetchBeneficiaries()
+    this.fetchBeneficiaries()
     this.fetchBalance()
   }
 
+  fetchBeneficiaries() {
+    this.beneficiaries = this.paymentService.fetchBeneficiaries()
+  }
 
   fetchBalance() {
     this.paymentService.getBalance().subscribe(x=> 
@@ -198,12 +209,21 @@ export class PaymentsComponent implements OnInit {
       createdAt: new Date(Date.now())
     }
 
+
+    const beneficiaryPayload: IBeneficiary = {
+      name: this.asyncValue.name,
+      accountNumber:+values.accountNumber,
+      user:this.userDetails.id
+    }
     this.paymentLoader = true
 
 
 //First Create a payment Session
 
+this.toggleAddBeneficiary() && this.paymentService.addBeneficiaries(beneficiaryPayload).subscribe()
+
 if(this.paymentChannel.value ==="Card") {
+
 this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
 }
 else {
@@ -212,6 +232,7 @@ else {
       this.paymentLoader = false
      this.notify.showSuccess('Transfer Successful','Payment Notification' )
      this.fetchBalance()
+     this.fetchBeneficiaries()
      this.updateSignal(0)
      this.paymentForm.reset({accountNumber: '', amount : '' })
     }, err=> {
@@ -330,9 +351,13 @@ if(!value) return null;
     this.updateDom()
     const target = (event.currentTarget) as HTMLElement
     target.children[0].classList.add('text-green-400')
+
+    
     target.classList.add('border-green-200')
     this.paymentForm.patchValue({accountNumber: beneficiary.accountNumber})
     this.accountNumber.updateValueAndValidity()
+
+    this.isBeneficiarySelected.set(true)
   }
 
 

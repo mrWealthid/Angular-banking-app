@@ -185,9 +185,9 @@
 
 
           <!-- Implement later beneficiary feature -->
-          <section class="hidden">
+          <section *ngIf="!isBeneficiarySelected()" >
             <label class="relative inline-flex items-center mb-4 cursor-pointer">
-              <input class="sr-only peer" type="checkbox" value="">
+              <input class="sr-only peer" type="checkbox" (change)="handleBeneficiaryChange()"  value='toggleAddBeneficiary()'>
               <div
                 class="w-11 h-6 bg-gray-200  rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"></div>
               <span class="ml-3 text-sm font-medium dark:text-secondary text-primary">Add to beneficiaries</span>
@@ -475,7 +475,7 @@ Fund request Summary -->
 
         
 
-            <ng-container *ngIf="beneficiaries.length > 1; else noRecord">
+            <ng-container *ngIf="beneficiaries.length >=1 ; else noRecord">
             <section *ngFor="let beneficiary of beneficiaries">
               <div (click)="selectBeneficiary($event , beneficiary)"
                    class="flex cursor-pointer beneficiary-list items-center dark:text-secondary text-primary  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">

@@ -12,7 +12,8 @@ export interface IPayment {
 
 type User = Pick<IPayment, "user" | "createdAt">
 
-export interface IBeneficiary extends User {
+export interface IBeneficiary {
   name: string,
-  accountNumber: number
+  accountNumber: number,
+  user:string
 }
