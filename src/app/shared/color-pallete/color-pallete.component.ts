@@ -32,6 +32,8 @@ constructor(){
 
 
   changeColor(theme:string): void {
+    document.body.removeAttribute('class') 
+
     localStorage['color-theme'] = theme
     this.updateTheme()
   }
