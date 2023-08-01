@@ -24,7 +24,7 @@ export class AuthEffect {
         }), catchError(error => of(AuthActions.registerFailure({
           error: error.message
         })).pipe(tap(() => {
-this.AuthService.setError(error.error.message)
+this.AuthService.setError(error.error.message||error.message)
         
         }))));
     }))
@@ -39,8 +39,7 @@ this.AuthService.setError(error.error.message)
           }), catchError(error => of(AuthActions.loginFailure({
             error: error.error.message
           })).pipe(tap(() => {
-            console.log(error.error.message)
-          this.AuthService.setError(error.error.message)
+          this.AuthService.setError(error.error.message || error.message)
           }))))
       }))
     ))

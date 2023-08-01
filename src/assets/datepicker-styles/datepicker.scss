@@ -50,7 +50,7 @@ dp-date-picker.dp-material .dp-picker-input {
   color: black;
 
   &::placeholder {
-    @apply text-secondary dark:text-base-color
+    @apply text-[#333333] dark:text-base-color
   }
 }
 

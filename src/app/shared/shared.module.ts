@@ -36,6 +36,7 @@ import {SummaryCardsComponent} from './summary-cards/summary-cards.component';
 import {MaskDirective} from "./directives/Mask-directive";
 import { SummaryTreeComponent } from './summary-tree/summary-tree.component';
 import { AlertComponent } from './alert/alert.component';
+import { ColorPalleteComponent } from './color-pallete/color-pallete.component';
 
 
 @NgModule({
@@ -56,7 +57,7 @@ import { AlertComponent } from './alert/alert.component';
     ClipboardComponent,
     MaskDirective,
 
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent],
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent],
   imports: [
     DpDatePickerModule,
     MatDatepickerModule,
@@ -95,7 +96,7 @@ import { AlertComponent } from './alert/alert.component';
     SelectInputComponent,
     TableHeaderRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent]
+    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent]
 })
 export class SharedModule {
 }

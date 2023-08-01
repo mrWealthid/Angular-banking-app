@@ -18,20 +18,21 @@
     <!--      </svg>-->
     <!--    </button>-->
 
+<app-color-pallete></app-color-pallete>
     <app-theme></app-theme>
 
 
     <a [routerLinkActiveOptions]="{exact:true}" [routerLink]='[""]'
-       routerLinkActive="text-gray-800 border border-gray-300  dark:border-none dark:text-secondary dark:glass rounded-full px-3 lg:px-4  py-2 ">Home</a>
+       routerLinkActive="text-gray-800 border border-secondary  dark:border-none dark:text-secondary dark:glass rounded-full px-3 lg:px-4  py-2 ">Home</a>
     <a *ngIf="(isAuthenticated|async)" [routerLink]='["dashboard"] '
-       routerLinkActive="text-gray-800 border-gray-300 dark:border-none dark:text-secondary dark:glass  rounded-full border px-3 py-2 ">Dashboard</a>
+       routerLinkActive="text-gray-800 border-secondary dark:border-none dark:text-secondary dark:glass  rounded-full border px-3 py-2 ">Dashboard</a>
 
     <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/login"]'
-       routerLinkActive=" border px-3 py-2 border-gray-300  lg:px-4 dark:border-none dark:text-secondary dark:glass  rounded-full text-gray-800">Login</a>
+       routerLinkActive=" border px-3 py-2 border-secondary  lg:px-4 dark:border-none dark:text-secondary dark:glass  rounded-full text-gray-800">Login</a>
     <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/signup"]'
-       routerLinkActive=" border px-3 border-gray-300  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Signup</a>
+       routerLinkActive=" border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Signup</a>
     <a class=" cursor-pointer" (click)="logout()" *ngIf="(isAuthenticated|async)"
-       routerLinkActive="border px-3 border-gray-300  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Logout</a>
+       routerLinkActive="border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Logout</a>
 
 
     <!--    <img *ngIf="(isAuthenticated|async)" alt="user-avatar"-->
