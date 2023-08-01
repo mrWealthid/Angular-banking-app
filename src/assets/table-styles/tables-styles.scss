@@ -108,7 +108,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         transition-property: background;
         transition-duration: 0s;
         transition-timing-function: linear;
-        @apply dark:bg-primary bg-secondary
+        @apply dark:bg-primary-light  bg-secondary
       }
 
       &:focus,
