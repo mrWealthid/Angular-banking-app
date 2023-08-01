@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-color-pallete',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 })
 export class ColorPalleteComponent {
 
+  currentColor = signal('')
 
 constructor(){
   this.updateTheme()
@@ -28,6 +29,12 @@ constructor(){
       // this.isDarkMode = false;
       // this.setAutofill('white')
     }
+    this.getCurrentColor()
+  }
+
+  getCurrentColor () {
+  this.currentColor.set(localStorage['color-theme'])
+
   }
 
 
