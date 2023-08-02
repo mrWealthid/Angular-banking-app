@@ -1,15 +1,75 @@
 <section class="container-text min-h-screen">
 
-<section class="w-2/3  dark:glass container-text flex items-center text-primary dark:text-secondary justify-center skin h-[500px]">
+    <section class="w-2/3  card   flex  flex-col   skin">
+    
+        <ng-container *ngIf="(transactionsDetails$|async) as transactionDetail">
+    
+ <section class="grid  grid-cols-2  dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Initiator:</span> 
+    
+    <span class=""> {{transactionDetail.initiatorName}}</span>
+ </section>
+ 
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Initiator Account:</span> 
+    
+    <span class="">{{transactionDetail.initiatorAccountNumber}}</span>
+ </section>
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Amount:</span> 
+    
+    <span class=""> {{transactionDetail.amount | currency: 'USD'}}</span>
+ </section>
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Beneficiary:</span> 
+    
+    <span class=""> {{transactionDetail.beneficiaryAccountNumber}}</span>
+ </section>
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Channel:</span> 
+
+    <span>{{transactionDetail.channel}}</span>
+ 
+   
+ </section>
+    
+
+ <!-- <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+    <span class="font-semibold">Status:</span> 
+    <span *ngIf="transactionDetail.status ==='APPROVED'" class=" w-1/3  py-2 px-4 bg-success text-xs text-center text-white  capitalize rounded-full"> {{transactionDetail.status}}</span>
+    <span *ngIf="transactionDetail.status ==='PENDING'" class=" w-1/3  py-2 px-4 bg-light-blue text-xs text-center text-white capitalize rounded-full"> {{transactionDetail.status}}</span>
+    <span *ngIf="transactionDetail.status ==='DECLINED'" class=" w-1/3   py-2 px-4 bg-error text-xs text-center text-white capitalize rounded-full"> {{transactionDetail.status}}</span>
+
+ </section> -->
+
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
+
+    <span class="font-semibold">Transaction Type</span> 
+    
+    <span class=""> {{transactionDetail.transactionType}}</span>
+ </section>
 
 
 
-<p class="text-xl">Route is yet to be Implemented</p>
+ <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
 
+    <span class="font-semibold">Date</span> 
+    
+    <span class=""> {{transactionDetail.createdAt | date:'short'}}</span>
+ </section>
+    
 
-</section>
+ <section class='flex gap-3 justify-end' >
+    <app-button [btnText]="'Back'" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleBack()" ></app-button>
 
+   </section>
 
+    </ng-container>
+    </section>
 
-
-</section>
+    </section>
