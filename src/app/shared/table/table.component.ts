@@ -81,6 +81,21 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   }
 
+  scrollTimeout: any;
+suppressPaging: boolean = false;
+
+  handleScroll() {
+    this.suppressPaging = true;
+ 
+    if (this.scrollTimeout) {
+         clearTimeout(this.scrollTimeout);
+    }
+ 
+   this.scrollTimeout = setTimeout(() => {
+      this.suppressPaging = false;
+   }, 100)
+ }
+
   ngOnInit(): void {
 
 
@@ -139,12 +154,17 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   setPage(pageInfo: any) {
-
+    if (!this.suppressPaging) {
     this.loading = true
     this.page.pageNumber = pageInfo.offset;
     this.page.limit = pageInfo.limit
 
     this.page.search = pageInfo.search
+
+
+
+      //do paging
+ 
     this.tableService.getListData(this.page).subscribe((data: any) => {
 
       this.loading = false
@@ -156,6 +176,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.emitSelected([])
     const headerCheckbox: HTMLElement | any | null = document.getElementById("header-check")
     if (headerCheckbox?.checked) headerCheckbox?.click()
+
+  }
   }
 
   //

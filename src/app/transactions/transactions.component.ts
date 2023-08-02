@@ -37,6 +37,7 @@ export class TransactionsComponent implements OnInit {
   tableConfig: ITableConfig = {
     showSummary: true,
     tableName: "Transactions Table",
+    singleAction:true
     // actionable:false
   }
 

@@ -281,6 +281,8 @@ $datatable-summary-row-background-hover: #ddd !default;
         margin-right: 10px;
         font-size: 13px;
         font-weight: 400;
+        display: flex;
+        align-items: center;
 
         // cell active class
         // &.active {

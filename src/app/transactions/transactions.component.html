@@ -126,9 +126,9 @@
 
 
     <ng-template #rowActions let-row="row">
-      <button [routerLink]="'/dashboard/transactions/22'" class='btn py-2'>
-        <i class="fa-solid py-3 fa-arrow-up-right-from-square"></i> View
-      </button>
+      <span [routerLink]="['/dashboard/transactions', row]" class='btn cursor-pointer flex gap-3 items-center py-2'>
+        <i class="fa-solid text-green-700   fa-arrow-up-right-from-square"></i> View
+      </span>
     </ng-template>
     <ng-template #customRows let-colProp='colProp' let-row="rowVal">
       <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->

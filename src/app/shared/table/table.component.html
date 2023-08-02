@@ -16,6 +16,7 @@
 
   <ngx-datatable #myTable
                  (page)="setPage($event)"
+                 (scroll)="handleScroll()"
                  [columnMode]="'force'"
                  [columns]="updatedColumn"
                  [count]="page.totalElements"
@@ -27,9 +28,10 @@
                  [rowHeight]="'auto'"
                  [rows]="rows"
                  [loadingIndicator]="loading"
-                 [scrollbarH]="true"
                  [scrollbarV]="false"
+                 [scrollbarH]="true"
                  class="material"
+                 
   >
 
 
@@ -55,7 +57,7 @@
       <!--      This checks the table settings to know of the user needs the table row to be actionable-->
       <ngx-datatable-column *ngIf='column.name === "Actions"' name="Actions" prop="actions">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <app-dropdown *ngIf="!additionalSettings.singleAction">
+          <app-dropdown [styles]="'-top-3 z-50 w-1/6 right-8 '" *ngIf="!additionalSettings.singleAction">
             <ng-container header>
               <fa-icon [icon]="faEllipsis" class="cursor-pointer text-gray-300"></fa-icon>
             </ng-container>
