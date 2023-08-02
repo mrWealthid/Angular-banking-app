@@ -26,5 +26,11 @@ export class TransactionService {
     }));
   }
 
+  getTransaction(transactionId:number) {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/${transactionId}`).pipe(map((data:any)=> {
+      return data.data
+    }))
+  }
+  
 
 }

@@ -24,4 +24,14 @@ export class LoansService {
 
     }));
   }
+
+getLoan(loanId:number) {
+  return this.Http.get(`${environment.API_URL}/api/v1/loans/${loanId}`).pipe(map((data:any)=> {
+    return data.data
+  }))
+}
+
+  processLoan(data: any){
+    return this.Http.post(`${environment.API_URL}/api/v1/loans`, data)
+  }
 }
