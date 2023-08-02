@@ -8,6 +8,8 @@ import {authGuard} from "../shared/services/guards/auth.guard";
 import {UsersComponent} from "../users/users.component";
 import {LoansComponent} from "../loans/loans.component";
 import { TransactionviewComponent } from "../transactions/view/transactionview/transactionview.component";
+import { LoanViewComponent } from "../loans/view/loan-view/loan-view.component";
+import { UsersViewComponent } from "../users/view/users-view/users-view.component";
 
 export const routes: Routes = [
 
@@ -32,11 +34,19 @@ export const routes: Routes = [
         component: UsersComponent
       },
       {
+        path: 'users/:id',
+        component: UsersViewComponent
+      },
+      {
         path: 'payments',
         component: PaymentsComponent
       }, {
         path: 'loans',
         component: LoansComponent
+      }
+      ,{
+        path: 'loans/:id',
+        component: LoanViewComponent
       }
     ]
   },

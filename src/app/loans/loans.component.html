@@ -2,22 +2,27 @@
   <app-table [columns]="columns" [tableService]="loanService">
 
     <ng-template #rowActions let-row="row">
-      <button class='btn'>
+      <button [routerLink]="['/dashboard/loans', row]" class='btn'>
         <i class="fa-solid fa-arrow-up-right-from-square"></i> View
       </button>
-      <button class='btn'>
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> Query
-      </button>
+    
     </ng-template>
     <ng-template #customRows let-colProp='colProp' let-row="rowVal">
       <!--    Pulling out this context gives us the chance to render based on the defined column Name and the value coming from the backend-->
       <ng-container>
+        <span *ngIf="row ==='DECLINED'"
+        class=" py-2 px-4 bg-error text-xs text-center text-white inline-block capitalize rounded-full">{{row}}</span>
+
+
+        <span *ngIf="row ==='APPROVED'"
+        class=" py-2 px-4 bg-success text-xs text-center text-white inline-block capitalize rounded-full">{{row}}</span>
+
     <span *ngIf="row ==='PENDING'"
-          class=" py-2 px-4 bg-orange-400 text-xs text-center text-white inline-block capitalize rounded-full">{{row}}</span>
+          class=" py-2 px-4 bg-pending text-xs text-center text-white inline-block capitalize rounded-full">{{row}}</span>
         <span *ngIf="row ==='UNPAID'"
-              class=" py-2 px-4 bg-blue-300 text-xs  text-center text-white inline-block  capitalize rounded-full">{{row}}</span>
+              class=" py-2 px-4 bg-light-blue text-xs  text-center text-white inline-block  capitalize rounded-full">{{row}}</span>
         <span *ngIf="row ==='PAID'"
-              class=" py-2 px-4 bg-green-300 text-xs text-center text-white inline-block  capitalize rounded-full">{{row}}</span>
+              class=" py-2 px-4 bg-success text-xs text-center text-white inline-block  capitalize rounded-full">{{row}}</span>
         <span *ngIf="colProp ==='accountNumber' && row "
               class=" flex gap-2">{{row}}
           <app-clipboard [buttonText]="'Copy Text'" [style]="'text-green-400'" [textToCopy]="row"></app-clipboard>

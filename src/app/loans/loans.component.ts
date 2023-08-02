@@ -15,6 +15,7 @@ export class LoansComponent {
     {prop: 'amount', name: 'Amount', searchType: 'number', pipe: "Currency"},
     {prop: 'status', name: 'Status', searchType: 'dropdown', custom: true},
     {prop: 'paymentStatus', name: 'Payment Status', custom: true, searchType: 'dropdown'},
+    {prop: 'actionedBy', name: 'Actioned By',  searchType: 'text'},
     // {prop: 'dueDate', name: 'Due Date', searchType: 'Date'},
     // {prop: 'rate', name: 'Rate', searchType: 'text'},
     {prop: 'accountNumber', name: 'Account NO', custom: true, searchType: 'number'},

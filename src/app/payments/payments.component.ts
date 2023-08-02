@@ -264,7 +264,12 @@ if(val === 2) {
   const values = this.loanForm.value
   this.loanDetails = {
     amount: this.removeCurrencyFormat(values.amount),
-    duration: values.duration
+    duration: values.duration,
+    user: this.userDetails.id,
+    name:this.userDetails.name,
+    accountNumber:this.userDetails.accountNumber
+
+
   }
 }
 
