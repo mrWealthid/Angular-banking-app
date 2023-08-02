@@ -142,7 +142,7 @@ header {
 }
 
 .card {
-  @apply text-white rounded-lg py-4 px-5;
+  @apply text-white rounded-lg py-4 px-5 text-primary dark:text-secondary  dark:glass ;
 }
 
 .container-text {
@@ -248,7 +248,7 @@ input:-webkit-autofill {
 
 .menu {
   button {
-    @apply items-center z-50 bg-white hover:text-secondary gap-2 px-3  hover:bg-primary   flex w-full
+    @apply items-center z-50 bg-white hover:text-secondary gap-2 px-3 py-2 lg:py-3 hover:bg-primary   flex w-full
   }
 }
 
@@ -267,9 +267,12 @@ input:-webkit-autofill {
 }
 
 .datatable-body-row {
-  @apply h-auto  p-3   dark:border-none flex items-center;
+
+  @apply h-auto  p-3   dark:border-none  ;
 
 }
+
+
 
 .datatable-row-odd {
   @apply dark:glass

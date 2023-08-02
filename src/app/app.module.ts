@@ -21,6 +21,8 @@ import {SharedModule} from "./shared/shared.module";
 import {ThemeComponent} from './theme/theme.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TransactionviewComponent } from './transactions/view/transactionview/transactionview.component';
+import { LoanViewComponent } from './loans/view/loan-view/loan-view.component';
+import { UsersViewComponent } from './users/view/users-view/users-view.component';
 
 
 @NgModule({
@@ -31,6 +33,8 @@ import { TransactionviewComponent } from './transactions/view/transactionview/tr
     AdminComponent,
     ThemeComponent,
     TransactionviewComponent,
+    LoanViewComponent,
+    UsersViewComponent,
 
 
   ],
