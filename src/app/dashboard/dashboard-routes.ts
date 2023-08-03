@@ -10,6 +10,7 @@ import {LoansComponent} from "../loans/loans.component";
 import { TransactionviewComponent } from "../transactions/view/transactionview/transactionview.component";
 import { LoanViewComponent } from "../loans/view/loan-view/loan-view.component";
 import { UsersViewComponent } from "../users/view/users-view/users-view.component";
+import { TransactionComponent } from "../users/transaction/transaction.component";
 
 export const routes: Routes = [
 
@@ -37,6 +38,12 @@ export const routes: Routes = [
         path: 'users/:id',
         component: UsersViewComponent
       },
+
+      {
+        path: 'user-transactions/:id',
+        component: TransactionComponent
+      },
+      
       {
         path: 'payments',
         component: PaymentsComponent

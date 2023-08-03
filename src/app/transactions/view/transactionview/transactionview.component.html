@@ -1,6 +1,6 @@
 <section class="container-text min-h-screen">
 
-    <section class="w-2/3  card   flex  flex-col   skin">
+    <section class=" w-full md:w-2/3  card   flex  flex-col   skin">
     
         <ng-container *ngIf="(transactionsDetails$|async) as transactionDetail">
     
@@ -27,7 +27,10 @@
 
     <span class="font-semibold">Beneficiary:</span> 
     
-    <span class=""> {{transactionDetail.beneficiaryAccountNumber}}</span>
+    <span class=""> {{transactionDetail.beneficiaryAccountNumber}}
+
+        <app-clipboard [style]="'text-success'" [textToCopy]="transactionDetail.beneficiaryAccountNumber"></app-clipboard>
+    </span>
  </section>
  <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
 
@@ -49,7 +52,7 @@
 
  <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
 
-    <span class="font-semibold">Transaction Type</span> 
+    <span class="font-semibold">Transaction Type:</span> 
     
     <span class=""> {{transactionDetail.transactionType}}</span>
  </section>
@@ -58,7 +61,7 @@
 
  <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
 
-    <span class="font-semibold">Date</span> 
+    <span class="font-semibold">Date:</span> 
     
     <span class=""> {{transactionDetail.createdAt | date:'short'}}</span>
  </section>

@@ -23,6 +23,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { TransactionviewComponent } from './transactions/view/transactionview/transactionview.component';
 import { LoanViewComponent } from './loans/view/loan-view/loan-view.component';
 import { UsersViewComponent } from './users/view/users-view/users-view.component';
+import { TransactionComponent } from './users/transaction/transaction.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { UsersViewComponent } from './users/view/users-view/users-view.component
     TransactionviewComponent,
     LoanViewComponent,
     UsersViewComponent,
+    TransactionComponent,
 
 
   ],
