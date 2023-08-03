@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Observable} from "rxjs";
 import {UserService} from "./service/user.service";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -8,8 +9,9 @@ import {UserService} from "./service/user.service";
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  users$ = Observable<any>
+ 
   userService = inject(UserService)
+   
 
   columns = [
     {prop: 'name', name: 'Name', searchType: 'text'},

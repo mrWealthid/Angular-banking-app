@@ -2,11 +2,11 @@
   <app-table [columns]="columns" [tableService]="userService">
 
     <ng-template #rowActions let-row="row">
-      <button
-      ><i class="fa-solid fa-arrow-up-right-from-square"></i> View
+      <button [routerLink]="['/dashboard/user-transactions', row]"
+      ><i class="fa-solid fa-arrow-up-right-from-square"></i> View Transactions
       </button>
-      <button>
-        <i class="fa-solid fa-arrow-up-right-from-square"></i> Query
+      <button [routerLink]="['/dashboard/users', row]">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i> View
       </button>
     </ng-template>
     <ng-template #customRows let-colProp='colProp' let-row="rowVal">
