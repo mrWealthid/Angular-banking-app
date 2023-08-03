@@ -11,6 +11,11 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./dashboard-routes";
 import {UsersComponent} from "../users/users.component";
 import {LoansComponent} from "../loans/loans.component";
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { LoanViewComponent } from '../loans/view/loan-view/loan-view.component';
+import { TransactionviewComponent } from '../transactions/view/transactionview/transactionview.component';
+import { UsersViewComponent } from '../users/view/users-view/users-view.component';
+import { TransactionComponent } from '../users/transaction/transaction.component';
 
 
 @NgModule({
@@ -22,10 +27,22 @@ import {LoansComponent} from "../loans/loans.component";
     UsersComponent,
     OverviewComponent,
     PaymentsComponent,
-    LoansComponent
+    LoansComponent,  TransactionviewComponent,
+    LoanViewComponent,
+    UsersViewComponent,
+    TransactionComponent,
   ],
   imports: [
-    SharedModule, CommonModule, FormsModule, ReactiveFormsModule, RouterModule.forChild(routes), NgOptimizedImage,
+    SharedModule, CommonModule, FormsModule, ReactiveFormsModule,
+    
+    RouterModule.forChild(routes), NgOptimizedImage,  NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.rotatingPlane,
+      backdropBackgroundColour: "rgba(0,0,0,0.1)",
+      backdropBorderRadius: "4px",
+      primaryColour: "#111827FF",
+      secondaryColour: "red",
+      tertiaryColour: "blue",
+    }),
   ]
 })
 export class DashboardModule {

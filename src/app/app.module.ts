@@ -20,10 +20,7 @@ import {routes} from "./app-routes";
 import {SharedModule} from "./shared/shared.module";
 import {ThemeComponent} from './theme/theme.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import { TransactionviewComponent } from './transactions/view/transactionview/transactionview.component';
-import { LoanViewComponent } from './loans/view/loan-view/loan-view.component';
-import { UsersViewComponent } from './users/view/users-view/users-view.component';
-import { TransactionComponent } from './users/transaction/transaction.component';
+
 
 
 @NgModule({
@@ -33,10 +30,7 @@ import { TransactionComponent } from './users/transaction/transaction.component'
     HeaderComponent,
     AdminComponent,
     ThemeComponent,
-    TransactionviewComponent,
-    LoanViewComponent,
-    UsersViewComponent,
-    TransactionComponent,
+   
 
 
   ],

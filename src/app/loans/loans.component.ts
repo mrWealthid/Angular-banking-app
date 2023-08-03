@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {LoansService} from "./service/loans.service";
+import { ITableConfig } from '../shared/table/model/table-model';
 
 @Component({
   selector: 'app-loans',
@@ -8,6 +9,15 @@ import {LoansService} from "./service/loans.service";
 })
 export class LoansComponent {
   loanService = inject(LoansService)
+
+  tableConfig: ITableConfig = {
+    showSummary: true,
+    tableName: "Transactions Table",
+    singleAction:true,
+    searchParams: {status: "PENDING"},
+   statusData: [{name:'Pending', value:'PENDING'}, {name:'Approved', value: 'APPROVED'}, {name:'Declined', value:'DECLINED'}]
+    // actionable:false
+  }
 
   columns = [
     {prop: 'name', name: 'Name', searchType: 'text'},
