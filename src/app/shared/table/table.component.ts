@@ -56,6 +56,12 @@ export class TableComponent implements OnInit, AfterViewInit {
   tableService: any
 
 
+
+  // getListData():any {
+
+  // }
+  // @Input() callableFunction:any = TEST
+
   @Output()
   onSelectAll = new EventEmitter<any[]>();
 
@@ -107,9 +113,7 @@ suppressPaging: boolean = false;
 
 
   getDropdownOptions(col:any) {
-
-    console.log(col)
-   return col?.searchOptions
+   return col.searchOptions
   }
 
   updateColumnsWithActions() {
@@ -293,7 +297,8 @@ suppressPaging: boolean = false;
   }
 
   handleFilter(value: any) {
-    const data = this.removeEmptyKeys(value)
+
+    const data = this.removeEmptyKeys({...this.additionalSettings.searchParams,...value})
 
     //check if the filter object has values to set the active filter flag
     this.filterActive = Object.values(data).length > 0
@@ -314,7 +319,7 @@ suppressPaging: boolean = false;
 
 
   loadTableData() {
-    this.setPage({offset: 0, limit: 10})
+    this.setPage({offset: 0, limit: 10, search: this.additionalSettings.searchParams})
     this.filterActive = false
   }
 

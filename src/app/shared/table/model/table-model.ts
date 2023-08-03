@@ -47,7 +47,8 @@ export type ITableConfig = {
   checkable?: boolean,
   showSummary?: boolean
   downloadable?: boolean,
-  singleAction?: boolean
+  singleAction?: boolean,
+  searchParams?:Record<string, any>
 
 } & (SummaryName | SummaryProps)
 
