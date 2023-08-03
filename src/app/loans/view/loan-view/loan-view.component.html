@@ -94,8 +94,8 @@
    </section>
 
 <section *ngIf="currentUser.role ==='admin'" class="flex justify-end gap-2 ">
-    <app-button [btnText]="'Approve'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass  py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan('APPROVED')" ></app-button>
-    <app-button [btnText]="'Decline'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan('DECLINED')" ></app-button>
+    <app-button [btnText]="'Approve'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass  py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'APPROVED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
+    <app-button [btnText]="'Decline'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'DECLINED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
     </section>
 
 
@@ -105,4 +105,7 @@
     </section>
 
     </section>
-    
+    <ngx-loading
+  [config]="{ backdropBorderRadius: '3px' }"
+  [show]="loading"
+></ngx-loading>

@@ -1,7 +1,27 @@
 <section class="w-full mb-6">
 
   <ng-container>
-    <app-table-header (reload)="loadTableData()" [tableSettings]="additionalSettings">
+
+    
+  
+    <app-table-header (reload)="loadTableData()"  [tableSettings]="additionalSettings">
+    
+      <section status>
+        <section class="flex flex-col md:flex-row gap-3">
+
+          <ng-container *ngFor="let status of tableSettings?.statusData">
+
+    
+          <button  [ngClass]=" activeStatus?.['status'] === status.value? 'ring-1 ring-offset-2 text-success ring-success': '' "  (click)="handleStatusFilter({status: status.value})"
+            >
+
+              {{status.name}}
+            </button> 
+       
+        </ng-container>
+        </section>
+       
+    </section>
       <ng-container [ngTemplateOutlet]="headerActions">
       </ng-container>
       <button

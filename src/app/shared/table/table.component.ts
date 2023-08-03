@@ -24,6 +24,7 @@ import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog
 })
 export class TableComponent implements OnInit, AfterViewInit {
   @ContentChild('headerActions') headerActions!: TemplateRef<any>;
+  @ContentChild('headerStatus') headerStatus!: TemplateRef<any>;
   @ContentChild('rowActions') rowActions!: TemplateRef<any>;
   @ContentChild('customRows') customRows!: TemplateRef<any>;
 
@@ -54,13 +55,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   allSelected: any[] = []
   @Input({required: true})
   tableService: any
+  activeStatus:any
 
 
 
-  // getListData():any {
-
-  // }
-  // @Input() callableFunction:any = TEST
 
   @Output()
   onSelectAll = new EventEmitter<any[]>();
@@ -90,6 +88,8 @@ export class TableComponent implements OnInit, AfterViewInit {
   scrollTimeout: any;
 suppressPaging: boolean = false;
 
+
+
   handleScroll() {
     this.suppressPaging = true;
  
@@ -106,6 +106,8 @@ suppressPaging: boolean = false;
 
 
     this.additionalSettings = {...this.additionalSettings, ...this.tableSettings,}
+
+    this.activeStatus = this.additionalSettings.searchParams
     this.createFilterForm()
     this.loadTableData()
     this.updatedColumn = this.updateColumnsWithActions()
@@ -296,9 +298,22 @@ suppressPaging: boolean = false;
     this.showMe = false;
   }
 
+ 
+
+handleStatusFilter(value:any) {
+ const data =this.removeEmptyKeys({...this.additionalSettings.searchParams, search: value}) 
+this.activeStatus = data['search']
+  this.setPage({offset: 0, limit: Infinity, search: {...this.activeStatus}})
+}
+
+
   handleFilter(value: any) {
 
+  
+
     const data = this.removeEmptyKeys({...this.additionalSettings.searchParams,...value})
+
+this.activeStatus= value
 
     //check if the filter object has values to set the active filter flag
     this.filterActive = Object.values(data).length > 0

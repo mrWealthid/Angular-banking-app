@@ -31,7 +31,10 @@ getLoan(loanId:number) {
   }))
 }
 
-  processLoan(data: any){
-    return this.Http.post(`${environment.API_URL}/api/v1/loans`, data)
+  processLoan(data: any, loanId:any ){
+    return this.Http.patch(`${environment.API_URL}/api/v1/loans/${loanId}`, data)
+  }
+  withdrawLoan(loanId:any ){
+    return this.Http.delete(`${environment.API_URL}/api/v1/loans/${loanId}`)
   }
 }

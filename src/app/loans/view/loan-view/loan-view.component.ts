@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { AppStateInterface, IProfile } from 'src/app/shared/interface/userAuth';
 import { Store, select } from '@ngrx/store';
 import { currentUserSelector } from 'src/app/core/store/Profile/selectors';
+import { ITableConfig } from 'src/app/shared/table/model/table-model';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-loan-view',
@@ -22,7 +24,9 @@ currentUser$: Observable<IProfile|null>
     private store = inject(Store<AppStateInterface>)
     loading:boolean= false
     router= inject(Router)
+    private notify = inject(NotificationService)
 
+  
 
     constructor() {
     const id =  this.route.snapshot.params['id']
@@ -33,10 +37,12 @@ currentUser$: Observable<IProfile|null>
     }
 
 
-    handleProcessLoan(val:any) {
+    handleProcessLoan(val:any, loanId:any) {
       this.loading = true
-      this.loanService.processLoan(val).subscribe(x => {
+      this.loanService.processLoan(val, loanId).subscribe(x => {
         this.loading = false
+        this.handleBack()
+        this.notify.showSuccess('Loan Processed Ok','Loan Notification')
       }, err=>{
         this.loading = false
       })

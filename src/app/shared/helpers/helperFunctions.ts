@@ -30,6 +30,9 @@ export function createParams(params: any) {
 }
 
 
+
+
+
 export function calculateInterest(principal: number, rate: number, time: number) {
   /*
   Calculates the interest using the simple interest formula.

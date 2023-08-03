@@ -21,8 +21,14 @@ export class TableHeaderComponent {
 
   @Output() reload = new EventEmitter();
 
+  @Output() handleStatus = new EventEmitter()
+
   // @ContentChild('headerActions') headerActions!: TemplateRef<any>;
   handleReload() {
     this.reload.emit()
+  }
+
+  handleStatusFetch() {
+    this.handleStatus.emit()
   }
 }

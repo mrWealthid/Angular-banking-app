@@ -49,6 +49,8 @@ export type ITableConfig = {
   downloadable?: boolean,
   singleAction?: boolean,
   searchParams?:Record<string, any>
+  statusData? : any[]
+  defaultQuery?: Record<string, any>
 
 } & (SummaryName | SummaryProps)
 
