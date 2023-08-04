@@ -10,28 +10,7 @@
         </div>
       </div>
       <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
-        <!-- <svg
-          fill="none"
-          height="42"
-          viewBox="0 0 42 42"
-          width="42"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            fill="#009EB3"
-            height="41.1699"
-            opacity="0.1"
-            rx="20.585"
-            width="41.1699"
-            y="0.830078"
-          />
-          <path
-            d="M23.321 15C25.5245 15 27 16.547 27 18.848V24.1591C27 26.4536 25.5245 28 23.321 28H17.6855C15.482 28 14 26.4536 14 24.1591V18.848C14 16.547 15.482 15 17.6855 15H23.321ZM20.4935 20.5126C20.1815 20.5126 19.928 20.772 19.928 21.0847V23.9577C19.928 24.2696 20.1815 24.5231 20.4935 24.5231C20.812 24.5231 21.0655 24.2696 21.0655 23.9577V21.0847C21.0655 20.772 20.812 20.5126 20.4935 20.5126ZM20.5065 18.4521C20.188 18.4521 19.9345 18.7056 19.9345 19.0241C19.9345 19.3355 20.188 19.5896 20.4935 19.5896C20.8185 19.5896 21.072 19.3355 21.072 19.0241C21.072 18.7056 20.8185 18.4521 20.5065 18.4521Z"
-            fill="#009EB3"
-          />
-        </svg> -->
-
-
+  
         
         <img src="../../assets/images/beneficiaries.svg"/>
 
@@ -64,7 +43,7 @@
         </svg>
 
         <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">0</p>
+          <p class="font-bold text-md pr-6  ">{{loanStats().pending}}</p>
           <span class="text-xs capitalize font-normal">Pending Loan</span>
         </div>
       </div>
@@ -95,7 +74,7 @@
 
 
         <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">0</p>
+          <p class="font-bold text-md pr-6  ">{{loanStats().approved}}</p>
           <span class="text-xs capitalize font-normal">Approved Loan</span>
         </div>
       </div>
@@ -123,7 +102,7 @@
           />
         </svg>
         <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">0 </p>
+          <p class="font-bold text-md pr-6  ">{{loanStats().declined}} </p>
           <span class="text-xs capitalize font-normal">Declined Loan</span>
         </div>
       </div>

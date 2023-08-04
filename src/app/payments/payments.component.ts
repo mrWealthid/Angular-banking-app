@@ -101,7 +101,7 @@ export class PaymentsComponent implements OnInit {
   selectOptions: selectOptions[] = [
     {id: "Card", name: 'Card'},
   ];
-
+  loanStats= signal<any>({})
 
   PaymentOptions: selectOptions[] = [
     {id: "Card", name: 'Card'},
@@ -117,8 +117,10 @@ export class PaymentsComponent implements OnInit {
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
       if (userDetails) this.userDetails = userDetails
     })
-
+    this.paymentService.getLoanStats().subscribe((val:any)=> this.loanStats.set(val))
+  
   }
+
 
   navigateTab(tab: number, type: BehaviorSubject<any>) {
     type.next(tab)

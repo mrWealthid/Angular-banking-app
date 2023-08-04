@@ -3,7 +3,7 @@ import {DashboardService} from "../service/dashboard.service";
 import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
 import {forkJoin, map, Observable} from "rxjs";
 import {PaymentService} from "../../payments/service/payment.service";
-import {globalizeDate} from "../../shared/helpers/helperFunctions";
+import {getMonthInWords, globalizeDate} from "../../shared/helpers/helperFunctions";
 import {select, Store} from "@ngrx/store";
 import {currentUserSelector} from "../../core/store/Profile/selectors";
 import {AppStateInterface, IProfile} from "../../shared/interface/userAuth";
@@ -67,6 +67,7 @@ monthlyStats = signal<any>({})
   }
 
   protected readonly globalizeDate = globalizeDate()
+  protected readonly getMonths = getMonthInWords()
 }
 
 

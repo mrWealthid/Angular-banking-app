@@ -49,3 +49,13 @@ export function calculateInterest(principal: number, rate: number, time: number)
 
   return {interest, payable: interest + principal}
 }
+
+export function getMonthInWords() {
+
+  const dateString = Date.now()
+  const dateObject = new Date(dateString);
+
+// Get the month in word format
+const monthInWord = new Intl.DateTimeFormat('en', { month: 'long' }).format(dateObject);
+return monthInWord
+}
