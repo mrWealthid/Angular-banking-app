@@ -23,6 +23,18 @@ export class DashboardService {
     }));
   }
 
+
+  getLoanStats () {
+      return this.Http.get(`${environment.API_URL}/api/v1/loans/loan-stats`).pipe(map(({data}:any)=> {
+        return {
+          approved: data[0].APPROVED?.totalCount || 0,
+          declined: data[0].DECLINED?.totalCount || 0,
+          pending: data[0].PENDING?.totalCount || 0
+        }
+      }))
+    
+  }
+
   getStatsData(type: string = 'month', time: number = new Date().getMonth()): Observable<ISummary> {
     return this.Http.get(`${environment.API_URL}/api/v1/transactions/stats/${type}/${time}`).pipe(map(({data}: any) => {
 
@@ -43,6 +55,33 @@ export class DashboardService {
       )
     }));
   }
+
+
+
+  getMonthlyHighlight () {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/monthly-highlights`).pipe(map(({data}:any)=> {
+     
+      return {
+        credit: data[0]?.Credit?.totalAmount || 0,
+        debit: Math.abs(data[0]?.Debit?.totalAmount) || 0,
+      
+      }
+    }))
+  
+}
+
+
+getDailyHighlight () {
+  return this.Http.get(`${environment.API_URL}/api/v1/transactions/daily-highlights`).pipe(map(({data}:any)=> {
+    return {
+      credit: data[0]?.Credit?.totalAmount || 0,
+      debit: Math.abs(data[0]?.Debit?.totalAmount) || 0,
+    }
+  }))
+
+}
+
+
 
   transformChartData(stats: any[]): IDashboardStats[] {
     let response: IDashboardStats[] = [];

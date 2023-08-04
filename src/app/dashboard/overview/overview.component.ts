@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, signal} from '@angular/core';
 import {DashboardService} from "../service/dashboard.service";
 import {IDashboardData, IStatsParam, ISummary} from "../dashboard.model";
 import {forkJoin, map, Observable} from "rxjs";
@@ -32,6 +32,9 @@ export class OverviewComponent implements OnInit {
   protected readonly Date = Date;
   protected readonly Math = Math;
   balance: Observable<any>;
+  loanStats= signal<any>({})
+dailyStats = signal<any>({})
+monthlyStats = signal<any>({})
   currentUser$: Observable<IProfile | null>;
 
   ngOnInit() {
@@ -43,6 +46,10 @@ export class OverviewComponent implements OnInit {
     this.fetchStatsData()
 
     this.balance = this.paymentService.getBalance()
+
+    this.dashboardService.getLoanStats().subscribe(val=> this.loanStats.set(val))
+    this.dashboardService.getDailyHighlight().subscribe(val=> this.dailyStats.set(val))
+    this.dashboardService.getMonthlyHighlight().subscribe(val=> this.monthlyStats.set(val))
 
   }
 
