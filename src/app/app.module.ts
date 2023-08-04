@@ -20,6 +20,7 @@ import {routes} from "./app-routes";
 import {SharedModule} from "./shared/shared.module";
 import {ThemeComponent} from './theme/theme.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { UserLoanComponent } from './users/user-loan/user-loan.component';
 
 
 
@@ -30,6 +31,7 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     HeaderComponent,
     AdminComponent,
     ThemeComponent,
+    UserLoanComponent,
    
 
 

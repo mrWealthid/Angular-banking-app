@@ -11,6 +11,7 @@ import { TransactionviewComponent } from "../transactions/view/transactionview/t
 import { LoanViewComponent } from "../loans/view/loan-view/loan-view.component";
 import { UsersViewComponent } from "../users/view/users-view/users-view.component";
 import { TransactionComponent } from "../users/transaction/transaction.component";
+import { UserLoanComponent } from "../users/user-loan/user-loan.component";
 
 export const routes: Routes = [
 
@@ -42,6 +43,11 @@ export const routes: Routes = [
       {
         path: 'user-transactions/:id',
         component: TransactionComponent
+      },
+
+      {
+        path: 'user-loans/:id',
+        component: UserLoanComponent
       },
       
       {

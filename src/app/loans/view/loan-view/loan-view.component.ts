@@ -7,6 +7,7 @@ import { Store, select } from '@ngrx/store';
 import { currentUserSelector } from 'src/app/core/store/Profile/selectors';
 import { ITableConfig } from 'src/app/shared/table/model/table-model';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 
 @Component({
   selector: 'app-loan-view',
@@ -25,15 +26,19 @@ currentUser$: Observable<IProfile|null>
     loading:boolean= false
     router= inject(Router)
     private notify = inject(NotificationService)
-
+    currentUser:IProfile|null
+id: any
   
 
     constructor() {
-    const id =  this.route.snapshot.params['id']
-   this.loanDetails$ = this.loanService.getLoan(id)
+  this.id =  this.route.snapshot.params['id']
+   this.loanDetails$ = this.loanService.getLoan(this.id)
 
 
    this.currentUser$ = this.store.pipe(select(currentUserSelector))
+
+   this.currentUser$.subscribe(x=> this.currentUser = x)
+
     }
 
 
@@ -57,12 +62,28 @@ currentUser$: Observable<IProfile|null>
     handleRetry() {
 
     }
-    handleWithdrawal(){
+    handleWithdrawal(loanId:AnyCatcher){
+      this.loading = true
+      this.loanService.withdrawLoan(loanId).subscribe(x => {
+        this.loading = false
+        this.handleBack()
+        this.notify.showSuccess('Loan Withdrawn','Loan Notification')
+      }, err=>{
+        this.loading = false
+    
+      })
 
     }
 
     handleBack() {
+
+
+      if(this.currentUser?.role ==='admin') {
+        this.router.navigate(['dashboard/user-loans/', this.id])
+      }
+      else{
 this.router.navigate(['/dashboard/loans'])
+      }
     }
 
 }

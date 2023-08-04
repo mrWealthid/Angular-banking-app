@@ -14,6 +14,7 @@ export class UserService {
   getListData(params?: any): Observable<IList> {
    
     let query;
+
 const userId = params.search?.userId
     
     if(params.search?.userId){
@@ -29,6 +30,21 @@ const userId = params.search?.userId
     }));
 
   }
+  if(params.search?.loanId){
+      delete params.search.loanId
+   query = createParams(params)
+    return this.Http.get<IList>(`${environment.API_URL}/api/v1/users/${userId}/loans`, {params: query}).pipe(map((data: any) => {
+      return {
+        status: data.status,
+        totalRecords: data.totalRecords,
+        data: data.data
+      }
+
+    }));
+
+
+    
+  }
 
 
     return this.Http.get<IList>(`${environment.API_URL}/api/v1/users`, {params: query}).pipe(map((data: any) => {
@@ -39,6 +55,16 @@ const userId = params.search?.userId
       }
 
     }));
+  }
+
+ 
+
+
+
+  getBalance(userId:any) {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/user/balance?userId=${userId}`).pipe(map(({data}: any) => {
+      return data.stats[0]?.total
+    }))
   }
 
   getTransactionByUser(userId:string) {

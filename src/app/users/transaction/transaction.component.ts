@@ -5,9 +5,9 @@ import { currentUserSelector } from 'src/app/core/store/Profile/selectors';
 import { PaymentService } from 'src/app/payments/service/payment.service';
 import { AppStateInterface, IProfile } from 'src/app/shared/interface/userAuth';
 import { ITableConfig } from 'src/app/shared/table/model/table-model';
-import { TransactionService } from 'src/app/transactions/service/transaction.service';
 import { UserService } from '../service/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { globalizeDate } from 'src/app/shared/helpers/helperFunctions';
 
 @Component({
   selector: 'app-transaction',
@@ -44,11 +44,12 @@ export class TransactionComponent {
     }
      }
   service = inject(UserService)
-  paymentService = inject(PaymentService)
+  userService = inject(UserService)
   private store = inject(Store<AppStateInterface>)
   currentUser$: Observable<IProfile| null>;
 
   balance= signal<number>(0)
+  user= signal<any>({})
  
   route = inject( ActivatedRoute)
   
@@ -58,11 +59,18 @@ export class TransactionComponent {
 
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
   this.fetchBalance()
+  this.getUser()
   }
 
   fetchBalance() {
-    this.paymentService.getBalance().subscribe(x=> 
+    this.userService.getBalance(this.userId).subscribe(x=> 
       this.balance.set(x))
+  }
+
+  getUser() {
+    this.userService.getUser(this.userId).subscribe(x=> {
+      this.user.set(x)
+    })
   }
 
 
@@ -70,5 +78,6 @@ export class TransactionComponent {
     console.log("I bubbled up", rows)
   }
 
+  protected readonly globalizeDate = globalizeDate();
 
 }
