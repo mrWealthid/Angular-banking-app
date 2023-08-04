@@ -22,14 +22,43 @@ export class DashboardService {
       ])
     }));
   }
+  getMonthlyUserStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
+    return this.Http.get(`${environment.API_URL}/api/v1/users/monthly-stats/${type}/${year}`).pipe(map(({data}: any) => {
+      return ([
+        {
+          name: type,
+          data: this.transformUserChartData(data.stats)
+        }
+      ])
+    }));
+  }
+  getMonthlyLoanStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
+    return this.Http.get(`${environment.API_URL}/api/v1/loans/monthly-stats/${type}/${year}`).pipe(map(({data}: any) => {
+      return ([
+        {
+          name: type,
+          data: this.transformUserChartData(data.stats)
+        }
+      ])
+    }));
+  }
 
 
   getLoanStats () {
       return this.Http.get(`${environment.API_URL}/api/v1/loans/loan-stats`).pipe(map(({data}:any)=> {
         return {
-          approved: data[0].APPROVED?.totalCount || 0,
-          declined: data[0].DECLINED?.totalCount || 0,
-          pending: data[0].PENDING?.totalCount || 0
+          approved: data[0]?.APPROVED?.totalCount || 0,
+          declined: data[0]?.DECLINED?.totalCount || 0,
+          pending: data[0]?.PENDING?.totalCount || 0
+        }
+      }))
+    
+  }
+  getUserStats () {
+      return this.Http.get(`${environment.API_URL}/api/v1/users/user-stats`).pipe(map(({data}:any)=> {
+        return {
+          user: data[0]?.user?.totalCount || 0,
+          admin: data[0]?.admin?.totalCount || 0,
         }
       }))
     
@@ -88,6 +117,15 @@ getDailyHighlight () {
     for (const data of stats) {
       response.push({
         x: data.time.month, y: Math.abs(data.totalAmount)
+      })
+    }
+    return response
+  }
+transformUserChartData(stats: any[]): IDashboardStats[] {
+    let response: IDashboardStats[] = [];
+    for (const data of stats) {
+      response.push({
+        x: data.time.month, y: data.totalCount
       })
     }
     return response

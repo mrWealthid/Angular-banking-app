@@ -49,8 +49,10 @@ export class TransactionsComponent implements OnInit {
   }
 
   fetchBalance() {
-    this.paymentService.getBalance().subscribe(x=> 
-      this.balance.set(x))
+    this.paymentService.getBalance().subscribe(x=> {
+   
+      this.balance.set(x)
+    })
   }
 
 

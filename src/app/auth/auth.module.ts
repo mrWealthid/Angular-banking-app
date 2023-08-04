@@ -21,7 +21,7 @@ import {CommonModule} from "@angular/common";
       animationType: ngxLoadingAnimationTypes.rotatingPlane,
       backdropBackgroundColour: "rgba(0,0,0,0.1)",
       backdropBorderRadius: "4px",
-      primaryColour: "#111827FF",
+      primaryColour:'var(--primary-color)',
       secondaryColour: "red",
       tertiaryColour: "blue",
     }),

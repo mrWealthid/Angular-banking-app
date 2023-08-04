@@ -17,10 +17,12 @@ export class UserService {
 
 const userId = params.search?.userId
     
+console.log(params)
     if(params.search?.userId){
       delete params.search.userId
    query = createParams(params)
-    return this.Http.get<IList>(`${environment.API_URL}/api/v1/users/${userId}/transactions`, {params: query}).pipe(map((data: any) => {
+
+    return this.Http.get<IList>(`${environment.API_URL}/api/v1/transactions?user=${userId}`, {params: query}).pipe(map((data: any) => {
       return {
         status: data.status,
         totalRecords: data.totalRecords,
@@ -31,9 +33,10 @@ const userId = params.search?.userId
 
   }
   if(params.search?.loanId){
+    const userId =params.search.loanId
       delete params.search.loanId
    query = createParams(params)
-    return this.Http.get<IList>(`${environment.API_URL}/api/v1/users/${userId}/loans`, {params: query}).pipe(map((data: any) => {
+    return this.Http.get<IList>(`${environment.API_URL}/api/v1/loans?user=${userId}`, {params: query}).pipe(map((data: any) => {
       return {
         status: data.status,
         totalRecords: data.totalRecords,

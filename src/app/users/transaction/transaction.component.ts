@@ -39,7 +39,8 @@ export class TransactionComponent {
       showSummary: true,
       tableName: "Transactions Table",
       singleAction:true,
-      searchParams: {userId: this.userId}
+      searchParams: {userId: this.userId},
+      limit:Infinity
       // actionable:false
     }
      }

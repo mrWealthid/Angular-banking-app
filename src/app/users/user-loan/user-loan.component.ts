@@ -25,6 +25,8 @@ export class UserLoanComponent {
       tableName: "Loans Table",
       singleAction:true,
       searchParams: {status: "PENDING", loanId: this.userId},
+
+      limit:Infinity,
     //  statusData: [{name:'Pending', value:'PENDING'}, {name:'Approved', value: 'APPROVED'}, {name:'Declined', value:'DECLINED'}]
       // actionable:false
     }

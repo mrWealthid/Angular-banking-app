@@ -51,6 +51,7 @@ export type ITableConfig = {
   searchParams?:Record<string, any>
   statusData? : any[]
   defaultQuery?: Record<string, any>
+  limit?:any
 
 } & (SummaryName | SummaryProps)
 

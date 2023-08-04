@@ -65,16 +65,16 @@ export class PaymentService {
 
   getBalance() {
     return this.Http.get(`${environment.API_URL}/api/v1/transactions/user/balance`).pipe(map(({data}: any) => {
-      return data.stats[0]?.total
+      return data.stats[0]?.total || 0
     }))
   }
 
   getLoanStats () {
     return this.Http.get(`${environment.API_URL}/api/v1/loans/loan-stats`).pipe(map(({data}:any)=> {
       return {
-        approved: data[0].APPROVED?.totalCount || 0,
-        declined: data[0].DECLINED?.totalCount || 0,
-        pending: data[0].PENDING?.totalCount || 0
+        approved: data[0]?.APPROVED?.totalCount || 0,
+        declined: data[0]?.DECLINED?.totalCount || 0,
+        pending: data[0]?.PENDING?.totalCount || 0
       }
     }))
   

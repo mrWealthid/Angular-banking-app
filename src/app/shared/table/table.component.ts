@@ -78,9 +78,10 @@ export class TableComponent implements OnInit, AfterViewInit {
   filterActive: Boolean = false;
   loading: boolean;
 
+
   constructor() {
-    this.page.pageNumber = 1;
-    this.page.limit = 10;
+   
+   
 
 
   }
@@ -103,12 +104,14 @@ suppressPaging: boolean = false;
  }
 
   ngOnInit(): void {
-
-
+    this.page.pageNumber = 1;
     this.additionalSettings = {...this.additionalSettings, ...this.tableSettings,}
 
     this.activeStatus = this.additionalSettings.searchParams
     this.createFilterForm()
+
+    this.page.limit = this.additionalSettings.limit || 10 ;
+   
     this.loadTableData()
     this.updatedColumn = this.updateColumnsWithActions()
   }
@@ -334,7 +337,7 @@ this.activeStatus= value
 
 
   loadTableData() {
-    this.setPage({offset: 0, limit: 10, search: this.additionalSettings.searchParams})
+    this.setPage({offset: 0, limit: this.page.limit, search: this.additionalSettings.searchParams})
     this.filterActive = false
   }
 

@@ -12,7 +12,7 @@
           <ng-container *ngFor="let status of tableSettings?.statusData">
 
     
-          <button  [ngClass]=" activeStatus?.['status'] === status.value? 'ring-1 ring-offset-2 text-success ring-success': '' "  (click)="handleStatusFilter({status: status.value})"
+          <button  [ngClass]=" activeStatus?.['status'] === status.value? 'ring-1 ring-offset-2 text-success  ring-success': '' "  (click)="handleStatusFilter({status: status.value})"
             >
 
               {{status.name}}
@@ -26,7 +26,7 @@
       </ng-container>
       <button
         (click)="toggleModal($event)"
-        [ngClass]="filterActive? 'ring-1 ring-offset-2 text-success ring-green-500 ' : ''"
+        [ngClass]="filterActive? 'ring-1 ring-offset-2 text-success  ring-green-500 ' : ''"
       >
         <i [ngClass]="filterActive?'text-success':''" class="fa-solid  text-gray-600 fa-filter"></i>
         Filter
