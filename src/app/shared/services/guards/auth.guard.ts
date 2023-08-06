@@ -4,7 +4,7 @@ import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../interface/userAuth";
 import {isAuthenticated} from "../../../core/store/Auth/selectors";
 import {filter, map} from "rxjs";
-import {AuthService} from "../../../auth.service";
+import {AuthService} from "../../../auth/auth.service";
 
 export const authGuard: CanActivateFn = (route, state) => {
   const isAuthenticated$ = inject(Store<AppStateInterface>).pipe(select(isAuthenticated))

@@ -7,7 +7,7 @@ import {IProfile} from "../../../shared/interface/userAuth";
 import {Router} from "@angular/router";
 import {ProfileService} from "../../../profile/service/profile.service";
 import {NotificationService} from "../../../shared/services/notification.service";
-import {AuthService} from "../../../auth.service";
+import {AuthService} from "../../../auth/auth.service";
 
 @Injectable()
 export class ProfileEffect {

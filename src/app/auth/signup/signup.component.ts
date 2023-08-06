@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../auth.service";
 import {AppStateInterface, IRegister} from "../../shared/interface/userAuth";
 import {ModalService} from "../../shared/services/modal.service";
 import * as AuthActions from "../../core/store/Auth/actions";
@@ -32,8 +32,13 @@ export class SignupComponent implements OnInit {
     max: this.date.subtract(7, 'year'),
   };
   
+    //INJECTED SERVICE
 
-  constructor(public authservice: AuthService, public modalService: ModalService, private store: Store<AppStateInterface>
+    authservice = inject(AuthService);
+    private store= inject(Store<AppStateInterface>)
+  
+
+  constructor(
   ) {
 
     this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
@@ -51,7 +56,7 @@ export class SignupComponent implements OnInit {
   }
 
   handleClearError(){
-    this.authservice.setError('')
+    this.authservice.clearError()
   }
 
   createForm() {
@@ -92,9 +97,9 @@ export class SignupComponent implements OnInit {
   }
 
 
-  toggleModal() {
-    this.modalService.HandleShowModal();
-  }
+  // toggleModal() {
+  //   this.modalService.HandleShowModal();
+  // }
 
   onDateSelection($event: Event) {
 

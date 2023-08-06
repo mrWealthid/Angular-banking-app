@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 import {isAuthenticated} from "../core/store/Auth/selectors";
 import {Observable} from "rxjs";
 import {currentUserSelector} from "../core/store/Profile/selectors";
-import { AuthService } from '../auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',

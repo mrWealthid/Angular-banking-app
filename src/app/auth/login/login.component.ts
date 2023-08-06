@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../auth.service";
 import {AppStateInterface, ILogin} from "../../shared/interface/userAuth";
 import {select, Store} from "@ngrx/store";
 import * as AuthActions from "../../core/store/Auth/actions";
@@ -25,9 +25,13 @@ export class LoginComponent implements OnInit {
   formRoute$ = new BehaviorSubject('loginForm')
   loading: boolean;
 
+  //INJECTED SERVICE
+
+  authservice = inject(AuthService);
+  private store= inject(Store<AppStateInterface>)
 
 
-  constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
+  constructor() {
     this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
   
 
@@ -56,7 +60,7 @@ export class LoginComponent implements OnInit {
 
 
   handleClearError(){
-    this.authservice.setError('')
+    this.authservice.clearError()
   }
 
   // toggleModal() {
@@ -64,10 +68,10 @@ export class LoginComponent implements OnInit {
   //   this.showMe = true;
   // }
 
-  handleModal($event: any) {
-    console.log("I Bubbled", $event);
-    this.showModal = $event;
-  }
+  // handleModal($event: any) {
+  //   console.log("I Bubbled", $event);
+  //   this.showModal = $event;
+  // }
 
   updateRoute(route: string) {
     this.formRoute$.next(route)

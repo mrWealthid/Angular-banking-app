@@ -1,7 +1,7 @@
 <section class="flex flex-col  min-h-screen items-center justify-center ">
   
-  <ng-container *ngIf="authservice.error()">
-  <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" (clearError)="handleClearError()"  [msg]="authservice.error()"></app-alert>
+  <ng-container *ngIf="authservice.notification()">
+  <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" (clearError)="handleClearError()" [type]="authservice.notification().type"  [msg]="authservice.notification().message"></app-alert>
 </ng-container>
 
   <section
@@ -46,7 +46,7 @@
         </section>
         <p class="flex  gap-3 text-sm tex-gray-800">
           Forgot Password ?
-          <small (click)="updateRoute('resetPassword')" class="text-blue-600 cursor-pointer text-sm">
+          <small [routerLink]="['/auth/resetPassword']" class="text-blue-600 cursor-pointer text-sm">
             Reset
           </small>
         </p>
@@ -63,9 +63,7 @@
         <app-reset-password></app-reset-password>
       </ng-container>
 
-      <ng-container *ngIf="(formRoute$|async) ==='updatePasswordForm'">
-        <app-update-password></app-update-password>
-      </ng-container>
+   
 
 
     </section>

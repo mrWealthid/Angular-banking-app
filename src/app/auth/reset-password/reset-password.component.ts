@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, inject} from '@angular/core';
 import {FormControl, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../auth.service";
+import {AuthService} from "../auth.service";
 import {select, Store} from "@ngrx/store";
 import {AppStateInterface} from "../../shared/interface/userAuth";
 import {isLoadingSelector} from "../../core/store/Auth/selectors";
@@ -14,16 +14,27 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm: UntypedFormGroup;
   email: FormControl;
-  loading: Boolean;
+  loading: boolean = false;
+
+  //INJECTED SERVICE
+
+  authservice = inject(AuthService);
+  private store= inject(Store<AppStateInterface>)
 
 
-  constructor(public authservice: AuthService, private store: Store<AppStateInterface>) {
+  constructor() {
     this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
 
   }
 
   ngOnInit() {
     this.createResetPasswordForm()
+  }
+
+
+
+  handleClearError(){
+    this.authservice.clearError()
   }
 
   createResetPasswordForm() {
@@ -33,7 +44,16 @@ export class ResetPasswordComponent implements OnInit {
     });
   }
 
-  handleResetForm(val: any) {
+  handleResetForm(email: any) {
 
+    this.loading = true
+    this.authservice.forgotPassword(email).subscribe((res:any)=> {
+      this.loading = false;
+this.authservice.setNotification(res.message, 'success')
+    }, (err:any)=> {
+      this.loading = false;
+      this.authservice.setNotification(err.error.message, 'error')
+    }
+    )
   }
 }
