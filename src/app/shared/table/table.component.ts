@@ -81,7 +81,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   constructor() {
    
-   
+this.page.search = {...this.additionalSettings.searchParams}
 
 
   }
@@ -168,7 +168,7 @@ suppressPaging: boolean = false;
     this.page.pageNumber = pageInfo.offset;
     this.page.limit = pageInfo.limit
 
-    this.page.search = pageInfo.search
+    this.page.search = {...this.additionalSettings.searchParams, ...this.page.search,}
 
 
 
@@ -305,8 +305,14 @@ suppressPaging: boolean = false;
 
 handleStatusFilter(value:any) {
  const data =this.removeEmptyKeys({...this.additionalSettings.searchParams, search: value}) 
+
+ 
 this.activeStatus = data['search']
-  this.setPage({offset: 0, limit: Infinity, search: {...this.activeStatus}})
+
+//This helps filtered response paginable 
+this.page.search = {...this.additionalSettings.searchParams, ...value}
+
+  this.setPage({offset: 0, limit: 10, search: this.page.search})
 }
 
 
@@ -316,12 +322,16 @@ this.activeStatus = data['search']
 
     const data = this.removeEmptyKeys({...this.additionalSettings.searchParams,...value})
 
+    //This helps filtered response paginable 
+this.page.search = data
+
+
 this.activeStatus= value
 
     //check if the filter object has values to set the active filter flag
     this.filterActive = Object.values(data).length > 0
 
-    this.setPage({offset: 0, limit: Infinity, search: {...data}})
+    this.setPage({offset: 0, limit: 10, search: {...data}})
     this.closeModal()
   }
 
@@ -337,7 +347,7 @@ this.activeStatus= value
 
 
   loadTableData() {
-    this.setPage({offset: 0, limit: this.page.limit, search: this.additionalSettings.searchParams})
+    this.setPage({offset: 0, limit: this.page.limit, search: {...this.additionalSettings.searchParams, ...this.page.search}})
     this.filterActive = false
   }
 
