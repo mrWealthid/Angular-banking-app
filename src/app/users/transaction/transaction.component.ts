@@ -40,7 +40,7 @@ export class TransactionComponent {
       tableName: "Transactions Table",
       singleAction:true,
       searchParams: {userId: this.userId},
-      limit:Infinity
+      // limit:Infinity
       // actionable:false
     }
      }
