@@ -38,6 +38,11 @@ export class AuthService {
     })
 
   }
+logout () {
+  this.router.navigate(["auth/login"])
+  this.storedRoutes = []
+}
+  
 
 
   register(credentials: IRegister): Observable<IUser> {

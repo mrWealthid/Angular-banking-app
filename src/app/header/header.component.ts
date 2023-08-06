@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {isAuthenticated} from "../core/store/Auth/selectors";
 import {Observable} from "rxjs";
 import {currentUserSelector} from "../core/store/Profile/selectors";
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   currentUser: Observable<IProfile | null>;
   private router = inject(Router)
   private store = inject(Store<AppStateInterface>)
+  private authService = inject(AuthService)
 
 
   ngOnInit(): void {
@@ -29,7 +31,8 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.store.dispatch(AuthActions.logout())
-    this.router.navigate(["auth/login"])
+    
+    this.authService.logout()
   }
 
 
