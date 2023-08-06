@@ -17,7 +17,7 @@ import {effects, localStorageSyncReducer, reducers} from "./core/store";
 import {HeadersInterceptor} from "./headers.interceptor";
 import {CurrencyPipe} from "@angular/common";
 import {routes} from "./app-routes";
-import {SharedModule} from "./shared/shared.module";
+import {SharedModule} from  "../app/shared/shared.module"
 import {ThemeComponent} from './theme/theme.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { UserLoanComponent } from './users/user-loan/user-loan.component';
