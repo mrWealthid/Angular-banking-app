@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, inject} from '@angular/core';
-import { AuthService } from 'src/app/auth.service';
 
 
 
@@ -10,6 +9,7 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class AlertComponent {
   @Input({required:true}) msg =""
+  @Input() type: string = 'error'
 
   @Output() clearError = new EventEmitter<string>();
 
