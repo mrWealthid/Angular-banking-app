@@ -20,8 +20,8 @@
     --error-color: rgb(220, 38, 38);
     --pending-color: rgb(244, 130, 32);
     --light-blue: rgb(147, 197, 253);
-    --autofill: white
-  
+    --autofill: #777777
+
   
     /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
   }
@@ -40,7 +40,7 @@
 --error-color: rgb(220, 38, 38);
 --pending-color: rgb(244, 130, 32);
 --light-blue: rgb(147, 197, 253);
---autofill: white
+--autofill: #ffd9e0
 }
 
 .theme-green{
@@ -69,7 +69,7 @@
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
-  --autofill: white
+  --autofill: #66b366
   }
 
 .theme-gold {
@@ -84,7 +84,7 @@
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
-  --autofill: white
+  --autofill: #e9c979
   }
 
 
@@ -105,7 +105,7 @@
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
-  --autofill: white
+  --autofill: #c97f7f
   }
   
 }
@@ -125,7 +125,7 @@
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
-  --autofill: white
+  --autofill: #e8b393
 
 
   /*--shadow: 0 4px 8px 0 rgb(243, 239, 239), 0 6px 20px rgb(243, 239, 239);*/
@@ -136,30 +136,30 @@
   
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --autofill: white;
-  }
+  // :root {
+  //   --autofill: white;
+  // }
 
-  .theme-brown {
+  // .theme-brown {
     
-    --autofill: white;
+  //   --autofill: white;
 
-  }
+  // }
 
-  .theme-orange {
-    --autofill: white;
-  }
+  // .theme-orange {
+  //   --autofill: white;
+  // }
 
-  .theme-green {
-    --autofill: white;
-  }
-  .theme-gold {
-    --autofill: white;
-  }
-  .theme-pink {
+  // .theme-green {
+  //   --autofill: white;
+  // }
+  // .theme-gold {
+  //   --autofill: white;
+  // }
+  // .theme-pink {
 
-    --autofill: white;
-  }
+  //   --autofill: white;
+  // }
  
 }
 
@@ -186,7 +186,7 @@
   }
 
   .theme-orange {
-    --autofill: #777777;
+    --autofill: #e8b393;
   }
 }
 
