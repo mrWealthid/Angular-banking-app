@@ -27,12 +27,15 @@ currentUser$: Observable<IProfile|null>
     router= inject(Router)
     private notify = inject(NotificationService)
     currentUser:IProfile|null
-id: any
+    loanDetails: any
+
   
 
     constructor() {
-  this.id =  this.route.snapshot.params['id']
-   this.loanDetails$ = this.loanService.getLoan(this.id)
+ 
+   this.loanDetails$ = this.loanService.getLoan(this.route.snapshot.params['id'])
+
+   this.loanDetails$.subscribe(x=> this.loanDetails = x)
 
 
    this.currentUser$ = this.store.pipe(select(currentUserSelector))
@@ -79,7 +82,7 @@ id: any
 
 
       if(this.currentUser?.role ==='admin') {
-        this.router.navigate(['dashboard/user-loans/', this.id])
+        this.router.navigate(['dashboard/user-loans/', this.loanDetails.user ])
       }
       else{
 this.router.navigate(['/dashboard/loans'])

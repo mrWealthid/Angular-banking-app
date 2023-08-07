@@ -20,18 +20,21 @@ export class TransactionviewComponent {
   loading:boolean= false
   router= inject(Router)
   route = inject( ActivatedRoute)
-  id: any
+
+  transactionDetails:any
+
 
   constructor() {
- this.id =  this.route.snapshot.params['id']
- this.transactionsDetails$ = this.transactionService.getTransaction(this.id)
+
+ this.transactionsDetails$ = this.transactionService.getTransaction(this.route.snapshot.params['id'])
+ this.transactionsDetails$.subscribe(x=> this.transactionDetails = x)
 
 this.store.pipe(select(currentUserSelector)).subscribe(x=> this.currentUser =x)
   }
   handleBack() {
 
 if(this.currentUser?.role ==='admin') {
-  this.router.navigate(['dashboard/user-transactions/', this.id])
+  this.router.navigate(['dashboard/user-transactions/', this.transactionDetails.user])
 }
      else {
         this.router.navigate(['/dashboard/transactions'])

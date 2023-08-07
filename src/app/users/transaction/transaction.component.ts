@@ -65,7 +65,7 @@ export class TransactionComponent {
 
   fetchBalance() {
     this.userService.getBalance(this.userId).subscribe(x=> 
-      this.balance.set(x))
+      this.balance.set(x|| 0 ))
   }
 
   getUser() {

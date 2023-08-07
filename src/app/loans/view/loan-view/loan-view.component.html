@@ -34,17 +34,17 @@
 
     <span class="font-semibold">Payment Status:</span> 
 
-    <span *ngIf="loanDetail.paymentStatus ==='PENDING'" class=" w-1/3  py-2 px-4 bg-success text-xs text-center text-white  capitalize rounded-full"> {{loanDetail.paymentStatus}}</span>
-    <span *ngIf="loanDetail.paymentStatus  ==='UNPAID'" class=" w-1/3  py-2 px-4 bg-light-blue text-xs text-center text-white capitalize rounded-full"> {{loanDetail.paymentStatus}}</span>
+    <span *ngIf="loanDetail.paymentStatus ==='PENDING'" class=" w-fit   py-2 px-4 bg-success text-xs text-center text-white  capitalize rounded-full"> {{loanDetail.paymentStatus}}</span>
+    <span *ngIf="loanDetail.paymentStatus  ==='UNPAID'" class=" w-fit py-2 px-4 bg-light-blue text-xs text-center text-white capitalize rounded-full"> {{loanDetail.paymentStatus}}</span>
    
  </section>
     
 
  <section class="grid grid-cols-2 dark:hover:glass hover:bg-secondary p-3 ">
     <span class="font-semibold">Status:</span> 
-    <span *ngIf="loanDetail.status ==='APPROVED'" class=" w-1/3  py-2 px-4 bg-success text-xs text-center text-white  capitalize rounded-full"> {{loanDetail.status}}</span>
-    <span *ngIf="loanDetail.status ==='PENDING'" class=" w-1/3  py-2 px-4 bg-light-blue text-xs text-center text-white capitalize rounded-full"> {{loanDetail.status}}</span>
-    <span *ngIf="loanDetail.status ==='DECLINED'" class=" w-1/3   py-2 px-4 bg-error text-xs text-center text-white capitalize rounded-full"> {{loanDetail.status}}</span>
+    <span *ngIf="loanDetail.status ==='APPROVED'" class=" w-fit  py-2 px-4 bg-success text-xs text-center text-white  capitalize rounded-full"> {{loanDetail.status}}</span>
+    <span *ngIf="loanDetail.status ==='PENDING'" class=" w-fit  py-2 px-4 bg-light-blue text-xs text-center text-white capitalize rounded-full"> {{loanDetail.status}}</span>
+    <span *ngIf="loanDetail.status ==='DECLINED'" class=" w-fit  py-2 px-4 bg-error text-xs text-center text-white capitalize rounded-full"> {{loanDetail.status}}</span>
 
  </section>
 
