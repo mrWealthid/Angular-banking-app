@@ -49,7 +49,7 @@ console.log(params)
     
   }
 
-
+  query = createParams(params)
     return this.Http.get<IList>(`${environment.API_URL}/api/v1/users`, {params: query}).pipe(map((data: any) => {
       return {
         status: data.status,
