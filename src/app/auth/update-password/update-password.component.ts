@@ -44,6 +44,10 @@ export class UpdatePasswordComponent implements OnInit {
     this.createUpdatePasswordForm()
   }
 
+  handleClearError(){
+    this.authservice.clearError()
+  }
+
 
   handleUpdatePassword(value: any) {
     console.log(value)

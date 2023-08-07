@@ -20,9 +20,6 @@ export class LoginComponent implements OnInit {
   email: UntypedFormControl;
   password: UntypedFormControl;
   showModal: boolean = false;
-
-
-  formRoute$ = new BehaviorSubject('loginForm')
   loading: boolean;
 
   //INJECTED SERVICE
@@ -73,8 +70,5 @@ export class LoginComponent implements OnInit {
   //   this.showModal = $event;
   // }
 
-  updateRoute(route: string) {
-    this.formRoute$.next(route)
-
-  }
+ 
 }
