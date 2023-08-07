@@ -12,29 +12,37 @@ export class ThemeComponent {
   constructor() {
    this.updateTheme()
   }
- r = document.querySelector(':root') as HTMLElement;
+ 
   ngOnInit(): void {
 
 
-  
-
-
-
-// Create a function for setting a variable value
-
   }
 
-setAutofill(color:string) {
-    // Set the value of variable --blue to another value (in this case "lightblue")
-    this.r.style.setProperty('--autofill', color );
-  }
+
+
+
+
+  setAutofill(color:string) {
+    let r;
+    if(!localStorage['color-theme']) {
+      r = document.querySelector(':root') as HTMLElement;
+      r.style.setProperty('--autofill', "#77777" );
+    }
+    else {
+
+     const theme=localStorage['color-theme']
+      r = document.querySelector(`.${theme}`) as HTMLElement;
+      r.style.setProperty('--autofill', color );
+    }
+      
+      }
 
   updateTheme() {
     if (localStorage['theme'] === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
       this.isDarkMode = true;
-
-      this.setAutofill('#777777')
+     
+   this.setAutofill('')
     } else {
       document.documentElement.classList.remove('dark')
       this.isDarkMode = false;

@@ -114,7 +114,28 @@
 
   
 
+@media (prefers-color-scheme: light) {
+  :root {
+    --autofill: white;
+  }
 
+  .theme-brown {
+    
+    --autofill: white;
+
+  }
+  .theme-green {
+    --autofill: white;
+  }
+  .theme-gold {
+    --autofill: white;
+  }
+  .theme-pink {
+
+    --autofill: white;
+  }
+ 
+}
 
 
 
@@ -123,14 +144,24 @@
     --autofill: #848484;
   }
 
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --autofill: white;
+  .theme-brown {
+    --autofill: #c97f7f
   }
 
- 
+  .theme-green {
+    --autofill: #66b366
+  }
+  .theme-gold {
+    --autofill: #e9c979
+  }
+  .theme-pink {
+
+    --autofill: #ffd9e0
+  }
 }
+
+
+
 
 header {
   @apply lg:h-lg md:h-md h-sm
