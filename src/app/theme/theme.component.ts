@@ -8,11 +8,11 @@ import {Component} from '@angular/core';
 export class ThemeComponent {
 
   isDarkMode = false;
-
+  // r = document.querySelector(':root') as HTMLElement;
   constructor() {
    this.updateTheme()
   }
- 
+
   ngOnInit(): void {
 
 
@@ -23,17 +23,19 @@ export class ThemeComponent {
 
 
   setAutofill(color:string) {
-    let r;
-    if(!localStorage['color-theme']) {
-      r = document.querySelector(':root') as HTMLElement;
-      r.style.setProperty('--autofill', "#77777" );
-    }
-    else {
+    // let r;
+    // if(!localStorage['color-theme']) {
+    //   r = document.querySelector(':root') as HTMLElement;
+    //   r.style.setProperty('--autofill', 'white' );
+    // }
+    // else {
+     
+    //  const theme=localStorage['color-theme']
+    //   r = document.querySelector(`.${theme}`) as HTMLElement;
+    //   r.style.setProperty('--autofill', color );
+    // }
 
-     const theme=localStorage['color-theme']
-      r = document.querySelector(`.${theme}`) as HTMLElement;
-      r.style.setProperty('--autofill', color );
-    }
+    document.body.style.setProperty('--autofill', color)
       
       }
 
@@ -45,8 +47,10 @@ export class ThemeComponent {
    this.setAutofill('')
     } else {
       document.documentElement.classList.remove('dark')
+     
       this.isDarkMode = false;
       this.setAutofill('white')
+  
     }
   }
 

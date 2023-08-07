@@ -59,6 +59,16 @@ logout () {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
   }
+  resetPassword(token:string, payload:IPasswordUpdate) {
+    return this.Http.patch<any>(`${environment.API_URL}/api/v1/users/resetPassword/${token}`, payload, {
+      context: new HttpContext().set(BEARER_TOKEN, false)
+    })
+  }
 
 
+}
+
+export interface IPasswordUpdate  {
+  password: string,
+  passwordConfirm: string
 }
