@@ -1,24 +1,27 @@
-<section class="flex flex-col  min-h-screen items-center justify-center ">
-  
+<section class="flex flex-col min-h-screen items-center justify-center">
   <ng-container *ngIf="authservice.notification()">
-  <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" (clearError)="handleClearError()" [type]="authservice.notification().type"  [msg]="authservice.notification().message"></app-alert>
-</ng-container>
+    <app-alert
+      class="w-5/6 md:w-4/6 lg:w-1/3"
+      (clearError)="handleClearError()"
+      [type]="authservice.notification().type"
+      [msg]="authservice.notification().message"
+    ></app-alert>
+  </ng-container>
 
   <section
-    class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/3 py-10 px-5 flex gap-4 flex-col  items-center justify-center">
-
-   
-
-
+    class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/3 py-10 px-5 flex gap-4 flex-col items-center justify-center"
+  >
+    <p class="text-center text-primary dark:text-black font-bold text-2xl">
+      Sign In to Get Started
+    </p>
 
     <section class="w-full">
-
-
-
-      <form (ngSubmit)="handleLogin(LoginForm.value)"  [formGroup]="LoginForm"
-            action=""
-            class="w-full flex flex-col justify-center gap-2 items-center ">
-
+      <form
+        (ngSubmit)="handleLogin(LoginForm.value)"
+        [formGroup]="LoginForm"
+        action=""
+        class="w-full flex flex-col justify-center gap-2 items-center"
+      >
         <email-input
           [formControl]="email"
           [label]="'Email'"
@@ -33,41 +36,35 @@
           class="w-5/6"
         ></password-input>
 
-
         <section class="w-5/6 mt-4">
-
-          <app-button [btnText]="'Login'" [disabled]="LoginForm.invalid" [loading]="loading"
-                      [styles]="'btn-primary'"></app-button>
+          <app-button
+            [btnText]="'Login'"
+            [disabled]="LoginForm.invalid"
+            [loading]="loading"
+            [styles]="'btn-primary'"
+          ></app-button>
         </section>
-        <p class="flex  gap-3 text-sm tex-gray-800">
+        <p class="flex gap-3 text-sm tex-gray-800">
           Forgot Password ?
-          <small [routerLink]="['/auth/resetPassword']" class="text-blue-600 cursor-pointer text-sm">
+          <small
+            [routerLink]="['/auth/resetPassword']"
+            class="text-blue-600 cursor-pointer text-sm"
+          >
             Reset
           </small>
         </p>
-        <p class="flex  gap-3 text-sm tex-gray-800">
+        <p class="flex gap-3 text-sm tex-gray-800">
           Need An Account
           <a [routerLink]="['/auth/signup']" class="text-blue-600 text-sm">
             Sign up
           </a>
         </p>
-
       </form>
-
-   
-
-   
-
-
     </section>
   </section>
 </section>
 
-
-
-
 <ngx-loading
   [config]="{ backdropBorderRadius: '3px' }"
   [show]="loading"
- 
 ></ngx-loading>
