@@ -37,6 +37,7 @@ import {MaskDirective} from "./directives/Mask-directive";
 import { SummaryTreeComponent } from './summary-tree/summary-tree.component';
 import { AlertComponent } from './alert/alert.component';
 import { ColorPalleteComponent } from './color-pallete/color-pallete.component';
+import { BackButtonDirective } from './directives/Back-directive';
 
 
 @NgModule({
@@ -52,10 +53,10 @@ import { ColorPalleteComponent } from './color-pallete/color-pallete.component';
     ModalComponent,
     ModalsComponent,
     SelectInputComponent,
-
     TableHeaderRowDirective,
     ClipboardComponent,
     MaskDirective,
+    BackButtonDirective,
 
     DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent],
   imports: [
@@ -84,6 +85,7 @@ import { ColorPalleteComponent } from './color-pallete/color-pallete.component';
   exports: [
     ButtonComponent,
     MaskDirective,
+    BackButtonDirective,
     TableComponent,
     ImageUploadComponent,
     StepperComponent,
