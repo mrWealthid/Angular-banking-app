@@ -1,0 +1,37 @@
+<section class="container-text min-h-screen">
+  <!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full">
+  <body class="h-full">
+  ```
+-->
+  <main
+    class="grid min-h-full card place-items-center skin bg-white px-6 py-24 sm:py-32 lg:px-8"
+  >
+    <div class="text-center">
+      <p class="text-base font-semibold dark:text-secondary text-primary">
+        404
+      </p>
+      <h1
+        class="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-secondary sm:text-5xl"
+      >
+        UNAUTHORIZED
+      </h1>
+      <p class="mt-6 text-base leading-7 text-gray-600 dark:text-secondary">
+        Sorry, we couldn’t access the page you’re looking for.
+      </p>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a
+          [routerLink]="['/dashboard']"
+          class="rounded-3xl bg-primary px-3.5 w-1/2 py-2.5 text-sm font-semibold dark:glass text-white shadow-sm hover:bg-primary-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
+          >Go back
+        </a>
+        <!-- <a href="#" class="text-sm font-semibold text-gray-900"
+          >Contact support <span aria-hidden="true">&rarr;</span></a
+        > -->
+      </div>
+    </div>
+  </main>
+</section>
