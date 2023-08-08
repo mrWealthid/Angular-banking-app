@@ -47,7 +47,11 @@ currentUser$: Observable<IProfile|null>
 
     handleProcessLoan(val:any, loanId:any) {
       this.loading = true
-      this.loanService.processLoan(val, loanId).subscribe(x => {
+      const payload = {
+        ...val,
+        actionedBy: this.currentUser?.name
+      }
+      this.loanService.processLoan(payload, loanId).subscribe(x => {
         this.loading = false
         this.handleBack()
         this.notify.showSuccess('Loan Processed Ok','Loan Notification')
@@ -69,7 +73,7 @@ currentUser$: Observable<IProfile|null>
       this.loading = true
       this.loanService.withdrawLoan(loanId).subscribe(x => {
         this.loading = false
-        this.handleBack()
+     this.handleBack()
         this.notify.showSuccess('Loan Withdrawn','Loan Notification')
       }, err=>{
         this.loading = false
@@ -80,6 +84,7 @@ currentUser$: Observable<IProfile|null>
 
     handleBack() {
 
+      // this.router.navigate()
 
       if(this.currentUser?.role ==='admin') {
         this.router.navigate(['dashboard/user-loans/', this.loanDetails.user ])

@@ -97,8 +97,8 @@
 
    <app-button [btnText]="'Back'" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleBack()" ></app-button>
 
-    <app-button [btnText]="'Approve'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass  py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'APPROVED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
-    <app-button [btnText]="'Decline'" [loading]="loading" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'DECLINED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
+    <app-button [btnText]="'Approve'" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass  py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'APPROVED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
+    <app-button [btnText]="'Decline'" [styles]="'bg-primary text-secondary dark:text-secondary dark:glass py-2 px-5 rounded-3xl'" (clickEvent)="handleProcessLoan({status: 'DECLINED', actionedBy:loanDetail.id}, loanDetail.id)" ></app-button>
     </section>
 
 

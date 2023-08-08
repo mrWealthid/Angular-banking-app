@@ -53,22 +53,17 @@ export class UpdatePasswordComponent implements OnInit {
 
   handleUpdatePassword(value: any) {
 
-    console.log(value)
-
     this.loading = true
 
     const payload:IPasswordUpdate = {
-password: value.password,
-passwordConfirm: value.password
+          password: value.password,
+          passwordConfirm: value.password
     }
     this.authservice.resetPassword(this.token, payload).subscribe(x => {
-      this.loading = true,
-
-
+      this.loading = false,
       this.authservice.setNotification(x.message, 'success')
-
-      console.log(x)
     }, err=> {
+      this.loading = false,
       this.authservice.setNotification(err.error.message, 'error')
     })
   }
