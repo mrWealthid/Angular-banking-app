@@ -1,5 +1,5 @@
-import {createSelector} from "@ngrx/store";
-import {AppStateInterface} from "../../../shared/interface/userAuth";
+import { createSelector } from "@ngrx/store";
+import { AppStateInterface } from "../../../shared/interface/userAuth";
 
 
 export const selectFeature = (state: AppStateInterface) => state.Profile;

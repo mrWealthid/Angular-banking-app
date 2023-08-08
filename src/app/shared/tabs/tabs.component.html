@@ -4,7 +4,7 @@
     <li  *ngFor="let tab of tabs; let i = index" class="">
 
       <span (click)="navigateTab(tab.step)"
-         [ngClass]="tab.step ===selectedTab ? 'text-gray-800 ring-1 ring-offset-2 ring-primary-light   border border-secondary  dark:border-none dark:text-secondary dark:glass   py-1': ''"
+         [ngClass]="tab.step ===selectedTab ? 'text-gray-800 ring-1 ring-offset-1 ring-primary-light     dark:border-none dark:text-secondary dark:glass   py-1': ''"
          class=" text-primary dark:text-secondary px-1  flex items-center justify-center  cursor-pointer  py-1 rounded-full "
       >
 <img  class=" " [src]="tab.icon" alt="tab.title" />
