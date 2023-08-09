@@ -1,39 +1,55 @@
 <!--Reactive forms-->
-<section class="flex  flex-col  min-h-screen  items-center justify-center">
+<section class="flex flex-col min-h-screen items-center justify-center">
   <ng-container *ngIf="authservice.notification()">
-    <app-alert class="w-5/6 md:w-4/6 lg:w-1/2" (clearError)="handleClearError()" [type]="authservice.notification().type"  [msg]="authservice.notification().message"></app-alert>
+    <app-alert
+      class="w-5/6 md:w-4/6 lg:w-1/2"
+      (clearError)="handleClearError()"
+      [type]="authservice.notification().type"
+      [msg]="authservice.notification().message"
+    ></app-alert>
   </ng-container>
   <section
-    class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/2 py-10 px-6 flex gap-6  flex-col items-center justify-center">
-    <p class="text-center text-primary dark:text-black font-bold text-2xl">Register</p>
-    <form (ngSubmit)="handleRegister(SignupForm.value)" [formGroup]="SignupForm"  autocomplete="off"
-          class="w-full flex flex-col gap-2 items-center">
+    class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/2 py-10 px-6 flex gap-6 flex-col items-center justify-center"
+  >
+    <p class="text-center text-primary dark:text-black font-bold text-2xl">
+      Sign Up
+    </p>
+    <form
+      (ngSubmit)="handleRegister(SignupForm.value)"
+      [formGroup]="SignupForm"
+      autocomplete="off"
+      class="w-full flex flex-col gap-2 items-center"
+    >
       <div class="w-full flex gap-4">
-        <text-input [formControl]="firstname"
-                    [label]="'First Name'"
-                    [placeholder]="'Enter First Name'" class="w-5/6">
-
+        <text-input
+          [formControl]="firstname"
+          [label]="'First Name'"
+          [placeholder]="'Enter First Name'"
+          class="w-5/6"
+        >
         </text-input>
 
-        <text-input [formControl]="lastname"
-                    [label]="'Last Name'"
-                    [placeholder]="'Enter Last Name'" class="w-5/6">
-
+        <text-input
+          [formControl]="lastname"
+          [label]="'Last Name'"
+          [placeholder]="'Enter Last Name'"
+          class="w-5/6"
+        >
         </text-input>
-
       </div>
       <div class="w-full flex gap-4">
-
         <email-input
           [formControl]="email"
           [label]="'Email'"
           class="w-full"
         ></email-input>
 
-
-        <app-date-picker [dateConfig]="config" [formControl]="DOB" [label]="'Date Of Birth'"
-                         class="w-full"></app-date-picker>
-
+        <app-date-picker
+          [dateConfig]="config"
+          [formControl]="DOB"
+          [label]="'Date Of Birth'"
+          class="w-full"
+        ></app-date-picker>
 
         <!--                    <app-label [label]="'label'" [required]="true"></app-label>-->
         <!--                    <mat-form-field class="lg:w-full "-->
@@ -46,19 +62,14 @@
         <!--                    </mat-form-field>-->
         <!--        </section>-->
 
-
         <!--        <text-input [formControl]="DOB"-->
         <!--                    [label]="'Date Of Birth'"-->
 
         <!--                    [placeholder]="'Select Date'" class="w-5/6">-->
 
         <!--        </text-input>-->
-
       </div>
-      <section>
-
-
-      </section>
+      <section></section>
       <div class="w-full flex gap-4">
         <password-input
           [formControl]="password"
@@ -68,16 +79,16 @@
         ></password-input>
 
         <select-input
-        [bindLabel]="'name'"
-        [bindValue]="'id'"
-        [formControl]="accountType"
-        [items]="[{name:'Wallet', id:'Wallet'}]"
-        [label]="'Account Type'"
-        [multiple]="true"
-        [placeholder]="'Select options'"
-        class="w-5/6">
-      </select-input>
-
+          [bindLabel]="'name'"
+          [bindValue]="'id'"
+          [formControl]="accountType"
+          [items]="[{ name: 'Wallet', id: 'Wallet' }]"
+          [label]="'Account Type'"
+          [multiple]="true"
+          [placeholder]="'Select options'"
+          class="w-5/6"
+        >
+        </select-input>
 
         <!-- <password-input
           [formControl]="passwordConfirm"
@@ -86,18 +97,20 @@
           [type]="'password'"
           class="w-5/6"
         ></password-input> -->
-
-
       </div>
       <section class="w-full mt-4">
-
-        <app-button [btnText]="'Register'" [disabled]="SignupForm.invalid"
-                    [loading]="loading"
-                    [styles]="'btn-primary'"></app-button>
+        <app-button
+          [btnText]="'Register'"
+          [disabled]="SignupForm.invalid"
+          [loading]="loading"
+          [styles]="'btn-primary'"
+        ></app-button>
       </section>
-      <p class="text-sm  flex gap-2">
+      <p class="text-sm flex gap-2">
         Already Have An Account ?
-        <a [routerLink]="['/auth/login']" class="text-blue-700  text-sm">Login</a>
+        <a [routerLink]="['/auth/login']" class="text-blue-700 text-sm"
+          >Login</a
+        >
       </p>
     </form>
   </section>
@@ -115,11 +128,7 @@
 <!--    </div>-->
 <!--</app-modals >-->
 
-
 <ngx-loading
   [config]="{ backdropBorderRadius: '3px' }"
   [show]="loading"
-
 ></ngx-loading>
-
-
