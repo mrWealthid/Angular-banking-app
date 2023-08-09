@@ -1,174 +1,261 @@
-<section
-  class="section-hero min-h-screen border-b dark:bg-primary   dark:border-none    md:min-h-[50vh] container-text lg:min-h-screen   skin  flex items-center">
-  <section class="text-gray-800 dark:text-secondary text-primary xl:w-1/2  max-w-[301px] md:max-w-[512px]  flex flex-col  gap-5">
-    <h1 class='text-3xl  lg:text-4xl  2xl:text-5xl max-w-sm xl:max-w-lg '>
-      The Easiest Way
-      To Manage Personal
-      Finances
-    </h1>
-    <p class='text leading-normal 2xl:text-lg md:max-w-md lg:max-w-xl 2xl:max-w-2xl'>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-      enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-    </p>
-    <button [routerLink]="['dashboard']"
-            class='w-3/4  md:w-1/3  xl:w-1/2 cap text-secondary dark:text-secondary  bg-primary dark:glass px-2 py-4 rounded-full'>
-      Explore
-    </button>
-  </section>
-
-
-  <section class='flex lg:w-full  md:w-1/2   gap-8  glassTxt justify-end'>
-    <div class='w-1/2 hidden justify-center  md:flex '>
-      <section
-        class='w-60 flex flex-col h-96    skin  skin-card dark:glass bg-primary shadow-gray-200 shadow-md  box-border   rounded-xl  text-secondary'>
-        <div class='flex flex-1    justify-between px-3 py-5'>
-          <p>WealthPay</p>
-          <i class="fa-solid fa-wifi"></i>
-        </div>
-
-        <div class=' p-3 flex flex-col mb-5'>
-          <div class='flex justify-between items-center'>
-            <div class='flex text-sm gap-1'>
-              <p>5123</p>
-              <p>****</p>
-              <p>****</p>
-              <p>****</p>
-            </div>
-
-            <div class='flex'>
-              <p class='bg-yellow-500 z-10  opacity-80  rounded-full w-8 h-8'></p>
-              <p class='bg-red-800 -ml-4 rounded-full w-8 h-8'></p>
-            </div>
-          </div>
-          <!--          <p>{{userDetails?.name || 'Wealth Iduwe'}}</p>-->
-          <p *ngIf="(currentUser| async) as user">{{ user.name }}</p>
-        </div>
-      </section>
-    </div>
-
-
-  </section>
-
-  <!--  <div-->
-  <!--    class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">-->
-  <!--    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">-->
-  <!--      <img alt=""-->
-  <!--           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"-->
-  <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">-->
-  <!--      <img alt=""-->
-  <!--           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"-->
-  <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">-->
-  <!--    </div>-->
-  <!--  </div>-->
-  <!--  <div-->
-  <!--    class="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl h-[24px] max-w-[301px] md:h-[42px] md:max-w-[512px]"></div>-->
-  <!--  <div class="relative mx-auto bg-gray-800 rounded-b-xl h-[55px] max-w-[83px] md:h-[95px] md:max-w-[142px]"></div>-->
-
-
-</section>
-
-
-<section
-  class="section-hero2 dark:glass bg-white dark:text-secondary text-primary  skin flex-col lg:flex-row container-text py-14 justify-center items-center  lg:items-center flex gap-10">
-  <div
-    class="relative w-full lg:w-1/2 border-primary dark:border-primary bg-primary border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[320px] lg:max-w-[512px] md:max-w-[700px]">
-    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
-      <img alt=""
-           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"
-           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">
-      <img alt=""
-           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"
-           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">
-    </div>
-  </div>
-
-
-  <div class="w-full lg:w-1/2 flex md:text-center lg:text-start flex-col gap-5 ">
-    <h2 class="text-3xl font-semibold  ">Unlimited Transfers. Hitch Free Transactions.</h2>
-
-
-    <p>Experience the fastest-growing funds transfers for free, easy loan access, No hidden charges.</p>
-
-    <div class=" flex justify-center  lg:w-1/3">
-      <button *ngIf="(isAuthenticated|async)" [routerLink]="['dashboard']"
-              class='w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full'>
-        View Dashboard
-      </button>
-      <button *ngIf="!(isAuthenticated|async)" [routerLink]="['auth/login']"
-              class='w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full'>
-        Login
-      </button>
-    </div>
-    <small class="md:text-center lg:text-start mx-auto md:max-w-md lg:max-w-max">
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, eos omnis accusamus ab beatae saepe qui tenetur
-      culpa, quos quisquam velit perferendis natus perspiciatis unde placeat voluptates sunt quidem ipsum Lorem ipsum
-      dolor sit amet.
-    </small>
-  </div>
-
-
-</section>
-
-
-<footer class="pb-0  bg-primary dark:glass container-text  text-secondary md:pb-10">
-  <div class=" pt-8 md:pt-16 flex-wrap flex flex-col md:flex-row  justify-between">
-    <div class=" md:mt-2 mt-0  ">
-      <p class="mb-0 text-sm md:text-lg md:mb-20  font-medium">
-        Wealth_Bank
-      </p>
-
-      <p class="text-xs md:text-sm ">
-        Wealth_Transact <br/>
-        &copy; A subsidiary of Wealth_Bank | <br/>
-      </p>
-      <small class="block"><i class="fa-solid  fa-phone"></i> +13362103455
-        <app-clipboard [textToCopy]="'+13362103455'"></app-clipboard>
-      </small>
-
-
-      <small>
-        <i class="fa-solid  fa-at"></i>
-        wealthiduwe@gmail.com
-        <app-clipboard [textToCopy]="'wealthiduwe@gmail.com'"></app-clipboard>
-      </small>
-
-    </div>
-    <div class="mt-5">
-      <p class="text-xs md:text-sm  font-medium">Quick Links</p>
-      <a *ngIf="(isAuthenticated| async)" [routerLink]="['dashboard']"
-         class="block text-xs md:text-sm  cursor-pointer"
-      >
-        Dashboard
-      </a> <a *ngIf="!(isAuthenticated| async)" [routerLink]="['auth/login']"
-              class="block text-xs md:text-sm  cursor-pointer"
+<section class="flex flex-col gap-10">
+  <section
+    class="section-hero min-h-screen border-b dark:bg-primary dark:border-none md:min-h-[50vh] container-text lg:min-h-screen skin flex items-center"
+  >
+    <section
+      class="text-gray-800 animate-slideIn dark:text-secondary text-primary xl:w-1/2 max-w-[301px] md:max-w-[512px] flex flex-col gap-5"
     >
-      Login
-    </a>
-
-    </div>
-
-    <div class="mt-5">
-      <p class=" font-medium text-sm md:text-sm">Get In Touch</p>
-
-      <p class="text-xs md:text-sm "> We'll love to hear from you</p>
-
-      <p class="flex mt-4 mb-8 md:mt-16 md:mb-0 gap-3">
-        <a
-          class="bg-gray-500 block w-10 h-10 text-center hover:bg-gray-700 hover:scale-110 transform cursor-pointer rounded-full text-white p-2"
-          href="https://github.com/mrWealthid"
-        >
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a
-          class="bg-gray-500 hover:scale-110 w-10 h-10   hover:bg-gray-700 transform cursor-pointer text-center  block rounded-full text-white p-2"
-          href="https://www.linkedin.com/in/mrwealthid"
-        >
-          <i class="fa-brands  fa-linkedin-in"></i>
-        </a>
-
-
+      <h1 class="text-3xl lg:text-4xl 2xl:text-5xl max-w-sm xl:max-w-lg">
+        The Easiest Way To Manage Personal Finances
+      </h1>
+      <p
+        class="text leading-normal 2xl:text-lg md:max-w-md lg:max-w-xl 2xl:max-w-2xl"
+      >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris.
       </p>
+      <button
+        [routerLink]="['dashboard']"
+        class="w-3/4 md:w-1/3 xl:w-1/2 cap text-secondary dark:text-secondary bg-primary dark:glass px-2 py-4 rounded-full"
+      >
+        Explore
+      </button>
+    </section>
+
+    <section
+      class="flex lg:w-full animate-slideOut md:w-1/2 gap-8 glassTxt justify-end"
+    >
+      <div class="w-1/2 hidden justify-center md:flex">
+        <section
+          class="w-60 flex flex-col h-96 skin skin-card dark:glass bg-primary shadow-gray-200 shadow-md box-border rounded-xl text-secondary"
+        >
+          <div class="flex flex-1 justify-between px-3 py-5">
+            <p>WealthPay</p>
+            <i class="fa-solid fa-wifi"></i>
+          </div>
+
+          <div class="p-3 flex flex-col mb-5">
+            <div class="flex justify-between items-center">
+              <div class="flex text-sm gap-1">
+                <p>5123</p>
+                <p>****</p>
+                <p>****</p>
+                <p>****</p>
+              </div>
+
+              <div class="flex">
+                <p
+                  class="bg-yellow-500 z-10 opacity-80 rounded-full w-8 h-8"
+                ></p>
+                <p class="bg-red-800 -ml-4 rounded-full w-8 h-8"></p>
+              </div>
+            </div>
+            <!--          <p>{{userDetails?.name || 'Wealth Iduwe'}}</p>-->
+            <p *ngIf="currentUser | async as user">{{ user.name }}</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!--  <div-->
+    <!--    class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px]">-->
+    <!--    <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">-->
+    <!--      <img alt=""-->
+    <!--           class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"-->
+    <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png">-->
+    <!--      <img alt=""-->
+    <!--           class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"-->
+    <!--           src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png">-->
+    <!--    </div>-->
+    <!--  </div>-->
+    <!--  <div-->
+    <!--    class="relative mx-auto bg-gray-900 dark:bg-gray-700 rounded-b-xl h-[24px] max-w-[301px] md:h-[42px] md:max-w-[512px]"></div>-->
+    <!--  <div class="relative mx-auto bg-gray-800 rounded-b-xl h-[55px] max-w-[83px] md:h-[95px] md:max-w-[142px]"></div>-->
+  </section>
+
+  <section
+    class="section-hero2 dark:glass bg-white dark:text-secondary text-primary skin flex-col lg:flex-row container-text py-14 justify-center items-center lg:items-center flex gap-10"
+  >
+    <div
+      class="relative w-full lg:w-1/2 border-primary dark:border-primary bg-primary border-[16px] rounded-t-xl h-[172px] max-w-[301px] md:h-[320px] lg:max-w-[512px] md:max-w-[700px]"
+    >
+      <div class="rounded-xl overflow-hidden h-[140px] md:h-[262px]">
+        <img
+          alt=""
+          class="dark:hidden h-[140px] md:h-[262px] w-full rounded-xl"
+          src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac.png"
+        />
+        <img
+          alt=""
+          class="hidden dark:block h-[140px] md:h-[262px] w-full rounded-xl"
+          src="https://flowbite.s3.amazonaws.com/docs/device-mockups/screen-image-imac-dark.png"
+        />
+      </div>
     </div>
-  </div>
-</footer>
+
+    <div
+      class="w-full lg:w-1/2 flex md:text-center lg:text-start flex-col gap-5"
+    >
+      <h2 class="text-3xl font-semibold">
+        Unlimited Transfers. Hitch Free Transactions.
+      </h2>
+
+      <p>
+        Experience the fastest-growing funds transfers for free, easy loan
+        access, No hidden charges.
+      </p>
+
+      <div class="flex justify-center lg:w-1/3">
+        <button
+          *ngIf="isAuthenticated | async"
+          [routerLink]="['dashboard']"
+          class="w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full"
+        >
+          View Dashboard
+        </button>
+        <button
+          *ngIf="!(isAuthenticated | async)"
+          [routerLink]="['auth/login']"
+          class="w-1/2 lg:w-full cap text-secondary bg-primary px-2 py-4 rounded-full"
+        >
+          Login
+        </button>
+      </div>
+      <small
+        class="md:text-center lg:text-start mx-auto md:max-w-md lg:max-w-max"
+      >
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias, eos
+        omnis accusamus ab beatae saepe qui tenetur culpa, quos quisquam velit
+        perferendis natus perspiciatis unde placeat voluptates sunt quidem ipsum
+        Lorem ipsum dolor sit amet.
+      </small>
+    </div>
+  </section>
+
+  <section
+    class="container-text flex flex-col gap-4 text-primary dark:text-secondary"
+  >
+    <section>
+      <h3 class="text-2xl">Features</h3>
+      <h5 class="text-sm mt-2">Track & Organize Your Finances Easily</h5>
+    </section>
+    <section class="grid sm:grid-col-1 gap-3 md:grid-cols-3 lg:grid-cols-4">
+      <section class="card skin flex flex-col gap-3">
+        <img
+          class="w-10 hover:scale-110 cursor-pointer duration-500 h-10"
+          src="../../assets/images/track.svg"
+        />
+        <h4>Track Finances</h4>
+
+        <small
+          >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+          nobis maxime</small
+        >
+      </section>
+      <section class="card skin flex flex-col gap-3">
+        <img
+          class="w-10 cursor-pointer hover:scale-110 duration-500 h-10"
+          src="../../assets/images/balance.svg"
+        />
+        <h4>Create & Fund Wallet</h4>
+
+        <small
+          >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+          nobis maxime</small
+        >
+      </section>
+      <section class="card skin flex flex-col gap-3">
+        <img
+          class="w-10 cursor-pointer hover:scale-110 duration-500 h-10"
+          src="../../assets/images/transfer2.svg"
+        />
+        <h4>Transfers & Add Beneficiary</h4>
+
+        <small
+          >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+          nobis maxime</small
+        >
+      </section>
+      <section class="card skin flex flex-col gap-3">
+        <img
+          class="w-10 cursor-pointer hover:scale-110 duration-500 h-10"
+          src="../../assets/images/balance.svg"
+        />
+        <h4>Request Loan</h4>
+
+        <small
+          >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis
+          nobis maxime</small
+        >
+      </section>
+    </section>
+  </section>
+
+  <footer
+    class="pb-0 bg-primary dark:glass container-text text-secondary md:pb-10"
+  >
+    <div
+      class="pt-8 md:pt-16 flex-wrap flex flex-col md:flex-row justify-between"
+    >
+      <div class="md:mt-2 mt-0">
+        <p class="mb-0 text-sm md:text-lg md:mb-20 font-medium">
+          Wealth_Wallet
+        </p>
+
+        <p class="text-xs md:text-sm">
+          Wealth_Wallet <br />
+          &copy; A subsidiary of Wealth_Bank | <br />
+        </p>
+        <small class="block"
+          ><i class="fa-solid fa-phone"></i> +13362103455
+          <app-clipboard [textToCopy]="'+13362103455'"></app-clipboard>
+        </small>
+
+        <small>
+          <i class="fa-solid fa-at"></i>
+          wealthiduwe@gmail.com
+          <app-clipboard [textToCopy]="'wealthiduwe@gmail.com'"></app-clipboard>
+        </small>
+      </div>
+      <div class="mt-5">
+        <p class="text-xs md:text-sm font-medium">Quick Links</p>
+        <a
+          *ngIf="isAuthenticated | async"
+          [routerLink]="['dashboard']"
+          class="block text-xs md:text-sm cursor-pointer"
+        >
+          Dashboard
+        </a>
+        <a
+          *ngIf="!(isAuthenticated | async)"
+          [routerLink]="['auth/login']"
+          class="block text-xs md:text-sm cursor-pointer"
+        >
+          Login
+        </a>
+      </div>
+
+      <div class="mt-5">
+        <p class="font-medium text-sm md:text-sm">Get In Touch</p>
+
+        <p class="text-xs md:text-sm">We'll love to hear from you</p>
+
+        <p class="flex mt-4 mb-8 md:mt-16 md:mb-0 gap-3">
+          <a
+            class="bg-gray-500 block w-10 h-10 text-center hover:bg-gray-700 hover:scale-110 transform cursor-pointer rounded-full text-white p-2"
+            href="https://github.com/mrWealthid"
+          >
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a
+            class="bg-gray-500 hover:scale-110 w-10 h-10 hover:bg-gray-700 transform cursor-pointer text-center block rounded-full text-white p-2"
+            href="https://www.linkedin.com/in/mrwealthid"
+          >
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </p>
+      </div>
+    </div>
+  </footer>
+</section>

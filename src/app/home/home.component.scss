@@ -16,6 +16,14 @@
 }
 
 
+
+.bg {
+  background-image: url('../../assets/images/Rectangle20.svg');
+  background-repeat: no-repeat;
+}
+
+
+
 @media only screen and (min-width: 992px) {
   .section-hero {
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
