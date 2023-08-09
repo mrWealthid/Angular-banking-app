@@ -1,26 +1,34 @@
 <section class="container-text">
-  <section class=" flex flex-col gap-5">
-    <div class="flex flex-col flex-wrap md:flex-nowrap md:flex-row justify-between items-center gap-8">
-      <div class=" bg-white dark:glass  rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
-      
-        <img src="../../assets/images/balance.svg" alt="balance">
-        <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6   ">{{balance() |currency:'USD'}} </p>
+  <section class="flex flex-col gap-5">
+    <div
+      class="flex flex-col flex-wrap md:flex-nowrap md:flex-row justify-between items-center gap-8"
+    >
+      <div
+        class="bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3"
+      >
+        <img src="../../assets/images/balance.svg" alt="balance" />
+        <div class="flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-md pr-6">
+            {{ balance() | currency : "USD" }}
+          </p>
           <span class="text-xs capitalize font-normal">Balance</span>
         </div>
       </div>
-      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3 ">
-  
-        
-        <img src="../../assets/images/beneficiaries.svg"/>
+      <div
+        class="bg-white dark:glass rounded-md w-full h-20 p-2 pl-4 shadow-md flex items-center gap-3"
+      >
+        <img src="../../assets/images/beneficiaries.svg" />
 
-
-        <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">{{(beneficiaries|async)?.length}} </p>
+        <div class="flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-md pr-6">
+            {{ (beneficiaries | async)?.length }}
+          </p>
           <span class="text-xs capitalize font-normal">Beneficiaries</span>
         </div>
       </div>
-      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
+      <div
+        class="bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3"
+      >
         <svg
           fill="none"
           height="42"
@@ -42,15 +50,15 @@
           />
         </svg>
 
-        <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">{{loanStats().pending}}</p>
+        <div class="flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-md pr-6">{{ loanStats().pending }}</p>
           <span class="text-xs capitalize font-normal">Pending Loan</span>
         </div>
       </div>
 
-
-      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
-
+      <div
+        class="bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3"
+      >
         <svg
           fill="none"
           height="42"
@@ -72,15 +80,15 @@
           />
         </svg>
 
-
-        <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">{{loanStats().approved}}</p>
+        <div class="flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-md pr-6">{{ loanStats().approved }}</p>
           <span class="text-xs capitalize font-normal">Approved Loan</span>
         </div>
       </div>
-    
-      <div class=" bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3 ">
 
+      <div
+        class="bg-white dark:glass rounded-md w-full h-20 p-2 shadow-md flex items-center gap-3"
+      >
         <svg
           fill="none"
           height="42"
@@ -101,112 +109,163 @@
             fill="#F91313"
           />
         </svg>
-        <div class=" flex-grow dark:text-secondary text-primary">
-          <p class="font-bold text-md pr-6  ">{{loanStats().declined}} </p>
+        <div class="flex-grow dark:text-secondary text-primary">
+          <p class="font-bold text-md pr-6">{{ loanStats().declined }}</p>
           <span class="text-xs capitalize font-normal">Declined Loan</span>
         </div>
       </div>
     </div>
 
-
-    <section class="flex  flex-col sm:flex-row gap-3">
-      <section
-        class="w-full py-6  px-5 sm:w-1/2   skin dark:glass rounded-2xl">
-
-        <div *ngIf="transferSteps() ===0" >
-          <app-tabs (steps)=" navigateTab($event, formTabIndex)" [tabs]="tabsForm"></app-tabs>
+    <section class="flex flex-col sm:flex-row gap-3">
+      <section class="w-full py-6 px-5 sm:w-1/2 skin dark:glass rounded-2xl">
+        <div *ngIf="transferSteps() === 0">
+          <app-tabs
+            (steps)="navigateTab($event, formTabIndex)"
+            [tabs]="tabsForm"
+          ></app-tabs>
         </div>
-        <form (ngSubmit)="handlePayment()" *ngIf="(formTabIndex|async) ===1 && transferSteps() ===0" [formGroup]="paymentForm"
-              class="w-full flex flex-col mt-3 gap-2">
+        <form
+          (ngSubmit)="handlePayment()"
+          *ngIf="(formTabIndex | async) === 1 && transferSteps() === 0"
+          [formGroup]="paymentForm"
+          class="w-full flex flex-col mt-3 gap-2"
+        >
+          <select-input
+            [bindLabel]="'name'"
+            [bindValue]="'id'"
+            [formControl]="paymentChannel"
+            [items]="PaymentOptions"
+            [label]="'Channel'"
+            [multiple]="false"
+            [placeholder]="'Select Payment Options'"
+            (changeEvent)="handlePaymentChannelChange($event)"
+            class="ring-0"
+          >
+          </select-input>
 
-              <select-input
-              [bindLabel]="'name'"
-              [bindValue]="'id'"
-              [formControl]="paymentChannel"
-              [items]="PaymentOptions"
-              [label]="'Channel'"
-              [multiple]="false"
-              [placeholder]="'Select Payment Options'"
-              (changeEvent)="handlePaymentChannelChange($event)"
-              class="ring-0">
-            </select-input>
-       
-              <acc-lookup [data]="asyncValue"
-                      [formControl]="accountNumber"
-                      [label]="'Account Number'" [placeholder]="'Enter Account Number'">
-
+          <acc-lookup
+            [data]="asyncValue"
+            [formControl]="accountNumber"
+            [label]="'Account Number'"
+            [placeholder]="'Enter Account Number'"
+          >
           </acc-lookup>
 
           <section>
-            <label class=" flex gap-1 text-xs">
+            <label class="flex gap-1 text-xs">
               <span>Amount</span>
-              <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
-                 style="font-size: xx-small"></i>
+              <i
+                *ngIf="hasRequiredValidator()"
+                class="fa-solid size text-red-700 align-top fa-asterisk"
+                style="font-size: xx-small"
+              ></i>
             </label>
             <div
-              [ngClass]="{'error-input':this.validateControl(amount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl(amount,'required')}"
-              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+              [ngClass]="{
+                'error-input': this.validateControl(amount, 'required'),
+                'border-border-blue-100 focus-within:border-gray-200 ':
+                  !this.validateControl(amount, 'required')
+              }"
+              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg w-full"
             >
-              <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
+              <span
+                ><i class="fa-solid text-gray-300 fa-money-check-dollar"></i
+              ></span>
               <input
                 [formControl]="amount"
                 class="input-style"
-
                 placeholder="Enter Amount"
-                type="text"/>
+                type="text"
+              />
             </div>
-            <span *ngIf
-                    ="this.validateControl(amount,'required')"
-                  class="text-red-800 text-xs">This Field is Required</span>
-            <span *ngIf
-                    ="this.validateControl(amount,'maxValue')" class="text-red-800 text-xs">Balance Exceeded</span>
+            <span
+              *ngIf="this.validateControl(amount, 'required')"
+              class="text-red-800 text-xs"
+              >This Field is Required</span
+            >
+            <span
+              *ngIf="this.validateControl(amount, 'maxValue')"
+              class="text-red-800 text-xs"
+              >Balance Exceeded</span
+            >
           </section>
-
 
           <!-- Implement later beneficiary feature -->
-          <section *ngIf="!isBeneficiarySelected()" >
-            <label class="relative inline-flex items-center mb-4 cursor-pointer">
-              <input class="sr-only peer" type="checkbox" (change)="handleBeneficiaryChange()"  value='toggleAddBeneficiary()'>
+          <section *ngIf="!isBeneficiarySelected()">
+            <label
+              class="relative inline-flex items-center mb-4 cursor-pointer"
+            >
+              <input
+                class="sr-only peer"
+                type="checkbox"
+                (change)="handleBeneficiaryChange()"
+                value="toggleAddBeneficiary()"
+              />
               <div
-                class="w-11 h-6 bg-gray-200  rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"></div>
-              <span class="ml-3 text-sm font-medium dark:text-secondary text-primary">Add to beneficiaries</span>
+                class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"
+              ></div>
+              <span
+                class="ml-3 text-sm font-medium dark:text-secondary text-primary"
+                >Add to beneficiaries</span
+              >
             </label>
           </section>
-       
 
-          <app-button [type]="'button'" [btnText]="'Pay'" [disabled]="paymentForm.invalid" (clickEvent)="updateSignal(1)" [styles]="'btn-primary'"></app-button>
-
-
+          <app-button
+            [type]="'button'"
+            [btnText]="'Pay'"
+            [disabled]="paymentForm.invalid"
+            (clickEvent)="updateSignal(1)"
+            [styles]="'btn-primary'"
+          ></app-button>
         </form>
 
         <!--      Loan Request Form-->
 
-
-        <form (ngSubmit)="handleLoanRequest()" *ngIf="(formTabIndex|async) ===2 && transferSteps()=== 0 " [formGroup]="loanForm"
-              class="w-full flex cla flex-col mt-3 gap-2">
-
-
+        <form
+          (ngSubmit)="handleLoanRequest()"
+          *ngIf="(formTabIndex | async) === 2 && transferSteps() === 0"
+          [formGroup]="loanForm"
+          class="w-full flex cla flex-col mt-3 gap-2"
+        >
           <section>
-            <label class=" flex gap-1 text-xs">
+            <label class="flex gap-1 text-xs">
               <span>Loan Amount</span>
-              <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
-                 style="font-size: xx-small"></i>
+              <i
+                *ngIf="hasRequiredValidator()"
+                class="fa-solid size text-red-700 align-top fa-asterisk"
+                style="font-size: xx-small"
+              ></i>
             </label>
             <div
-              [ngClass]="{'error-input':this.validateControl(loanAmount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl( loanAmount,'required')}"
-              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+              [ngClass]="{
+                'error-input': this.validateControl(loanAmount, 'required'),
+                'border-border-blue-100 focus-within:border-gray-200 ':
+                  !this.validateControl(loanAmount, 'required')
+              }"
+              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg w-full"
             >
-              <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
+              <span
+                ><i class="fa-solid text-gray-300 fa-money-check-dollar"></i
+              ></span>
               <input
                 [formControl]="loanAmount"
                 class="input-style"
                 placeholder="Enter Amount"
-                type="text"/>
+                type="text"
+              />
             </div>
-            <span *ngIf="this.validateControl(loanAmount,'required')" class="text-red-800 text-xs">This Field is Required</span>
-            <span *ngIf ="this.validateControl(loanAmount,'maxLoanValue')" class="text-red-800 text-xs">Exceeded Loan Limit</span>
+            <span
+              *ngIf="this.validateControl(loanAmount, 'required')"
+              class="text-red-800 text-xs"
+              >This Field is Required</span
+            >
+            <span
+              *ngIf="this.validateControl(loanAmount, 'maxLoanValue')"
+              class="text-red-800 text-xs"
+              >Exceeded Loan Limit</span
+            >
           </section>
-
 
           <select-input
             [bindLabel]="'name'"
@@ -217,337 +276,557 @@
             [multiple]="true"
             [placeholder]="'Select options'"
             (changeEvent)="handleChange($event)"
-            class="ring-0">
+            class="ring-0"
+          >
           </select-input>
-          <app-button [type]="'button'" [btnText]="'Send Request'" (clickEvent)="updateSignal(2)" [disabled]="loanForm.invalid" [styles]="'btn-primary'"></app-button>
-
+          <app-button
+            [type]="'button'"
+            [btnText]="'Send Request'"
+            (clickEvent)="updateSignal(2)"
+            [disabled]="loanForm.invalid"
+            [styles]="'btn-primary'"
+          ></app-button>
         </form>
 
         <!-- Fund Wallet Form -->
-        <form  *ngIf="(formTabIndex|async) ===3 && transferSteps()=== 0 " [formGroup]="walletFund"
-        class="w-full flex cla flex-col mt-3 gap-2">
+        <form
+          *ngIf="(formTabIndex | async) === 3 && transferSteps() === 0"
+          [formGroup]="walletFund"
+          class="w-full flex cla flex-col mt-3 gap-2"
+        >
+          <section>
+            <label class="flex gap-1 text-xs">
+              <span>Amount</span>
+              <i
+                *ngIf="hasRequiredValidator()"
+                class="fa-solid size text-red-700 align-top fa-asterisk"
+                style="font-size: xx-small"
+              ></i>
+            </label>
+            <div
+              [ngClass]="{
+                'error-input': this.validateControl(fundAmount, 'required'),
+                'border-border-blue-100 focus-within:border-gray-200 ':
+                  !this.validateControl(loanAmount, 'required')
+              }"
+              class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg w-full"
+            >
+              <span
+                ><i class="fa-solid text-gray-300 fa-money-check-dollar"></i
+              ></span>
+              <input
+                [formControl]="fundAmount"
+                class="input-style"
+                placeholder="Enter Amount"
+                type="text"
+              />
+            </div>
+            <span
+              *ngIf="this.validateControl(fundAmount, 'required')"
+              class="text-red-800 text-xs"
+              >This Field is Required</span
+            >
+          </section>
 
+          <select-input
+            [bindLabel]="'name'"
+            [bindValue]="'id'"
+            [formControl]="fundChannel"
+            [items]="selectOptions"
+            [label]="'Channel'"
+            [multiple]="true"
+            [placeholder]="'Select options'"
+            class="ring-0"
+          >
+          </select-input>
 
-    
+          <app-button
+            [type]="'button'"
+            [btnText]="'Process Request'"
+            (clickEvent)="updateSignal(3)"
+            [disabled]="walletFund.invalid"
+            [styles]="'btn-primary'"
+          ></app-button>
+        </form>
 
-    <section>
-      <label class=" flex gap-1 text-xs">
-        <span>Amount</span>
-        <i *ngIf='hasRequiredValidator()' class="fa-solid   size text-red-700 align-top fa-asterisk"
-           style="font-size: xx-small"></i>
-      </label>
-      <div
-        [ngClass]="{'error-input':this.validateControl(fundAmount,'required'), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl( loanAmount,'required')}"
-        class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
-      >
-        <span><i class="fa-solid text-gray-300   fa-money-check-dollar"></i></span>
-        <input
-          [formControl]="fundAmount"
-          class="input-style"
-          placeholder="Enter Amount"
-          type="text"/>
-      </div>
-      <span *ngIf="this.validateControl(fundAmount,'required')" class="text-red-800 text-xs">This Field is Required</span>
-    </section>
+        <!-- confimation page -->
 
-    <select-input
-    [bindLabel]="'name'"
-    [bindValue]="'id'"
-    [formControl]="fundChannel"
-    [items]="selectOptions"
-    [label]="'Channel'"
-    [multiple]="true"
-    [placeholder]="'Select options'"
-    class="ring-0">
-  </select-input>
-
-    <app-button [type]="'button'" [btnText]="'Process Request'" (clickEvent)="updateSignal(3)" [disabled]="walletFund.invalid" [styles]="'btn-primary'"></app-button>
-
-  </form>
-
-<!-- confimation page -->
-
-<!-- Transaction summary -->
-<section *ngIf="transferSteps()=== 1">
-
-  <ng-container *ngIf="paymentService.error()">
-    <app-alert class="w-5/6 md:w-4/6 lg:w-1/3" (clearError)="handleClearError()" [msg]="paymentService.error()"></app-alert>
-  </ng-container>
-  <ol class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700">
-    <h3 class="flex items-center text-lg mb-3 text-primary dark:text-secondary ">Transfer Summary</h3>
-    <li class="mb-10 ml-6">
-      <span
-        class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <h3 class="flex items-center mb-1 text-md ">
-        User Details <span
-          class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full bg-success text-white ml-3">Active</span>
-      </h3>
-      <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
+        <!-- Transaction summary -->
+        <section *ngIf="transferSteps() === 1">
+          <ng-container *ngIf="paymentService.error()">
+            <app-alert
+              class="w-5/6 md:w-4/6 lg:w-1/3"
+              (clearError)="handleClearError()"
+              [msg]="paymentService.error()"
+            ></app-alert>
+          </ng-container>
+          <ol
+            class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700"
+          >
+            <h3
+              class="flex items-center text-lg mb-3 text-primary dark:text-secondary"
+            >
+              Transfer Summary
+            </h3>
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <h3 class="flex items-center mb-1 text-md">
+                User Details
+                <span
+                  class="text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full bg-success text-white ml-3"
+                  >Active</span
+                >
+              </h3>
+              <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
         January
         13th, 2022
       </time> -->
-      <p class="text-sm text-primary dark:text-secondary ">{{transferDetails. initiatorName}}</p> 
-     <p class="text-sm text-primary dark:text-secondary ">{{transferDetails.amount |currency:"USD"}}</p> 
-      <!-- <p class="mb-4  text-sm text-primary dark:text-secondary ">Description</p> -->
-   
-    </li>
-    <li class="mb-10 ml-6">
-      <span
-      class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-      
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <h3 class="mb-1 text-md text-primary dark:text-secondary  ">Beneficiary</h3>
-      <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
+              <p class="text-sm text-primary dark:text-secondary">
+                {{ transferDetails.initiatorName }}
+              </p>
+              <p class="text-sm text-primary dark:text-secondary">
+                {{ transferDetails.amount | currency : "USD" }}
+              </p>
+              <!-- <p class="mb-4  text-sm text-primary dark:text-secondary ">Description</p> -->
+            </li>
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <h3 class="mb-1 text-md text-primary dark:text-secondary">
+                Beneficiary
+              </h3>
+              <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
         December 7th, 2021
       </time> -->
 
-      <p class=" text-sm text-primary dark:text-secondary">{{transferDetails.beneficiaryName}}</p>
-      <p class=" text-sm text-primary dark:text-secondary">{{transferDetails.beneficiaryAccount}}</p>
-    </li>
-  
-  </ol>
+              <p class="text-sm text-primary dark:text-secondary">
+                {{ transferDetails.beneficiaryName }}
+              </p>
+              <p class="text-sm text-primary dark:text-secondary">
+                {{ transferDetails.beneficiaryAccount }}
+              </p>
+            </li>
+          </ol>
 
-  <section class="flex gap-2 justify-end">
-  <app-button [type]="'button'" [btnText]="'Cancel'" (clickEvent)="updateSignal(0)"  [styles]="'btn-primary rounded-full'"></app-button>
+          <section class="flex gap-2 justify-end">
+            <app-button
+              [type]="'button'"
+              [btnText]="'Cancel'"
+              (clickEvent)="updateSignal(0)"
+              [styles]="'btn-primary rounded-full'"
+            ></app-button>
 
-  <ng-container *ngIf="paymentChannel.value ==='Card'">
-  <app-button [type]="'button'" [btnText]="'Pay With Stripe'" [loading]="paymentLoader" (clickEvent)="handlePayment()"  [styles]="'btn-primary rounded-full'"></app-button>
-</ng-container>
-
-<ng-container *ngIf="paymentChannel.value ==='Wallet'">
-  <app-button [type]="'button'" [btnText]="'Pay With Wallet'" [loading]="paymentLoader" (clickEvent)="handlePayment()"  [styles]="'btn-primary rounded-full'"></app-button>
-</ng-container>
-</section>
-</section>
-
-
- <!-- loan Request summary -->
-<section *ngIf="transferSteps()=== 2">
-  <ol class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700">
-    <h3 class="flex items-center text-lg mb-3 text-primary dark:text-secondary ">Loan Request Summary</h3>
-    <li class="mb-10 ml-6">
-      <span
-        class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <h3 class="flex items-center mb-1 text-md ">
-      Loan Details <span
-          class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">In Progress</span>
-      </h3>
-      <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
-        January
-        13th, 2022
-      </time> -->
-      <p class="text-sm text-primary dark:text-secondary "> <span>Amount:</span> {{loanDetails.amount}}</p> 
-           <p class="text-sm text-primary dark:text-secondary "> <span>Duration:</span> {{loanDetails.duration}} months</p> 
-           <p class="text-sm text-primary dark:text-secondary "> <span>Rate:</span>  1.5 %</p> 
-
-    </li>
-    <li class="mb-10 ml-6">
-      <span
-      class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-      
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <p class=" text-sm text-primary dark:text-secondary">Request is subject to approval</p>
-    </li>
-
-  </ol>
-
-  <section class="flex justify-end gap-2">
-  <app-button [type]="'button'" [btnText]="'Cancel'" (clickEvent)="updateSignal(0)"  [styles]="'btn-primary rounded-full'"></app-button>
-
-  <app-button [type]="'button'" [btnText]="'Proceed'" [loading]="loanLoader" (clickEvent)="handleLoanRequest()"  [styles]="'btn-primary rounded-full' "></app-button>
-</section>
-
-</section>
-
-
-
-<!-- 
-Fund request Summary -->
-
-<section *ngIf="transferSteps()=== 3">
-  <ol class="relative border-l mt-4 ml-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700">
-    <h3 class="flex items-center text-lg mb-3 text-primary dark:text-secondary ">Fund Request Summary</h3>
-    <li class="mb-10 ml-6">
-      <span
-        class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <h3 class="flex items-center mb-1 text-md ">
-      Fund Status <span
-          class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">In Progress</span>
-      </h3>
-      <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
-        January
-        13th, 2022
-      </time> -->
-      <p class="text-sm text-primary dark:text-secondary "> <span>Amount:</span> {{fundDetails.amount | currency:"USD"}}</p> 
-           <p class="text-sm text-primary dark:text-secondary "> <span>Channel:</span> Card</p> 
-           
-
-    </li>
-    <li class="mb-10 ml-6">
-      <span
-      class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light">
-      
-          <svg aria-hidden="true" class="w-3 h-3 text-primary dark:text-secondary" fill="currentColor"
-               viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                            fill-rule="evenodd"></path></svg>
-      </span>
-      <p class=" text-sm text-primary dark:text-secondary">For Test Kindly Use Demo Card Details </p>
-
-      <p class=" text-sm text-primary dark:text-secondary">4242424242424242   <app-clipboard [style]="'text-green-500 text-xs'" [textToCopy]="'4242424242424242'"></app-clipboard></p>
-
-    </li>
-
-  </ol>
-
-  <section class="flex justify-end gap-2">
-  <app-button [type]="'button'" [btnText]="'Cancel'" (clickEvent)="updateSignal(0)"  [styles]="'btn-primary rounded-full'"></app-button>
-
-  <app-button [type]="'button'" [btnText]="'Proceed'" [loading]="fundLoader" (clickEvent)="handleFundRequest()"  [styles]="'btn-primary rounded-full' "></app-button>
-</section>
-
-</section>
-      </section>
-
-
-      <section class="w-full skin sm:w-1/2 rounded-2xl bg-white dark:glass py-6 px-5">
-    
-
-          <app-tabs (steps)=" navigateTab($event,tabIndex)" [tabs]="BeneficiaryTabs"></app-tabs>
-
-      
-
-
-        <section *ngIf="(tabIndex| async)===1" class="">
-
-          <ng-container *ngIf="(beneficiaries|async) as beneficiaries;">
-            <section *ngIf="beneficiaries.length > 5" class="flex items-center justify-between"><small class="mt-2">Showing {{beneficiaries.length}}
-              beneficiaries</small>
-              <div>
-                <button class="btn btn-primary cursor-pointer rounded-3xl">Show All</button>
-              </div>
-            </section>
-            
-
-        
-
-            <ng-container *ngIf="beneficiaries.length >=1 ; else noRecord">
-            <section *ngFor="let beneficiary of beneficiaries">
-              <div (click)="selectBeneficiary($event , beneficiary)"
-                   class="flex cursor-pointer beneficiary-list items-center dark:text-secondary text-primary  p-2 border dark:border-none dark:glass  rounded-lg  mt-4 gap-2">
-                <i class="fa text-gray-300 fa-circle-check"></i>
-                <section class="flex flex-col"><h4 class="text-sm">{{beneficiary.name}}</h4>
-                  <p class="text-sm">{{beneficiary.accountNumber}}</p>
-                </section>
-              </div>
-            </section>
+            <ng-container *ngIf="paymentChannel.value === 'Card'">
+              <app-button
+                [type]="'button'"
+                [btnText]="'Pay With Stripe'"
+                [loading]="paymentLoader"
+                (clickEvent)="handlePayment()"
+                [styles]="'btn-primary rounded-full'"
+              ></app-button>
             </ng-container>
 
-          <ng-template #noRecord>
-          <section class="h-[250px] flex items-center justify-center">
-            <p class="text-primary dark:text-secondary">No Beneficiary Saved!</p>
+            <ng-container *ngIf="paymentChannel.value === 'Wallet'">
+              <app-button
+                [type]="'button'"
+                [btnText]="'Pay With Wallet'"
+                [loading]="paymentLoader"
+                (clickEvent)="handlePayment()"
+                [styles]="'btn-primary rounded-full'"
+              ></app-button>
+            </ng-container>
           </section>
-          </ng-template>
-          </ng-container>
-            
-   
         </section>
-        <section *ngIf="(tabIndex| async)===2" class="">
-          <!--        <p class="mb-2">Transaction Timeline</p>-->
-          <ol class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700">
+
+        <!-- loan Request summary -->
+        <section *ngIf="transferSteps() === 2">
+          <ol
+            class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700"
+          >
+            <h3
+              class="flex items-center text-lg mb-3 text-primary dark:text-secondary"
+            >
+              Loan Request Summary
+            </h3>
             <li class="mb-10 ml-6">
               <span
-                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                  <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                                    fill-rule="evenodd"></path></svg>
-              </span>
-              <h3 class="flex items-center mb-1 text-lg font-semibold ">Flowbite
-                Application
-                UI
-                v2.0.0 <span
-                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3">Latest</span>
-              </h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
-                January
-                13th, 2022
-              </time>
-              <p class="mb-4  font-normal ">Get access to over 20+ pages
-                including
-                a dashboard layout, charts, kanban board, calendar, and pre-order E-commerce & Marketing pages.</p>
-              <a
-                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white dark:glass border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-                href="#">
-                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path clip-rule="evenodd"
-                        d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                        fill-rule="evenodd"></path>
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
                 </svg>
-                Download ZIP</a>
+              </span>
+              <h3 class="flex items-center mb-1 text-md">
+                Loan Details
+                <span
+                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3"
+                  >In Progress</span
+                >
+              </h3>
+              <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
+        January
+        13th, 2022
+      </time> -->
+              <p class="text-sm text-primary dark:text-secondary">
+                <span>Amount:</span> {{ loanDetails.amount }}
+              </p>
+              <p class="text-sm text-primary dark:text-secondary">
+                <span>Duration:</span> {{ loanDetails.duration }} months
+              </p>
+              <p class="text-sm text-primary dark:text-secondary">
+                <span>Rate:</span> 1.5 %
+              </p>
             </li>
             <li class="mb-10 ml-6">
               <span
-                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                  <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                                    fill-rule="evenodd"></path></svg>
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
               </span>
-              <h3 class="mb-1 text-lg font-semibold ">Flowbite Figma v1.3.0</h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
-                December 7th, 2021
+              <p class="text-sm text-primary dark:text-secondary">
+                Request is subject to approval
+              </p>
+            </li>
+          </ol>
+
+          <section class="flex justify-end gap-2">
+            <app-button
+              [type]="'button'"
+              [btnText]="'Cancel'"
+              (clickEvent)="updateSignal(0)"
+              [styles]="'btn-primary rounded-full'"
+            ></app-button>
+
+            <app-button
+              [type]="'button'"
+              [btnText]="'Proceed'"
+              [loading]="loanLoader"
+              (clickEvent)="handleLoanRequest()"
+              [styles]="'btn-primary rounded-full'"
+            ></app-button>
+          </section>
+        </section>
+
+        <!-- 
+Fund request Summary -->
+
+        <section *ngIf="transferSteps() === 3">
+          <ol
+            class="relative border-l mt-4 ml-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700"
+          >
+            <h3
+              class="flex items-center text-lg mb-3 text-primary dark:text-secondary"
+            >
+              Fund Request Summary
+            </h3>
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <h3 class="flex items-center mb-1 text-md">
+                Fund Status
+                <span
+                  class="bg-blue-100 text-primary text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:glass dark:text-primary ml-3"
+                  >In Progress</span
+                >
+              </h3>
+              <!-- <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
+        January
+        13th, 2022
+      </time> -->
+              <p class="text-sm text-primary dark:text-secondary">
+                <span>Amount:</span> {{ fundDetails.amount | currency : "USD" }}
+              </p>
+              <p class="text-sm text-primary dark:text-secondary">
+                <span>Channel:</span> Card
+              </p>
+            </li>
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 rounded-full -left-3 ring-8 ring-primary bg-primary-light"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-primary dark:text-secondary"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <p class="text-sm text-primary dark:text-secondary">
+                For Test Kindly Use Demo Card Details
+              </p>
+
+              <p class="text-sm text-primary dark:text-secondary">
+                4242424242424242
+                <app-clipboard
+                  [style]="'text-green-500 text-xs'"
+                  [textToCopy]="'4242424242424242'"
+                ></app-clipboard>
+              </p>
+            </li>
+          </ol>
+
+          <section class="flex justify-end gap-2">
+            <app-button
+              [type]="'button'"
+              [btnText]="'Cancel'"
+              (clickEvent)="updateSignal(0)"
+              [styles]="'btn-primary rounded-full'"
+            ></app-button>
+
+            <app-button
+              [type]="'button'"
+              [btnText]="'Proceed'"
+              [loading]="fundLoader"
+              (clickEvent)="handleFundRequest()"
+              [styles]="'btn-primary rounded-full'"
+            ></app-button>
+          </section>
+        </section>
+      </section>
+
+      <section
+        class="w-full skin sm:w-1/2 rounded-2xl bg-white dark:glass py-6 px-5"
+      >
+        <app-tabs
+          (steps)="navigateTab($event, tabIndex)"
+          [tabs]="BeneficiaryTabs"
+        ></app-tabs>
+
+        <section *ngIf="(tabIndex | async) === 1" class="">
+          <ng-container *ngIf="beneficiaries | async as beneficiaries">
+            <section
+              *ngIf="beneficiaries.length > 5"
+              class="flex items-center justify-between"
+            >
+              <small class="mt-2"
+                >Showing {{ beneficiaries.length }} beneficiaries</small
+              >
+              <div>
+                <button class="btn btn-primary cursor-pointer rounded-3xl">
+                  Show All
+                </button>
+              </div>
+            </section>
+
+            <ng-container *ngIf="beneficiaries.length >= 1; else noRecord">
+              <section *ngFor="let beneficiary of beneficiaries">
+                <div
+                  (click)="selectBeneficiary($event, beneficiary)"
+                  class="flex cursor-pointer beneficiary-list items-center dark:text-secondary text-primary p-2 border dark:border-none dark:glass rounded-lg mt-4 gap-2"
+                >
+                  <i class="fa text-gray-300 fa-circle-check"></i>
+                  <section class="flex flex-col">
+                    <h4 class="text-sm">{{ beneficiary.name }}</h4>
+                    <p class="text-sm">{{ beneficiary.accountNumber }}</p>
+                  </section>
+                </div>
+              </section>
+            </ng-container>
+
+            <ng-template #noRecord>
+              <section class="h-[250px] flex items-center justify-center">
+                <p class="text-primary dark:text-secondary">
+                  No Beneficiary Saved!
+                </p>
+              </section>
+            </ng-template>
+          </ng-container>
+        </section>
+        <section *ngIf="(tabIndex | async) === 2" class="">
+          <!--        <p class="mb-2">Transaction Timeline</p>-->
+          <ol
+            class="relative border-l mt-4 border-gray-200 dark:text-secondary text-primary dark:border-gray-700"
+          >
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-blue-800 dark:text-blue-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <h3 class="flex items-center mb-1 text-lg font-semibold">
+                Flowbite Application UI v2.0.0
+                <span
+                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3"
+                  >Latest</span
+                >
+              </h3>
+              <time
+                class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >Released on January 13th, 2022
               </time>
-              <p class="font-normal text-gray-500">All of the pages and components are
-                first
-                designed in Figma and we keep a parity between the two versions even as we update the project.</p>
+              <p class="mb-4 font-normal">
+                Get access to over 20+ pages including a dashboard layout,
+                charts, kanban board, calendar, and pre-order E-commerce &
+                Marketing pages.
+              </p>
+              <a
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white dark:glass border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+                href="#"
+              >
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+                Download ZIP</a
+              >
+            </li>
+            <li class="mb-10 ml-6">
+              <span
+                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-blue-800 dark:text-blue-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
+              </span>
+              <h3 class="mb-1 text-lg font-semibold">Flowbite Figma v1.3.0</h3>
+              <time
+                class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >Released on December 7th, 2021
+              </time>
+              <p class="font-normal text-gray-500">
+                All of the pages and components are first designed in Figma and
+                we keep a parity between the two versions even as we update the
+                project.
+              </p>
             </li>
             <li class="ml-6">
               <span
-                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                  <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor"
-                       viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd"
-                                                                                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                                                                    fill-rule="evenodd"></path></svg>
+                class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -left-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="w-3 h-3 text-blue-800 dark:text-blue-300"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                    fill-rule="evenodd"
+                  ></path>
+                </svg>
               </span>
-              <h3 class="mb-1 text-lg font-semibold">Flowbite Library v1.2.2</h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on
-                December 2nd, 2021
+              <h3 class="mb-1 text-lg font-semibold">
+                Flowbite Library v1.2.2
+              </h3>
+              <time
+                class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"
+                >Released on December 2nd, 2021
               </time>
-              <p class=" font-normal ">Get started with dozens of web
-                components
-                and interactive elements built on top of Tailwind CSS.</p>
+              <p class="font-normal">
+                Get started with dozens of web components and interactive
+                elements built on top of Tailwind CSS.
+              </p>
             </li>
           </ol>
         </section>
-
       </section>
     </section>
-
-
   </section>
 </section>
-
