@@ -69,7 +69,7 @@
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
-  --autofill: #66b366
+  --autofill: #86aca0
   }
 
 .theme-gold {
@@ -175,7 +175,7 @@
   }
 
   .theme-green {
-    --autofill: #66b366
+    --autofill: #86aca0
   }
   .theme-gold {
     --autofill: #e9c979
@@ -238,7 +238,7 @@ header {
 
 
 .btn-primary:disabled {
-  @apply bg-primary-light text-base-color hover:text-white cursor-not-allowed
+  @apply bg-primary-light dark:glass text-base-color hover:text-white cursor-not-allowed
 }
 
 .error-input {
