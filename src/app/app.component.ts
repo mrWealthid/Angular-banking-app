@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
 
 
-  timerSecs = signal(120);
+  timerSecs = signal(60);
 
 
   formattimerSecs(val: any) {
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
       }, 1000)
 
       onCleanup(() => {
-        clearTimeout(mytimer);
+        clearInterval(mytimer);
       });
 
     }, { allowSignalWrites: true });
@@ -56,13 +56,14 @@ export class AppComponent implements OnInit {
 
     effect(() => {
       if (this.timerSecs() === 0) this.logout()
-    })
+    }, { allowSignalWrites: true })
   }
 
 
   handleCheckActivity() {
     //set the timer back to 3mins
     this.timerSecs.set(180)
+    // console.log('clicked')
   }
 
   autoLogout(exp: number) {
