@@ -53,7 +53,9 @@ export class OverviewComponent implements OnInit {
     this.dashboardService.getDailyHighlight().subscribe(val => this.dailyStats.set(val))
     this.dashboardService.getMonthlyHighlight().subscribe(val => this.monthlyStats.set(val))
 
-    this.dashboardService.getUserStats().subscribe(val => this.userStats.set(val))
+    this.currentUser$.subscribe((x) => {
+      if (x?.role === 'admin') this.dashboardService.getUserStats().subscribe(val => this.userStats.set(val))
+    })
 
   }
 

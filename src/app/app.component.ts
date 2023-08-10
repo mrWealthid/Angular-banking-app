@@ -61,7 +61,8 @@ export class AppComponent implements OnInit {
 
 
   handleCheckActivity() {
-    this.timerSecs.set(300)
+    //set the timer back to 3mins
+    this.timerSecs.set(180)
   }
 
   autoLogout(exp: number) {
