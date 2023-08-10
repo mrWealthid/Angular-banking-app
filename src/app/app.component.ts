@@ -35,13 +35,7 @@ export class AppComponent implements OnInit {
       if (!x) return;
       this.autoLogout(x.exp)
     })
-
     this.handleKeepSessionAlive()
-
-
-
-
-
   }
 
 
@@ -79,25 +73,7 @@ export class AppComponent implements OnInit {
       this.logout()
 
     }, timeLeftInMs)
-
-
-
-
-
-
-    // setTimeout(() => {
-    //   this.logout()
-    // }, timeLeftInMs
-    // )
-
-
-
   }
-
-
-
-
-
 
   ngOnInit() {
 
