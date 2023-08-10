@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -12,8 +12,8 @@ import {
   ApexYAxis,
   ChartComponent
 } from "ng-apexcharts";
-import {IDashboardData} from "../../dashboard/dashboard.model";
-import {ChartType} from "ng-apexcharts/lib/model/apex-types";
+import { IDashboardData } from "../../dashboard/dashboard.model";
+import { ChartType } from "ng-apexcharts/lib/model/apex-types";
 
 
 export type ChartOptions = {
@@ -44,7 +44,7 @@ export class ChartsComponent implements OnInit, AfterViewInit {
   public chartOptions: Partial<ChartOptions>;
 
 
-  @Input({required: true}) series: IDashboardData[]
+  @Input({ required: true }) series: IDashboardData[]
   @Input() type: ChartType = 'bar'
 
   @Input() xTitle: string = 'Years'
@@ -202,16 +202,16 @@ export class ChartsComponent implements OnInit, AfterViewInit {
     // console.log(this.yTitle)
     // console.log(this.series)
 
-    console.log(this.chartOptions.xaxis)
+
     // this.chartOptions.xaxis.type = this.xTitle
     // this.chartOptions.series = this.series
   }
 
 
   ngAfterViewInit() {
-    console.log(this.type)
 
-    console.log(this.series);
+
+
     // this.chart.series = [{
     //   name: "debit", data: [
     //     {

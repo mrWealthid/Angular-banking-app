@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {select, Store} from "@ngrx/store";
-import {token} from "./core/store/Auth/selectors";
-import {AppStateInterface} from "./shared/interface/userAuth";
-import {catchError} from "rxjs/operators";
-import {Router} from "@angular/router";
+import { Injectable } from '@angular/core';
+import { HttpContextToken, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { select, Store } from "@ngrx/store";
+import { token } from "./core/store/Auth/selectors";
+import { AppStateInterface } from "./shared/interface/userAuth";
+import { catchError } from "rxjs/operators";
+import { Router } from "@angular/router";
 import * as AuthActions from "./core/store/Auth/actions";
 
 
@@ -39,7 +39,7 @@ export class HeadersInterceptor implements HttpInterceptor {
     return next.handle(jsonRequest).pipe(catchError(err => {
       console.log('Handling error locally and rethrowing it...', err);
       if (err.status === 401) {
-        console.log('refresh token')
+
         this.logout()
       }
       return throwError(err)
@@ -58,7 +58,7 @@ export class HeadersInterceptor implements HttpInterceptor {
 
   appendToken(req: HttpRequest<any>) {
     this.token$.subscribe(token => {
-      console.log(token)
+
       return req.clone({
         // setHeaders: {'Content-Type': request.context.get(CONTENT_TYPE)}
         setHeaders: {

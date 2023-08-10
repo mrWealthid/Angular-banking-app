@@ -1,11 +1,11 @@
-import {Component, OnInit, inject} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../auth.service";
-import {AppStateInterface, ILogin} from "../../shared/interface/userAuth";
-import {select, Store} from "@ngrx/store";
+import { Component, OnInit, inject } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../auth.service";
+import { AppStateInterface, ILogin } from "../../shared/interface/userAuth";
+import { select, Store } from "@ngrx/store";
 import * as AuthActions from "../../core/store/Auth/actions";
-import {BehaviorSubject,} from "rxjs";
-import { isLoadingSelector} from "../../core/store/Auth/selectors";
+import { BehaviorSubject, } from "rxjs";
+import { isLoadingSelector } from "../../core/store/Auth/selectors";
 
 @Component({
   selector: 'app-login',
@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
   //INJECTED SERVICE
 
   authservice = inject(AuthService);
-  private store= inject(Store<AppStateInterface>)
+  private store = inject(Store<AppStateInterface>)
 
 
   constructor() {
     this.store.pipe(select(isLoadingSelector)).subscribe(x => this.loading = x)
-  
+
 
   }
 
@@ -50,13 +50,13 @@ export class LoginComponent implements OnInit {
 
   handleLogin(value: ILogin) {
     // this.authservice.login(value);
-    console.log(value);
+
 
     this.store.dispatch(AuthActions.login(value))
   }
 
 
-  handleClearError(){
+  handleClearError() {
     this.authservice.clearError()
   }
 
@@ -70,5 +70,5 @@ export class LoginComponent implements OnInit {
   //   this.showModal = $event;
   // }
 
- 
+
 }

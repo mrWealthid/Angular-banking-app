@@ -1,13 +1,13 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../auth.service";
-import {AppStateInterface, IRegister} from "../../shared/interface/userAuth";
-import {ModalService} from "../../shared/services/modal.service";
+import { Component, inject, OnInit } from '@angular/core';
+import { UntypedFormControl, UntypedFormGroup, Validators } from "@angular/forms";
+import { AuthService } from "../auth.service";
+import { AppStateInterface, IRegister } from "../../shared/interface/userAuth";
+import { ModalService } from "../../shared/services/modal.service";
 import * as AuthActions from "../../core/store/Auth/actions";
 
-import {select, Store} from "@ngrx/store";
-import { isLoadingSelector} from "../../core/store/Auth/selectors";
-import {IDatePickerConfig} from "ng2-date-picker";
+import { select, Store } from "@ngrx/store";
+import { isLoadingSelector } from "../../core/store/Auth/selectors";
+import { IDatePickerConfig } from "ng2-date-picker";
 import * as dayjs from "dayjs";
 
 
@@ -31,12 +31,12 @@ export class SignupComponent implements OnInit {
   config: IDatePickerConfig = {
     max: this.date.subtract(7, 'year'),
   };
-  
-    //INJECTED SERVICE
 
-    authservice = inject(AuthService);
-    private store= inject(Store<AppStateInterface>)
-  
+  //INJECTED SERVICE
+
+  authservice = inject(AuthService);
+  private store = inject(Store<AppStateInterface>)
+
 
   constructor(
   ) {
@@ -47,15 +47,15 @@ export class SignupComponent implements OnInit {
 
   onDateSelected(event: any) {
     // Handle the selected date
-    console.log(event.value);
+
   }
 
   ngOnInit(): void {
     this.createForm()
-   
+
   }
 
-  handleClearError(){
+  handleClearError() {
     this.authservice.clearError()
   }
 
@@ -73,7 +73,7 @@ export class SignupComponent implements OnInit {
       email: this.email,
       password: this.password,
       passwordConfirm: this.password,
-     accountType:this.accountType
+      accountType: this.accountType
     });
 
   }
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit {
       dateOfBirth: values.dob
     }
 
-    console.log(payload);
+
     // console.log(values);
     // this.authservice.register(values);
 

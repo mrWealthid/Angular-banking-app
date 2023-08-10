@@ -10,11 +10,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import {faEllipsis} from "@fortawesome/free-solid-svg-icons";
-import {columnProps, ITableConfig, Page} from "./model/table-model";
-import {ModalService} from "../services/modal.service";
-import {FormControl, UntypedFormBuilder, UntypedFormGroup} from "@angular/forms";
-import {MatDialog, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
+import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
+import { columnProps, ITableConfig, Page } from "./model/table-model";
+import { ModalService } from "../services/modal.service";
+import { FormControl, UntypedFormBuilder, UntypedFormGroup } from "@angular/forms";
+import { MatDialog, MatDialogConfig, MatDialogRef } from "@angular/material/dialog";
 
 
 @Component({
@@ -45,7 +45,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
   page = new Page();
 
-  @Input({required: true}) columns: columnProps[]
+  @Input({ required: true }) columns: columnProps[]
 
   @Input() pageSize: number;
   totalRecords: number;
@@ -53,9 +53,9 @@ export class TableComponent implements OnInit, AfterViewInit {
 
 
   allSelected: any[] = []
-  @Input({required: true})
+  @Input({ required: true })
   tableService: any
-  activeStatus:any
+  activeStatus: any
 
 
 
@@ -80,49 +80,49 @@ export class TableComponent implements OnInit, AfterViewInit {
 
 
   constructor() {
-   
-this.page.search = {...this.additionalSettings.searchParams}
+
+    this.page.search = { ...this.additionalSettings.searchParams }
 
 
   }
 
   scrollTimeout: any;
-suppressPaging: boolean = false;
+  suppressPaging: boolean = false;
 
 
 
   handleScroll() {
     this.suppressPaging = true;
- 
+
     if (this.scrollTimeout) {
-         clearTimeout(this.scrollTimeout);
+      clearTimeout(this.scrollTimeout);
     }
- 
-   this.scrollTimeout = setTimeout(() => {
+
+    this.scrollTimeout = setTimeout(() => {
       this.suppressPaging = false;
-   }, 100)
- }
+    }, 100)
+  }
 
   ngOnInit(): void {
     this.page.pageNumber = 1;
-    this.additionalSettings = {...this.additionalSettings, ...this.tableSettings,}
+    this.additionalSettings = { ...this.additionalSettings, ...this.tableSettings, }
 
     this.activeStatus = this.additionalSettings.searchParams
     this.createFilterForm()
 
-    this.page.limit = this.additionalSettings.limit || 10 ;
-   
+    this.page.limit = this.additionalSettings.limit || 10;
+
     this.loadTableData()
     this.updatedColumn = this.updateColumnsWithActions()
   }
 
 
-  getDropdownOptions(col:any) {
-   return col.searchOptions
+  getDropdownOptions(col: any) {
+    return col.searchOptions
   }
 
   updateColumnsWithActions() {
-    this.additionalSettings.actionable ? this.columns.push({name: "Actions", prop: ""}) : this.columns
+    this.additionalSettings.actionable ? this.columns.push({ name: "Actions", prop: "" }) : this.columns
     return this.columns
   }
 
@@ -164,29 +164,29 @@ suppressPaging: boolean = false;
 
   setPage(pageInfo: any) {
     if (!this.suppressPaging) {
-    this.loading = true
-    this.page.pageNumber = pageInfo.offset;
-    this.page.limit = pageInfo.limit
+      this.loading = true
+      this.page.pageNumber = pageInfo.offset;
+      this.page.limit = pageInfo.limit
 
-    this.page.search = {...this.additionalSettings.searchParams, ...this.page.search,}
+      this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, }
 
 
 
       //do paging
- 
-    this.tableService.getListData(this.page).subscribe((data: any) => {
 
-      this.loading = false
-      this.page.totalElements = data.totalRecords
-      this.rows = data.data
-    })
+      this.tableService.getListData(this.page).subscribe((data: any) => {
 
-    //when page changes I want to unselect all selected rows
-    this.emitSelected([])
-    const headerCheckbox: HTMLElement | any | null = document.getElementById("header-check")
-    if (headerCheckbox?.checked) headerCheckbox?.click()
+        this.loading = false
+        this.page.totalElements = data.totalRecords
+        this.rows = data.data
+      })
 
-  }
+      //when page changes I want to unselect all selected rows
+      this.emitSelected([])
+      const headerCheckbox: HTMLElement | any | null = document.getElementById("header-check")
+      if (headerCheckbox?.checked) headerCheckbox?.click()
+
+    }
   }
 
   //
@@ -220,7 +220,7 @@ suppressPaging: boolean = false;
   //   return lastPage
   // }
 
-  toggleRowSelection({target}: any) {
+  toggleRowSelection({ target }: any) {
     const selectAllRows = document.querySelectorAll('.my-rows')
     if (target.checked) {
       this.allSelected = []
@@ -234,7 +234,7 @@ suppressPaging: boolean = false;
     }
   }
 
-  handleSelection(row: any, {target}: any) {
+  handleSelection(row: any, { target }: any) {
     if (target.checked) {
       this.allSelected.push(row)
       this.emitSelected(this.allSelected)
@@ -263,7 +263,7 @@ suppressPaging: boolean = false;
   }
 
   handleModal($event: any) {
-    console.log("I Bubbled", $event);
+
     this.showModal = $event;
   }
 
@@ -301,42 +301,42 @@ suppressPaging: boolean = false;
     this.showMe = false;
   }
 
- 
 
-handleStatusFilter(value:any) {
- const data =this.removeEmptyKeys({...this.additionalSettings.searchParams, search: value}) 
 
- 
-this.activeStatus = data['search']
+  handleStatusFilter(value: any) {
+    const data = this.removeEmptyKeys({ ...this.additionalSettings.searchParams, search: value })
 
-//This helps filtered response paginable 
-this.page.search = {...this.additionalSettings.searchParams, ...value}
 
-  this.setPage({offset: 0, limit: 10, search: this.page.search})
-}
+    this.activeStatus = data['search']
+
+    //This helps filtered response paginable 
+    this.page.search = { ...this.additionalSettings.searchParams, ...value }
+
+    this.setPage({ offset: 0, limit: 10, search: this.page.search })
+  }
 
 
   handleFilter(value: any) {
 
-  
 
-    const data = this.removeEmptyKeys({...this.additionalSettings.searchParams,...value})
+
+    const data = this.removeEmptyKeys({ ...this.additionalSettings.searchParams, ...value })
 
     //This helps filtered response paginable 
-this.page.search = data
+    this.page.search = data
 
 
-this.activeStatus= value
+    this.activeStatus = value
 
     //check if the filter object has values to set the active filter flag
     this.filterActive = Object.values(data).length > 0
 
-    this.setPage({offset: 0, limit: 10, search: {...data}})
+    this.setPage({ offset: 0, limit: 10, search: { ...data } })
     this.closeModal()
   }
 
   handleResetFilter() {
-    this.setPage({offset: 0, limit: 10})
+    this.setPage({ offset: 0, limit: 10 })
     this.form.reset()
 
     //unset filterActive flag when user resets search form
@@ -347,7 +347,7 @@ this.activeStatus= value
 
 
   loadTableData() {
-    this.setPage({offset: 0, limit: this.page.limit, search: {...this.additionalSettings.searchParams, ...this.page.search}})
+    this.setPage({ offset: 0, limit: this.page.limit, search: { ...this.additionalSettings.searchParams, ...this.page.search } })
     this.filterActive = false
   }
 

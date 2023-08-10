@@ -9,22 +9,22 @@ export class ColorPalleteComponent {
 
   currentColor = signal('')
 
-constructor(){
-  this.updateTheme()
-}
+  constructor() {
+    this.updateTheme()
+  }
 
 
 
 
   updateTheme() {
-    if  (!('color-theme' in localStorage)) {
-      document.body.removeAttribute('class') 
+    if (!('color-theme' in localStorage)) {
+      document.body.removeAttribute('class')
       // this.isDarkMode = true;
 
       // this.setAutofill('#777777')
     } else {
 
-      console.log(localStorage['color-theme'])
+
       document.body.classList.add(localStorage['color-theme'])
       // this.isDarkMode = false;
       // this.setAutofill('white')
@@ -32,20 +32,20 @@ constructor(){
     this.getCurrentColor()
   }
 
-  getCurrentColor () {
-  this.currentColor.set(localStorage['color-theme'])
+  getCurrentColor() {
+    this.currentColor.set(localStorage['color-theme'])
 
   }
 
 
-  changeColor(theme:string): void {
-    document.body.removeAttribute('class') 
+  changeColor(theme: string): void {
+    document.body.removeAttribute('class')
 
     localStorage['color-theme'] = theme
     this.updateTheme()
   }
 
-  useOSPreference () {
+  useOSPreference() {
     localStorage.removeItem('color-theme')
     this.updateTheme()
   }

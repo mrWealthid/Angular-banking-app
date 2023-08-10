@@ -38,6 +38,7 @@ import { SummaryTreeComponent } from './summary-tree/summary-tree.component';
 import { AlertComponent } from './alert/alert.component';
 import { ColorPalleteComponent } from './color-pallete/color-pallete.component';
 import { BackButtonDirective } from './directives/Back-directive';
+import { KeepDirective } from './directives/keep-alive';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { BackButtonDirective } from './directives/Back-directive';
     ClipboardComponent,
     MaskDirective,
     BackButtonDirective,
+    KeepDirective,
 
     DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, MatModalComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent],
   imports: [
@@ -98,7 +100,7 @@ import { BackButtonDirective } from './directives/Back-directive';
     SelectInputComponent,
     TableHeaderRowDirective,
     ClipboardComponent,
-    DropdownComponent, ClickOutsideDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent]
+    DropdownComponent, ClickOutsideDirective, KeepDirective, TableHeaderComponent, ClipboardComponent, AccountLookupComponent, LabelComponent, ChartsComponent, DatePickerComponents, TabsComponent, SummaryCardsComponent, SummaryTreeComponent, AlertComponent, ColorPalleteComponent]
 })
 export class SharedModule {
 }

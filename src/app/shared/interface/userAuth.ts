@@ -40,7 +40,7 @@ export interface AuthState {
 
 export interface IToken {
   key: string,
-  exp: string,
+  exp: number,
   iat: string
 }
 
@@ -71,7 +71,7 @@ export interface IUserDetails {
   dateOfBirth: Date,
   accountNumber: number
   imgUrl?: string,
-  id:string
+  id: string
 }
 
 

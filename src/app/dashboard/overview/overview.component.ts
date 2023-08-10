@@ -88,7 +88,7 @@ export class OverviewComponent implements OnInit {
 
   userChartType: any = 'transaction'
   handleChartChange(event: any) {
-    console.log(event.target.value)
+
     this.userChartType = event.target.value
     if (this.userChartType === "user") {
       this.fetchMonthlyUserStats()

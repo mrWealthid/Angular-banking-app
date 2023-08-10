@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -25,7 +25,7 @@ export class ModalComponent implements OnInit {
 
   toggleModalBg(e: any) {
     //used event delegation here
-    console.log((e.target.classList.contains('overlay')));
+
     if (e.target.classList.contains('overlay')) {
       this.modalState.emit(false);
     }

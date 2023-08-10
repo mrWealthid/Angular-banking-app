@@ -1,15 +1,15 @@
-import {Component, inject, OnInit, signal, Signal} from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
-import {BehaviorSubject, map, Observable, of} from "rxjs";
-import {catchError} from "rxjs/operators";
-import {CurrencyPipe} from "@angular/common";
-import {select, Store} from "@ngrx/store";
-import {currentUserSelector} from "../core/store/Profile/selectors";
-import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
-import {PaymentService} from "./service/payment.service";
-import {IBeneficiary, IPayment} from "./model/payment-model";
-import {ITabs} from "../shared/tabs/tabs.component";
-import {selectOptions} from "../shared/inputs/select-input/select-input.component";
+import { Component, inject, OnInit, signal, Signal } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from "@angular/forms";
+import { BehaviorSubject, map, Observable, of } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { CurrencyPipe } from "@angular/common";
+import { select, Store } from "@ngrx/store";
+import { currentUserSelector } from "../core/store/Profile/selectors";
+import { AppStateInterface, IProfile } from "../shared/interface/userAuth";
+import { PaymentService } from "./service/payment.service";
+import { IBeneficiary, IPayment } from "./model/payment-model";
+import { ITabs } from "../shared/tabs/tabs.component";
+import { selectOptions } from "../shared/inputs/select-input/select-input.component";
 import { NotificationService } from '../shared/services/notification.service';
 
 @Component({
@@ -18,97 +18,97 @@ import { NotificationService } from '../shared/services/notification.service';
   styleUrls: ['./payments.component.css']
 })
 export class PaymentsComponent implements OnInit {
-  
+
   // FORM GROUPS
-  
+
   paymentForm: FormGroup;
   loanForm: FormGroup;
-  walletFund:FormGroup
+  walletFund: FormGroup
 
 
-// FORM CONTROLS
+  // FORM CONTROLS
   accountNumber: FormControl;
   amount: FormControl;
   name: FormControl;
   duration: FormControl;
-  fundAmount:FormControl;
-  fundChannel:FormControl;
-  paymentChannel:FormControl;
+  fundAmount: FormControl;
+  fundChannel: FormControl;
+  paymentChannel: FormControl;
   tabIndex = new BehaviorSubject(1)
   formTabIndex = new BehaviorSubject(1)
   loanAmount: FormControl;
 
-  transferSteps= signal(0)
+  transferSteps = signal(0)
 
-  toggleAddBeneficiary =signal(false)
-  isBeneficiarySelected =signal(false)
+  toggleAddBeneficiary = signal(false)
+  isBeneficiarySelected = signal(false)
 
 
   handleBeneficiaryChange() {
-    this.  toggleAddBeneficiary.set(!this.  toggleAddBeneficiary())
+    this.toggleAddBeneficiary.set(!this.toggleAddBeneficiary())
   }
 
   options: selectOptions[] = [
-    {id: 6, name: '6 Months'},
-    {id: 12, name: 'One Year'},
+    { id: 6, name: '6 Months' },
+    { id: 12, name: 'One Year' },
   ];
 
   //TABS CONFIG
   tabsForm: ITabs[] = [{
     title: "Transfer",
     external: false,
-    step: 1,icon:"../../../assets/images/transfer.svg"
+    step: 1, icon: "../../../assets/images/transfer.svg"
 
   }, {
     title: "Loan Request",
     external: false,
     step: 2,
-    icon:"../../../assets/images/transfer.svg"
+    icon: "../../../assets/images/transfer.svg"
   }, {
     title: "Fund Wallet",
     external: false,
     step: 3,
-    icon:"../../../assets/images/fund.svg"
+    icon: "../../../assets/images/fund.svg"
   }]
 
   BeneficiaryTabs: ITabs[] = [{
     title: "Beneficiaries",
     external: false,
     step: 1,
-    icon:"../../../assets/images/beneficiaries.svg"
+    icon: "../../../assets/images/beneficiaries.svg"
 
-  }, 
-  // {
-  //   title: "Timelines",
-  //   external: false,
-  //   step: 2,
-  // }
-]
+  },
+    // {
+    //   title: "Timelines",
+    //   external: false,
+    //   step: 2,
+    // }
+  ]
 
 
-// PROPERTIES
+  // PROPERTIES
   asyncValue: any;
   beneficiaries: Observable<any[]>;
-  balance= signal<number>(0)
+  balance = signal<number>(0)
   private userDetails: IProfile;
-  transferDetails:any
-  loanDetails:any
+  transferDetails: any
+  loanDetails: any
   fundDetails: any
-  paymentLoader:boolean = false
-  loanLoader:boolean = false
-  fundLoader=false
+  paymentLoader: boolean = false
+  loanLoader: boolean = false
+  fundLoader = false
 
   selectOptions: selectOptions[] = [
-    {id: "Card", name: 'Card'},
+    { id: "Card", name: 'Card' },
   ];
-  loanStats= signal<any>({})
+  loanStats = signal<any>({})
 
   PaymentOptions: selectOptions[] = [
-    {id: "Card", name: 'Card'},
-    {id: "Wallet", name: 'Wallet'},
+    { id: "Card", name: 'Card' },
+    { id: "Wallet", name: 'Wallet' },
   ];
   //INJECTED SERVICES
-   paymentService = inject(PaymentService);
+  paymentService = inject(PaymentService);
   private currencyPipe = inject(CurrencyPipe)
   private store = inject(Store<AppStateInterface>)
   private notify = inject(NotificationService)
@@ -117,8 +117,8 @@ export class PaymentsComponent implements OnInit {
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
       if (userDetails) this.userDetails = userDetails
     })
-    this.paymentService.getLoanStats().subscribe((val:any)=> this.loanStats.set(val))
-  
+    this.paymentService.getLoanStats().subscribe((val: any) => this.loanStats.set(val))
+
   }
 
 
@@ -126,7 +126,7 @@ export class PaymentsComponent implements OnInit {
     type.next(tab)
   }
 
-  
+
 
   ngOnInit() {
     this.createPaymentForm()
@@ -146,14 +146,14 @@ export class PaymentsComponent implements OnInit {
   }
 
   fetchBalance() {
-    this.paymentService.getBalance().subscribe(x=> 
+    this.paymentService.getBalance().subscribe(x =>
       this.balance.set(x))
   }
 
   formatControlValue(control: FormControl) {
     control.valueChanges.subscribe(x => {
       if (x) {
-        control.patchValue(this.currencyPipe.transform(control.value.replace(/\D/g, '').replace(/^0+/, ''), 'USD', "symbol", '1.0-0'), {emitEvent: false})
+        control.patchValue(this.currencyPipe.transform(control.value.replace(/\D/g, '').replace(/^0+/, ''), 'USD', "symbol", '1.0-0'), { emitEvent: false })
       }
     })
   }
@@ -163,7 +163,7 @@ export class PaymentsComponent implements OnInit {
   }
 
   validateControl(control: FormControl, type: string) {
-    return !control.pristine && control.errors?.hasOwnProperty(type) 
+    return !control.pristine && control.errors?.hasOwnProperty(type)
   }
 
   createWalletFundForm() {
@@ -171,7 +171,7 @@ export class PaymentsComponent implements OnInit {
     this.fundChannel = new FormControl('Card', [Validators.required]);
     this.walletFund = new FormGroup({
       amount: this.fundAmount,
-      channel:this.fundChannel
+      channel: this.fundChannel
     });
   }
 
@@ -181,7 +181,7 @@ export class PaymentsComponent implements OnInit {
     this.paymentChannel = new FormControl('Wallet', [Validators.required]);
     this.amount = new FormControl('', [Validators.required, this.maxValueValidator.bind(this)]);
     this.paymentForm = new FormGroup({
-     paymentChannel: this.paymentChannel,
+      paymentChannel: this.paymentChannel,
       accountNumber: this.accountNumber,
       amount: this.amount
     });
@@ -199,7 +199,7 @@ export class PaymentsComponent implements OnInit {
 
   handlePayment() {
 
-    const values =this.paymentForm.value
+    const values = this.paymentForm.value
     const payload: IPayment = {
       user: this.asyncValue.id,
       initiatorName: this.userDetails.name,
@@ -214,80 +214,80 @@ export class PaymentsComponent implements OnInit {
 
     const beneficiaryPayload: IBeneficiary = {
       name: this.asyncValue.name,
-      accountNumber:+values.accountNumber,
-      user:this.userDetails.id
+      accountNumber: +values.accountNumber,
+      user: this.userDetails.id
     }
     this.paymentLoader = true
 
 
-//First Create a payment Session
+    //First Create a payment Session
 
-this.toggleAddBeneficiary() && this.paymentService.addBeneficiaries(beneficiaryPayload).subscribe()
+    this.toggleAddBeneficiary() && this.paymentService.addBeneficiaries(beneficiaryPayload).subscribe()
 
-if(this.paymentChannel.value ==="Card") {
+    if (this.paymentChannel.value === "Card") {
 
-this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
-}
-else {
- this.paymentService.initiateTransaction(payload).subscribe((x:any)=> {
-  console.log(x)
-      this.paymentLoader = false
-     this.notify.showSuccess('Transfer Successful','Payment Notification' )
-     this.fetchBalance()
-     this.fetchBeneficiaries()
-     this.updateSignal(0)
-     this.paymentForm.reset({accountNumber: '', amount : '' })
-    }, err=> {
-      this.paymentLoader = false   
-    this.paymentService.setError(err.error.message)
-    })
-}
-  
-   
+      this.paymentService.createPaymentSession(payload.user, payload.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
+    }
+    else {
+      this.paymentService.initiateTransaction(payload).subscribe((x: any) => {
+
+        this.paymentLoader = false
+        this.notify.showSuccess('Transfer Successful', 'Payment Notification')
+        this.fetchBalance()
+        this.fetchBeneficiaries()
+        this.updateSignal(0)
+        this.paymentForm.reset({ accountNumber: '', amount: '' })
+      }, err => {
+        this.paymentLoader = false
+        this.paymentService.setError(err.error.message)
+      })
+    }
+
+
   }
 
-  handleClearError(){
+  handleClearError() {
     this.paymentService.setError('')
   }
 
 
-  updateSignal(val:number) {
-  if(val === 1) {
-    const values =this.paymentForm.value
-   this.transferDetails ={
-    initiatorName: this.userDetails.name,
-    amount:this.removeCurrencyFormat(values.amount),
-    beneficiaryName:this.asyncValue.name,
-    beneficiaryAccount: values.accountNumber
-  }
-}
+  updateSignal(val: number) {
+    if (val === 1) {
+      const values = this.paymentForm.value
+      this.transferDetails = {
+        initiatorName: this.userDetails.name,
+        amount: this.removeCurrencyFormat(values.amount),
+        beneficiaryName: this.asyncValue.name,
+        beneficiaryAccount: values.accountNumber
+      }
+    }
 
-if(val === 2) {
-  const values = this.loanForm.value
-  this.loanDetails = {
-    amount: this.removeCurrencyFormat(values.amount),
-    duration: values.duration,
-    user: this.userDetails.id,
-    name:this.userDetails.name,
-    accountNumber:this.userDetails.accountNumber
+    if (val === 2) {
+      const values = this.loanForm.value
+      this.loanDetails = {
+        amount: this.removeCurrencyFormat(values.amount),
+        duration: values.duration,
+        user: this.userDetails.id,
+        name: this.userDetails.name,
+        accountNumber: this.userDetails.accountNumber
 
 
-  }
-}
+      }
+    }
 
-if(val === 3) {
-  const values = this.walletFund.value
-  this.fundDetails = {
-    amount: this.removeCurrencyFormat(values.amount),
-    name:this.userDetails.name,
-    accountNumber: this.userDetails.accountNumber,
-    user: this.userDetails.id
-  } 
-}
+    if (val === 3) {
+      const values = this.walletFund.value
+      this.fundDetails = {
+        amount: this.removeCurrencyFormat(values.amount),
+        name: this.userDetails.name,
+        accountNumber: this.userDetails.accountNumber,
+        user: this.userDetails.id
+      }
+    }
     this.transferSteps.set(val)
   }
 
-  myValue:number = 5000
+  myValue: number = 5000
   removeCurrencyFormat(amount: string) {
     return Number(amount?.replace(/[$,]/g, ''))
   }
@@ -296,29 +296,29 @@ if(val === 3) {
 
     const value = Number(control.value?.replace(/[$,]/g, ''))
 
-    if(!value) return null;
+    if (!value) return null;
     if (value && value <= this.balance()) {
-      return  null
+      return null
     }
-    return {maxValue: true};
+    return { maxValue: true };
   }
 
 
 
   maxLoanValueValidator(control: AbstractControl): ValidationErrors | null {
 
-//Conditions for loan approval
-//1) You must not have an existing unpaid loan --- The loan feature should be unavailable --pending
-//2) if you don't have an existing loan, You can only request for loans one third of your balance
+    //Conditions for loan approval
+    //1) You must not have an existing unpaid loan --- The loan feature should be unavailable --pending
+    //2) if you don't have an existing loan, You can only request for loans one third of your balance
 
     const value = Number(control.value?.replace(/[$,]/g, ''))
-if(!value) return null;
-    if (value && value <= this.balance()* 2) {
-      return  null
+    if (!value) return null;
+    if (value && value <= this.balance() * 2) {
+      return null
     }
-    return {maxLoanValue: true};
+    return { maxLoanValue: true };
   }
-  
+
   //Validating balance asynchronously
   // validateBalance(control: AbstractControl): Promise<any> | Observable<any> {
   //   return this.paymentService.getBalance().pipe(map((val: any) => {
@@ -337,20 +337,20 @@ if(!value) return null;
   // }
 
   validateAccount(control: AbstractControl): Promise<any> | Observable<any> {
-    if (!(String(control.value).length > 6)) return of({'InvalidAccountNumber': true})
+    if (!(String(control.value).length > 6)) return of({ 'InvalidAccountNumber': true })
     return this.paymentService.accountLookup(control.value).pipe(map((val: any) => {
-      const {accountNumber} = val.data[0]
+      const { accountNumber } = val.data[0]
       if (Number(control.value) === this.userDetails.accountNumber) {
-        return {'userAccountNumber': true}
+        return { 'userAccountNumber': true }
       } else if (Number(control.value) === accountNumber) {
         this.asyncValue = val.data[0]
         return null;
       } else {
-        return {'InvalidAccountNumber': true}
+        return { 'InvalidAccountNumber': true }
       }
     }), catchError(err => {
       this.asyncValue = null
-      return of({'InvalidAccountNumber': true})
+      return of({ 'InvalidAccountNumber': true })
     }));
   }
 
@@ -359,9 +359,9 @@ if(!value) return null;
     const target = (event.currentTarget) as HTMLElement
     target.children[0].classList.add('text-green-400')
 
-    
+
     target.classList.add('border-green-200')
-    this.paymentForm.patchValue({accountNumber: beneficiary.accountNumber})
+    this.paymentForm.patchValue({ accountNumber: beneficiary.accountNumber })
     this.accountNumber.updateValueAndValidity()
 
     this.isBeneficiarySelected.set(true)
@@ -390,52 +390,52 @@ if(!value) return null;
     //   accountNumber: this.userDetails.accountNumber,
     //   user: this.userDetails.id
     // } 
-this.loanLoader = true
+    this.loanLoader = true
 
-this.paymentService.requestLoan(this.loanDetails).subscribe((x:any)=> {
-  this.loanLoader= false
- this.notify.showSuccess('Request Sent Successful','Loan Notification')
- this.loanForm.reset({duration: '', amount : '' })
- this.updateSignal(0)
-}, err=> {
-  this.loanLoader = false   
-  this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
-})
+    this.paymentService.requestLoan(this.loanDetails).subscribe((x: any) => {
+      this.loanLoader = false
+      this.notify.showSuccess('Request Sent Successful', 'Loan Notification')
+      this.loanForm.reset({ duration: '', amount: '' })
+      this.updateSignal(0)
+    }, err => {
+      this.loanLoader = false
+      this.notify.showError('Request Failed, Please Try Again', 'Loan Notification')
+    })
     // console.log(values)
   }
 
   handleFundRequest() {
-  
-// this.fundLoader = true
+
+    // this.fundLoader = true
 
 
-// this.paymentService.requestWalletFunding(this.fundDetails).subscribe((x:any)=> {
-//   this.loanLoader= false
-// //  this.notify.showSuccess('Request Sent Successful','Loan Notification')
-//  this.loanForm.reset({duration: '', amount : '' })
-//  this.updateSignal(0)
-// }, err=> {
-//   this.loanLoader = false   
-//   this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
-// })
+    // this.paymentService.requestWalletFunding(this.fundDetails).subscribe((x:any)=> {
+    //   this.loanLoader= false
+    // //  this.notify.showSuccess('Request Sent Successful','Loan Notification')
+    //  this.loanForm.reset({duration: '', amount : '' })
+    //  this.updateSignal(0)
+    // }, err=> {
+    //   this.loanLoader = false   
+    //   this.notify.showError('Request Failed, Please Try Again','Loan Notification' )
+    // })
 
-this.paymentService.createFundingSession(this.fundDetails.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
+    this.paymentService.createFundingSession(this.fundDetails.amount).subscribe((x: any) => window.open(x.session.url, 'blank'))
 
     // console.log(this.fundDetails)
   }
 
   handleChange($event: any) {
-    console.log($event)
+
   }
 
-  handlePaymentChannelChange(selectedOption:any) {
+  handlePaymentChannelChange(selectedOption: any) {
 
-if(selectedOption.name ==="Card") {
-  this.amount.setValidators([Validators.required])
-}
-else {
-  this.amount.setValidators([Validators.required,this.maxValueValidator.bind(this) ])
-}
-this.amount.updateValueAndValidity()
+    if (selectedOption.name === "Card") {
+      this.amount.setValidators([Validators.required])
+    }
+    else {
+      this.amount.setValidators([Validators.required, this.maxValueValidator.bind(this)])
+    }
+    this.amount.updateValueAndValidity()
   }
 }

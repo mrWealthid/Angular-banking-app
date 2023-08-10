@@ -1,12 +1,12 @@
-import {Component, Input} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import { Component, Input } from '@angular/core';
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: 'app-clipboard',
   templateUrl: './clipboard.component.html',
 })
 export class ClipboardComponent {
-  @Input({required: true}) textToCopy: any;
+  @Input({ required: true }) textToCopy: any;
   @Input() buttonText: string;
   @Input() style: string
   timer: any
@@ -21,7 +21,7 @@ export class ClipboardComponent {
         this.timer = setTimeout(() => {
           this.valueState.next(false)
         }, 2000);
-        console.log('Text copied to clipboard');
+
       })
       .catch((error) => {
         console.error('Error copying text to clipboard:', error);

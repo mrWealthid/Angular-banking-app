@@ -1,15 +1,15 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {faUserEdit} from '@fortawesome/free-solid-svg-icons';
-import {ModalService} from "../shared/services/modal.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {select, Store} from "@ngrx/store";
-import {AppStateInterface, IProfile} from "../shared/interface/userAuth";
-import {currentUserSelector, isLoading} from "../core/store/Profile/selectors";
-import {Observable} from "rxjs";
+import { Component, inject, OnInit } from '@angular/core';
+import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
+import { ModalService } from "../shared/services/modal.service";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { select, Store } from "@ngrx/store";
+import { AppStateInterface, IProfile } from "../shared/interface/userAuth";
+import { currentUserSelector, isLoading } from "../core/store/Profile/selectors";
+import { Observable } from "rxjs";
 import * as profileActions from "../core/store/Profile/actions"
-import {ProfileService} from "./service/profile.service";
+import { ProfileService } from "./service/profile.service";
 import * as dayjs from "dayjs";
-import {selectOptions} from "../shared/inputs/select-input/select-input.component";
+import { selectOptions } from "../shared/inputs/select-input/select-input.component";
 
 @Component({
   selector: 'app-profile',
@@ -31,8 +31,8 @@ export class ProfileComponent implements OnInit {
   passwordForm: FormGroup
   previewUrl: string | ArrayBuffer | null;
   options: selectOptions[] = [
-    {id: "user", name: 'User'},
-    {id: "admin", name: 'Admin'},
+    { id: "user", name: 'User' },
+    { id: "admin", name: 'Admin' },
   ];
   loading: Boolean;
 
@@ -62,11 +62,11 @@ export class ProfileComponent implements OnInit {
   }
 
   detailsForm() {
-    this.name = new FormControl({value: this.data?.name, disabled: false}, Validators.required);
-    this.email = new FormControl({value: this.data?.email, disabled: true}, [Validators.required, Validators.email]);
+    this.name = new FormControl({ value: this.data?.name, disabled: false }, Validators.required);
+    this.email = new FormControl({ value: this.data?.email, disabled: true }, [Validators.required, Validators.email]);
     this.photo = new FormControl("");
-    this.dob = new FormControl({value: dayjs(this.data?.dateOfBirth), disabled: true}, Validators.required);
-    this.role = new FormControl({value: this.data?.role, disabled: true}, Validators.required);
+    this.dob = new FormControl({ value: dayjs(this.data?.dateOfBirth), disabled: true }, Validators.required);
+    this.role = new FormControl({ value: this.data?.role, disabled: true }, Validators.required);
     this.profileForm = new FormGroup({
       name: this.name,
       role: this.role,
@@ -91,7 +91,7 @@ export class ProfileComponent implements OnInit {
   }
 
   onSelectionChange(selectedItems: any[]): void {
-    console.log(selectedItems);
+
     // Handle selected items
   }
 
@@ -131,7 +131,7 @@ export class ProfileComponent implements OnInit {
   }
 
   handlePersonalFormUpdate(val: any) {
-    const payload: IProfile = {...val, photo: this.image}
+    const payload: IProfile = { ...val, photo: this.image }
     this.store.dispatch(profileActions.profileUpdate(payload))
   }
 

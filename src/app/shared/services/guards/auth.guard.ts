@@ -12,15 +12,15 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService)
 
   let url: any[] = [];
-  console.log(url);
+
   authService.storedRoutes.push(state.url)
 
-  console.log(authService.storedRoutes)
+
 
 
   return isAuthenticated$.pipe(filter((x) => x != undefined), map((x) => {
 
-    console.log(x)
+
     if (!x) {
       router.navigate(['auth/login'])
       return false;

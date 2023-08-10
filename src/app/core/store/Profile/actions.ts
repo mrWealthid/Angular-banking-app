@@ -1,6 +1,6 @@
-import {createAction, props} from "@ngrx/store";
+import { createAction, props } from "@ngrx/store";
 
-import {IProfile} from "../../../shared/interface/userAuth";
+import { IProfile } from "../../../shared/interface/userAuth";
 
 
 export const profileLookup = createAction('[PROFILE] profileLookup');

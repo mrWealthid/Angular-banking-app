@@ -1,6 +1,6 @@
-import {DOCUMENT} from '@angular/common';
-import {AfterViewInit, Directive, ElementRef, EventEmitter, Inject, OnDestroy, Output,} from '@angular/core';
-import {filter, fromEvent, merge, Subscription} from 'rxjs';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, OnDestroy, Output, } from '@angular/core';
+import { filter, fromEvent, merge, Subscription } from 'rxjs';
 
 @Directive({
   selector: '[clickOutside]',
@@ -41,7 +41,7 @@ export class ClickOutsideDirective implements AfterViewInit, OnDestroy {
   isInsideAndEscapeKey(elementToCheck: HTMLElement, event: KeyboardEvent): boolean {
 
     let val: boolean;
-    console.log(event.type)
+
     if (event.type === 'keyup') {
       val = this.onKeyDown(event)
     } else {
