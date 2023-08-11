@@ -32,6 +32,16 @@ export class DashboardService {
       ])
     }));
   }
+  getMonthlyTransactionChannelStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
+    return this.Http.get(`${environment.API_URL}/api/v1/transactions/monthlyChannel-stats/${type}/${year}`).pipe(map(({ data }: any) => {
+      return ([
+        {
+          name: type,
+          data: this.transformUserChartData(data.stats)
+        }
+      ])
+    }));
+  }
   getMonthlyLoanStatsData(type: string, year: number = new Date(Date.now()).getFullYear()): Observable<IDashboardData[]> {
     return this.Http.get(`${environment.API_URL}/api/v1/loans/monthly-stats/${type}/${year}`).pipe(map(({ data }: any) => {
       return ([

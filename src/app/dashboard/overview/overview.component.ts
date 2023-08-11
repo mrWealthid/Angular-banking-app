@@ -101,6 +101,11 @@ export class OverviewComponent implements OnInit {
       return data.map(x => x[0])
     }))
   }
+  fetchMonthlyTransactionChannelStats() {
+    this.series = forkJoin([this.dashboardService.getMonthlyTransactionChannelStatsData('Transfer'), this.dashboardService.getMonthlyTransactionChannelStatsData('Card')]).pipe(map(data => {
+      return data.map(x => x[0])
+    }))
+  }
   fetchMonthlyTransactionsStats() {
     this.series = forkJoin([this.dashboardService.getMonthlyStatsData('Credit'), this.dashboardService.getMonthlyStatsData('Debit')]).pipe(map(data => {
       return data.map(x => x[0])
@@ -124,6 +129,9 @@ export class OverviewComponent implements OnInit {
   handleChartChange(event: any) {
 
     this.userChartType = event.target.value
+    if (this.userChartType === "channel") {
+      this.fetchMonthlyTransactionChannelStats()
+    }
     if (this.userChartType === "user") {
       this.fetchMonthlyUserStats()
     }

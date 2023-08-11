@@ -229,14 +229,21 @@
             *ngIf="currentUser.role === 'user'"
             class="flex border-b border-secondary dark:text-secondary text-primary justify-between p-2 items-center"
           >
-            <p>Transactions Statistics</p>
+            <p *ngIf="userChartType === 'transaction'">
+              Transactions Statistics
+            </p>
 
-            <!-- <div>
-            <select class="bg-gray-100 dark:glass border-none text-xs px-5 rounded py-2">
-              <option selected>Transactions</option>
-             
-            </select>
-          </div> -->
+            <p *ngIf="userChartType === 'channel'">Channel Statistics</p>
+
+            <div>
+              <select
+                (change)="handleChartChange($event)"
+                class="bg-gray-100 focus:ring-secondary dark:glass border-none text-xs px-5 rounded py-2"
+              >
+                <option value="transaction" selected>Transactions</option>
+                <option value="channel">Channel</option>
+              </select>
+            </div>
           </section>
           <section
             *ngIf="currentUser.role === 'admin'"
@@ -245,6 +252,8 @@
             <p *ngIf="userChartType === 'transaction'">
               Transactions Statistics
             </p>
+
+            <p *ngIf="userChartType === 'channel'">Channel Statistics</p>
             <p *ngIf="userChartType === 'user'">Users Statistics</p>
             <p *ngIf="userChartType === 'loan'">Loans Statistics</p>
 
@@ -254,6 +263,7 @@
                 class="bg-gray-100 focus:ring-secondary dark:glass border-none text-xs px-5 rounded py-2"
               >
                 <option value="transaction" selected>Transactions</option>
+                <option value="channel">Channel</option>
                 <option value="user">Users</option>
                 <option value="loan">Loans</option>
               </select>
