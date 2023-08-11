@@ -58,7 +58,6 @@ export interface AppStateInterface {
 type User = Pick<IUser, "token">
 
 export interface IUser {
-  status: string,
   token: string,
 
 }

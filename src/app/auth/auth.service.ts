@@ -1,10 +1,10 @@
-import {inject, Injectable, signal} from '@angular/core';
-import {ILogin, IRegister, IUser} from "../shared/interface/userAuth";
-import {Router} from "@angular/router";
-import {Observable} from "rxjs";
-import {HttpClient, HttpContext} from "@angular/common/http";
-import {BEARER_TOKEN} from "../headers.interceptor";
-import {environment} from "../../environments/environment";
+import { inject, Injectable, signal } from '@angular/core';
+import { ILogin, IRegister, IUser } from "../shared/interface/userAuth";
+import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { HttpClient, HttpContext } from "@angular/common/http";
+import { BEARER_TOKEN } from "../headers.interceptor";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -17,23 +17,23 @@ export class AuthService {
   router = inject(Router);
   private Http = inject(HttpClient)
 
-  notification = signal({message: '', type: ''})
+  notification = signal({ message: '', type: '' })
 
 
-  setNotification( message:string, type:string) {
+  setNotification(message: string, type: string) {
     let timer;
 
     clearTimeout(timer)
-    this.notification.set({message, type})
- timer=  setTimeout(()=> {
-//Clear Alert
-      this.notification.set({message: '', type : ''})
+    this.notification.set({ message, type })
+    timer = setTimeout(() => {
+      //Clear Alert
+      this.notification.set({ message: '', type: '' })
     }, 8000)
-   
+
   }
 
   clearError() {
-    this.notification.set({message: '', type : ''})
+    this.notification.set({ message: '', type: '' })
   }
 
   login(credentials: ILogin): Observable<IUser> {
@@ -42,11 +42,11 @@ export class AuthService {
     })
 
   }
-logout () {
-  this.router.navigate(["auth/login"])
-  this.storedRoutes = []
-}
-  
+  logout() {
+    this.router.navigate(["auth/login"])
+    this.storedRoutes = []
+  }
+
 
 
   register(credentials: IRegister): Observable<IUser> {
@@ -54,13 +54,19 @@ logout () {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
   }
-  forgotPassword(email:string) {
+  forgotPassword(email: string) {
     return this.Http.post<any>(`${environment.API_URL}/api/v1/users/forgotPassword`, email, {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
   }
-  resetPassword(token:string, payload:IPasswordUpdate) {
+  resetPassword(token: string, payload: IPasswordUpdate) {
     return this.Http.patch<any>(`${environment.API_URL}/api/v1/users/resetPassword/${token}`, payload, {
+      context: new HttpContext().set(BEARER_TOKEN, false)
+    })
+  }
+
+  googleAuth() {
+    return this.Http.get<any>(`${environment.API_URL}/google-auth`, {
       context: new HttpContext().set(BEARER_TOKEN, false)
     })
   }
@@ -68,7 +74,7 @@ logout () {
 
 }
 
-export interface IPasswordUpdate  {
+export interface IPasswordUpdate {
   password: string,
   passwordConfirm: string
 }
