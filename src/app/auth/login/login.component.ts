@@ -50,6 +50,8 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin(value: ILogin) {
+    // this.authservice.login(value);
+
 
     this.store.dispatch(AuthActions.login(value))
   }

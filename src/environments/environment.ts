@@ -4,7 +4,8 @@
 export const environment = {
   production: false,
   // API_URL: 'http://localhost:3000'
-  API_URL: 'http://192.168.1.3:3000'
+  API_URL: 'http://192.168.1.3:3000',
+  URL: 'https://bank-app.wealthtech.website'
 };
 /*
  * For easier debugging in development mode, you can import the following file
