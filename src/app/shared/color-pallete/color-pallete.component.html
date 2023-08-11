@@ -153,8 +153,10 @@
           </div>
         </div>
         <div
-          [ngClass]="currentColor() === 'theme-pink' ? '!bg-secondary' : ''"
-          (click)="changeColor('theme-pink')"
+          [ngClass]="
+            currentColor() === 'theme-coffee-brown' ? '!bg-secondary' : ''
+          "
+          (click)="changeColor('theme-coffee-brown')"
           class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:glass"
         >
           <div
@@ -179,7 +181,7 @@
               ></g>
               <g id="SVGRepo_iconCarrier">
                 <path
-                  style="fill: #ffc0cb"
+                  style="fill: #302b2b"
                   d="M256,0C114.842,0,0,114.842,0,256s114.842,256,256,256s256-114.842,256-256S397.158,0,256,0z"
                 ></path>
                 <path
@@ -191,10 +193,12 @@
           </div>
           <div>
             <a href="#" class="font-semibold text-gray-900">
-              Pink
+              Coffee Brown
               <span class="absolute inset-0"></span>
             </a>
-            <p class="mt-1 text-black">Change application skin to pink</p>
+            <p class="mt-1 text-black">
+              Change application skin to coffee-brown
+            </p>
           </div>
         </div>
         <div
