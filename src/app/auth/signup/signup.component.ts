@@ -9,6 +9,7 @@ import { select, Store } from "@ngrx/store";
 import { isLoadingSelector } from "../../core/store/Auth/selectors";
 import { IDatePickerConfig } from "ng2-date-picker";
 import * as dayjs from "dayjs";
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -49,6 +50,11 @@ export class SignupComponent implements OnInit {
     // Handle the selected date
 
   }
+
+  handleGoogleAuth() {
+    window.open(`${environment.API_URL}/auth/google`)
+  }
+
 
   ngOnInit(): void {
     this.createForm()

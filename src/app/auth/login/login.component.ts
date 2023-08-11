@@ -6,6 +6,7 @@ import { select, Store } from "@ngrx/store";
 import * as AuthActions from "../../core/store/Auth/actions";
 import { BehaviorSubject, } from "rxjs";
 import { isLoadingSelector } from "../../core/store/Auth/selectors";
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -55,6 +56,9 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(AuthActions.login(value))
   }
 
+  handleGoogleAuth() {
+    window.open(`${environment.API_URL}/auth/google`)
+  }
 
   handleClearError() {
     this.authservice.clearError()

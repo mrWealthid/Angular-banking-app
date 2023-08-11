@@ -9,11 +9,40 @@
     ></app-alert>
   </ng-container>
   <section
-    class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/2 py-10 px-6 flex gap-6 flex-col items-center justify-center"
+    class="bg-white mt-10 lg:mt-20 dark:glass w-5/6 md:w-4/6 lg:w-1/2 py-10 px-6 flex gap-6 flex-col items-center justify-center"
   >
     <p class="text-center text-primary dark:text-black font-bold text-2xl">
       Sign Up
     </p>
+
+    <section class="flex flex-col gap-3 items-center justify-center w-full">
+      <button (click)="handleGoogleAuth()" class="btn flex gap-3 btn-primary">
+        <img src="../../../assets/images/google.svg" />
+        Google
+      </button>
+
+      <section class="text-primary dark:text-secondary">
+        <svg
+          width="25px"
+          height="25px"
+          fill="currentColor"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M 11 3 L 11 29 L 13 29 L 13 3 L 11 3 z M 19 3 L 19 29 L 21 29 L 21 3 L 19 3 z"
+            ></path>
+          </g>
+        </svg>
+      </section>
+    </section>
     <form
       (ngSubmit)="handleRegister(SignupForm.value)"
       [formGroup]="SignupForm"

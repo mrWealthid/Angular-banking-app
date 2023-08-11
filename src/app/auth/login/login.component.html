@@ -15,6 +15,46 @@
       Sign In to Get Started
     </p>
 
+    <section class="flex flex-col gap-3 items-center justify-center w-full">
+      <button
+        (click)="handleGoogleAuth()"
+        class="btn flex gap-3 btn-primary !w-5/6"
+      >
+        <img src="../../../assets/images/google.svg" />
+        Google
+      </button>
+
+      <!-- <section class="!text-red-400">
+        <img class="!text-red-400" src="../../../assets/images/Or.svg" />
+      </section> -->
+
+      <section class="text-primary dark:text-secondary">
+        <svg
+          width="25px"
+          height="25px"
+          fill="currentColor"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M 11 3 L 11 29 L 13 29 L 13 3 L 11 3 z M 19 3 L 19 29 L 21 29 L 21 3 L 19 3 z"
+            ></path>
+          </g>
+        </svg>
+      </section>
+    </section>
+
+    <!-- <app-button
+      (clickEvent)="handleGoogleAuth()"
+      [btnText]="'Google'"
+    ></app-button> -->
     <section class="w-full">
       <form
         (ngSubmit)="handleLogin(LoginForm.value)"
