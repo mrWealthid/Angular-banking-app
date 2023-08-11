@@ -11,6 +11,8 @@ export class ModalComponent implements OnInit {
   modalState = new EventEmitter<any>();
   @Input()
   modalStates: boolean;
+  @Input()
+  size: string = 'w-full';
 
   constructor() {
   }
