@@ -1,129 +1,158 @@
 <section class="w-full mb-6">
-
   <ng-container>
-
-    
-  
-    <app-table-header (reload)="loadTableData()"  [tableSettings]="additionalSettings">
-    
+    <app-table-header
+      (reload)="loadTableData()"
+      [tableSettings]="additionalSettings"
+    >
       <section status>
         <section class="flex flex-col md:flex-row gap-3">
-
           <ng-container *ngFor="let status of tableSettings?.statusData">
-
-    
-          <button  [ngClass]=" activeStatus?.['status'] === status.value? 'ring-1 ring-offset-2 text-success  ring-success': '' "  (click)="handleStatusFilter({status: status.value})"
+            <button
+              [ngClass]=" activeStatus?.['status'] === status.value? 'ring-1 !shadow-none ring-offset-2 text-success  ring-success dark:ring-primary': '' "
+              (click)="handleStatusFilter({ status: status.value })"
             >
-
-              {{status.name}}
-            </button> 
-       
-        </ng-container>
+              {{ status.name }}
+            </button>
+          </ng-container>
         </section>
-       
-    </section>
-      <ng-container [ngTemplateOutlet]="headerActions">
-      </ng-container>
+      </section>
+      <ng-container [ngTemplateOutlet]="headerActions"> </ng-container>
       <button
         (click)="toggleModal($event)"
-        [ngClass]="filterActive? 'ring-1 ring-offset-2 text-success  ring-green-500 ' : ''"
+        [ngClass]="
+          filterActive
+            ? 'ring-1 ring-offset-2 text-success !shadow-none ring-green-500 '
+            : ''
+        "
       >
-        <i [ngClass]="filterActive?'text-success':''" class="fa-solid  text-gray-600 fa-filter"></i>
+        <i
+          [ngClass]="filterActive ? 'text-success' : ''"
+          class="fa-solid text-gray-600 fa-filter"
+        ></i>
         Filter
       </button>
     </app-table-header>
   </ng-container>
 
-  <ngx-datatable #myTable
-                 (page)="setPage($event)"
-                 (scroll)="handleScroll()"
-                 [columnMode]="'force'"
-                 [columns]="updatedColumn"
-                 [count]="page.totalElements"
-                 [externalPaging]="true"
-                 [footerHeight]="50"
-                 [headerHeight]="50"
-                 [limit]="page.limit"
-                 [offset]="page.pageNumber"
-                 [rowHeight]="'auto'"
-                 [rows]="rows"
-                 [loadingIndicator]="loading"
-                 [scrollbarV]="false"
-                 [scrollbarH]="true"
-                 class="material"
-                 
+  <ngx-datatable
+    #myTable
+    (page)="setPage($event)"
+    (scroll)="handleScroll()"
+    [columnMode]="'force'"
+    [columns]="updatedColumn"
+    [count]="page.totalElements"
+    [externalPaging]="true"
+    [footerHeight]="50"
+    [headerHeight]="50"
+    [limit]="page.limit"
+    [offset]="page.pageNumber"
+    [rowHeight]="'auto'"
+    [rows]="rows"
+    [loadingIndicator]="loading"
+    [scrollbarV]="false"
+    [scrollbarH]="true"
+    class="material"
   >
-
-
     <!--    This piece control the general toggle on the left-end of the header column-->
-    <ngx-datatable-column *ngIf='additionalSettings.checkable' name="S/N" prop="S/N">
-
+    <ngx-datatable-column
+      *ngIf="additionalSettings.checkable"
+      name="S/N"
+      prop="S/N"
+    >
       <ng-template let-column="column" ngx-datatable-header-template>
         <span>#</span>
-        <input (click)="toggleRowSelection($event)" class="ml-1 text-gray-700 dark:text-success   rounded "
-               id="header-check" type="checkbox"/>
+        <input
+          (click)="toggleRowSelection($event)"
+          class="ml-1 text-gray-700 dark:text-success rounded"
+          id="header-check"
+          type="checkbox"
+        />
       </ng-template>
-      <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
-        <span>{{rowIndex + 1  }}.</span>
-        <input (click)="handleSelection(row, $event)" class="my-rows dark:text-success rounded ml-1 "
-               type="checkbox"/>
-
+      <ng-template
+        let-row="row"
+        let-rowIndex="rowIndex"
+        ngx-datatable-cell-template
+      >
+        <span>{{ rowIndex + 1 }}.</span>
+        <input
+          (click)="handleSelection(row, $event)"
+          class="my-rows dark:text-success rounded ml-1"
+          type="checkbox"
+        />
       </ng-template>
     </ngx-datatable-column>
 
     <!--   This loops through all the defined columns-->
-    <ng-container *ngFor='let column of columns'>
-
+    <ng-container *ngFor="let column of columns">
       <!--      This checks the table settings to know of the user needs the table row to be actionable-->
-      <ngx-datatable-column *ngIf='column.name === "Actions"' name="Actions" prop="actions">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          <app-dropdown [styles]="'-top-3 z-50 w-1/6 right-8 '" *ngIf="!additionalSettings.singleAction">
+      <ngx-datatable-column
+        *ngIf="column.name === 'Actions'"
+        name="Actions"
+        prop="actions"
+      >
+        <ng-template
+          let-row="row"
+          let-value="value"
+          ngx-datatable-cell-template
+        >
+          <app-dropdown
+            [styles]="'-top-3 z-50 w-1/6 right-8 '"
+            *ngIf="!additionalSettings.singleAction"
+          >
             <ng-container header>
-              <fa-icon [icon]="faEllipsis" class="cursor-pointer text-gray-300"></fa-icon>
+              <fa-icon
+                [icon]="faEllipsis"
+                class="cursor-pointer text-gray-300"
+              ></fa-icon>
             </ng-container>
-            <ng-container *ngTemplateOutlet="rowActions; context:{row: row.id} ">
+            <ng-container
+              *ngTemplateOutlet="rowActions; context: { row: row.id }"
+            >
             </ng-container>
           </app-dropdown>
 
           <span *ngIf="additionalSettings.singleAction">
-          <ng-container *ngTemplateOutlet="rowActions; context:{row: row.id} ">
-          </ng-container>
-            </span>
-
+            <ng-container
+              *ngTemplateOutlet="rowActions; context: { row: row.id }"
+            >
+            </ng-container>
+          </span>
         </ng-template>
-
       </ngx-datatable-column>
 
       <!--     This is displayed when the table is set to be without action column and buttons-->
-      <ngx-datatable-column *ngIf='column.name !== "Actions"'
-                            name="{{column.name}}"
-                            prop="{{column.prop}}">
-
-
+      <ngx-datatable-column
+        *ngIf="column.name !== 'Actions'"
+        name="{{ column.name }}"
+        prop="{{ column.prop }}"
+      >
         <!--        This piece of code is used to select dynamically custom row (rows that need extra styling, data transformed, or icons added to them-->
         <ng-template let-row="row" ngx-datatable-cell-template>
-
-
           <ng-container *ngIf="column.custom">
-            <ng-container *ngTemplateOutlet="customRows; context:{rowVal: row[column.prop], colProp: column['prop']} ">
+            <ng-container
+              *ngTemplateOutlet="
+                customRows;
+                context: { rowVal: row[column.prop], colProp: column['prop'] }
+              "
+            >
             </ng-container>
           </ng-container>
 
-          <span *ngIf="column.pipe==='Date'">{{row[column.prop] | date:'short' }}</span>
-          <span *ngIf="column.pipe==='Currency'">{{row[column.prop] | currency:'USD' }}</span>
+          <span *ngIf="column.pipe === 'Date'">{{
+            row[column.prop] | date : "short"
+          }}</span>
+          <span *ngIf="column.pipe === 'Currency'">{{
+            row[column.prop] | currency : "USD"
+          }}</span>
 
-          <span *ngIf="!column.pipe && !column.custom">{{row[column.prop]}}</span>
+          <span *ngIf="!column.pipe && !column.custom">{{
+            row[column.prop]
+          }}</span>
         </ng-template>
-
-
       </ngx-datatable-column>
-
-
     </ng-container>
 
     <ngx-datatable-footer *ngIf="additionalSettings.showSummary">
-
-
       <ng-template
         let-curPage="curPage"
         let-offset="offset"
@@ -133,32 +162,31 @@
         ngx-datatable-footer-template
       >
         <div style="padding: 5px 10px">
-          <div><strong>Summary</strong>:   {{additionalSettings.tableName}}</div>
-          <hr style="width:100%"/>
-          <div>Total: {{ rowCount }} | Size: {{ pageSize }} | Page: {{ curPage }}</div>
+          <div>
+            <strong>Summary</strong>: {{ additionalSettings.tableName }}
+          </div>
+          <hr style="width: 100%" />
+          <div>
+            Total: {{ rowCount }} | Size: {{ pageSize }} | Page: {{ curPage }}
+          </div>
         </div>
 
-        <datatable-pager (change)="table.onFooterPage($event)"
-                         [count]="rowCount"
-                         [page]="curPage"
-                         [hidden]=" rows&& rows.length < 1"
-                         [pagerLeftArrowIcon]="'datatable-icon-left'"
-                         [pagerNextIcon]="'datatable-icon-skip'"
-                         [pagerPreviousIcon]="'datatable-icon-prev'"
-                         [pagerRightArrowIcon]="'datatable-icon-right'"
-                         [size]="pageSize"
-
-
+        <datatable-pager
+          (change)="table.onFooterPage($event)"
+          [count]="rowCount"
+          [page]="curPage"
+          [hidden]="rows && rows.length < 1"
+          [pagerLeftArrowIcon]="'datatable-icon-left'"
+          [pagerNextIcon]="'datatable-icon-skip'"
+          [pagerPreviousIcon]="'datatable-icon-prev'"
+          [pagerRightArrowIcon]="'datatable-icon-right'"
+          [size]="pageSize"
         >
         </datatable-pager>
       </ng-template>
-
-
     </ngx-datatable-footer>
   </ngx-datatable>
-
 </section>
-
 
 <!--<ng-template #dialogTemplate>-->
 <!--  <div>-->
@@ -169,49 +197,67 @@
 <ng-container *ngIf="showMe">
   <app-modal (modalState)="handleModal($event)" [modalStates]="showModal">
     <div class="p-2 text-center">
-
-      <form class="w-full p-6" (ngSubmit)="handleFilter(form.value)" [formGroup]="form">
+      <form
+        class="w-full p-6"
+        (ngSubmit)="handleFilter(form.value)"
+        [formGroup]="form"
+      >
         <ng-container *ngIf="columns.length > 0">
-          <section class="grid grid-cols-2 gap-3 ">
+          <section class="grid grid-cols-2 gap-3">
             <ng-container *ngFor="let column of columns">
-              <ng-container *ngIf="column.searchType ==='text'">
-                <text-input [formControl]="getInputControl(column.prop)"
-                            [label]="column.name"
-                            [placeholder]="'Enter' + ' '+ column.name" class="w-full"></text-input>
+              <ng-container *ngIf="column.searchType === 'text'">
+                <text-input
+                  [formControl]="getInputControl(column.prop)"
+                  [label]="column.name"
+                  [placeholder]="'Enter' + ' ' + column.name"
+                  class="w-full"
+                ></text-input>
               </ng-container>
-              <ng-container *ngIf="column.searchType ==='number'">
-                <text-input [type]="'number'" [formControl]="getInputControl(column.prop)"
-                            [label]="column.name"
-                            [placeholder]="'Enter' + ' '+ column.name" class="w-full"></text-input>
+              <ng-container *ngIf="column.searchType === 'number'">
+                <text-input
+                  [type]="'number'"
+                  [formControl]="getInputControl(column.prop)"
+                  [label]="column.name"
+                  [placeholder]="'Enter' + ' ' + column.name"
+                  class="w-full"
+                ></text-input>
               </ng-container>
-              <ng-container *ngIf="column.searchType ==='dropdown'">
-
-
-                <select-input [formControl]="getInputControl(column.prop)"
-                              [label]="column.name"
-                              [bindLabel]="'name'"
-                              [bindValue]="'id'"
-                              [items]= "column.selectOptions"
-                              [placeholder]="'Enter' + ' '+ column.name" class="w-full"></select-input>
+              <ng-container *ngIf="column.searchType === 'dropdown'">
+                <select-input
+                  [formControl]="getInputControl(column.prop)"
+                  [label]="column.name"
+                  [bindLabel]="'name'"
+                  [bindValue]="'id'"
+                  [items]="column.selectOptions"
+                  [placeholder]="'Enter' + ' ' + column.name"
+                  class="w-full"
+                ></select-input>
               </ng-container>
 
-              <ng-container *ngIf="column.searchType ==='Date'">
-                <app-date-picker [formControl]="getInputControl(column.prop)"
-                                 [label]="column.name" class="w-full"></app-date-picker>
+              <ng-container *ngIf="column.searchType === 'Date'">
+                <app-date-picker
+                  [formControl]="getInputControl(column.prop)"
+                  [label]="column.name"
+                  class="w-full"
+                ></app-date-picker>
               </ng-container>
             </ng-container>
           </section>
         </ng-container>
 
-        <section class="flex gap-2  mt-2 justify-end ">
-          <app-button (clickEvent)="handleResetFilter()" [btnText]="'Cancel'" [styles]="'btn-primary rounded-3xl'"
-                      [type]="'button'"></app-button>
-          <app-button [btnText]="'Search'" [styles]="'btn-primary rounded-3xl'"
+        <section class="flex gap-2 mt-2 justify-end">
+          <app-button
+            (clickEvent)="handleResetFilter()"
+            [btnText]="'Cancel'"
+            [styles]="'btn-primary rounded-3xl'"
+            [type]="'button'"
+          ></app-button>
+          <app-button
+            [btnText]="'Search'"
+            [styles]="'btn-primary rounded-3xl'"
           ></app-button>
         </section>
-
       </form>
-
     </div>
   </app-modal>
 </ng-container>

@@ -38,34 +38,31 @@ export const routes: Routes = [
       }, {
         path: 'users',
         component: UsersComponent,
-        canActivate: [roleGuard],
-        data: { requiredRole: ['admin'] }
+        canActivate: [roleGuard('admin')],
       },
       {
         path: 'users/:id',
         component: UsersViewComponent,
-        canActivate: [roleGuard],
-        data: { requiredRole: ['admin'] }
+        canActivate: [roleGuard('admin')],
 
       },
 
       {
         path: 'user-transactions/:id',
         component: TransactionComponent,
-        data: { requiredRole: ['admin'] }
+        canActivate: [roleGuard('admin')],
       },
 
       {
         path: 'user-loans/:id',
         component: UserLoanComponent,
-        data: { requiredRole: ['admin'] }
+        canActivate: [roleGuard('admin')],
       },
 
       {
         path: 'payments',
         component: PaymentsComponent,
-        canActivate: [roleGuard],
-        data: { requiredRole: ['user'] }
+        canActivate: [roleGuard('user')],
       }, {
         path: 'loans',
         component: LoansComponent,

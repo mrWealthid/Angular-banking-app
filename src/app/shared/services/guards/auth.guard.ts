@@ -11,7 +11,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router)
   const authService = inject(AuthService)
 
-  let url: any[] = [];
 
   authService.storedRoutes.push(state.url)
 

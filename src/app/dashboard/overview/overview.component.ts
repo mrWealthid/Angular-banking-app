@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { DashboardService } from "../service/dashboard.service";
 import { IDashboardData, IStatsParam, ISummary } from "../dashboard.model";
 import { forkJoin, map, Observable } from "rxjs";
@@ -39,6 +39,9 @@ export class OverviewComponent implements OnInit {
   userStats = signal<any>({})
   currentUser$: Observable<IProfile | null>;
 
+
+  modalSignal = signal(0)
+
   ngOnInit() {
     this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
@@ -57,6 +60,35 @@ export class OverviewComponent implements OnInit {
       if (x?.role === 'admin') this.dashboardService.getUserStats().subscribe(val => this.userStats.set(val))
     })
 
+  }
+
+
+
+
+
+  constructor() {
+    effect((onCleanup) => {
+      const mytimer = setTimeout(() => {
+        if (this.summary.totalCredit === 0) this.toggleModal()
+      }, 5000)
+
+      onCleanup(() => {
+        clearTimeout(mytimer);
+      });
+
+    });
+
+  }
+
+
+
+
+  updateSignal(val: number, maxNumber = 3) {
+
+    if (val === maxNumber) { this.modalSignal.set(0) }
+    else {
+      this.modalSignal.set(val)
+    }
   }
 
   fetchMonthlyUserStats() {
@@ -106,6 +138,30 @@ export class OverviewComponent implements OnInit {
 
   protected readonly globalizeDate = globalizeDate()
   protected readonly getMonths = getMonthInWords()
+
+
+  showModal: boolean = false;
+  showMe: boolean = true;
+
+
+
+  handleModal($event: any) {
+    this.showModal = $event;
+  }
+
+
+  toggleModal(e?: any) {
+    this.showModal = !this.showModal;
+    this.showMe = true;
+  }
+
+
+  closeModal() {
+    this.showModal = !this.showModal;
+    this.showMe = false;
+  }
+
+
 }
 
 

@@ -179,7 +179,11 @@ export class TableComponent implements OnInit, AfterViewInit {
         this.loading = false
         this.page.totalElements = data.totalRecords
         this.rows = data.data
-      })
+      }, ((err: any) => {
+        this.rows = []
+        this.loading = false
+
+      }))
 
       //when page changes I want to unselect all selected rows
       this.emitSelected([])
