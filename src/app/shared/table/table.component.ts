@@ -168,7 +168,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.page.pageNumber = pageInfo.offset;
       this.page.limit = pageInfo.limit
 
-      reset ? this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, } : this.page.search = {}
+      !reset ? this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, } : this.page.search = {}
 
 
 
@@ -326,6 +326,7 @@ export class TableComponent implements OnInit, AfterViewInit {
 
     const data = this.removeEmptyKeys({ ...this.additionalSettings.searchParams, ...value })
 
+    console.log(value)
     //This helps filtered response paginable 
     this.page.search = data
 
