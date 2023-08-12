@@ -16,82 +16,83 @@ import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
 })
 export class LoanViewComponent {
 
-    route = inject( ActivatedRoute)
+  route = inject(ActivatedRoute)
 
-currentUser$: Observable<IProfile|null>
+  currentUser$: Observable<IProfile | null>
 
-    loanService= inject(LoansService)
-    loanDetails$: Observable<any>
-    private store = inject(Store<AppStateInterface>)
-    loading:boolean= false
-    router= inject(Router)
-    private notify = inject(NotificationService)
-    currentUser:IProfile|null
-    loanDetails: any
-
-  
-
-    constructor() {
- 
-   this.loanDetails$ = this.loanService.getLoan(this.route.snapshot.params['id'])
-
-   this.loanDetails$.subscribe(x=> this.loanDetails = x)
+  loanService = inject(LoansService)
+  loanDetails$: Observable<any>
+  private store = inject(Store<AppStateInterface>)
+  loading: boolean = false
+  router = inject(Router)
+  private notify = inject(NotificationService)
+  currentUser: IProfile | null
+  loanDetails: any
 
 
-   this.currentUser$ = this.store.pipe(select(currentUserSelector))
 
-   this.currentUser$.subscribe(x=> this.currentUser = x)
+  constructor() {
 
+    this.loanDetails$ = this.loanService.getLoan(this.route.snapshot.params['id'])
+
+    this.loanDetails$.subscribe(x => this.loanDetails = x)
+
+
+    this.currentUser$ = this.store.pipe(select(currentUserSelector))
+
+    this.currentUser$.subscribe(x => this.currentUser = x)
+
+  }
+
+
+  handleProcessLoan(val: any, loanId: any) {
+    this.loading = true
+    const payload = {
+      ...val,
+      actionedBy: this.currentUser?.name,
+      createdAt: new Date(Date.now())
     }
+    this.loanService.processLoan(payload, loanId).subscribe(x => {
+      this.loading = false
+      this.handleBack()
+      this.notify.showSuccess('Loan Processed Ok', 'Loan Notification')
+    }, err => {
+      this.loading = false
+    })
+  }
 
 
-    handleProcessLoan(val:any, loanId:any) {
-      this.loading = true
-      const payload = {
-        ...val,
-        actionedBy: this.currentUser?.name
-      }
-      this.loanService.processLoan(payload, loanId).subscribe(x => {
-        this.loading = false
-        this.handleBack()
-        this.notify.showSuccess('Loan Processed Ok','Loan Notification')
-      }, err=>{
-        this.loading = false
-      })
+  handleLoanPayment() {
+
+  }
+
+
+  handleRetry() {
+
+  }
+  handleWithdrawal(loanId: AnyCatcher) {
+    this.loading = true
+    this.loanService.withdrawLoan(loanId).subscribe(x => {
+      this.loading = false
+      this.handleBack()
+      this.notify.showSuccess('Loan Withdrawn', 'Loan Notification')
+    }, err => {
+      this.loading = false
+
+    })
+
+  }
+
+  handleBack() {
+
+    // this.router.navigate()
+
+    if (this.currentUser?.role === 'admin') {
+      this.router.navigate(['dashboard/user-loans/', this.loanDetails.user])
     }
-
-
-    handleLoanPayment(){
-
+    else {
+      this.router.navigate(['/dashboard/loans'])
     }
-
-
-    handleRetry() {
-
-    }
-    handleWithdrawal(loanId:AnyCatcher){
-      this.loading = true
-      this.loanService.withdrawLoan(loanId).subscribe(x => {
-        this.loading = false
-     this.handleBack()
-        this.notify.showSuccess('Loan Withdrawn','Loan Notification')
-      }, err=>{
-        this.loading = false
-    
-      })
-
-    }
-
-    handleBack() {
-
-      // this.router.navigate()
-
-      if(this.currentUser?.role ==='admin') {
-        this.router.navigate(['dashboard/user-loans/', this.loanDetails.user ])
-      }
-      else{
-this.router.navigate(['/dashboard/loans'])
-      }
-    }
+  }
 
 }
