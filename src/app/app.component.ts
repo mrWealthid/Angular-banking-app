@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       if (!x) return;
       this.autoLogout(x.exp)
     })
-    this.handleKeepSessionAlive()
+    // this.handleKeepSessionAlive()
   }
 
 
