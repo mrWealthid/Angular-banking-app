@@ -39,8 +39,9 @@ export class TransactionsComponent implements OnInit {
   tableConfig: ITableConfig = {
     showSummary: true,
     tableName: "Transactions Table",
-    singleAction: true
+    singleAction: true,
     // actionable:false
+    checkable: false
   }
 
 
@@ -52,7 +53,6 @@ export class TransactionsComponent implements OnInit {
 
   fetchBalance() {
     this.paymentService.getBalance().subscribe(x => {
-
       this.balance.set(x)
     })
   }

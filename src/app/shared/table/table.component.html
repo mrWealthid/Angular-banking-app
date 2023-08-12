@@ -53,7 +53,25 @@
     [scrollbarH]="true"
     class="material"
   >
+    <ngx-datatable-column
+      *ngIf="!additionalSettings.checkable"
+      name="S/N"
+      prop="S/N"
+    >
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <span>#</span>
+      </ng-template>
+      <ng-template
+        let-row="row"
+        let-rowIndex="rowIndex"
+        ngx-datatable-cell-template
+      >
+        <span>{{ rowIndex + 1 }}.</span>
+      </ng-template>
+    </ngx-datatable-column>
+
     <!--    This piece control the general toggle on the left-end of the header column-->
+    <!-- When the table setting reads checkable -->
     <ngx-datatable-column
       *ngIf="additionalSettings.checkable"
       name="S/N"
