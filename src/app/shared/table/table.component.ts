@@ -162,13 +162,13 @@ export class TableComponent implements OnInit, AfterViewInit {
     // }
   }
 
-  setPage(pageInfo: any) {
+  setPage(pageInfo: any, reset = false) {
     if (!this.suppressPaging) {
       this.loading = true
       this.page.pageNumber = pageInfo.offset;
       this.page.limit = pageInfo.limit
 
-      this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, }
+      reset ? this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, } : this.page.search = {}
 
 
 
@@ -340,7 +340,7 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   handleResetFilter() {
-    this.setPage({ offset: 0, limit: 10 })
+    this.setPage({ offset: 0, limit: 10 }, true)
     this.form.reset()
 
     //unset filterActive flag when user resets search form
