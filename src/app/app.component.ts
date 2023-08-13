@@ -15,13 +15,12 @@ export class AppComponent implements OnInit {
 
 
 
-  timerSecs = signal(60);
+  timerSecs = signal(120);
 
 
-  formattimerSecs(val: any) {
+  formatTimerSecs(val: any) {
     const min = String(Math.trunc(val / 60)).padStart(2, '0');
     const sec = String(val % 60).padStart(2, '0');
-
     return `${min}:${sec}`;
   };
 
@@ -35,7 +34,7 @@ export class AppComponent implements OnInit {
       if (!x) return;
       this.autoLogout(x.exp)
     })
-    // this.handleKeepSessionAlive()
+    this.handleKeepSessionAlive()
   }
 
 

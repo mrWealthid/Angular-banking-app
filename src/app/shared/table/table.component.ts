@@ -168,7 +168,7 @@ export class TableComponent implements OnInit, AfterViewInit {
       this.page.pageNumber = pageInfo.offset;
       this.page.limit = pageInfo.limit
 
-      !reset ? this.page.search = { ...this.additionalSettings.searchParams, ...this.page.search, } : this.page.search = {}
+      this.page.search = reset ? {} : { ...this.additionalSettings.searchParams, ...this.page.search, }
 
 
 
