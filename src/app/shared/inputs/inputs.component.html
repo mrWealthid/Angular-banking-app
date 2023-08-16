@@ -1,19 +1,24 @@
 <section>
   <app-label [label]="label" [required]="hasRequiredValidator()"></app-label>
   <div
-    [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
-    class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+    [ngClass]="{
+      'error-input': this.validateControl(),
+      'border-border-blue-100 focus-within:border-gray-200 ':
+        !this.validateControl()
+    }"
+    class="border border-blue-100 flex dark:glass-input dark:border-none justify-between items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg w-full"
   >
-    <span><i class="{{icon}} text-gray-300"></i></span>
+    <span><i class="{{ icon }} text-gray-300"></i></span>
     <input
       [formControl]="formControl"
       [placeholder]="placeholder"
       [type]="type"
       autocapitalize="words"
       class="input-style"
-      name="test"/>
+      name="test"
+    />
   </div>
-  <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
+  <span *ngIf="this.validateControl()" class="text-error text-xs"
+    >This Field is Required</span
+  >
 </section>
-
-

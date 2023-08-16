@@ -1,54 +1,90 @@
 <section>
   <app-label [label]="label" [required]="hasRequiredValidator()"></app-label>
   <div
-    [ngClass]="{'error-input':this.validateControl(), 'border-border-blue-100 focus-within:border-gray-200 ': !this.validateControl()}"
-    class="border border-blue-100 flex justify-between dark:glass-input dark:border-none items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg  w-full"
+    [ngClass]="{
+      'error-input': this.validateControl(),
+      'border-border-blue-100 focus-within:border-gray-200 ':
+        !this.validateControl()
+    }"
+    class="border border-blue-100 flex justify-between dark:glass-input dark:border-none items-center form-input my-1 px-2 py-2 focus-within:ring-0 rounded-lg w-full"
   >
     <span><i class="fa-solid text-gray-300 fa-building-columns"></i></span>
-
 
     <input
       [formControl]="formControl"
       [placeholder]="placeholder"
       class="input-style"
       name="test"
-      type="text"/>
-    <span *ngIf="!formControl.pristine && formControl.value.length >6 && formControl.pending  "><i
-      class="fa-solid text-green-500 fa-circle-notch fa-spin"></i></span>
-    <span *ngIf="!formControl.pristine && formControl.value.length >6 && !formControl.pending && formControl.valid  ">
-      <i
-        class="fa-solid fa-user-check text-green-500"></i></span>
+      type="text"
+    />
+    <span
+      *ngIf="
+        !formControl.pristine &&
+        formControl.value.length > 6 &&
+        formControl.pending
+      "
+      ><i class="fa-solid text-green-500 fa-circle-notch fa-spin"></i
+    ></span>
+    <span
+      *ngIf="
+        !formControl.pristine &&
+        formControl.value.length > 6 &&
+        !formControl.pending &&
+        formControl.valid
+      "
+    >
+      <i class="fa-solid fa-user-check text-green-500"></i
+    ></span>
   </div>
   <!--  <span-->
   <!--    *ngIf="!formControl.pristine && formControl.value.length >6 ">  {{formControl.pending ? "PENDING" : "FOUND"}}</span>-->
   <!--  <span>  {{formControl.errors| json}}</span>-->
 
-
-  <ng-container *ngIf="formControl.value.length >6 && !formControl.pending && formControl.valid"
-                class="w-1/2 text-xs">
-    <section class="rounded-lg flex flex-col mt-2 border  dark:border-none  text-xs gap-3 skin dark:glass text-primary dark:text-black  py-2 px-4">
-      <div class="items-center flex  gap-2">
+  <ng-container
+    *ngIf="
+      formControl.value.length > 6 && !formControl.pending && formControl.valid
+    "
+    class="w-1/2 text-xs"
+  >
+    <section
+      class="rounded-lg flex flex-col mt-2 border dark:border-none text-xs gap-3 skin dark:glass text-primary dark:text-black py-2 px-4"
+    >
+      <div class="items-center flex gap-2">
         <p>Account Name:</p>
-        <p>{{data.name}}</p>
-        <img class="w-4 h-4" src="../../../assets/images/userbadge.svg" alt="badge">
+        <p>{{ data.name }}</p>
+        <img
+          class="w-4 h-4"
+          src="../../../assets/images/userbadge.svg"
+          alt="badge"
+        />
         <!-- <i class="fa-solid fa-user-check text-green-500"></i> -->
       </div>
-      <div class="flex items-center  gap-2">
+      <div class="flex items-center gap-2">
         <p>Account Number:</p>
-        <p>{{data.accountNumber}}</p>
-        <app-clipboard [style]="'text-green-500'" [textToCopy]="data.accountNumber"></app-clipboard>
+        <p>{{ data.accountNumber }}</p>
+        <app-clipboard
+          [style]="'text-green-500'"
+          [textToCopy]="data.accountNumber"
+        ></app-clipboard>
       </div>
     </section>
   </ng-container>
 
-
-  <span *ngIf="this.validateControl()" class="text-red-800 text-xs">This Field is Required</span>
-  <span *ngIf="this.validateAccount('InvalidAccountNumber')" class="text-red-800 flex gap-1 items-center text-xs"> <i
-    class="fa-solid fa-triangle-exclamation"></i> Account Not Found</span>
-  <span *ngIf="this.validateAccount('userAccountNumber')" class="text-red-800 flex gap-1 items-center text-xs"><i
-    class="fa-solid fa-triangle-exclamation"></i> You can't transfer to self</span>
+  <span *ngIf="this.validateControl()" class="text-error text-xs"
+    >This Field is Required</span
+  >
+  <span
+    *ngIf="this.validateAccount('InvalidAccountNumber')"
+    class="text-error flex gap-1 items-center text-xs"
+  >
+    <i class="fa-solid fa-triangle-exclamation"></i> Account Not Found</span
+  >
+  <span
+    *ngIf="this.validateAccount('userAccountNumber')"
+    class="text-error flex gap-1 items-center text-xs"
+    ><i class="fa-solid fa-triangle-exclamation"></i> You can't transfer to
+    self</span
+  >
 
   <!--  <span>{{data|json}}</span>-->
 </section>
-
-

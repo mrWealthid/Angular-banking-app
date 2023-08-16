@@ -1,4 +1,7 @@
-<label class=" flex gap-1 text-xs">
-  <span class="text-primary dark:text-black">{{label}}</span>
-  <i *ngIf='required' class="fa-solid  size text-red-700 align-top fa-asterisk"></i>
+<label class="flex gap-1 text-xs">
+  <span class="text-primary dark:text-label-color">{{ label }}</span>
+  <i
+    *ngIf="required"
+    class="fa-solid size text-red-700 align-top fa-asterisk"
+  ></i>
 </label>

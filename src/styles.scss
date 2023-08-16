@@ -14,9 +14,8 @@
     --primary-color-muted: rgb(76, 84, 95);
     --secondary-color: #c4c8cf;
     --color-text-base: #ffffff;
-  
-    
     --success-color: rgb(34, 197, 94);
+    --input-label: white;
     --error-color: rgb(220, 38, 38);
     --pending-color: rgb(244, 130, 32);
     --light-blue: rgb(147, 197, 253);
@@ -40,6 +39,7 @@
 --error-color: rgb(220, 38, 38);
 --pending-color: rgb(244, 130, 32);
 --light-blue: rgb(147, 197, 253);
+--input-label: white;
 --autofill: #838080
 }
 
@@ -64,7 +64,7 @@
   // --primary-color-light: #e4d2d5;
   
   --secondary-color: #b3d9b3;
-
+  --input-label: #b3d9b3;
   --success-color: rgb(34, 197, 94);
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
@@ -82,6 +82,7 @@
   --secondary-color: whitesmoke;
   --success-color: rgb(34, 197, 94);
   --error-color: rgb(220, 38, 38);
+  --input-label:white;
   --pending-color: rgb(244, 130, 32);
   --light-blue: rgb(147, 197, 253);
   --autofill: #e9c979
@@ -100,7 +101,7 @@
   --color-text-base: #ffffff;
   
   --secondary-color: #edd4d4;
-
+  --input-label: white;
   --success-color: rgb(34, 197, 94);
   --error-color: rgb(220, 38, 38);
   --pending-color: rgb(244, 130, 32);
@@ -119,7 +120,7 @@
   --primary-color-muted: #e8b393;
   --secondary-color: white;
   --color-text-base: #ffffff;
-
+  --input-label: white;
   
   --success-color: rgb(34, 197, 94);
   --error-color: rgb(220, 38, 38);
@@ -228,6 +229,7 @@ header {
   .glass-input {
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  
 
   }
 }
@@ -250,6 +252,8 @@ header {
   background: unset !important;
   @apply border-none text-xs text-black  dark:bg-inherit md:text-sm focus-within:border-none focus-within:ring-0 w-full
 }
+
+
 
 /*removes the background color form upon autofill*/
 //input:-webkit-autofill {

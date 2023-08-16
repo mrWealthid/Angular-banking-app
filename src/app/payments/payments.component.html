@@ -153,7 +153,7 @@
 
           <section>
             <label class="flex gap-1 text-xs">
-              <span>Amount</span>
+              <span class="text-primary dark:text-label-color">Amount</span>
               <i
                 *ngIf="hasRequiredValidator()"
                 class="fa-solid size text-red-700 align-top fa-asterisk"
@@ -180,12 +180,12 @@
             </div>
             <span
               *ngIf="this.validateControl(amount, 'required')"
-              class="text-red-800 text-xs"
+              class="text-error text-xs"
               >This Field is Required</span
             >
             <span
               *ngIf="this.validateControl(amount, 'maxValue')"
-              class="text-red-800 text-xs"
+              class="text-error text-xs"
               >Balance Exceeded</span
             >
           </section>
@@ -205,7 +205,7 @@
                 class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-1 peer-focus:ring-blue-50 dark:peer-focus:ring-blue-100 dark:bg-gray-100 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-primary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-400"
               ></div>
               <span
-                class="ml-3 text-sm font-medium dark:text-secondary text-primary"
+                class="ml-3 text-sm font-medium text-primary dark:text-label-color"
                 >Add to beneficiaries</span
               >
             </label>
@@ -230,7 +230,9 @@
         >
           <section>
             <label class="flex gap-1 text-xs">
-              <span>Loan Amount</span>
+              <span class="text-primary dark:text-label-color"
+                >Loan Amount</span
+              >
               <i
                 *ngIf="hasRequiredValidator()"
                 class="fa-solid size text-red-700 align-top fa-asterisk"
@@ -257,12 +259,12 @@
             </div>
             <span
               *ngIf="this.validateControl(loanAmount, 'required')"
-              class="text-red-800 text-xs"
+              class="text-error text-xs"
               >This Field is Required</span
             >
             <span
               *ngIf="this.validateControl(loanAmount, 'maxLoanValue')"
-              class="text-red-800 text-xs"
+              class="text-error text-xs"
               >Exceeded Loan Limit</span
             >
           </section>
@@ -296,7 +298,7 @@
         >
           <section>
             <label class="flex gap-1 text-xs">
-              <span>Amount</span>
+              <span class="text-primary dark:text-label-color">Amount</span>
               <i
                 *ngIf="hasRequiredValidator()"
                 class="fa-solid size text-red-700 align-top fa-asterisk"
@@ -323,7 +325,7 @@
             </div>
             <span
               *ngIf="this.validateControl(fundAmount, 'required')"
-              class="text-red-800 text-xs"
+              class="text-error text-xs"
               >This Field is Required</span
             >
           </section>

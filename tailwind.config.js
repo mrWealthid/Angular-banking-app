@@ -25,6 +25,7 @@ module.exports = {
         'base-color': 'var(--color-text-base)',
         'success': 'var(--success-color)',
         'error': 'var(--error-color)',
+      'label-color': 'var(--input-label)',
         'pending': 'var(--pending-color)',
         'light-blue': 'var(--light-blue)'
 
