@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, effect, signal } from '@angular/core';
+import { Component, Inject, OnInit, effect, inject, signal } from '@angular/core';
 import { AppStateInterface, IToken } from "./shared/interface/userAuth"
 import { select, Store } from "@ngrx/store";
 import { token } from "./core/store/Auth/selectors";
@@ -28,35 +28,38 @@ export class AppComponent implements OnInit {
   token: IToken | null
   countDown: number
 
-  constructor(private store: Store<AppStateInterface>, private router: Router) {
+  store = inject(Store<AppStateInterface>);
+  router = inject(Router)
+
+  constructor() {
 
     this.store.pipe(select(token)).subscribe(x => {
       if (!x) return;
       this.autoLogout(x.exp)
     })
-    this.handleKeepSessionAlive()
+    // this.handleKeepSessionAlive()
   }
 
 
-  handleKeepSessionAlive() {
-    ///This is a countdown for inactivity set for two minutes
+  // handleKeepSessionAlive() {
+  //   ///This is a countdown for inactivity set for two minutes
 
-    effect((onCleanup) => {
-      const mytimer = setInterval(() => {
-        this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
-      }, 1000)
+  //   effect((onCleanup) => {
+  //     const mytimer = setInterval(() => {
+  //       this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
+  //     }, 1000)
 
-      onCleanup(() => {
-        clearInterval(mytimer);
-      });
+  //     onCleanup(() => {
+  //       clearInterval(mytimer);
+  //     });
 
-    }, { allowSignalWrites: true });
+  //   }, { allowSignalWrites: true });
 
 
-    effect(() => {
-      if (this.timerSecs() === 0) this.logout()
-    }, { allowSignalWrites: true })
-  }
+  //   effect(() => {
+  //     if (this.timerSecs() === 0) this.logout()
+  //   }, { allowSignalWrites: true })
+  // }
 
 
   handleCheckActivity() {
