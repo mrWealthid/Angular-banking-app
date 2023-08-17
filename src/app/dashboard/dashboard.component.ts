@@ -39,31 +39,38 @@ export class DashboardComponent implements OnInit {
 
   }
 
+
   constructor() {
-    this.handleKeepSessionAlive()
+    // this.handleKeepSessionAlive()
   }
 
 
-
-  handleKeepSessionAlive() {
-    ///This is a countdown for inactivity set for two minutes
-
-    effect((onCleanup) => {
-      const mytimer = setInterval(() => {
-        this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
-      }, 1000)
-
-      onCleanup(() => {
-        clearInterval(mytimer);
-      });
-
-    }, { allowSignalWrites: true });
-
-
-    effect(() => {
-      if (this.timerSecs() === 0) this.logout()
-    }, { allowSignalWrites: true })
+  handleCheckActivity() {
+    //set the timer back to 3mins
+    this.timerSecs.set(180)
+    // console.log('clicked')
   }
+
+
+  // handleKeepSessionAlive() {
+  //   ///This is a countdown for inactivity set for two minutes
+
+  //   effect((onCleanup) => {
+  //     const mytimer = setInterval(() => {
+  //       this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
+  //     }, 1000)
+
+  //     onCleanup(() => {
+  //       clearInterval(mytimer);
+  //     });
+
+  //   }, { allowSignalWrites: true });
+
+
+  //   effect(() => {
+  //     if (this.timerSecs() === 0) this.logout()
+  //   }, { allowSignalWrites: true })
+  // }
 
   handleToggle() {
 
