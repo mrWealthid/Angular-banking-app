@@ -191,7 +191,7 @@
           </section>
 
           <!-- Implement later beneficiary feature -->
-          <section *ngIf="!isBeneficiarySelected()">
+          <section *ngIf="asyncValue && !isBeneficiarySelected()">
             <label
               class="relative inline-flex items-center mb-4 cursor-pointer"
             >
