@@ -117,7 +117,6 @@ export class PaymentsComponent implements OnInit {
     this.store.pipe(select(currentUserSelector)).subscribe(userDetails => {
       if (userDetails) this.userDetails = userDetails
     })
-    this.paymentService.getLoanStats().subscribe((val: any) => this.loanStats.set(val))
 
   }
 
@@ -139,6 +138,7 @@ export class PaymentsComponent implements OnInit {
     this.formatControlValue(this.fundAmount)
     this.fetchBeneficiaries()
     this.fetchBalance()
+    this.fetchLoanStats()
   }
 
   fetchBeneficiaries() {
@@ -148,6 +148,11 @@ export class PaymentsComponent implements OnInit {
   fetchBalance() {
     this.paymentService.getBalance().subscribe(x =>
       this.balance.set(x))
+  }
+
+
+  fetchLoanStats() {
+    this.paymentService.getLoanStats().subscribe((val: any) => this.loanStats.set(val))
   }
 
   formatControlValue(control: FormControl) {
@@ -234,7 +239,7 @@ export class PaymentsComponent implements OnInit {
         this.paymentLoader = false
         this.notify.showSuccess('Transfer Successful', 'Payment Notification')
         this.fetchBalance()
-        this.fetchBeneficiaries()
+        // this.fetchBeneficiaries()
         this.updateSignal(0)
         this.paymentForm.reset({ accountNumber: '', amount: '' })
       }, err => {
@@ -395,6 +400,7 @@ export class PaymentsComponent implements OnInit {
     this.paymentService.requestLoan(this.loanDetails).subscribe((x: any) => {
       this.loanLoader = false
       this.notify.showSuccess('Request Sent Successful', 'Loan Notification')
+      this.fetchLoanStats()
       this.loanForm.reset({ duration: '', amount: '' })
       this.updateSignal(0)
     }, err => {

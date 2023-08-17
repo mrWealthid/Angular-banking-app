@@ -117,7 +117,9 @@
     </div>
 
     <section class="flex flex-col sm:flex-row gap-3">
-      <section class="w-full py-6 px-5 sm:w-1/2 skin dark:glass rounded-2xl">
+      <section
+        class="w-full py-6 px-5 sm:w-1/2 skin bg-white dark:glass rounded-2xl"
+      >
         <div *ngIf="transferSteps() === 0">
           <app-tabs
             (steps)="navigateTab($event, formTabIndex)"
@@ -502,7 +504,7 @@
               <h3 class="flex items-center mb-1 text-md">
                 Loan Details
                 <span
-                  class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300 ml-3"
+                  class="bg-white text-primary text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:glass dark:text-secondary ml-3"
                   >In Progress</span
                 >
               </h3>
@@ -511,7 +513,7 @@
         13th, 2022
       </time> -->
               <p class="text-sm text-primary dark:text-secondary">
-                <span>Amount:</span> {{ loanDetails.amount }}
+                <span>Amount:</span> {{ loanDetails.amount | currency : "USD" }}
               </p>
               <p class="text-sm text-primary dark:text-secondary">
                 <span>Duration:</span> {{ loanDetails.duration }} months
@@ -671,17 +673,14 @@ Fund request Summary -->
 
         <section *ngIf="(tabIndex | async) === 1" class="">
           <ng-container *ngIf="beneficiaries | async as beneficiaries">
-            <section
-              *ngIf="beneficiaries.length > 5"
-              class="flex items-center justify-between"
-            >
+            <section class="flex items-center justify-between">
               <small class="mt-2"
                 >Showing {{ beneficiaries.length }} beneficiaries</small
               >
               <div>
-                <button class="btn btn-primary cursor-pointer rounded-3xl">
+                <!-- <button class="btn btn-primary cursor-pointer rounded-3xl">
                   Show All
-                </button>
+                </button> -->
               </div>
             </section>
 
