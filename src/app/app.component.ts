@@ -37,29 +37,29 @@ export class AppComponent implements OnInit {
       if (!x) return;
       this.autoLogout(x.exp)
     })
-    this.handleKeepSessionAlive()
+    // this.handleKeepSessionAlive()
   }
 
 
-  handleKeepSessionAlive() {
-    ///This is a countdown for inactivity set for two minutes
+  // handleKeepSessionAlive() {
+  //   ///This is a countdown for inactivity set for two minutes
 
-    effect((onCleanup) => {
-      const mytimer = setInterval(() => {
-        this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
-      }, 1000)
+  //   effect((onCleanup) => {
+  //     const mytimer = setInterval(() => {
+  //       this.timerSecs() > 0 && this.timerSecs.set(this.timerSecs() - 1)
+  //     }, 1000)
 
-      onCleanup(() => {
-        clearInterval(mytimer);
-      });
+  //     onCleanup(() => {
+  //       clearInterval(mytimer);
+  //     });
 
-    }, { allowSignalWrites: true });
+  //   }, { allowSignalWrites: true });
 
 
-    effect(() => {
-      if (this.timerSecs() === 0) this.logout()
-    }, { allowSignalWrites: true })
-  }
+  //   effect(() => {
+  //     if (this.timerSecs() === 0) this.logout()
+  //   }, { allowSignalWrites: true })
+  // }
 
 
   // handleCheckActivity() {
