@@ -11,8 +11,8 @@
     <span><fa-icon [icon]="faUser" class="text-gray-300"></fa-icon></span>
     <input
       [formControl]="formControl"
-      [placeholder]="placeholder"
-      autocapitalize="words"
+      placeholder={{placeholder}}
+  
       class="input-style"
       name="test"
       [type]="type"

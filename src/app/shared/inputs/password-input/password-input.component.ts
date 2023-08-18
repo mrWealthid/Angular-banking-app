@@ -20,7 +20,7 @@ export class PasswordInputComponent implements ControlValueAccessor {
   @Input({required: true}) label: string;
   @Input() type: string;
   @Input({required: true}) formControl: FormControl;
-  @Input() placeholder: string = 'password'
+  @Input() placeholder: string = 'Enter Password'
 
   isShown: boolean = false;
   protected readonly faLock = faLock;
