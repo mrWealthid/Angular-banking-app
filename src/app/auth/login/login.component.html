@@ -11,7 +11,9 @@
   <section
     class="bg-white dark:glass w-5/6 md:w-4/6 lg:w-1/3 py-10 px-5 flex gap-4 flex-col items-center justify-center"
   >
-    <p class="text-center text-primary dark:text-black font-bold text-2xl">
+    <p
+      class="text-center text-primary dark:text-label-color font-bold text-2xl"
+    >
       Sign In to Get Started
     </p>
 
@@ -84,7 +86,7 @@
             [styles]="'btn-primary'"
           ></app-button>
         </section>
-        <p class="flex gap-3 text-sm tex-gray-800">
+        <p class="flex gap-3 text-sm text-primary dark:text-label-color">
           Forgot Password ?
           <small
             [routerLink]="['/auth/resetPassword']"
@@ -93,8 +95,8 @@
             Reset
           </small>
         </p>
-        <p class="flex gap-3 text-sm tex-gray-800">
-          Need An Account
+        <p class="flex gap-3 text-sm text-primary dark:text-label-color">
+          Need An Account ?
           <a [routerLink]="['/auth/signup']" class="text-blue-600 text-sm">
             Sign up
           </a>
