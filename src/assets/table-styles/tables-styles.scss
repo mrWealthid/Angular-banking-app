@@ -162,6 +162,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     padding: 0.5rem 1.2rem;
     vertical-align: top;
     border-top: 0;
+      @apply  text-primary dark:text-label-color
   }
 
   .loading-row {
@@ -288,7 +289,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         // &.active {
         //  background: #0829e0
         // }
-        @apply  text-black
+        @apply  text-primary dark:text-label-color
       }
 
       .datatable-body-group-cell {
@@ -351,7 +352,7 @@ $datatable-summary-row-background-hover: #ddd !default;
     //border-top: 1px solid $datatable-footer-border-top-color;
     font-size: 12px;
     font-weight: 400;
-    color: $datatable-footer-cell-color;
+  @apply  text-primary dark:text-label-color;
 
     .page-count {
       line-height: 50px;
@@ -385,10 +386,10 @@ $datatable-summary-row-background-hover: #ddd !default;
         margin: 6px 3px;
         text-align: center;
         vertical-align: top;
-        color: $datatable-pager-color;
+        // color: $datatable-pager-color;
         text-decoration: none;
         vertical-align: bottom;
-
+  @apply  text-primary dark:text-label-color;
         &:hover {
           color: $datatable-pager-color-hover;
           background-color: $datatable-pager-background-hover;
@@ -402,6 +403,7 @@ $datatable-summary-row-background-hover: #ddd !default;
         font-size: 20px;
         line-height: 20px;
         padding: 0 3px;
+          @apply  text-primary dark:text-label-color
       }
     }
   }
