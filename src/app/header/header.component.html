@@ -1,9 +1,9 @@
-<header class="flex skin z-10 dark:glass bg-white  fixed w-full items-center  justify-between container-text">
+<header
+  class="flex skin z-10 dark:glass bg-white fixed w-full items-center justify-between container-text"
+>
   <section class="section-left"></section>
 
-
   <section class="flex text-xs lg:text-base items-center gap-5">
-
     <!--    <button id="theme-toggle" type="button"-->
     <!--            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">-->
     <!--      <svg id="theme-toggle-dark-icon" class=" dark:hidden block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"-->
@@ -18,52 +18,68 @@
     <!--      </svg>-->
     <!--    </button>-->
 
-<app-color-pallete></app-color-pallete>
+    <app-color-pallete></app-color-pallete>
     <app-theme></app-theme>
 
+    <a
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLink]="['']"
+      routerLinkActive="text-gray-800 border border-secondary  dark:border-none dark:text-secondary dark:glass rounded-full px-3 lg:px-4  py-2 "
+      >Home</a
+    >
+    <a
+      *ngIf="isAuthenticated | async"
+      [routerLink]="['dashboard']"
+      routerLinkActive="text-gray-800 border-secondary dark:border-none dark:text-secondary dark:glass  rounded-full border px-3 py-2 "
+      >Dashboard</a
+    >
 
-    <a [routerLinkActiveOptions]="{exact:true}" [routerLink]='[""]'
-       routerLinkActive="text-gray-800 border border-secondary  dark:border-none dark:text-secondary dark:glass rounded-full px-3 lg:px-4  py-2 ">Home</a>
-    <a *ngIf="(isAuthenticated|async)" [routerLink]='["dashboard"] '
-       routerLinkActive="text-gray-800 border-secondary dark:border-none dark:text-secondary dark:glass  rounded-full border px-3 py-2 ">Dashboard</a>
-
-    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/login"]'
-       routerLinkActive=" border px-3 py-2 border-secondary  lg:px-4 dark:border-none dark:text-secondary dark:glass  rounded-full text-gray-800">Login</a>
-    <a *ngIf="!(isAuthenticated|async)" [routerLink]='["auth/signup"]'
-       routerLinkActive=" border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Signup</a>
-    <a class=" cursor-pointer" (click)="logout()" *ngIf="(isAuthenticated|async)"
-       routerLinkActive="border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800">Logout</a>
-
+    <a
+      *ngIf="!(isAuthenticated | async)"
+      [routerLink]="['auth/login']"
+      routerLinkActive=" border px-3 py-2 border-secondary  lg:px-4 dark:border-none dark:text-secondary dark:glass  rounded-full text-gray-800"
+      >Login</a
+    >
+    <a
+      *ngIf="!(isAuthenticated | async)"
+      [routerLink]="['auth/signup']"
+      routerLinkActive=" border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800"
+      >Signup</a
+    >
+    <a
+      class="cursor-pointer"
+      (click)="logout()"
+      *ngIf="isAuthenticated | async"
+      routerLinkActive="border px-3 border-secondary  py-2 dark:border-none dark:text-secondary dark:glass rounded-full text-gray-800"
+      >Logout</a
+    >
 
     <!--    <img *ngIf="(isAuthenticated|async)" alt="user-avatar"-->
     <!--         class="rounded-full border w-10 object-contain flex items-center justify-center border-green-600"-->
     <!--         src="http://localhost:3000/{{(currentUser|async)?.imgUrl}}"-->
     <!--    />-->
 
-    <div *ngIf="(isAuthenticated|async)" class="relative">
-
-
-      <ng-container *ngIf="(currentUser|async) as currentUser">
-        <img *ngIf="currentUser.imgUrl" alt="profile image"
-             class="rounded-full border h-6 w-6 lg:h-8 lg:w-8 object-contain flex items-center justify-center border-green-600"
-             src="{{currentUser.imgUrl}}">
-
+    <div *ngIf="isAuthenticated | async" class="relative">
+      <ng-container *ngIf="currentUser | async as currentUser">
+        <img
+          *ngIf="currentUser.imgUrl"
+          alt="profile image"
+          class="rounded-full border h-6 w-6 lg:h-8 lg:w-8 object-contain flex items-center justify-center border-green-600"
+          src="{{ currentUser.imgUrl }}"
+        />
 
         <!--        <ng-template #initials>-->
         <!--       <span-->
         <!--         class="rounded-full border h-6 w-6 lg:h-8 lg:w-8 object-contain flex items-center justify-center border-green-600"-->
         <!--       >  WI </span>-->
         <!--        </ng-template>-->
-
-
       </ng-container>
       <span
-        class="top-0 left-4 lg:left-5 absolute  w-2 h-2 lg:w-3 lg:h-3 bg-green-500 border-2 border-white dark:border-none rounded-full"></span>
+        class="top-0 left-4 lg:left-5 absolute w-2 h-2 lg:w-3 lg:h-3 bg-green-500 border-2 border-white dark:border-none rounded-full"
+      ></span>
     </div>
-
   </section>
 </header>
-
 
 <!--<ng-container >-->
 <!--  <header class="flex skin  justify-between container-text">-->
@@ -83,6 +99,3 @@
 <!--    </section>-->
 <!--  </header>-->
 <!--</ng-container>-->
-
-
-

@@ -37,7 +37,7 @@
           <li>
             <a
               [routerLink]="['/']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
+              class="flex items-center p-2 hover:translate-x-1 transition-all duration-500 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
             >
               <img src="../../assets/images/home.svg" alt="dashboard" />
 
@@ -48,7 +48,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['/dashboard']"
-              class="flex items-center p-2 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
+              class="flex items-center p-2 rounded-lg hover:translate-x-1 transition-all duration-500 dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg "
             >
               <img src="../../assets/images/overview.svg" alt="dashboard" />
@@ -78,7 +78,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['profile']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:rounded-lg hover:bg-primary hover:text-secondary dark:hover:glass"
+              class="flex items-center p-2 hover:translate-x-1 transition-all duration-500 text-gray-900 rounded-lg dark:text-secondary hover:rounded-lg hover:bg-primary hover:text-secondary dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg "
             >
               <ng-container *ngIf="currentUser$ | async as currentUser">
@@ -100,7 +100,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['loans']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
+              class="flex items-center p-2 hover:translate-x-1 transition-all duration-500 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg "
             >
               <img src="../../assets/images/loans.svg" alt="loans" />
@@ -114,7 +114,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['users']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
+              class="flex items-center p-2 hover:translate-x-1 transition-all duration-500 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg "
             >
               <img src="../../assets/images/users.svg" alt="users" />
@@ -125,7 +125,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['transactions']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
+              class="flex items-center p-2 text-gray-900 hover:translate-x-1 transition-all duration-500 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg"
             >
               <img
@@ -140,7 +140,7 @@
             <a
               [routerLinkActiveOptions]="{ exact: true }"
               [routerLink]="['payments']"
-              class="flex items-center p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:rounded-lg dark:hover:glass"
+              class="flex items-center hover:translate-x-1 transition-all duration-500 p-2 text-gray-900 rounded-lg dark:text-secondary hover:bg-primary hover:text-secondary hover:rounded-lg dark:hover:rounded-lg dark:hover:glass"
               routerLinkActive="bg-primary dark:glass text-secondary rounded-lg "
             >
               <img src="../../assets/images/payment.svg" alt="payment" />
